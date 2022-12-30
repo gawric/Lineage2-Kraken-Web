@@ -19,8 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('l2page', function () {
+    return view('l2page');
+});
+
 Route::get('testindex', function () {
-    return view('testindex');
+    return view('l2index');
 });
 
 Route::get('/dashboard', function () {
