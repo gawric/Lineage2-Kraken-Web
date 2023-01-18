@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserShowTest;
+use App\Http\Controllers\Lang\LangController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,13 @@ use App\Http\Controllers\Auth\UserShowTest;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('l2page', function () {
-    return view('l2page');
-});
-
-Route::get('testindex', function () {
+    //dd(session());
     return view('l2index');
 });
+
+Route::get('lang/home', [LangController::class, 'index']);
+Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

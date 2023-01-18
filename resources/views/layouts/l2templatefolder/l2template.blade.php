@@ -52,9 +52,26 @@
 							<li><a href="">Characters & Races</a></li>
 						</ul>
 					</li>
+					<div class="container">
 				</ul>
 			</div>
 			<div class="topPanel-button flex-c">
+
+
+			<h1>{{ __('messages.title') }}</h1>
+			<h1>{{session()->get('locale')}}</h1>
+
+			@if(session()->get('locale') == 'ru')         
+				<img id="count" src="{{asset('/images/rus.svg') }}" width="50" height="60">    
+			@else
+				<img id="count" src="{{asset('/images/eng.svg') }}" width="50" height="60">
+			@endif
+
+		  	<select class="loginButton bright changeLang">
+			  	<option value="ru" {{ session()->get('locale') == 'ru' ? 'selected' : '' }}>Russia</option>
+			  	<option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
+		  	</select>
+	
 				<a href="#modal-login" class="loginButton bright open_modal">Log In</a>
 				<a href="" class="downloadButton bright">Download</a>
 			</div>
@@ -136,5 +153,27 @@
 	<script src="{{asset('/js/jquery-2.1.4.min.js') }}"></script>
 	<script src="{{asset('/js/swiper.min.js') }}"></script>
 	<script src="{{asset('/js/main.js') }}"></script>
+
+	<script type="text/javascript">
+    		var url = "{{ route('changeLang') }}";
+    		$(".changeLang").change(function(){
+				change($(this).val())
+        		window.location.href = url + "?lang="+ $(this).val();
+    		});
+
+			function change(val){
+				console.log(val);
+				if(val == "en"){
+					changeImg("{{asset('/images/eng.svg') }}");
+				}
+				else{
+					changeImg("{{asset('/images/rus.svg') }}")
+				}
+			}
+			function changeImg(imagePath){
+				document.getElementById("count").src=imagePath;
+			}
+
+</script>
 </body>
 </html>
