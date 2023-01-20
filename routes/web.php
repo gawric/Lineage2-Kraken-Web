@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserShowTest;
 use App\Http\Controllers\Lang\LangController;
+use App\Http\Controllers\Lineage2\StatusServerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +18,10 @@ use App\Http\Controllers\Lang\LangController;
 */
 
 Route::get('/', function () {
-    //dd(session());
     return view('l2index');
 });
 
+Route::get('status', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 

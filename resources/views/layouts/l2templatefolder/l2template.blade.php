@@ -57,10 +57,6 @@
 			</div>
 			<div class="topPanel-button flex-c">
 
-
-			<h1>{{ __('messages.title') }}</h1>
-			<h1>{{session()->get('locale')}}</h1>
-
 			@if(session()->get('locale') == 'ru')         
 				<img id="count" src="{{asset('/images/rus.svg') }}" width="50" height="60">    
 			@else

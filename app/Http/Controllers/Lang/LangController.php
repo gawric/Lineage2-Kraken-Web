@@ -30,8 +30,8 @@ class LangController extends Controller
         App::setLocale($request->lang);
         session()->put('locale', $request->lang);
 
-        $googleAPIToken = Config::get('lineage2.server.list_server');
-        dd($googleAPIToken);
+        //$googleAPIToken = Config::get('lineage2.server.list_server');
+        //dd($googleAPIToken);
 
        // dd(session());
         return redirect()->back();

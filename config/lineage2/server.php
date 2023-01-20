@@ -17,7 +17,7 @@ return [
             'server2' => [
                 'id'=>'2',
                 'name'=>'X300 Paradise',
-                'ip'=>'127.0.0.1',
+                'ip'=>'192.168.0.1',
                 'login_port'=>'2106',
                 'game_port' =>'7777',
                 'status' => 'offline',
@@ -33,4 +33,6 @@ return [
                 'count_online' => 0,
         ],
     ],
+
+    'timeout_socket' => 5,
 ];
