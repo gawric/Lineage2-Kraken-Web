@@ -32,8 +32,8 @@
 		<nav class="nav flex-c">
 			<div class="topPanel-menu flex-c">
 				<ul class="menu flex">
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Create account</a></li>
+					<li><a href="#">{{ __('messages.home') }}</a></li>
+					<li><a href="#">{{ __('messages.static') }}</a></li>
 					<li>
 						<a data-class="m_3" class="menu-a">Game</a>
 						<ul class="dropDown-menu m_3">
@@ -162,7 +162,7 @@
     		});
 
 			function change(val){
-				console.log(val);
+				//console.log(val);
 				if(val == "en"){
 					changeImg("{{asset('/images/eng.svg') }}");
 				}

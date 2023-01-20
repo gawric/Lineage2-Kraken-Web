@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
   
 use Illuminate\Http\Request;
 use App;
+use Config;
   
 class LangController extends Controller
 {
@@ -28,7 +29,11 @@ class LangController extends Controller
     {
         App::setLocale($request->lang);
         session()->put('locale', $request->lang);
-        //dd(session());
+
+        $googleAPIToken = Config::get('lineage2.server.list_server');
+        dd($googleAPIToken);
+
+       // dd(session());
         return redirect()->back();
     }
 }
