@@ -24,39 +24,28 @@ class StatusServerController extends Controller
     public function __construct()
     {
        $timeout = Config::get('lineage2.server.timeout_socket');
-       $this->ss = new StatusServer($timeout);
+       $this->ss = new StatusServer($timeout);    
     }
 
     public function data(Request $request)
     {
         
         $list_server = Config::get('lineage2.server.list_server');
-        $complete_server = $this->getStatusServers($list_server);
-       // dd($complete_sever);
+        $complete_server = $this->getStatusServersFunct($list_server);
         return Response::json($complete_server);
     }
 
-    function getStatusServers($list_server){
-        
-        $complete_sever =[];
-        foreach ($list_server as $item) {
-
-            $id = $item["id"];
-            $name = $item["name"];
+    function getStatus(&$item, $key)
+    {
             $ip = $item["ip"];
             $login_port = $item["login_port"];
             $game_port = $item["game_port"];
-            $status = $item["status"];
-            $count_online = $item["count_online"];
- 
-           
-             $data = $this->getData($ip , $login_port , $game_port);
-             $item["status"] = $data;
-
-             array_push($complete_sever, $item);
-         }
-
-         return $complete_sever;
+            $data = $this->getData($ip , $login_port , $game_port);
+            $item["status"] = $data;
+    }
+    function getStatusServersFunct($list_server){
+        array_walk($list_server, "self::getStatus");
+        return $list_server;
     }
 
     function getData($ip , $login_port , $game_port){
