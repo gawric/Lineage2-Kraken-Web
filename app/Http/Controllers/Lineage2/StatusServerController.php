@@ -9,7 +9,7 @@ use App;
 use Config;
 use App\Service\Status\StatusServer;
 
-
+//Статус сервера из списка в конфиге
 class StatusServerController extends Controller
 {
     protected StatusServer $ss;
