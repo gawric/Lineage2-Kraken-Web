@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('l2index');
 });
 
-Route::get('status', [StatusServerController::class, 'data']);
+Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 

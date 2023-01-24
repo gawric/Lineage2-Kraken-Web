@@ -41,7 +41,11 @@ class StatusServerController extends Controller
             $login_port = $item["login_port"];
             $game_port = $item["game_port"];
             $data = $this->getData($ip , $login_port , $game_port);
-            $item["status"] = $data;
+            $this->replaceData($item , $data);
+    }
+
+    function replaceData(&$item , $data){
+        $item["status"] = $data;
     }
     function getStatusServersFunct($list_server){
         array_walk($list_server, "self::getStatus");

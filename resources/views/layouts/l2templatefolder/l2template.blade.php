@@ -81,17 +81,10 @@
 		<header class="header">
 			<div class="logo"><a href="/"><img src="images/logo-dark.png" alt="Logo"></a></div>
 			<div class="serverBlock flex">
-				<div class="server server_1">
-					<p>X50 Nightmare</p>
-					<span>Upcoming 22.10</span>
-				</div>
-				<div class="server server_2">
-					<p>X300 Paradise</p>
-					<span>9864</span>
-				</div>
-				<div class="server server_3">
-					<p>X1000 Warland</p>
-					<span>7853</span>
+				<div id="loadStatus" class="server">
+					<div id="loading"></div>
+					<div><h10 id="loadingText">Загрузка статуса!</h10></div>
+					
 				</div>
 			</div>
 			<div class="stars">
@@ -170,6 +163,57 @@
 				document.getElementById("count").src=imagePath;
 			}
 
-</script>
+	</script>
+	<script>
+  			$(document).ready(function () {
+    			$.ajaxSetup({
+        		headers: {
+            		'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        		},
+				dataType: "json",
+				error: function (request, status, statusError) {
+					console.log(status)
+					console.log(statusError)
+        			textError(request.responseText , statusError);
+    			}
+    		});
+ 
+      		$.get('status/server', function (data) {
+				//console.log(Object.keys(data).length);
+				var index2 = 0;
+				$.each(data, function(index, value) {
+					updateDiv(index, value , index2);
+					index2++;
+				});
+				hideLoad(index2);
+				
+      		});
+  });
+  	function textError(textError , statusError){
+		$("#loadingText").text("Ошибка загрузки");
+	}
+    function hideLoad(index2){
+		if(index2 > 0){
+			$('#loadStatus').hide();
+		}
+	}
+  	function updateDiv(index, value , index2){
+		if(index2 == 0){
+			addChild(value.id , "server" , "server_1" , value.name , value.count_online , value.status);
+		}
+		else if(index2 == 1){
+			addChild(value.id , "server" , "server_2" , value.name , value.count_online , value.status);
+		}
+		else if(index2 == 2){
+			addChild(value.id , "server" , "server_3" , value.name , value.count_online , value.status);
+		}
+
+  	}
+
+  function addChild(server_id , server , serverindex , servername , countusers , status_server){
+	var id_value = $('.serverBlock').append( "<div id="+server_id+" class="+server+"><p>"+servername+"</p><span>"+countusers+"</span><br><br><p>"+status_server+"</p></div>" );
+	$("#"+server_id).addClass(serverindex);
+  }
+	</script>
 </body>
 </html>
