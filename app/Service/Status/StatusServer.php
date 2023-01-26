@@ -24,7 +24,7 @@
         }
 
         function getCountUsers(){
-            return 10;
+           return  $this->iss->getCountUsers();
         }
 
         function saveAllInfoServer($listinfoserver){

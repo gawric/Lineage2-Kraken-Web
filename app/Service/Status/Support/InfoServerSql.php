@@ -1,7 +1,9 @@
 <?php
 
  namespace App\Service\Status\Support;
+
  use App\Models\InfoServer;
+ use App\Models\Server\ServerCharacters;
 
      class InfoServerSql
      {
@@ -13,6 +15,15 @@
 
         function getAllInfoServer(){
             
+        }
+        function getCountUsers(){
+            foreach (ServerCharacters::all() as $flight) {
+                //echo $flight->name;
+                info($flight->name);
+                info("getCountUsers Что - то получили");
+            }
+            info("getCountUsers завершенно!");
+            return 10;
         }
         function delAllInfoServer(){
             (new InfoServer)->newQuery()->delete();

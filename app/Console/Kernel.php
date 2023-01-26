@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
 
             $list_server = Config::get('lineage2.server.list_server');
             $complete_server = $this->getStatusServersFunct($list_server);
+            $this->ss->getCountUsers();
             $this->ss->delAllInfoServer();
             //$this->ss->saveInfoServer(1 , "offline" , "0");
             $this->ss->saveAllInfoServer($complete_server);
