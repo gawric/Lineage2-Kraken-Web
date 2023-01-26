@@ -4,15 +4,18 @@
 
     use Config;
     use App\Service\Status\Support\AvailabilityPort;
+    use App\Service\Status\Support\InfoServerSql;
 
     class StatusServer implements IStatusServer
     {
-        protected $ap;
+        private AvailabilityPort $ap;
+        private InfoServerSql $iss;
         
 
         public function __construct($timeout) {
            
             $this->ap = new AvailabilityPort($timeout);
+            $this->iss = new InfoServerSql();
         }
 
 
@@ -22,6 +25,21 @@
 
         function getCountUsers(){
             return 10;
+        }
+
+        function saveAllInfoServer($listinfoserver){
+            $this->iss->saveAllInfoServer($listinfoserver);
+        }
+
+
+        function saveInfoServer($server_id , $status , $online){
+            $this->iss->saveInfoServer($server_id , $status , $online);
+        }
+        function getAllInfoServer(){
+            return $this->iss->getAllInfoServer();
+        }
+        function delAllInfoServer(){
+            $this->iss->delAllInfoServer();
         }
     }
 ?>

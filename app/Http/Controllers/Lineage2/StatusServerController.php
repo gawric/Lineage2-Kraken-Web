@@ -31,8 +31,9 @@ class StatusServerController extends Controller
     {
         
         $list_server = Config::get('lineage2.server.list_server');
-        $complete_server = $this->getStatusServersFunct($list_server);
-        return Response::json($complete_server);
+       // $complete_server = $this->getStatusServersFunct($list_server);
+        dd($list_server);
+        return Response::json($list_server);
     }
 
     function getStatus(&$item, $key)
