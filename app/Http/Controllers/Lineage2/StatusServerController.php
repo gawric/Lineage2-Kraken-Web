@@ -8,52 +8,59 @@ use Illuminate\Http\Request;
 use App;
 use Config;
 use App\Service\Status\StatusServer;
+use App\Models\InfoServer;
 
-//Статус сервера из списка в конфиге
+
 class StatusServerController extends Controller
 {
-    protected StatusServer $ss;
 
-                //'id'=>'1',
-               // 'name'=>'X50 Nightmare',
-                //'ip'=>'127.0.0.1',
-                ///'login_port'=>'2106',
-               // 'game_port' =>'7777',
-               // 'status' => 'offline',
-               // 'count_online' => 0
     public function __construct()
     {
-       $timeout = Config::get('lineage2.server.timeout_socket');
-       $this->ss = new StatusServer($timeout);    
+
     }
 
     public function data(Request $request)
     {
-        
         $list_server = Config::get('lineage2.server.list_server');
-       // $complete_server = $this->getStatusServersFunct($list_server);
-        dd($list_server);
-        return Response::json($list_server);
+        $finishlist = [];
+        foreach (InfoServer::all() as $info) {
+            $servernamearr = $this->getNameByServerId($list_server , $info['server_id']);
+            $server_name = $this->getNameArr($servernamearr);
+            $server_info = $this->createHttpInfoModel($info['id'] , $server_name , $info['server_id'] , $info['status']  , $info['online']  , $info['last_update_at']  , $info['updated_at'] , $info['created_at']);
+            array_push($finishlist, $server_info);
+        }
+ 
+        return Response::json($finishlist);
     }
 
-    function getStatus(&$item, $key)
-    {
-            $ip = $item["ip"];
-            $login_port = $item["login_port"];
-            $game_port = $item["game_port"];
-            $data = $this->getData($ip , $login_port , $game_port);
-            $this->replaceData($item , $data);
+    private function getNameByServerId($list_server , $server_id){
+       return array_filter($list_server,function($v) use ($server_id) {
+            if($v['id'] == $server_id){
+                return $v['name'];
+            }
+          });
+       
     }
 
-    function replaceData(&$item , $data){
-        $item["status"] = $data;
-    }
-    function getStatusServersFunct($list_server){
-        array_walk($list_server, "self::getStatus");
-        return $list_server;
+    private function getNameArr($arr){
+        if(count($arr) > 0){
+            $firstKey = array_key_first($arr);
+            return $arr[$firstKey]['name'];
+        }
+
+        return "";
     }
 
-    function getData($ip , $login_port , $game_port){
-        return $this->ss->getOnline($ip , $login_port , $game_port);
+    private function createHttpInfoModel($id , $name , $server_id , $status , $online , $last_update_at , $updated_at , $created_at){
+        return [
+            'id'=> $id,
+            'name'=> $name,
+            'server_id'=> $server_id,
+            'status'=> $status,
+            'count_online' => $online,
+            'last_update_at' => $last_update_at,
+            'updated_at' => $updated_at,
+            'created_at' => $updated_at
+        ];
     }
 }

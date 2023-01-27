@@ -6,6 +6,7 @@ use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Config;
 use App\Service\Status\StatusServer;
+use App\Service\Status\Support\SupportFuncStatus;
 use App\Models\InfoServer;
 
 class Kernel extends ConsoleKernel
@@ -25,46 +26,20 @@ class Kernel extends ConsoleKernel
 
             $timeout = Config::get('lineage2.server.timeout_socket');
             $this->ss = new StatusServer($timeout);  
-
+            $this->sf = new SupportFuncStatus($this->ss);
             $list_server = Config::get('lineage2.server.list_server');
-            $complete_server = $this->getStatusServersFunct($list_server);
-            $this->ss->getCountUsers();
+            $complete_server = $this->sf->getStatusServersFunct($list_server);
             $this->ss->delAllInfoServer();
-            //$this->ss->saveInfoServer(1 , "offline" , "0");
             $this->ss->saveAllInfoServer($complete_server);
-           // info($complete_server);
-          // $this->delAllModel();
-          // $this->saveModel(1 , "offline" , "0" , now());
-
+            
+            info($complete_server);
         })->everyMinute();
 
-
-        
     }
 
     
 
-    function getStatusServersFunct($list_server){
-        array_walk($list_server, "self::getStatus");
-        return $list_server;
-    }
-
-    function getStatus(&$item, $key)
-    {
-            $ip = $item["ip"];
-            $login_port = $item["login_port"];
-            $game_port = $item["game_port"];
-            $data = $this->getData($ip , $login_port , $game_port);
-            $this->replaceData($item , $data);
-    }
-
-    function replaceData(&$item , $data){
-        $item["status"] = $data;
-    }
-
-    function getData($ip , $login_port , $game_port){
-        return $this->ss->getOnline($ip , $login_port , $game_port);
-    }
+  
 
    
     /**

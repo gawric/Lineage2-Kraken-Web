@@ -4,6 +4,7 @@ namespace App\Models\Server;
  
 use Illuminate\Database\Eloquent\Model;
  
+//обращаемся к rusacis
 class ServerCharacters extends Model
 {
     

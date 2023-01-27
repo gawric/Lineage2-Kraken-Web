@@ -23,8 +23,8 @@
             return $this->ap->getOnline($ip , $login_port , $game_port);
         }
 
-        function getCountUsers(){
-           return  $this->iss->getCountUsers();
+        function getCountUsers($modeldbName){
+           return  $this->iss->getCountUsers($modeldbName);
         }
 
         function saveAllInfoServer($listinfoserver){

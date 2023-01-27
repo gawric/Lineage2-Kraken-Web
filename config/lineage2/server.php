@@ -12,7 +12,8 @@ return [
                 'login_port'=>'2106',
                 'game_port' =>'7777',
                 'status' => 'offline',
-                'count_online' => 0
+                'count_online' => 0,
+                'server_db_model' => "App\Models\Server\ServerCharacters",
         ],
             'server2' => [
                 'id'=>'2',
@@ -22,6 +23,7 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
+                'server_db_model' => "App\Models\Server\ServerCharacters",
         ],
             'server3' => [
                 'id'=>'3',
@@ -31,6 +33,9 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
+                //server_db_model -> модель созданная для обращения к нужной бд пример (ServerCharacters model)
+                //возможность использовать разные бд
+                'server_db_model' => "App\Models\Server\ServerCharacters",
         ],
     ],
 

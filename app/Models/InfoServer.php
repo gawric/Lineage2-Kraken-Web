@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-
+//Обращемся к laravel бд
 class InfoServer extends Model
 {
     use HasFactory;
