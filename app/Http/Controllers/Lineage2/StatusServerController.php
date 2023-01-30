@@ -22,17 +22,24 @@ class StatusServerController extends Controller
     public function data(Request $request)
     {
         $list_server = Config::get('lineage2.server.list_server');
-        $finishlist = [];
-        foreach (InfoServer::all() as $info) {
-            $servernamearr = $this->getNameByServerId($list_server , $info['server_id']);
-            $server_name = $this->getNameArr($servernamearr);
-            $server_info = $this->createHttpInfoModel($info['id'] , $server_name , $info['server_id'] , $info['status']  , $info['online']  , $info['last_update_at']  , $info['updated_at'] , $info['created_at']);
-            array_push($finishlist, $server_info);
-        }
+        $finishlist = $this->getDataInfo($list_server);
  
         return Response::json($finishlist);
     }
 
+    private function getDataInfo($list_server){
+        $finishlist = [];
+       
+        foreach (InfoServer::all() as $info) {
+            $servernamearr = $this->getNameByServerId($list_server , $info['server_id']);
+            $server_name = $this->getNameArr($servernamearr);
+            $server_info = $this->createHttpInfoModel($info['id'] , $server_name , $info['server_id'] , $info['status']  , $info['online']  , $info['last_update_at']  , $info['updated_at'] , $info['created_at']);
+            //dd($info);
+            array_push($finishlist, $server_info);
+        }
+        
+        return $finishlist;
+    }
     private function getNameByServerId($list_server , $server_id){
        return array_filter($list_server,function($v) use ($server_id) {
             if($v['id'] == $server_id){

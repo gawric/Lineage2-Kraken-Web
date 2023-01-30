@@ -11,5 +11,5 @@ class InfoServer extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['server_id', 'status', 'online', 'last_update_at'];
+    protected $fillable = ['server_id', 'status', 'online', 'last_update_at' , 'updated_at' , 'created_at'];
 }
