@@ -3,33 +3,50 @@
 namespace Tests\Feature;
 
 use App\Service\Status\StatusServer;
+use App\Models\InfoServer;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
+use Config;
+use App\Service\Status\Support\SupportFuncStatus;
+
 
 class StatusServerTest extends TestCase
 {
      use RefreshDatabase;
-     
-    //App\Models\Server\ServerCharacters - таблица Characters из базы rusacis
-    public function test_get_count_server()
-    {
-         $responce = new StatusServer(15);
-         //dd($responce->getCountUsers('App\Models\Server\ServerCharacters'));
-         $this->assertEquals(0, $responce->getCountUsers('App\Models\Server\ServerCharacters'));
-    }
 
-    public function test_get_status_server()
-    {
-         $responce = new StatusServer(15);
-        // dd($responce->getOnline("127.0.0.1" , "2106" , "7777"));
-         $this->assertEquals("offline", $responce->getOnline("127.0.0.1" , "2106" , "7777"));
-    }
+     public $infoserver;
 
-    public function test_a_basic_request()
-    {
+     //создание тестовой модели
+     public function setUp(): void
+     {
+         parent::setUp();
+         //$is = InfoServer::factory()->make();
+         $this->infoserver = InfoServer::factory()->create();
+     }
+
+ 
+     public function test_a_get_info_server()
+     {
           $response = $this->get('/status/server');
-          dd(response);
-    }
+         // $response->dd();
+          $response->assertStatus(200)
+                     ->assertJsonFragment([
+                        'name' => 'X50 Nightmare',
+                     ]);
+     }
+
+     public function test_func_cron_1_min_get_online_players(){
+          $timeout = Config::get('lineage2.server.timeout_socket');
+          $list_server = Config::get('lineage2.server.list_server');
+          
+          $this->ss = new StatusServer($timeout);  
+          $this->sf = new SupportFuncStatus($this->ss);
+         
+          $complete_server = $this->sf->getStatusServersFunct($list_server);
+          $this->assertEquals(3 , count($complete_server) );
+
+     }    
+
 }

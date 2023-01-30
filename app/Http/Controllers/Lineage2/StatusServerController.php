@@ -8,66 +8,25 @@ use Illuminate\Http\Request;
 use App;
 use Config;
 use App\Service\Status\StatusServer;
-use App\Models\InfoServer;
+
 
 
 class StatusServerController extends Controller
 {
+    private StatusServer $ss;
 
     public function __construct()
     {
-
+        $timeout = Config::get('lineage2.server.timeout_socket');
+        $this->ss = new StatusServer($timeout);
     }
 
     public function data(Request $request)
     {
         $list_server = Config::get('lineage2.server.list_server');
-        $finishlist = $this->getDataInfo($list_server);
- 
-        return Response::json($finishlist);
+        //dd($list_server);
+        return Response::json($this->ss->getHttpModel($list_server));
     }
 
-    private function getDataInfo($list_server){
-        $finishlist = [];
-       
-        foreach (InfoServer::all() as $info) {
-            $servernamearr = $this->getNameByServerId($list_server , $info['server_id']);
-            $server_name = $this->getNameArr($servernamearr);
-            $server_info = $this->createHttpInfoModel($info['id'] , $server_name , $info['server_id'] , $info['status']  , $info['online']  , $info['last_update_at']  , $info['updated_at'] , $info['created_at']);
-            //dd($info);
-            array_push($finishlist, $server_info);
-        }
-        
-        return $finishlist;
-    }
-    private function getNameByServerId($list_server , $server_id){
-       return array_filter($list_server,function($v) use ($server_id) {
-            if($v['id'] == $server_id){
-                return $v['name'];
-            }
-          });
-       
-    }
-
-    private function getNameArr($arr){
-        if(count($arr) > 0){
-            $firstKey = array_key_first($arr);
-            return $arr[$firstKey]['name'];
-        }
-
-        return "";
-    }
-
-    private function createHttpInfoModel($id , $name , $server_id , $status , $online , $last_update_at , $updated_at , $created_at){
-        return [
-            'id'=> $id,
-            'name'=> $name,
-            'server_id'=> $server_id,
-            'status'=> $status,
-            'count_online' => $online,
-            'last_update_at' => $last_update_at,
-            'updated_at' => $updated_at,
-            'created_at' => $updated_at
-        ];
-    }
+   
 }

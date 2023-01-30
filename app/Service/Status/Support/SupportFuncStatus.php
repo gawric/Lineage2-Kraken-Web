@@ -14,13 +14,15 @@
 
 
         function getStatusServersFunct($list_server){
-            array_walk($list_server, "self::getStatus");
-            return $list_server;
+            if(isset($list_server) and count($list_server) > 0){
+                array_walk($list_server, "self::getStatus");
+                return $list_server;
+            }
+           return [];
         }
     
         function getStatus(&$item, $key)
         {
-                
                 $ip = $item["ip"];
                 $login_port = $item["login_port"];
                 $game_port = $item["game_port"];

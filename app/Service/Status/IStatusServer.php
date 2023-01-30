@@ -11,6 +11,7 @@
         function saveAllInfoServer($listinfoserver);
         function getAllInfoServer();
         function delAllInfoServer();
+        function getHttpModel($list_server);
     }
 
 ?>

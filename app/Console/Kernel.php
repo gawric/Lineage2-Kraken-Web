@@ -25,19 +25,26 @@ class Kernel extends ConsoleKernel
             info("Запуск планировщика задач! ");
 
             $timeout = Config::get('lineage2.server.timeout_socket');
+            $list_server = Config::get('lineage2.server.list_server');
+
             $this->ss = new StatusServer($timeout);  
             $this->sf = new SupportFuncStatus($this->ss);
-            $list_server = Config::get('lineage2.server.list_server');
+           
             $complete_server = $this->sf->getStatusServersFunct($list_server);
-            $this->ss->delAllInfoServer();
-            $this->ss->saveAllInfoServer($complete_server);
-            
-            info($complete_server);
+
+            $this->saveArrToSql($complete_server);
+        
+           // info($complete_server);
         })->everyMinute();
 
     }
 
-    
+    private function saveArrToSql($complete_server){
+        if(count($complete_server) > 0){
+            $this->ss->delAllInfoServer();
+            $this->ss->saveAllInfoServer($complete_server);
+        }
+    }
 
   
 
