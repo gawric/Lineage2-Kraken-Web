@@ -32,17 +32,9 @@
 		<nav class="nav flex-c">
 			<div class="topPanel-menu flex-c">
 				<ul class="menu flex">
-					<li><a href="#">{{ __('messages.home') }}</a></li>
+					<li><a href="/">{{ __('messages.home') }}</a></li>
 					<li><a href="#">{{ __('messages.static') }}</a></li>
-					<li>
-						<a data-class="m_3" class="menu-a">Game</a>
-						<ul class="dropDown-menu m_3">
-							<li><a href="">Statistic</a></li>
-							<li><a href="">Guides</a></li>
-							<li><a href="">Support</a></li>
-							<li><a href="">Characters & Races</a></li>
-						</ul>
-					</li>
+					<li><a href="/registration">{{ __('messages.reg') }}</a></li>
 					<li>
 						<a data-class="m_4" class="menu-a">Community</a>
 						<ul class="dropDown-menu m_4">
@@ -172,8 +164,8 @@
         		},
 				dataType: "json",
 				error: function (request, status, statusError) {
-					console.log(status)
-					console.log(statusError)
+					//console.log(status)
+					//console.log(statusError)
         			textError(request.responseText , statusError);
     			}
     		});

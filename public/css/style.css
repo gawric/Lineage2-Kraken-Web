@@ -869,7 +869,10 @@ button:hover, .button:hover {
   left: 50%;
   margin-left: -106px;
 }
-
+.contentHomeReg {
+  margin: 0px 0px 0px 0px;
+  width: 64%;
+}
 .contentHome {
   margin: 125px 0px 0px 0px;
   width: 64%;

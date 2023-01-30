@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserShowTest;
 use App\Http\Controllers\Lang\LangController;
 use App\Http\Controllers\Lineage2\StatusServerController;
+use App\Http\Controllers\Lineage2\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,8 @@ use App\Http\Controllers\Lineage2\StatusServerController;
 Route::get('/', function () {
     return view('l2index');
 });
+Route::get('/registration', [RegistrationController::class, 'index']);
+
 
 Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
