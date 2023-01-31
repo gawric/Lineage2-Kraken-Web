@@ -10,4 +10,7 @@ return [
     'login' => 'Login',
     'email' => 'Email',
     'pass' => 'Password',
+    'error_alert' => 'Critical error',
+    'error' => 'Error!',
+    'listserver' => 'List of available servers',
 ];

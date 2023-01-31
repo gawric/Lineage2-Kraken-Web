@@ -1144,3 +1144,29 @@ h1 {
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }
+
+/* ALert */
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  margin-bottom:5%;
+  color: white;
+}
+.alert.success {
+    background-color: #04AA6D;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}

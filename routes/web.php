@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\UserShowTest;
 use App\Http\Controllers\Lang\LangController;
 use App\Http\Controllers\Lineage2\StatusServerController;
 use App\Http\Controllers\Lineage2\RegistrationController;
+use App\Http\Middleware\Lineage2\ValidateReg;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +23,15 @@ use App\Http\Controllers\Lineage2\RegistrationController;
 Route::get('/', function () {
     return view('l2index');
 });
+
+
 Route::get('/registration', [RegistrationController::class, 'index']);
-
-
 Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
-
+Route::middleware('valid')->group(function () {
+    Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -39,8 +43,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
 Route::get('/usershow/{id}', [UserShowTest::class, 'show']);
 
 
 
 require __DIR__.'/auth.php';
+//require __DIR__.'/lineage2/l2auth.php';

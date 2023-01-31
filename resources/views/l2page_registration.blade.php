@@ -1,26 +1,38 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
+<meta name="csrf-token" content="{{ csrf_token() }}">
 @section("title" , "Страница описания!")
 @section("page-title" , "Регистрация")
 @section('inside_info')
-	<div class="contentHomeReg">
+<script src="{{asset('/js/registration.js') }}"></script>
+	<div style="margin: auto;"class="contentHomeReg">
+
+	<div class="message">
+
+
+	</div>
+	<div class="alert">
+  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  		<strong>{{ __('messages.error') }} </strong> {{ __('messages.error_alert') }}
+	</div>
 		<div class="formGroup">
-						<p>Field content:</p>
-						<input type="text" placeholder="{{ __('messages.login') }}">
-						<p>Field content:</p>
-						<input type="text" placeholder="{{ __('messages.email') }}">
-						<p>Field content:</p>
-						<input type="password" placeholder="{{ __('messages.pass') }}">
-						
-						<div class="allContent"><button>{{ __('messages.reg') }}</button><div>
+			<p style="color:black;float: left;">{{ __('messages.login') }}</p>
+				<input type="text" id="login" placeholder="{{ __('messages.login') }}">
+			<p style="color:black;float: left;    margin-top: 2%;">{{ __('messages.email') }}</p>
+				<input type="text" id="email" placeholder="{{ __('messages.email') }}">
+			<p style="color:black;float: left;    margin-top: 2%;">{{ __('messages.pass') }}</p>
+				<input type="password" id="pass" placeholder="{{ __('messages.pass') }}">
+			<p style="color:black;float: left;    margin-top: 2%;">{{ __('messages.listserver') }}</p>
+				<select id="selectServer">
+					@foreach ($listServerName as $user)
+						<option value={{ $user['1'] }}>{{ $user['0'] }}</option>
+					@endforeach
+				</select>
+				<div class="allContent">
+					<button onclick="reg()">{{ __('messages.reg') }}</button>
+				<div>
 		</div>
 		
 	</div>
-	<a href="#" class="news" style="background-image: url(images/news-img_2.jpg)">
-							<div class="news-info">
-								<h3><span>[Update]</span> New Fafurion Boss
-									update</h3>
-								<div class="date">10.09</div>
-							</div>	
-						</a>
+
 @endsection
