@@ -12,7 +12,7 @@ return [
     | as the size rules. Feel free to tweak each of these messages here.
     |
     */
-
+    'success' => "Data saved successfully",
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',
@@ -34,6 +34,8 @@ return [
     'boolean' => 'The :attribute field must be true or false.',
     'confirmed' => 'The :attribute confirmation does not match.',
     'current_password' => 'The password is incorrect.',
+    'confirmed_password' => 'Repeat password ',
+    'server_id' => 'List of available servers is incorrect',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
@@ -47,7 +49,9 @@ return [
     'distinct' => 'The :attribute field has a duplicate value.',
     'doesnt_end_with' => 'The :attribute may not end with one of the following: :values.',
     'doesnt_start_with' => 'The :attribute may not start with one of the following: :values.',
-    'email' => 'The :attribute must be a valid email address.',
+    'email_error' => 'The :attribute must be a valid email address.',
+    'email' => 'Не верный адрес электронной почты!',
+    'name_error' => 'The :attribute must be a valid login',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',
@@ -145,7 +149,7 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'ulid' => 'The :attribute must be a valid ULID.',
     'uuid' => 'The :attribute must be a valid UUID.',
-
+   
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

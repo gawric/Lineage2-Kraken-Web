@@ -1,17 +1,13 @@
-function reg(){
-
-    var json = getData()
+function reg(login , email , pass , pass_confirmed ,server_id){
+    var json = getData(login , email , pass , pass_confirmed , server_id);
     console.log(json);
-    sendJsonDataServer( json )
+    hideAlert();
+    hideSucces();
+    sendJsonDataServer(json);
 }
 
-function getData(){
-	var login = $('#login').val();
-    var email = $('#email').val();
-    var pass = $('#pass').val();
-    var dnd = document.querySelector('#selectServer');
-
-    return { login: login, password:pass, email: email , server_id: dnd.selectedIndex };
+function getData(login , email , pass ,  pass_confirmed , server_id){
+    return { login: login, password:pass, password_confirmed: pass_confirmed ,email: email , server_id: server_id };
 }
 
 function sendJsonDataServer( json ){
@@ -25,11 +21,27 @@ function sendJsonDataServer( json ){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
-            console.log("success data " + data);
+            console.log("success data " + textStatus);
+            console.log(jQxhr.responseJSON);
+            if(!!jQxhr.responseJSON.success){
+                showSucces(jQxhr.responseJSON.success)
+            }
+            
+           // showSucces(jQxhr.responseJSON);
         },
-        error: function( jqXhr, textStatus, errorThrown ){
-            console.log( errorThrown );
+        error: function (data) {
+            console.log(data.responseText);
+            var errors = $.parseJSON(data.responseText);
+            if (!!errors.message) {
+                showAlert(errors.message);
+                console.log(errors);
+            }
+            else{
+                console.log(errors);
+            }
+
         }
+    
     });
 
 }

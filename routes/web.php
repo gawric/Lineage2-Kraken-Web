@@ -29,6 +29,7 @@ Route::get('/registration', [RegistrationController::class, 'index']);
 Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
 });

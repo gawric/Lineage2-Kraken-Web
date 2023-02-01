@@ -9,8 +9,9 @@ return [
     'reg' => 'Registration',
     'login' => 'Login',
     'email' => 'Email',
-    'pass' => 'Password',
+    'pass' => 'Password (Min.7 characters)',
     'error_alert' => 'Critical error',
     'error' => 'Error!',
     'listserver' => 'List of available servers',
+    "pass_confirm" => 'Confirm password',
 ];

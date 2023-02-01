@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Lineage2;
 
 use App\Http\Controllers\Controller;
 use Response;
-  
+use App\Http\Requests\RegistrationStoreRequest;
+
 use Illuminate\Http\Request;
 use App;
 use Config;
 use Log;
-
+use Lang;
 
 
 class RegistrationController extends Controller
@@ -29,13 +30,14 @@ class RegistrationController extends Controller
         return view('l2page_registration' , ['listServerName' => $this->arr]);
     }
 
-    public function ajaxRequestPost(Request $request)
+    public function ajaxRequestPost(RegistrationStoreRequest $request)
     {
-        $input = $request->all();
-          
-        Log::info($input);
+        $validated = $request->validated();
+       // $input = $request->all();
+        Log::info("save model Ok");
+        Log::info($validated);
      
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
+        return response()->json(['success'=>Lang::get('validation.success')]);
     }
   
     private function getServerName($list_server){
