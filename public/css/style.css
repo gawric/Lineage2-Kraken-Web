@@ -1138,6 +1138,17 @@ h1 {
   -webkit-animation: spin 1s ease-in-out infinite;
 }
 
+.loading_min {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #ab1919;
+  animation: spin 1s ease-in-out infinite;
+  -webkit-animation: spin 1s ease-in-out infinite;
+}
+
 @keyframes spin {
   to { -webkit-transform: rotate(360deg); }
 }

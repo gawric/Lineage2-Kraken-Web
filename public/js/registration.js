@@ -1,6 +1,7 @@
 function reg(login , email , pass , pass_confirmed ,server_id){
     var json = getData(login , email , pass , pass_confirmed , server_id);
-    console.log(json);
+    //console.log(json);
+    showLoadingReg("loading_reg")
     hideAlert();
     hideSucces();
     sendJsonDataServer(json);
@@ -21,8 +22,7 @@ function sendJsonDataServer( json ){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
-            console.log("success data " + textStatus);
-            console.log(jQxhr.responseJSON);
+            hideLoadingReg("loading_reg");
             if(!!jQxhr.responseJSON.success){
                 showSucces(jQxhr.responseJSON.success)
             }
@@ -30,15 +30,21 @@ function sendJsonDataServer( json ){
            // showSucces(jQxhr.responseJSON);
         },
         error: function (data) {
-            console.log(data.responseText);
-            var errors = $.parseJSON(data.responseText);
-            if (!!errors.message) {
-                showAlert(errors.message);
-                console.log(errors);
+            hideLoadingReg("loading_reg");
+            if(data.responseText != undefined){
+                var errors = $.parseJSON(data.responseText);
+                if (!!errors.message) {
+                    showAlert(errors.message);
+                    console.log(errors);
+                }
+                else{
+                    console.log(errors);
+                }
             }
             else{
-                console.log(errors);
+                showAlert("Неизвестная ошибка");
             }
+            
 
         }
     

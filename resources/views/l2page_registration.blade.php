@@ -20,14 +20,13 @@
 	<h1 class="page-title"><p style="color:black;">{{ __('messages.reg') }}</p></h1>
 	<div style="margin: auto;"class="contentHomeReg">
 
-	<div class="message">
-
-
-	</div>
+	<div class="message"></div>
+	
 	<div id="show_alert">
   		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
   		<strong id="text_alert"></strong>
 	</div>
+	<div style="float: left;" id="loading_reg"></div>
 		<div class="formGroup">
 			<p style="color:black;float: left;">{{ __('messages.login') }}</p>
 				<input type="text" id="login" placeholder="{{ __('messages.login') }}" required>

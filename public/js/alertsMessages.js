@@ -20,3 +20,11 @@ function showAlert(text){
     $("#show_alert").addClass("alert");
     var text_alert = $('#text_alert').text(text);
 }
+
+function showLoadingReg(idloading){
+    $("#"+idloading).addClass("loading_min");
+}
+
+function hideLoadingReg(idloading){
+    $("#"+idloading).removeClass("loading_min");
+}
