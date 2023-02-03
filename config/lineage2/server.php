@@ -14,6 +14,7 @@ return [
                 'status' => 'offline',
                 'count_online' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
+                'accounts_db_model' => "App\Models\Server\ServerAccounts",
         ],
             'server2' => [
                 'id'=>'2',
@@ -24,6 +25,7 @@ return [
                 'status' => 'offline',
                 'count_online' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
+                'accounts_db_model' => "App\Models\Server\ServerAccounts",
         ],
             'server3' => [
                 'id'=>'3',
@@ -33,9 +35,11 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
-                //server_db_model -> модель созданная для обращения к нужной бд пример (ServerCharacters model)
+                //server_db_model -> модель созданная для обращения к нужной бд и конкретной таблице пример (ServerCharacters model)
                 //возможность использовать разные бд
                 'server_db_model' => "App\Models\Server\ServerCharacters",
+                //accounts_db_model -> в модели мы указываем не только имя таблицы но и какая бд будет использоваться
+                'accounts_db_model' => "App\Models\Server\ServerAccounts",
         ],
     ],
 

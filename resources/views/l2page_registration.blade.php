@@ -13,7 +13,7 @@
     	var pass = $('#pass').val();
 		var pass_confirmed = $('#pass_confirmed').val();
     	var select = document.querySelector('#selectServer');
-		var server_id = select.selectedIndex ;
+		var server_id = select.value;
 		reg(login , email , pass  , pass_confirmed, server_id)
 	}
 </script>

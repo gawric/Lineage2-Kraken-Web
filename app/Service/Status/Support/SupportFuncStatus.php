@@ -28,6 +28,7 @@
                 $game_port = $item["game_port"];
                 $server_db_model = $item["server_db_model"];
                 $data = $this->getData($ip , $login_port , $game_port);
+                //$server_db_model - модель количество юзеров на сервере
                 $count_online = $this->ss->getCountUsers($server_db_model);
                 $this->replaceData($item , $data);
                 $this->replaceDataCount($item , $count_online);

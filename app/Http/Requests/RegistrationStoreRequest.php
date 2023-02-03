@@ -26,14 +26,13 @@ class RegistrationStoreRequest extends FormRequest
      */
     public function rules()
     {
-        Log::info("Use Rules valid ");
+       
         return [
-            'email' => 'required|email',
-            'login' => 'required|string|max:25',
+            'email' => 'required|email|unique:accounts_expansion|max:25',
+            'login' => 'required|string|alpha_num|max:25|unique:accounts_expansion',
             'password' => 'required|string|min:7|max:25',
             'password_confirmed' => "required_with:password|same:password",
-           // 'password_confirmed' => 'required|min:7|string|max:50',
-            'server_id' => 'integer'
+            'server_id' => 'integer|max:10'
         ];
     }
 

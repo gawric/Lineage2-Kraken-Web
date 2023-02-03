@@ -12,10 +12,11 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    { Schema::table('info_servers', function($table) {
+    { 
+      Schema::table('info_servers', function($table) {
         $table->timestamp('updated_at')->nullable();
         $table->timestamp('created_at')->nullable();
-    });
+      });
     }
 
     /**
