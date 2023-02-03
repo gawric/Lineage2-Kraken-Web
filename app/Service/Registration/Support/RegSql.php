@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Hash;
             return $ae;
         }
 
-        //приходится заменять 2y на 2a т.к в серверах old salt version
+        //приходиться заменять 2y на 2a т.к в серверах old salt version
         private function getHashPassword($password): string {
            $ham =  bcrypt($password);
            return str_replace('$2y', '$2a', $ham);
