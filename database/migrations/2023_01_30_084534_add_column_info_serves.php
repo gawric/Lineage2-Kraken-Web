@@ -13,10 +13,20 @@ return new class extends Migration
      */
     public function up()
     { 
-      Schema::table('info_servers', function($table) {
-        $table->timestamp('updated_at')->nullable();
-        $table->timestamp('created_at')->nullable();
-      });
+          Schema::create('info_servers', function (Blueprint $table) {
+            $table->id();
+            $table->integer('server_id')->unique();
+            $table->string('status');
+            $table->integer('online');
+            $table->timestamp('last_update_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->nullable();
+        });
+
+     // Schema::table('info_servers', function($table) {
+       //// $table->timestamp('updated_at')->nullable();
+       // $table->timestamp('created_at')->nullable();
+     // });
     }
 
     /**

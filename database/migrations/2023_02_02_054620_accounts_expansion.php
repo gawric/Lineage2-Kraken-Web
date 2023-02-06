@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('login', 45);
             $table->string('email');
             $table->integer('server_id');
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
         });
     }
 

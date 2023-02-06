@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
      class RegSql
      {
-        public function saveAE($email , $login , $server_id) : void{
+        public function saveAE($email , $login , $server_id) : Accounts_expansion{
             //Log::info("save model Ok->RegSql");
             $model = $this->createModelAE($email , $login , $server_id);
             $model->save();
-
+            return $model;
             //Log::info($model);
         }
 

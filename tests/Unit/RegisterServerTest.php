@@ -34,7 +34,7 @@ class RegisterServerTest extends TestCase
        public function test_get_check_empty_db_model()
        {
             $sfr = new SupportFuncReg();
-            $check = $sfr->checkModelAccountDb("");
+            //$check = $sfr->checkModelAccountDb("");
             $this->assertEquals(false, $sfr->checkModelAccountDb(""));
 
        }

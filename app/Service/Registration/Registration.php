@@ -4,7 +4,7 @@ namespace App\Service\Registration;
 
     use Config;
     use App\Service\Registration\Support\RegSql;
-    
+    use App\Models\Accounts_expansion;
 
     class Registration implements IRegistration
     {
@@ -19,8 +19,8 @@ namespace App\Service\Registration;
             $this->reg->saveAS($login , $password , $modelAccountDb );
         }
 
-        public function saveAE($email , $login , $server_id){
-            $this->reg->saveAE($email , $login , $server_id);
+        public function saveAE($email , $login , $server_id) : Accounts_expansion{
+            return $this->reg->saveAE($email , $login , $server_id);
         }
    
     }

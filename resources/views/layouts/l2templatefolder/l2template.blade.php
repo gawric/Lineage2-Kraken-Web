@@ -173,14 +173,27 @@
       		$.get('status/server', function (data) {
 				//console.log(Object.keys(data).length);
 				var index2 = 0;
-				$.each(data, function(index, value) {
-					updateDiv(index, value , index2);
-					index2++;
-				});
+				if(!isEmpty(data)){
+						$.each(data, function(index, value) {
+							updateDiv(index, value , index2);
+							index2++;
+						});
+				}
+				else{
+					console.log('нет данных status/server')
+				}
+			
 				hideLoad(index2);
 				
       		});
   });
+
+
+
+   function isEmpty(data){
+	return jQuery.isEmptyObject(data);
+   }
+
   	function textError(textError , statusError){
 		$("#loadingText").text("Ошибка загрузки");
 	}

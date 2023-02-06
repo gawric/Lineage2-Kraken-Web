@@ -14,7 +14,8 @@ namespace App\Http\Controllers\Lineage2;
  use Config;
  use Log;
  use Lang;
-
+ use Illuminate\Auth\Events\Registered;
+ use App\Models\Accounts_expansion;
 
 class RegistrationController extends Controller
 {
@@ -56,7 +57,10 @@ class RegistrationController extends Controller
         }
         
        
-        $this->sfc->save($service_reg , $modelAccountDb , $login , $password , $server_id , $email);
+       
+        $user_account_expansion = $this->sfc->save($service_reg , $modelAccountDb , $login , $password , $server_id , $email);
+        info($user_account_expansion);
+        event(new Registered($user_account_expansion));
 
         return response()->json(['success'=>Lang::get('validation.success')]);
     }

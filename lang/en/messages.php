@@ -14,4 +14,5 @@ return [
     'error' => 'Error!',
     'listserver' => 'List of available servers',
     "pass_confirm" => 'Confirm password',
+    "no_data" => 'No data',
 ];

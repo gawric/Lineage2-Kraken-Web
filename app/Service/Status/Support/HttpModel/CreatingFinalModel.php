@@ -3,6 +3,8 @@
     namespace App\Service\Status\Support\HttpModel;
 
     use App\Models\InfoServer;
+    use Log;
+    use Lang;
 
      class CreatingFinalModel
      {
@@ -15,13 +17,37 @@
         }
     
         private function pushArray(&$finishlist , $list_server){
-            foreach (InfoServer::all() as $info) {
+            if(!$this->isEmpty()){
+                return $this->getServerData($finishlist , $list_server);
+            }
+
+            return $this->getEmptyServerData($finishlist , $list_server);
+        }
+
+        private function getServerData($finishlist , $list_server){
+            foreach (InfoServer::all() as $info){
                 $server_info = $this->createModel($list_server , $info);
                 array_push($finishlist, $server_info);
             }
-            return $finishlist;
+
+           return $finishlist;
+        }
+        private function getEmptyServerData($finishlist , $list_server){
+            foreach ($list_server as $key => $value){
+               $emptyserver_info = $this->createHttpInfoModel($value['id'] , $value['name'] , $value['id'] , Lang::get('messages.no_data')  ,0 ,""  ,"" , "");
+               array_push($finishlist, $emptyserver_info);
+           }
+
+           return $finishlist;
         }
     
+        private function isEmpty(){
+            if(count(InfoServer::all()) == 0 ){
+                return true;
+            }
+
+            return false;
+        }
         private function createModel($list_server , $info){
             $servernamearr = $this->getNameByServerId($list_server , $info['server_id']);
             $server_name = $this->getNameArr($servernamearr);

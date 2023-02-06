@@ -6,7 +6,7 @@
     use Log;
     use Lang;
    
-
+    use App\Models\Accounts_expansion;
 
      class SupportFuncReg
      {
@@ -32,13 +32,13 @@
             }
             return false;
         }
-        public function save($service_reg , $modelAccountDb , $login , $password , $server_id , $email){
+        public function save($service_reg , $modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
             if(!empty($modelAccountDb)) {
                     //info("Run save db $modelAccountDb");
                    $service_reg->saveAS($login , $password , $modelAccountDb);
-                   $service_reg->saveAE($email , $login , $server_id);
+                   return $user_account_expan =  $service_reg->saveAE($email , $login , $server_id);
             }
-          
+          return new Accounts_expansion();
         }
         public function getModelAccountDb($arr_item):string{
            // info(count($arr_item));
