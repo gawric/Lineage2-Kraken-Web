@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserShowTest;
 use App\Http\Controllers\Lang\LangController;
 use App\Http\Controllers\Lineage2\StatusServerController;
+use App\Http\Controllers\Lineage2\StatisticServerController;
 use App\Http\Controllers\Lineage2\RegistrationController;
 use App\Http\Middleware\Lineage2\ValidateReg;
 
@@ -25,6 +26,7 @@ Route::get('/', function () {
 });
 
 
+Route::get('/statistic', [StatisticServerController::class, 'index']);
 Route::get('/registration', [RegistrationController::class, 'index']);
 Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);

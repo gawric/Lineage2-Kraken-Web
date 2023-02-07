@@ -33,7 +33,7 @@
 			<div class="topPanel-menu flex-c">
 				<ul class="menu flex">
 					<li><a href="/">{{ __('messages.home') }}</a></li>
-					<li><a href="#">{{ __('messages.static') }}</a></li>
+					<li><a href="/statistic">{{ __('messages.static') }}</a></li>
 					<li><a href="/registration">{{ __('messages.reg') }}</a></li>
 					<li>
 						<a data-class="m_4" class="menu-a">Community</a>

@@ -19,4 +19,7 @@ return [
     'remember_pass' => 'Remember me',
     'log_in' => 'Login',
     'forgot_pass' => 'Forgot your password?',
+    'email_valid_text' => 'Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another',
+    'email_valid_buttom' => 'Resend Verification Email',
+    'email_valid_log_out' => 'Log Out'
 ];

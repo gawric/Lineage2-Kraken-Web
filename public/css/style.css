@@ -873,6 +873,13 @@ button:hover, .button:hover {
   margin: 0px 0px 0px 0px;
   width: 64%;
 }
+
+.contentHomeStatic {
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+}
+
+
 .contentHome {
   margin: 125px 0px 0px 0px;
   width: 64%;

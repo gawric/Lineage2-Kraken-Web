@@ -2,8 +2,7 @@
 
 
 @section('content')
-<main class="content">
-			
+        <main class="content">
 			<div class="main-content">
 				@yield('inside_info')
 			</div>
