@@ -13,6 +13,7 @@ return [
     |
     */
     'success' => "Успешно выполненно",
+    'email_send' => "Вам отправлено письмо для активации!",
     'accepted' => 'The :attribute must be accepted.',
     'enter_server_db' => "Сервер не найден",
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',

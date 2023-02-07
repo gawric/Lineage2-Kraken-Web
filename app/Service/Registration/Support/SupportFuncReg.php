@@ -36,7 +36,7 @@
             if(!empty($modelAccountDb)) {
                     //info("Run save db $modelAccountDb");
                    $service_reg->saveAS($login , $password , $modelAccountDb);
-                   return $user_account_expan =  $service_reg->saveAE($email , $login , $server_id);
+                   return $user_account_expan =  $service_reg->saveAE($email , $login , $server_id , $password);
             }
           return new Accounts_expansion();
         }

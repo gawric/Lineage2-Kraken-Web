@@ -13,6 +13,7 @@ return [
     |
     */
     'success' => "Data saved successfully",
+    'email_send' => "Please check your email",
     'enter_server_db' => "Server not found",
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
