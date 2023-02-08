@@ -98,17 +98,31 @@ select::-ms-expand {
   		<strong id="text_alert"></strong>
 	</div>
     <div class="container">
-        <div class=body_ts>
+        <div style="display:block; float: left;" class=body_ts>
      
-
-    <div class="select">
-        <select name="format" id="format">
-            <option selected disabled>Выбрать статистику</option>
-            <option value="pvp">Топ ПвП</option>
-            <option value="pk">Топ ПК</option>
-            <option value="top_klan">Топ Кланов</option>
-        </select>
+    <div style="display:inline-block;">
+        <div  class="select">
+            <select name="format" id="format">
+                <option selected disabled>{{ __('messages.select_static') }}</option>
+                <option value="pvp">Топ ПвП</option>
+                <option value="pk">Топ ПК</option>
+                <option value="top_klan">Топ Кланов</option>
+            </select>
+        </div>
     </div>
+
+    <div style="display:inline-block;">
+        <div  class="select">
+            <select name="format" id="format">
+                <option selected disabled>{{ __('messages.select_server') }}</option>
+                <option value="pvp">Сервер 1</option>
+                <option value="pk">Сервер 2</option>
+                <option value="top_klan">Сервер 3</option>
+            </select>
+        </div>
+    </div>
+   
+
 
         </div>
     <table id="customers">
