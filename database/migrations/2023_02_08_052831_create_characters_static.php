@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('characters_static_servers', function (Blueprint $table) {
             $table->id();
-            $table->integer('obj_id')->unsigned()->nullable();
-            $table->string('name')->unique();
+            $table->integer('obj_id')->unsigned();
+            $table->integer('server_id')->unique();
+            $table->string('name');
             $table->string('class');
             $table->string('clan');
             $table->integer('lvl');

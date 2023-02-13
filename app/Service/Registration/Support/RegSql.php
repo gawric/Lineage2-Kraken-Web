@@ -5,7 +5,7 @@ namespace App\Service\Registration\Support;
  use Log;
  use App\Models\Accounts_expansion;
  use App\Models\Server\ServerAccounts;
-use Illuminate\Support\Facades\Hash;
+ use Illuminate\Support\Facades\Hash;
 
      class RegSql
      {
