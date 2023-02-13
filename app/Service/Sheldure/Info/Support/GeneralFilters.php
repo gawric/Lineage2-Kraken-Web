@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Service\Sheldure\Info\Support;
+
+use Log;
+use App\Service\Sheldure\Info\Support\SqlFilter\SimpleFilter;
+use App\Service\Sheldure\Info\Support\SqlFilter\TopPkAndPvpFilter;
+
+
+use Request;
+
+    class GeneralFilters
+    {
+     
+        private $access_list_filter;
+        private $slugtest;
+
+        public function  __construct($list_filter_in , $slugtest){
+            $this->access_list_filter = $list_filter_in;
+            $this->slugtest = $slugtest;
+        }
+
+        protected $filters = [
+            //'price' => PriceFilter::class,
+            'simplefilter' => SimpleFilter::class,
+            'toppkandpvp' => TopPkAndPvpFilter::class,
+        ];
+
+        public function apply($query)
+        {
+         
+            foreach ($this->filters as $name => $value) {
+
+                if($this->inArray($this->access_list_filter , $name)){
+                    $filterInstance =  $this->createObj($name);
+                    return $this->query($query ,$filterInstance , $this->slugtest);
+                }
+          
+            }
+
+        return $query;
+    }
+
+
+    private function inArray($access_list_filter , $search_value){
+        if (in_array($search_value, $access_list_filter)){
+                return true;
+        }
+        return false;
+    }
+  
+    private function createObj($name){
+        info("ProductFilters>apply>createObj $name");
+        return $filterInstance = new $this->filters[$name];
+    }
+
+    private function query($query , $filterInstance , $slugtest){
+        $query = $filterInstance($query, $slugtest);
+    }
+
+
+
+    
+
+
+
+}
+
+?>
