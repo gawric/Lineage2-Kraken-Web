@@ -26,12 +26,14 @@
             ], 422);
     
         }
+        
         public function checkModelAccountDb($modelAccountDb){
             if(!empty($modelAccountDb)) {
                 return true;
             }
             return false;
         }
+
         public function save($service_reg , $modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
             if(!empty($modelAccountDb)) {
                     //info("Run save db $modelAccountDb");

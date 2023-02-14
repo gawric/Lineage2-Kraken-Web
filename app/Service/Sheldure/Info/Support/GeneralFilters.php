@@ -5,6 +5,7 @@ namespace App\Service\Sheldure\Info\Support;
 use Log;
 use App\Service\Sheldure\Info\Support\SqlFilter\SimpleFilter;
 use App\Service\Sheldure\Info\Support\SqlFilter\TopPkAndPvpFilter;
+use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
 
 
 use Request;
@@ -21,7 +22,7 @@ use Request;
         }
 
         protected $filters = [
-            //'price' => PriceFilter::class,
+            'clandatafilter' => ClanDataByIdFilter::class,
             'simplefilter' => SimpleFilter::class,
             'toppkandpvp' => TopPkAndPvpFilter::class,
         ];
