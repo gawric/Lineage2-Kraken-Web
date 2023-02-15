@@ -9,7 +9,6 @@ use App\Service\Status\Support\SupportFuncStatus;
 use App\Models\InfoServer;
 use App\Models\CharactersStatic;
 use App\Service\Sheldure\ISheldure;
-use App\Service\Sheldure\Info\Support\GeneralFilters;
 use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
 use App\Models\Server\ServerCharacters;
 use App\Models\Server\ServerClanData;
@@ -50,9 +49,9 @@ use App\Service\Sheldure\Info\Support\CalcCharacters;
         }
 
         function calcStaticCharacters(){
-            info("Запуск планировщика задач! SheldureServers->calcStaticCharacters");
+            
             array_walk($this->list_server, "self::startWork");
-            info("Завершение планировщика задач! SheldureServers->calcStaticCharacters");
+           
 
         }
 

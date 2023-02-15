@@ -58,7 +58,7 @@ class RegistrationController extends Controller
 
        
         $user_account_expansion = $this->sfc->save($service_reg , $modelAccountDb , $login , $password , $server_id , $email);
-        info($user_account_expansion);
+        //info($user_account_expansion);
         event(new Registered($user_account_expansion));
 
         return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);

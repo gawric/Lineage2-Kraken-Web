@@ -26,15 +26,15 @@ class CharactersStatic extends Model
 
     public $timestamps = false;
   
+    //При использовании конструктора не работают вызовы Model::вызов
+    //public function __construct($server_id , &$listClassId , $arr_data = null, array $attributes = array())
+   // {
+    //    $this->add($arr_data , $server_id , $listClassId);
+    //    parent::__construct($attributes);
+   // }
 
-    public function __construct($server_id , &$listClassId , $arr_data = null, array $attributes = array())
-    {
-
-       
+    public function Inject($arr_data , $server_id , $listClassId){
         $this->add($arr_data , $server_id , $listClassId);
-       
-
-        parent::__construct($attributes);
     }
 
     private function add($arr_data , $server_id , &$listClassId){
@@ -51,8 +51,9 @@ class CharactersStatic extends Model
     }
 
     private function ConvertClassIdToName($class_id , &$listClassId) : string {
-
-        if(isset($this->listClassId)){
+        //info('ConvertClassIdToName>>>>');
+       // info($listClassId);
+        if(isset($listClassId)){
             if(array_key_exists($class_id, $listClassId)){
                 return $listClassId[$class_id];
             }

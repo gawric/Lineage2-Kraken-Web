@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Service\Sheldure\Info\Support;
+namespace App\Service\ProxyFilters;
 
 use Log;
 use App\Service\Sheldure\Info\Support\SqlFilter\SimpleFilter;
 use App\Service\Sheldure\Info\Support\SqlFilter\TopPkFilter;
+use App\Service\Sheldure\Info\Support\SqlFilter\TopPvpFilter;
 use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
 use Request;
 
@@ -23,6 +24,7 @@ use Request;
             'clandatafilter' => ClanDataByIdFilter::class,
             'simplefilter' => SimpleFilter::class,
             'toppkfilter' => TopPkFilter::class,
+            'toppvpfilter' => TopPvpFilter::class,
         ];
 
         public function apply($query)
