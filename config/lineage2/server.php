@@ -15,6 +15,7 @@ return [
                 'count_online' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
+                'clandata_db_model' => "App\Models\Server\ServerClanData",
         ],
             'server2' => [
                 'id'=>'2',
@@ -26,6 +27,7 @@ return [
                 'count_online' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
+                'clandata_db_model' => "App\Models\Server\ServerClanData",
         ],
             'server3' => [
                 'id'=>'3',
@@ -40,8 +42,13 @@ return [
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 //accounts_db_model -> в модели мы указываем не только имя таблицы но и какая бд будет использоваться
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
+                'clandata_db_model' => "App\Models\Server\ServerClanData",
         ],
     ],
 
+    //секунды
     'timeout_socket' => 5,
+    
+    //Количество строчек в статистике Топ Пк - Топ Пвп
+    'top_count' => 2,
 ];

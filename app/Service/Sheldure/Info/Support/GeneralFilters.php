@@ -4,10 +4,8 @@ namespace App\Service\Sheldure\Info\Support;
 
 use Log;
 use App\Service\Sheldure\Info\Support\SqlFilter\SimpleFilter;
-use App\Service\Sheldure\Info\Support\SqlFilter\TopPkAndPvpFilter;
+use App\Service\Sheldure\Info\Support\SqlFilter\TopPkFilter;
 use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
-
-
 use Request;
 
     class GeneralFilters
@@ -24,14 +22,14 @@ use Request;
         protected $filters = [
             'clandatafilter' => ClanDataByIdFilter::class,
             'simplefilter' => SimpleFilter::class,
-            'toppkandpvp' => TopPkAndPvpFilter::class,
+            'toppkfilter' => TopPkFilter::class,
         ];
 
         public function apply($query)
         {
          
             foreach ($this->filters as $name => $value) {
-
+                //если есть в разрешенных мы его запускаем
                 if($this->inArray($this->access_list_filter , $name)){
                     $filterInstance =  $this->createObj($name);
                     return $this->query($query ,$filterInstance , $this->slugtest);
@@ -43,6 +41,7 @@ use Request;
     }
 
 
+ 
     private function inArray($access_list_filter , $search_value){
         if (in_array($search_value, $access_list_filter)){
                 return true;
@@ -51,7 +50,7 @@ use Request;
     }
   
     private function createObj($name){
-        info("ProductFilters>apply>createObj $name");
+       // info("ProductFilters>apply>createObj $name");
         return $filterInstance = new $this->filters[$name];
     }
 

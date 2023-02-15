@@ -23,23 +23,25 @@ class CharactersStatic extends Model
 {
     protected $table = 'characters_static_servers';
     use HasFactory;
-    private $listClassId;
 
-    public function __construct($arr_data = null, array $attributes = array())
+    public $timestamps = false;
+  
+
+    public function __construct($server_id , &$listClassId , $arr_data = null, array $attributes = array())
     {
 
-        $this->listClassId = Config::get('lineage2.class_id.list_class_id');
-        $this->add($arr_data);
+       
+        $this->add($arr_data , $server_id , $listClassId);
        
 
         parent::__construct($attributes);
     }
 
-    private function add($arr_data){
+    private function add($arr_data , $server_id , &$listClassId){
         $this->obj_id = $arr_data['obj_id'];
-        $this->server_id = 0;
+        $this->server_id = $server_id;
         $this->name = $arr_data['char_name'];
-        $this->class = $this->ConvertClassIdToName($arr_data['classid']);
+        $this->class = $this->ConvertClassIdToName($arr_data['classid'] , $listClassId);
         $this->clan = $arr_data['clanid'];
         $this->lvl = $arr_data['level'];
         $this->pvp = $arr_data['pvpkills'];
@@ -48,11 +50,11 @@ class CharactersStatic extends Model
         $this->online = $arr_data['online'];
     }
 
-    public function ConvertClassIdToName($class_id) : string {
+    private function ConvertClassIdToName($class_id , &$listClassId) : string {
 
         if(isset($this->listClassId)){
-            if(array_key_exists($class_id, $this->listClassId)){
-                return $this->listClassId[$class_id];
+            if(array_key_exists($class_id, $listClassId)){
+                return $listClassId[$class_id];
             }
         }
       
