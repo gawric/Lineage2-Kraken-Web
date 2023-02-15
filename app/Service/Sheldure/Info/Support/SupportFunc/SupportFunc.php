@@ -8,7 +8,6 @@ use App\Service\Status\Support\SupportFuncStatus;
 use App\Models\InfoServer;
 use App\Models\CharactersStatic;
 use App\Service\Sheldure\ISheldure;
-use App\Service\Sheldure\Info\Support\GeneralFilters;
 use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
 use App\Models\Server\ServerCharacters;
 use App\Models\Server\ServerClanData;
@@ -21,7 +20,7 @@ use Illuminate\Support\Collection;
         public function convertIdClanToNameClan($allModelCharacters ,  $result_clan){
             foreach($allModelCharacters as $model){
                 $model->clan = $this->getClanName($result_clan , $model->clan);
-                info($model); 
+                //info($model); 
             }
 
         }
@@ -31,12 +30,27 @@ use Illuminate\Support\Collection;
             if(isset($resultArr)){
                 $listclassid = Config::get('lineage2.class_id.list_class_id');
                 foreach($resultArr as $valueArr){
-                    array_push($temp , new CharactersStatic($server_id , $listclassid , $valueArr));
+                    $model = new CharactersStatic();
+                    $this->add($model , $valueArr , $server_id , $listClassId);
+                    //$model->inject($server_id , $listclassid , $valueArr);
+                    array_push($temp , $model);
                 }
             }
            return $temp;
         } 
 
+        private function add($model , $arr_data , $server_id , &$listClassId){
+            $model->obj_id = $arr_data['obj_id'];
+            $model->server_id = $server_id;
+            $model->name = $arr_data['char_name'];
+           // $model->class = $this->ConvertClassIdToName($arr_data['classid'] , $listClassId);
+            $model->clan = $arr_data['clanid'];
+            $model->lvl = $arr_data['level'];
+            $model->pvp = $arr_data['pvpkills'];
+            $model->pk = $arr_data['pkkills'];
+            $model->onlinetime = $arr_data['onlinetime'];
+            $model->online = $arr_data['online'];
+        }
 
 
         public function getClanName($result_clan , $model_clan_id){
