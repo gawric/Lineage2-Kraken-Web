@@ -16,6 +16,7 @@ use Illuminate\Support\Collection;
 
     class SupportFunc
     {
+   
      
         public function convertIdClanToNameClan($allModelCharacters ,  $result_clan){
             foreach($allModelCharacters as $model){
@@ -25,25 +26,23 @@ use Illuminate\Support\Collection;
 
         }
 
-        public function createModel($server_id , $resultArr){
+        public function createModel($server_id , $resultArr , $listClassId){
             $temp = [];
             if(isset($resultArr)){
-                $listclassid = Config::get('lineage2.class_id.list_class_id');
                 foreach($resultArr as $valueArr){
                     $model = new CharactersStatic();
                     $this->add($model , $valueArr , $server_id , $listClassId);
-                    //$model->inject($server_id , $listclassid , $valueArr);
                     array_push($temp , $model);
                 }
             }
            return $temp;
         } 
 
-        private function add($model , $arr_data , $server_id , &$listClassId){
+        public  function add($model , $arr_data , $server_id , $listClassId){
             $model->obj_id = $arr_data['obj_id'];
             $model->server_id = $server_id;
             $model->name = $arr_data['char_name'];
-           // $model->class = $this->ConvertClassIdToName($arr_data['classid'] , $listClassId);
+            $model->class = $model->ConvertClassIdToName($arr_data['classid'] , $listClassId);
             $model->clan = $arr_data['clanid'];
             $model->lvl = $arr_data['level'];
             $model->pvp = $arr_data['pvpkills'];

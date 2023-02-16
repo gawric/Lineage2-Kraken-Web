@@ -26,33 +26,9 @@ class CharactersStatic extends Model
 
     public $timestamps = false;
   
-    //При использовании конструктора не работают вызовы Model::вызов
-    //public function __construct($server_id , &$listClassId , $arr_data = null, array $attributes = array())
-   // {
-    //    $this->add($arr_data , $server_id , $listClassId);
-    //    parent::__construct($attributes);
-   // }
+ 
 
-    public function Inject($arr_data , $server_id , $listClassId){
-        $this->add($arr_data , $server_id , $listClassId);
-    }
-
-    private function add($arr_data , $server_id , &$listClassId){
-        $this->obj_id = $arr_data['obj_id'];
-        $this->server_id = $server_id;
-        $this->name = $arr_data['char_name'];
-        $this->class = $this->ConvertClassIdToName($arr_data['classid'] , $listClassId);
-        $this->clan = $arr_data['clanid'];
-        $this->lvl = $arr_data['level'];
-        $this->pvp = $arr_data['pvpkills'];
-        $this->pk = $arr_data['pkkills'];
-        $this->onlinetime = $arr_data['onlinetime'];
-        $this->online = $arr_data['online'];
-    }
-
-    private function ConvertClassIdToName($class_id , &$listClassId) : string {
-        //info('ConvertClassIdToName>>>>');
-       // info($listClassId);
+    public  function ConvertClassIdToName($class_id , $listClassId) : string {
         if(isset($listClassId)){
             if(array_key_exists($class_id, $listClassId)){
                 return $listClassId[$class_id];
@@ -61,4 +37,6 @@ class CharactersStatic extends Model
       
         return 'Non';
     }
+
+    protected $fillable = ['obj_id', 'server_id', 'name', 'class' , 'clan' , 'lvl', 'pvp', 'pk', 'onlinetime' , 'online'];
 }

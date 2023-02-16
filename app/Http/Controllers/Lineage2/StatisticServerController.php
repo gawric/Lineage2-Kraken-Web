@@ -18,6 +18,7 @@ class StatisticServerController extends Controller
 
     private $list_server;
     private $top_count;
+    
     public function __construct()
     {
         $this->list_server = Config::get('lineage2.server.list_server');
@@ -57,7 +58,4 @@ class StatisticServerController extends Controller
           return $validator;
     }
 
-
-
-   
 }

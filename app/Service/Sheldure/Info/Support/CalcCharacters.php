@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\DB;
     class CalcCharacters
     {
         private $support;
-       
+        private $listclassid;
 
         public function __construct() {
             $this->support = new SupportFunc();
+            $this->listclassid = Config::get('lineage2.class_id.list_class_id');
         }
      
         public function run($current_servers){
@@ -35,7 +36,6 @@ use Illuminate\Support\Facades\DB;
 
             info("Запуск планировщика задач! SheldureServers->calcStaticCharacters  $current_server_id ");
 
-            $this->clearTableCharactersStatic();
             $resultArrPk = $this->getPkServerCharacters($current_server_characters);
             $resultArrPvp = $this->getPvpServerCharacters($current_server_characters);
 
@@ -60,11 +60,6 @@ use Illuminate\Support\Facades\DB;
             info(count($allModelCharactersPk));
         }
 
-      
-
-        private function  clearTableCharactersStatic(){
-            DB::table('characters_static_servers')->truncate();
-        }
         private function getPkServerCharacters($current_server_characters){
             $filtersPk = new GeneralFilters(['toppkfilter'] , [['pkkills', '>', 0] , ['accesslevel', '=', 0]]);
             return $current_server_characters::filter($filtersPk)->get(['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']);
@@ -76,7 +71,7 @@ use Illuminate\Support\Facades\DB;
         }
 
         private function convertCharactersToModel($current_server_id , $resultArr){
-            return $this->support->createModel($current_server_id , $resultArr );
+            return $this->support->createModel($current_server_id , $resultArr  , $this->listclassid);
         }
 
         private function getAllUniqueClanid($resultArr){
@@ -89,16 +84,12 @@ use Illuminate\Support\Facades\DB;
         }
  
         private function saveSql(&$modelArr){
-            info($modelArr);
             if(count($modelArr) > 0){
                 foreach($modelArr as $model){
-                    $model['obj_id'] = rand(5, 15);
+                   // $model['obj_id'] = rand(5, 15);
                     $model->save();
-                   // info($model);
-                   // info("Делаем Save!!!");
                 }
             }
-            
         }
 
     }

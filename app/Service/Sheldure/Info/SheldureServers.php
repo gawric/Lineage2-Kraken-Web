@@ -48,11 +48,13 @@ use App\Service\Sheldure\Info\Support\CalcCharacters;
             }
         }
 
-        function calcStaticCharacters(){
-            
+        public function calcStaticCharacters(){
+            $this->clearTableCharactersStatic();
             array_walk($this->list_server, "self::startWork");
-           
+        }
 
+        private function  clearTableCharactersStatic(){
+            CharactersStatic::truncate();
         }
 
         public function startWork(&$item, $key)
