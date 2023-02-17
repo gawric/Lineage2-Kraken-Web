@@ -25,7 +25,8 @@ Route::get('/', function () {
     return view('l2index');
 });
 
-Route::get('/statistic/server/{id}', [StatisticServerController::class, 'data']);
+Route::get('/statistic/pk/server/{id}', [StatisticServerController::class, 'dataPk']);
+Route::get('/statistic/pvp/server/{id}', [StatisticServerController::class, 'dataPvp']);
 Route::get('/statistic', [StatisticServerController::class, 'index']);
 Route::get('/registration', [RegistrationController::class, 'index']);
 Route::get('status/server', [StatusServerController::class, 'data']);

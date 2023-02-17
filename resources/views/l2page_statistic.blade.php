@@ -4,128 +4,52 @@
 @section("title" , "Страница описания!")
 @section("page-title" , "Регистрация")
 @section('inside_info')
-<script src="{{asset('/js/registration.js') }}"></script>
+<script src="{{asset('/js/statistics.js') }}"></script>
 <script src="{{asset('/js/alertsMessages.js') }}"></script>
-
-<style>
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
-}
-#customers td {
-  color: black;
-}
-
-.body_ts {
-   display: flex;
-   flex-direction: column;
-   height: 5rem;
-   font-family: 'Open Sans', sans-serif;
-   color: white;
-}
-select {
-   -webkit-appearance:none;
-   -moz-appearance:none;
-   -ms-appearance:none;
-   appearance:none;
-   outline:0;
-   box-shadow:none;
-   border:0!important;
-   background: #5c6664;
-   background-image: none;
-   flex: 1;
-   padding: 0 .5em;
-   color:white;
-   cursor:pointer;
-   font-size: 1em;
-   font-family: 'Open Sans', sans-serif;
-}
-select::-ms-expand {
-   display: none;
-}
-.select {
-   position: relative;
-   display: flex;
-   width: 20em;
-   height: 3em;
-   line-height: 3;
-   background: #5c6664;
-   overflow: hidden;
-   border-radius: .25em;
-}
-.select::after {
-   content: '\25BC';
-   position: absolute;
-   top: 0;
-   right: 0;
-   padding: 0 1em;
-   background: #2b2e2e;
-   cursor:pointer;
-   pointer-events:none;
-   transition:.25s all ease;
-}
-.select:hover::after {
-   color: #23b499;
-}
-
-</style>
 
 	<h1 class="page-title"><p style="color:black;">{{ __('messages.static') }}</p></h1>
 	<div style="margin: auto;width: 100%;"class="contentHomeStatic">
 
 	<div class="message"></div>
 	
-	<div id="show_alert">
+	<div id="show_alert" class="alert info">
   		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-  		<strong id="text_alert"></strong>
+  		<strong id="text_alert">{{ __('messages.info_first_page_static') }}</strong>
 	</div>
-    <div class="container">
-        <div style="display:block; float: left;" class=body_ts>
-     
-    <div style="display:inline-block;">
-        <div  class="select">
-            <select name="format" id="format">
-                <option selected disabled>{{ __('messages.select_static') }}</option>
-                <option value="pvp">Топ ПвП</option>
-                <option value="pk">Топ ПК</option>
-                <option value="top_klan">Топ Кланов</option>
-            </select>
-        </div>
-    </div>
 
+  
+  <div class="container">
+      <div style="display:block; float: left;" class=body_ts>
+    
     <div style="display:inline-block;">
         <div  class="select">
-            <select name="format" id="format">
+            <select name="format" id="format" onchange="GetSelectedServer(this)">
                 <option selected disabled>{{ __('messages.select_server') }}</option>
-                <option value="pvp">Сервер 1</option>
-                <option value="pk">Сервер 2</option>
-                <option value="top_klan">Сервер 3</option>
+                @foreach ($arrayNameServers as $id)
+                  <option value={{$id}}>Сервер {{$id}}</option>
+                @endforeach
             </select>
         </div>
     </div>
-   
 
-
+    <div style="display:inline-block;">
+        <div  class="select">
+            <select name="format" id="format" onchange="GetSelectedTop(this)">
+                <option selected disabled>{{ __('messages.select_static') }}</option>
+                @foreach ($arrayNameStatistic as $multiArr)
+                    @foreach ($multiArr as $arr)
+                      <option value={{$arr['id']}}>{{ $arr['name'] }}</option>
+                    @endforeach
+                @endforeach
+            </select>
         </div>
-    <table id="customers">
+    </div>
+    
+</div>
+<div><button style="font-size: xx-small; float:left margin-top:100px">Поиск</button></div>
+    
+ 
+  <table id="customers">
   <tr>
     <th>ID</th>
     <th>NAME</th>
@@ -137,44 +61,27 @@ select::-ms-expand {
     <th>TIME</th>
     <th>ONLINE</th>
   </tr>
-  <tr>
-    <td>1</td>
-    <td>admin</td>
-    <td>Human Figter</td>
-    <td>DemonSotone</td>
-    <td>55</td>
-    <td>145</td>
-    <td>243</td>
-    <td>135 часов</td>
-    <td>В сети</td>
+  <tr align="center">
+  <td colspan="9">{{ __('messages.no_data') }}</td>
   </tr>
-  <tr>
-    <td>2</td>
-    <td>klisor</td>
-    <td>Human Figter</td>
-    <td>DemonSotone</td>
-    <td>35</td>
-    <td>145</td>
-    <td>243</td>
-    <td>135 часов</td>
-    <td>В сети</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>gawric</td>
-    <td>Human Figter</td>
-    <td>DemonSotone</td>
-    <td>15</td>
-    <td>145</td>
-    <td>243</td>
-    <td>135 часов</td>
-    <td>В сети</td>
-  </tr>
+  
 </table>
 
 </div>
 </div>
-		
-	</div>
+</div>
+<script>
+  function GetSelectedServer(education) {
+    var sleTex = education.options[education.selectedIndex].innerHTML;
+    var selVal = education.value;
+    alert("Selected Text: " + sleTex + " Value: " + selVal);
+}
+
+function GetSelectedTop(education) {
+    var sleTex = education.options[education.selectedIndex].innerHTML;
+    var selVal = education.value;
+    alert("Selected Text: " + sleTex + " Value: " + selVal);
+}
+</script>
 @endsection
 

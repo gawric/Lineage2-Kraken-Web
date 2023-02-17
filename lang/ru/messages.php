@@ -22,4 +22,6 @@ return [
     'email_valid_log_out' => 'Выйти',
     'select_server' => 'Выбрать сервер',
     'select_static' => 'Выбрать статистику',
+    'info_first_page_static' => 'Выберите сервер и статистику',
+    'no_data' => 'Нет данных',
 ];

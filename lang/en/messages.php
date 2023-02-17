@@ -24,4 +24,6 @@ return [
     'email_valid_log_out' => 'Log Out',
     'select_server' => 'Select server',
     'select_static' => 'Select report',
+    'info_first_page_static' => 'Select server and statistics',
+    'no_data' => 'no data',
 ];

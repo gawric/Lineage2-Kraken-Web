@@ -48,17 +48,15 @@ use Illuminate\Support\Facades\DB;
             $result_clan_pk = $this->getClanIdToClanName($unique_clan_id_pk , $current_clandata_db_model);
             $result_clan_pvp = $this->getClanIdToClanName($unique_clan_id_pvp , $current_clandata_db_model);
 
-            $this->support->convertIdClanToNameClan($allModelCharactersPk ,  $result_clan_pk);
-            $this->support->convertIdClanToNameClan($allModelCharactersPvp ,  $result_clan_pvp);
-           
-
-            $this->saveSql($allModelCharactersPvp);
-            $this->saveSql($allModelCharactersPk);
-
+ 
+            $this->convertAllIdClanToName($allModelCharactersPk , $allModelCharactersPvp ,  $result_clan_pk , $result_clan_pvp);
+            $this->saveAll($allModelCharactersPvp , $allModelCharactersPk);
+     
             info("Завершение планировщика задач! SheldureServers->calcStaticCharacters для сервера:  $current_server_id   ");
-            info(count($allModelCharactersPvp));
-            info(count($allModelCharactersPk));
+
         }
+
+
 
         private function getPkServerCharacters($current_server_characters){
             $filtersPk = new GeneralFilters(['toppkfilter'] , [['pkkills', '>', 0] , ['accesslevel', '=', 0]]);
@@ -82,14 +80,25 @@ use Illuminate\Support\Facades\DB;
             $clanidfilter = new GeneralFilters(['clandatafilter'] , $unique_clan_id);
             return  $current_clandata_db_model::filter($clanidfilter)->get(['clan_name' ,'clan_id']);
         }
+
+        private function convertAllIdClanToName($allModelCharactersPk , $allModelCharactersPvp ,  $result_clan_pk , $result_clan_pvp){
+            $this->support->convertIdClanToNameClan($allModelCharactersPk ,  $result_clan_pk);
+            $this->support->convertIdClanToNameClan($allModelCharactersPvp ,  $result_clan_pvp);
+        }
  
+        //insert массовая запись не сработала. Но теперь это и не нужно т.к мы ограничиваем сколько записей 
+        //мы получим из игровой базы (настраиваем в конфиге!)
         private function saveSql(&$modelArr){
             if(count($modelArr) > 0){
                 foreach($modelArr as $model){
-                   // $model['obj_id'] = rand(5, 15);
                     $model->save();
                 }
             }
+        }
+
+        private function saveAll($allModelCharactersPvp , $allModelCharactersPk){
+            $this->saveSql($allModelCharactersPvp);
+            $this->saveSql($allModelCharactersPk);
         }
 
     }

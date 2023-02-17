@@ -5,7 +5,8 @@
 
     interface IServerStats
     {
-       function getAllData($server_id , $top_count);
+       function getDataPk($server_id);
+       function getDataPvp($server_id);
     }
 
 ?>

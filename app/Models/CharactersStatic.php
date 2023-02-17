@@ -38,5 +38,11 @@ class CharactersStatic extends Model
         return 'Non';
     }
 
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
+
     protected $fillable = ['obj_id', 'server_id', 'name', 'class' , 'clan' , 'lvl', 'pvp', 'pk', 'onlinetime' , 'online'];
 }
