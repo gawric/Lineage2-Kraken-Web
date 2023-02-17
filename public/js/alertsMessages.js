@@ -6,6 +6,7 @@ function showSucces(text){
 
 function hideSucces(){
     $("#show_alert").removeClass("alert success");
+    $("#show_alert").removeClass("info");
     var text_alert = $('#text_alert').text("");
 }
 

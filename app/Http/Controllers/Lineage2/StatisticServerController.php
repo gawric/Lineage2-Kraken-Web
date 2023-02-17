@@ -36,26 +36,31 @@ class StatisticServerController extends Controller
         return view('l2page_statistic', ['arrayNameServers' => $this->getServerNameOnly($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
     }
 
-    public function dataPk(Request $request , $id)
+    public function dataStat(Request $request , $sever_id , $stat_id)
     {
-        $validator =  $this->valid($id);
+        $validator =  $this->valid($sever_id , $stat_id);
 
         if ($validator->fails()) {
             return $this->getErrorJson();
         }
-    
-        return Response::json($this->stat->getDataPk($id));
+       
+        $retsult = $this->getData($sever_id , $stat_id);
+
+        return Response::json(['success'=>Lang::get('messages.success') , 'result'=>$retsult]);
     }
 
-    public function dataPvp(Request $request , $id)
-    {
-        $validator =  $this->valid($id);
-
-        if ($validator->fails()) {
-            return $this->getErrorJson();
+    private function getData($sever_id , $stat_id){
+        switch ($stat_id) {
+            case 1:
+                return $this->stat->getDataPk($sever_id);
+                break;
+            case 2:
+                return $this->stat->getDataPvp($sever_id);
+                break;
+            default:
+                return [];
+                break;
         }
-
-        return Response::json($this->stat->getDataPvp($id));
     }
 
     
@@ -82,11 +87,12 @@ class StatisticServerController extends Controller
     }
 
 
-    private function valid($id){
-        $validator = Validator::make(['id' => $id], [
-            'id' => 'integer|max:5'
-          ]);
-      
+    private function valid($server_id , $stat_id){
+        $validator = Validator::make(
+            ['server_id' => $server_id,
+             'stat_id' => $stat_id], 
+            ['server_id' => 'integer|max:5',
+             'stat_id' => 'integer|max:5']);
           return $validator;
     }
 

@@ -17,13 +17,13 @@
   		<strong id="text_alert">{{ __('messages.info_first_page_static') }}</strong>
 	</div>
 
-  
+  <div style="margin-bottom: 1%;margin-right: 95%;"id="loading_reg"></div>
   <div class="container">
       <div style="display:block; float: left;" class=body_ts>
-    
+     
     <div style="display:inline-block;">
         <div  class="select">
-            <select name="format" id="format" onchange="GetSelectedServer(this)">
+            <select name="sel_server" id="select_server" onchange="GetSelectedServer(this)" >
                 <option selected disabled>{{ __('messages.select_server') }}</option>
                 @foreach ($arrayNameServers as $id)
                   <option value={{$id}}>Сервер {{$id}}</option>
@@ -34,7 +34,7 @@
 
     <div style="display:inline-block;">
         <div  class="select">
-            <select name="format" id="format" onchange="GetSelectedTop(this)">
+            <select name="sel_static" id="select_static" onchange="GetSelectedTop(this)">
                 <option selected disabled>{{ __('messages.select_static') }}</option>
                 @foreach ($arrayNameStatistic as $multiArr)
                     @foreach ($multiArr as $arr)
@@ -46,9 +46,8 @@
     </div>
     
 </div>
-<div><button style="font-size: xx-small; float:left margin-top:100px">Поиск</button></div>
+
     
- 
   <table id="customers">
   <tr>
     <th>ID</th>
@@ -58,7 +57,6 @@
     <th>LVL</th>
     <th>PVP</th>
     <th>PK</th>
-    <th>TIME</th>
     <th>ONLINE</th>
   </tr>
   <tr align="center">
@@ -71,16 +69,19 @@
 </div>
 </div>
 <script>
+  var select_server_id;
+
   function GetSelectedServer(education) {
     var sleTex = education.options[education.selectedIndex].innerHTML;
     var selVal = education.value;
-    alert("Selected Text: " + sleTex + " Value: " + selVal);
+    select_server_id= selVal;
 }
 
 function GetSelectedTop(education) {
     var sleTex = education.options[education.selectedIndex].innerHTML;
-    var selVal = education.value;
-    alert("Selected Text: " + sleTex + " Value: " + selVal);
+    var id_static = education.value;
+    //alert("Selected Text: " + sleTex + " Value: " + selVal + "Id select сервер " + select_server_value);
+    getStatistics(select_server_id , id_static);
 }
 </script>
 @endsection

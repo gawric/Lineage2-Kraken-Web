@@ -1173,7 +1173,7 @@ h1 {
 .alert.success {
     background-color: #04AA6D;
 }
-.alert.info{
+.info{
 	background-color: #bce8f1;
 	color: #31708f;
 	font-family: Verdana,sans-serif;

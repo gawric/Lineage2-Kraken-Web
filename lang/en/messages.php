@@ -26,4 +26,5 @@ return [
     'select_static' => 'Select report',
     'info_first_page_static' => 'Select server and statistics',
     'no_data' => 'no data',
+    'success' => 'Data received',
 ];
