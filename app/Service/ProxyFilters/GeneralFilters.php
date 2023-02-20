@@ -3,10 +3,11 @@
 namespace App\Service\ProxyFilters;
 
 use Log;
-use App\Service\Sheldure\Info\Support\SqlFilter\SimpleFilter;
-use App\Service\Sheldure\Info\Support\SqlFilter\TopPkFilter;
-use App\Service\Sheldure\Info\Support\SqlFilter\TopPvpFilter;
-use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
+use App\Service\Sheldure\Info\Characters\Support\SqlFilter\SimpleFilter;
+use App\Service\Sheldure\Info\Characters\Support\SqlFilter\TopPkFilter;
+use App\Service\Sheldure\Info\Characters\Support\SqlFilter\TopPvpFilter;
+use App\Service\Sheldure\Info\Characters\Support\SqlFilter\ClanDataByIdFilter;
+use App\Service\Sheldure\Info\Clan\Support\SqlFilter\TopUsersClansFilter;
 use Request;
 
     class GeneralFilters
@@ -25,6 +26,7 @@ use Request;
             'simplefilter' => SimpleFilter::class,
             'toppkfilter' => TopPkFilter::class,
             'toppvpfilter' => TopPvpFilter::class,
+            'topusersclansfilter' => TopUsersClansFilter::class,
         ];
 
         public function apply($query)

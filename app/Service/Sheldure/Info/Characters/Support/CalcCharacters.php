@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Sheldure\Info\Support;
+namespace App\Service\Sheldure\Info\Characters\Support;
 
 use Config;
 use App\Service\Status\StatusServer;
@@ -9,11 +9,11 @@ use App\Models\InfoServer;
 use App\Models\CharactersStatic;
 use App\Service\Sheldure\ISheldure;
 use App\Service\ProxyFilters\GeneralFilters;
-use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
+use App\Service\Sheldure\Info\Characters\Support\SqlFilter\ClanDataByIdFilter;
 use App\Models\Server\ServerCharacters;
 use App\Models\Server\ServerClanData;
 use Illuminate\Support\Collection;
-use App\Service\Sheldure\Info\Support\SupportFunc\SupportFunc;
+use App\Service\Sheldure\Info\Characters\Support\SupportFunc\SupportFunc;
 use Illuminate\Support\Facades\DB;
 
     class CalcCharacters
@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\DB;
             //ID определяется в конфиге
             $current_server_id = $current_servers['id'];
 
-            info("Запуск планировщика задач! SheldureServers->calcStaticCharacters  $current_server_id ");
+           // info("Запуск планировщика задач! SheldureServers->calcStaticCharacters  $current_server_id ");
 
             $resultArrPk = $this->getPkServerCharacters($current_server_characters);
             $resultArrPvp = $this->getPvpServerCharacters($current_server_characters);
@@ -52,7 +52,7 @@ use Illuminate\Support\Facades\DB;
             $this->convertAllIdClanToName($allModelCharactersPk , $allModelCharactersPvp ,  $result_clan_pk , $result_clan_pvp);
             $this->saveAll($allModelCharactersPvp , $allModelCharactersPk);
      
-            info("Завершение планировщика задач! SheldureServers->calcStaticCharacters для сервера:  $current_server_id   ");
+           // info("Завершение планировщика задач! SheldureServers->calcStaticCharacters для сервера:  $current_server_id   ");
 
         }
 

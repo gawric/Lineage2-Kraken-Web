@@ -7,6 +7,8 @@
        function calcInfoServers();
 
        function calcStaticCharacters();
+
+       function calcStaticClans();
     }
 
 ?>

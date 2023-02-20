@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Sheldure\Info\Support\SqlFilter;
+namespace App\Service\Sheldure\Info\Characters\Support\SqlFilter;
 use Log;
 
 class SimpleFilter

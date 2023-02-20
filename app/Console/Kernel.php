@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
             $sheldureservers = new SheldureServers();
             $sheldureservers->calcInfoServers();
             $sheldureservers->calcStaticCharacters();
+            $sheldureservers->calcStaticClans();
         })->everyMinute();
 
     }

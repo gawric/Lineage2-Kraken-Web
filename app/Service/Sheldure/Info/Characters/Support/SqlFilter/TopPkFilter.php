@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Service\Sheldure\Info\Support\SqlFilter;
+namespace App\Service\Sheldure\Info\Characters\Support\SqlFilter;
 use Log;
 use Config;
 
-class TopPvpFilter
+class TopPkFilter
 {
    // $results = User::where([
       //  ['column_name1', '=', $value1],
@@ -15,7 +15,7 @@ class TopPvpFilter
     function __invoke($query, $slug)
     {
         $top_count = Config::get('lineage2.server.top_count');
-        return  $query->where($slug)->orderBy('pvpkills', 'desc')->skip(0)->take($top_count);
+        return  $query->where($slug)->orderBy('pkkills', 'desc')->skip(0)->take($top_count);
     }
 }
 ?>
