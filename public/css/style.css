@@ -1230,7 +1230,7 @@ h1 {
    font-family: 'Open Sans', sans-serif;
    color: white;
 }
-select {
+select_div {
    -webkit-appearance:none;
    -moz-appearance:none;
    -ms-appearance:none;
@@ -1247,10 +1247,10 @@ select {
    font-size: 1em;
    font-family: 'Open Sans', sans-serif;
 }
-select::-ms-expand {
+select_div::-ms-expand {
    display: none;
 }
-.select {
+.select_div {
    position: relative;
    display: flex;
    width: 20em;
@@ -1260,7 +1260,7 @@ select::-ms-expand {
    overflow: hidden;
    border-radius: .25em;
 }
-.select::after {
+.select_div::after {
    content: '\25BC';
    position: absolute;
    top: 0;
@@ -1271,6 +1271,6 @@ select::-ms-expand {
    pointer-events:none;
    transition:.25s all ease;
 }
-.select:hover::after {
+.select_div:hover::after {
    color: #23b499;
 }

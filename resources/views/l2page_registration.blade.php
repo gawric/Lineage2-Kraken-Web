@@ -17,6 +17,9 @@
 		reg(login , email , pass  , pass_confirmed, server_id)
 	}
 </script>
+
+
+
 	<h1 class="page-title"><p style="color:black;">{{ __('messages.reg') }}</p></h1>
 	<div style="margin: auto;"class="contentHomeReg">
 

@@ -1,7 +1,7 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@section("title" , "Страница описания!")
+
 @section("page-title" , "Регистрация")
 @section('inside_info')
 <script src="{{asset('/js/statistics.js') }}"></script>
