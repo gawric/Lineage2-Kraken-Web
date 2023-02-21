@@ -47,7 +47,7 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
         }
 
         public function calcStaticClans(){
-            $this->calcClan->run();
+            array_walk($this->list_server, "self::startWorkClan");
         }
 
 
@@ -65,6 +65,11 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
         public function startWork(&$item, $key)
         {  
             $this->calc->run($item);
+        }
+
+        public function startWorkClan(&$item, $key)
+        {  
+            $this->calcClan->run($item);
         }
 
         private function saveArrToSql($complete_server){

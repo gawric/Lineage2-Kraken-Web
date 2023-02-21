@@ -16,12 +16,26 @@ class TopUsersClansFilter
 
     function __invoke($query, $slug)
     {
-        $top_count = Config::get('lineage2.server.top_count');
-        $results = DB::connection('mysql2')->select("SELECT `clanid`,COUNT(`clanid`) AS `count` FROM `characters` GROUP BY `clanid` HAVING `count` > 1 ORDER BY `count` DESC LIMIT 10");
-        info("RESUUUUULT TopUsersClansFilter");
-        info($results);
+       // $top_count = Config::get('lineage2.server.top_count');
+       // $sql = "SELECT `clanid` ,COUNT(clanid) AS `count` FROM `characters` GROUP BY `clanid` HAVING `count` > 1 ORDER BY `count` DESC LIMIT 10";
+       // $query->select(DB::raw($sql));
+       return  $query->select('clanid', DB::raw('COUNT(clanid) AS count'))
+       ->groupBy('clanid')
+       ->havingRaw('count > 1')
+       ->pluck('clanid','count');
+      // ->skip(0)
+       //->take($top_count);
+       
+       // $collection = collect($resultArr);
+        //$uniqueid = $this->getAllUniqueClanid($collection);
+       // info("RESUUUUULT TopUsersClansFilter");
+       // info($uniqueid);
 
-        return  $query->where($slug)->orderBy('pkkills', 'desc')->skip(0)->take($top_count);
+      //  return  $query->where($slug)->orderBy('pkkills', 'desc')->skip(0)->take($top_count);
     }
+
+    //private function getAllUniqueClanid($resultArr){
+    //    return $resultArr->unique('clanid')->pluck('clanid');
+    //}
 }
 ?>

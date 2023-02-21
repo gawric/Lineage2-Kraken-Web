@@ -21,8 +21,9 @@ return new class extends Migration
             $table->integer('reputation_score');
             $table->tinyInteger('hasCastle');
             $table->integer('ally_id');
-            $table->string('ally_name');
+            $table->string('ally_name')->nullable();;
             $table->integer('member');
+            $table->integer('server_id');
 
         });
     }

@@ -18,7 +18,7 @@ use Log;
 //$table->integer('member');
 class ClanStatic extends Model
 {
-    protected $table = 'characters_static_servers';
+    protected $table = 'clan_static_servers';
     use HasFactory;
 
     public $timestamps = false;
@@ -30,5 +30,5 @@ class ClanStatic extends Model
     }
 
 
-    protected $fillable = ['clan_id', 'clan_name', 'clan_level', 'reputation_score' , 'hasCastle' , 'ally_id', 'ally_name', 'member'];
+    protected $fillable = ['clan_id', 'clan_name','server_id','clan_level', 'reputation_score' , 'hasCastle' , 'ally_id', 'ally_name', 'member'];
 }
