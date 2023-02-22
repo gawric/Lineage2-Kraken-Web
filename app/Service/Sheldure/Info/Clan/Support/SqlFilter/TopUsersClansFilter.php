@@ -20,6 +20,7 @@ class TopUsersClansFilter
        // $sql = "SELECT `clanid` ,COUNT(clanid) AS `count` FROM `characters` GROUP BY `clanid` HAVING `count` > 1 ORDER BY `count` DESC LIMIT 10";
        // $query->select(DB::raw($sql));
        return  $query->select('clanid', DB::raw('COUNT(clanid) AS count'))
+       ->where("clanid", ">", 0)
        ->groupBy('clanid')
        ->havingRaw('count > 1')
        ->pluck('clanid','count');

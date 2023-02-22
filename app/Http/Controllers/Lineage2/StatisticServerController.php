@@ -18,6 +18,8 @@ class StatisticServerController extends Controller
 
     private $list_server;
     private $top_count;
+    //Здесь  App\Service\Info\ServerStats получаем результаты из промежуточной таблицы  
+    //Там все запросы и сортировки для вывода Blade template
     private $stat;
     private $arrayNameServer;
     private $arrayStaticsId;
@@ -27,7 +29,7 @@ class StatisticServerController extends Controller
         $this->list_server = Config::get('lineage2.server.list_server');
         $this->top_count = Config::get('lineage2.server.top_count');
         $this->stat  = new ServerStats();
-        $this->arrayStaticsId = [['id'=>'1', 'name'=>'Топ Пк'],['id'=>'2', 'name'=>'Топ Пвп']];
+        $this->arrayStaticsId = [['id'=>'1', 'name'=>'Топ Пк'],['id'=>'2', 'name'=>'Топ Пвп'],['id'=>'3', 'name'=>'Топ Клан']];
     }
 
     public function index()
@@ -45,7 +47,7 @@ class StatisticServerController extends Controller
         }
        
         $retsult = $this->getData($sever_id , $stat_id);
-
+       // dd($retsult);
         return Response::json(['success'=>Lang::get('messages.success') , 'result'=>$retsult]);
     }
 
@@ -56,6 +58,9 @@ class StatisticServerController extends Controller
                 break;
             case 2:
                 return $this->stat->getDataPvp($sever_id);
+                break;
+            case 3:
+                return $this->stat->getDataClan($sever_id);
                 break;
             default:
                 return [];

@@ -8,6 +8,7 @@ use App\Service\Status\StatusServer;
 use App\Service\Status\Support\SupportFuncStatus;
 use App\Models\InfoServer;
 use App\Models\CharactersStatic;
+use App\Models\ClanStatic;
 use App\Service\Sheldure\ISheldure;
 use App\Service\Sheldure\Info\Characters\Support\SqlFilter\ClanDataByIdFilter;
 use App\Models\Server\ServerCharacters;
@@ -47,6 +48,7 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
         }
 
         public function calcStaticClans(){
+            $this->clearTableClanStatic();
             array_walk($this->list_server, "self::startWorkClan");
         }
 
@@ -56,7 +58,9 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
 
 
 
-
+        private function  clearTableClanStatic(){
+            ClanStatic::truncate();
+        }
 
         private function  clearTableCharactersStatic(){
             CharactersStatic::truncate();

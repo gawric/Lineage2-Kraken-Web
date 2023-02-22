@@ -37,9 +37,9 @@ use Config;
            $arr_clan_data = $this->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
            $modelArr = $this->support->createModel($current_server_id , $resultLimit , $arr_clan_data);
            $this->saveSql($modelArr);
-          // info($arr_clan_data);
+           //info($arr_clan_data);
          //  info($resultLimit);
-          // info($resultCol);
+           info($resultCol);
            
         } 
         private function getAllUniqueClanid($resultArr){

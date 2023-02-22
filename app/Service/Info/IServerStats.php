@@ -7,6 +7,7 @@
     {
        function getDataPk($server_id);
        function getDataPvp($server_id);
+       function getDataClan($server_id);
     }
 
 ?>

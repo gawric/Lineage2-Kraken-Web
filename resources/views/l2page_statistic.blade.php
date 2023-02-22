@@ -48,7 +48,7 @@
 </div>
 
     
-  <table id="customers">
+  <table id="customers" class="table_top">
   <tr>
     <th>ID</th>
     <th>NAME</th>
@@ -63,7 +63,23 @@
   <td colspan="9">{{ __('messages.no_data') }}</td>
   </tr>
   
-</table>
+ </table>
+
+ <table id="customers_clan" class="table_top" style="display:none;">
+  <tr>
+    <th>ID</th>
+    <th>C.NAME</th>
+    <th>C.LEVEL</th>
+    <th>REP.</th>
+    <th>CASTLE</th>
+    <th>ALLY</th>
+    <th>MEMBER</th>
+  </tr>
+  <tr align="center">
+  <td colspan="9">{{ __('messages.no_data') }}</td>
+  </tr>
+  
+ </table>
 
 </div>
 </div>
