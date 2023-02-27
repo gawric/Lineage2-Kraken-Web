@@ -17,7 +17,7 @@ class ClanStaticFactory extends Factory
         return [
             'clan_id' => fake()->randomElement([1, 2, 3]),
             'clan_name' => fake()->randomElement(['test_clan_1']),
-            'server_id' => 3,
+            'server_id' => 1,
             'clan_level' =>  fake()->randomElement([1, 2, 3]),
             'reputation_score' =>  fake()->randomElement([100, 200, 300]), 
             'hasCastle' => fake()->randomElement([0, 1]),

@@ -12,7 +12,7 @@ use App\Models\ClanStatic;
         public function createModel($server_id , $resultArr , $arr_clan_data){
             $temp = [];
             if(isset($resultArr)){
-                info("Lets go");
+                //info("Lets go");
                 foreach($resultArr as $search_value){
 
                     $member = $search_value['count'];

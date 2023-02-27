@@ -21,7 +21,7 @@ use Config;
      
        
         public function run($current_servers){
-            info("Runnng CalcClan!!!!!");
+            //info("Runnng CalcClan!!!!!");
             $current_server_characters = $current_servers['server_db_model'];
             $current_clandata_db_model = $current_servers['clandata_db_model'];
             $current_server_id = $current_servers['id'];
