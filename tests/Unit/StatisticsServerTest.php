@@ -30,7 +30,7 @@ class StatisticsServerTest extends TestCase
     }
 
      //поступающие данные 
-    //$resultArrPvp - ['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']
+    //$resultArrCharacters - ['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']
     //result_clan_pk - ['clan_name' ,'clan_id']
     public function test_add_model_character_static(){
 
