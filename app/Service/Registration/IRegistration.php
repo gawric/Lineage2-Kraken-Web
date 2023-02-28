@@ -8,6 +8,7 @@
     {
         function saveAE($email , $login , $server_id , $password): Accounts_expansion;
         function saveAS($login , $password , $modelAccountDb );
+        function changePasswordAllAccounts($login , $new_pasword);
     }
 
 ?>

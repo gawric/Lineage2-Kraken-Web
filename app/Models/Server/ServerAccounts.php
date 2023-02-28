@@ -12,4 +12,10 @@ class ServerAccounts extends Model
     protected $primaryKey = 'login';
     public $timestamps = false;
     protected $connection = 'mysql2';
+
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }
