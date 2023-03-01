@@ -6,6 +6,7 @@ namespace App\Service\Registration\Support;
  use App\Models\Accounts_expansion;
  use App\Models\Server\ServerAccounts;
  use Illuminate\Support\Facades\Hash;
+ use App\Models\Accounts_server_id;
 
      class RegSql
      {
@@ -13,8 +14,10 @@ namespace App\Service\Registration\Support;
             //Log::info("save model Ok->RegSql");
             $model = $this->createModelAE($email , $login , $server_id , $password);
             $model->save();
+            $model_server_id = $this->createModelServerIds($server_id , $model['id']);
+            $model->accounts_server_id()->save($model_server_id);
+            
             return $model;
-            //Log::info($model);
         }
 
         public function saveAS($login , $password , $modelAccountDb) : void {
@@ -33,9 +36,15 @@ namespace App\Service\Registration\Support;
             $ae = new Accounts_expansion;
             $ae->login = $login;
             $ae->email = $email;
-            $ae->server_id = $server_id;
             $ae->password = $this->getLaravelHashPassword($password);
             return $ae;
+        }
+
+        private function createModelServerIds($server_id , $model_id) : Accounts_server_id{
+            $accounts_server_id = new Accounts_server_id();
+            $accounts_server_id->server_id = $server_id;
+            $accounts_server_id->accounts_expansion_id = $model_id;
+            return $accounts_server_id;
         }
 
         //приходиться заменять 2y на 2a т.к в серверах old salt version
