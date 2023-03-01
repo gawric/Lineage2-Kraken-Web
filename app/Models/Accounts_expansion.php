@@ -13,4 +13,9 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
 {
     protected $table = 'accounts_expansion';
     use Notifiable;
+
+    public function accounts_server_id()
+    {
+      return $this->hasMany(Accounts_server_id::class);
+    }
 }

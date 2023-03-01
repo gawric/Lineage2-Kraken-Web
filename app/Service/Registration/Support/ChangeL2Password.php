@@ -27,18 +27,27 @@ namespace App\Service\Registration\Support;
            // dd($temp_array_accounts);
         }
 
+        //Данная функция изменяет пароль на всех серверах если находит нужный нам логин
+        //Конфликта не должно быть т.к при регистрации мы не проверяем какой именно сервер испольуется для регистрации
+        //Мы регистрируем общую учетку по сайту Accounts_Expansion
+        //После этого регистрируем в базе сервере в таблице Accounts
         private function sqlChange($temp_array_accounts , $login , $new_pasword){
             foreach($temp_array_accounts  as $accounts_model){
 
-                $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
-                $searchModel = $accounts_model::filter($filtersPk)->get();
-                
-                if(isset($searchModel)){
+                $collectionsModel = $this->getSqlModel($login , $accounts_model);
+
+                if(isset($collectionsModel)){
+                    $searchModel= $collectionsModel->first();
                     $searchModel['password'] = $this->convertPassword($new_pasword);
                     $searchModel->save();
                 }
                 
             }
+        }
+
+        private function getSqlModel($login , $accounts_model){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
+            return $accounts_model::filter($filtersPk)->get();
         }
             //приходиться заменять 2y на 2a т.к в серверах old salt version
         private function convertPassword($password): string {
