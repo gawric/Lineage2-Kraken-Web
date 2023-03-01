@@ -25,4 +25,10 @@ return [
     'info_first_page_static' => 'Выберите сервер и статистику',
     'no_data' => 'Нет данных',
     'success' => 'Данные получены',
+    'lk_home' => 'Главная',
+    'lk_kits' => 'Cтартовые наборы',
+    'lk_buy_gold' => 'Купить золото',
+    'lk_profile' => 'Профиль',
+    'lk_characters' => 'Персонажи',
+    'lk_add_new_account' => 'Добавить новый',
 ];

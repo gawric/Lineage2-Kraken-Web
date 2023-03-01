@@ -23,7 +23,11 @@ namespace App\Service\Registration\Support;
 
         public function change($login , $new_pasword){
             $temp_array_accounts = $this->getAllAccountsModel($this->list_servers);
-            $this->sqlChange($temp_array_accounts , $login , $new_pasword);
+            //пока мы отключаем данную функцию т.к изменилась архитектура
+            //теперь пароль от учетки не равен паролю от игрового аккаунта
+            //менять пароль от игрового аккаунта возможно будет только из личного кабинета
+
+            //$this->sqlChange($temp_array_accounts , $login , $new_pasword);
            // dd($temp_array_accounts);
         }
 

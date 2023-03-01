@@ -27,4 +27,11 @@ return [
     'info_first_page_static' => 'Select server and statistics',
     'no_data' => 'no data',
     'success' => 'Data received',
+    'lk_home' => 'Home',
+    'lk_kits' => 'Starter kits',
+    'lk_buy_gold' => 'Buy gold',
+    'lk_profile' => 'Profile',
+    'lk_characters' => 'Characters',
+    'lk_add_new_account' => 'New Account',
+    'lk_add_new_account' => 'New Account',
 ];

@@ -6,20 +6,32 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img style="margin-left: 50%;margin-top: 50%;" src="images/logo_minimal.png" alt="Logo"></a>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    {{ __('messages.lk_home') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                    {{ __('messages.lk_kits') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')">
+                    {{ __('messages.lk_buy_gold') }}
                     </x-nav-link>
                 </div>
             </div>
-
+            
+            
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+            Личный кабинет
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
@@ -35,7 +47,15 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                        {{ __('messages.lk_profile') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('profile.edit')">
+                        {{ __('messages.lk_characters') }}
+                        </x-dropdown-link>
+                        
+                        <x-dropdown-link :href="route('profile.edit')">
+                        {{ __('messages.lk_characters') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -98,3 +118,5 @@
         </div>
     </div>
 </nav>
+
+
