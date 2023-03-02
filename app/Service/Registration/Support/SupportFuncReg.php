@@ -5,6 +5,7 @@
     use Config;
     use Log;
     use Lang;
+    use App\Service\ProxyFilters\GeneralFilters;
    
     use App\Models\Accounts_expansion;
 
@@ -19,14 +20,25 @@
         }
 
         
-        public function getErrorJson(){
+        public function getErrorJson($errors , $message){
             return response()->json([
-                'errors' => Lang::get('validation.enter_server_db'),
-                'message'=> Lang::get('validation.enter_server_db'),
+                'errors' => $errors,
+                'message' => $message,
             ], 422);
     
         }
         
+
+        public function isUserExistServer($modelAccountDb , $username){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $username]]);
+            $resultmodel =  $modelAccountDb::filter($filtersPk)->get()->first();
+            if(isset($resultmodel)){
+                return true;
+            }
+
+            return false;
+        }
+
         public function checkModelAccountDb($modelAccountDb){
             if(!empty($modelAccountDb)) {
                 return true;

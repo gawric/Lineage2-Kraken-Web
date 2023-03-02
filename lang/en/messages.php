@@ -33,5 +33,4 @@ return [
     'lk_profile' => 'Profile',
     'lk_characters' => 'Characters',
     'lk_add_new_account' => 'New Account',
-    'lk_add_new_account' => 'New Account',
 ];

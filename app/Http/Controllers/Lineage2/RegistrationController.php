@@ -51,9 +51,13 @@ class RegistrationController extends Controller
 
         $arr_item = $this->sfc->getServerItemById($this->list_server ,  $server_id);
         $modelAccountDb = $this->sfc->getModelAccountDb($arr_item);
-        //info("Полученные данные в строке $modelAccountDb");
+
         if(!$this->sfc->checkModelAccountDb($modelAccountDb)){
-          return $this->sfc->getErrorJson();
+          return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
+        }
+
+        if($this->sfc->isUserExistServer($modelAccountDb , $login)){
+            return $this->sfc->getErrorJson(Lang::get('validation.enter_use_db') , Lang::get('validation.enter_use_db'));
         }
 
        
