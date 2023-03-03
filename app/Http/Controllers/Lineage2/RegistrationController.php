@@ -16,6 +16,7 @@ namespace App\Http\Controllers\Lineage2;
  use Lang;
  use Illuminate\Auth\Events\Registered;
  use App\Models\Accounts_expansion;
+ use App\Service\ProxySqlL2Server\ProxySqlServer;
 
 class RegistrationController extends Controller
 {
@@ -24,11 +25,13 @@ class RegistrationController extends Controller
     private $list_server;
     private $model_account_db;
     private  SupportFuncReg $sfc;
+    private  ProxySqlServer $proxySql;
 
     public function __construct()
     {
         $this->arr=[];
         $this->sfc = new SupportFuncReg();
+        $this->proxySql = new ProxySqlServer();
         $this->list_server = Config::get('lineage2.server.list_server');
         
     }
@@ -56,12 +59,12 @@ class RegistrationController extends Controller
           return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
         }
 
-        if($this->sfc->isUserExistServer($modelAccountDb , $login)){
+        if($this->proxySql->isUserExistServer($modelAccountDb , $login)){
             return $this->sfc->getErrorJson(Lang::get('validation.enter_use_db') , Lang::get('validation.enter_use_db'));
         }
 
        
-        $user_account_expansion = $this->sfc->save($service_reg , $modelAccountDb , $login , $password , $server_id , $email);
+        $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
         //info($user_account_expansion);
         event(new Registered($user_account_expansion));
 

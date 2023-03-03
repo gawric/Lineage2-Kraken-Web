@@ -1,16 +1,38 @@
 <?php
 
-namespace App\Service\Registration\Support;
+namespace App\Service\ProxySqlL2Server\RusAcisProxy\Registration;
 
  use Log;
  use App\Models\Accounts_expansion;
  use App\Models\Server\ServerAccounts;
  use Illuminate\Support\Facades\Hash;
  use App\Models\Accounts_server_id;
-
+ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
      class RegSql
      {
-        public function saveAE($email , $login , $server_id , $password) : Accounts_expansion{
+
+        public function isUserExistServer($modelAccountDb , $username){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $username]]);
+            $resultmodel =  $modelAccountDb::filter($filtersPk)->get()->first();
+            if(isset($resultmodel)){
+                return true;
+            }
+
+            return false;
+        }
+
+        public function save($modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
+            if(!empty($modelAccountDb)) {
+                    //info("Run save db $modelAccountDb");
+                    $this->saveAccountServer($login , $password , $modelAccountDb);
+                    
+                   return $user_account_expan =  $this->saveAccountExpansion($email , $login , $server_id , $password);
+            }
+          return new Accounts_expansion();
+        }
+
+
+        public function saveAccountExpansion($email , $login , $server_id , $password) : Accounts_expansion{
             //Log::info("save model Ok->RegSql");
             $model = $this->createModelAccountsExpansion($email , $login , $server_id , $password);
             $model->save();
@@ -20,7 +42,7 @@ namespace App\Service\Registration\Support;
             return $model;
         }
 
-        public function saveAS($login , $password , $modelAccountDb) : void {
+        public function saveAccountServer($login , $password , $modelAccountDb) : void {
             $model = $this->createModelServerAccount($login , $password , $modelAccountDb);
             $model->save();
         }

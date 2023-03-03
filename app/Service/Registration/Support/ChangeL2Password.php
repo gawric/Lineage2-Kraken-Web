@@ -7,7 +7,7 @@ namespace App\Service\Registration\Support;
  use App\Models\Server\ServerAccounts;
  use Illuminate\Support\Facades\Hash;
  use Config;
- use App\Service\ProxyFilters\GeneralFilters;
+ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 
      class ChangeL2Password
      {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Sheldure\Info\Characters\Support\SqlFilter;
+namespace App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters;
 use Log;
 
 class SimpleFilter

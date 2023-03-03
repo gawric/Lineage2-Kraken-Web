@@ -5,7 +5,7 @@
     use Config;
     use Log;
     use Lang;
-    use App\Service\ProxyFilters\GeneralFilters;
+    use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
    
     use App\Models\Accounts_expansion;
 
@@ -29,15 +29,7 @@
         }
         
 
-        public function isUserExistServer($modelAccountDb , $username){
-            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $username]]);
-            $resultmodel =  $modelAccountDb::filter($filtersPk)->get()->first();
-            if(isset($resultmodel)){
-                return true;
-            }
 
-            return false;
-        }
 
         public function checkModelAccountDb($modelAccountDb){
             if(!empty($modelAccountDb)) {
@@ -46,15 +38,7 @@
             return false;
         }
 
-        public function save($service_reg , $modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
-            if(!empty($modelAccountDb)) {
-                    //info("Run save db $modelAccountDb");
-                    $service_reg->saveAS($login , $password , $modelAccountDb);
-                    
-                   return $user_account_expan =  $service_reg->saveAE($email , $login , $server_id , $password);
-            }
-          return new Accounts_expansion();
-        }
+   
         public function getModelAccountDb($arr_item):string{
            // info(count($arr_item));
             if(isset($arr_item) and count($arr_item) == 1){

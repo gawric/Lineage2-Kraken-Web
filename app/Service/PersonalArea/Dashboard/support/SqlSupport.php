@@ -2,7 +2,7 @@
 
 namespace App\Service\PersonalArea\Dashboard\Support;
 
-use App\Service\ProxyFilters\GeneralFilters;
+use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 use App\Models\Temp\InfoDashboard;
 
     class SqlSupport

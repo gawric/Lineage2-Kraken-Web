@@ -33,8 +33,6 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
         }
 
         function calcInfoServers(){
-      
-
             $this->ss = new StatusServer($this->timeout);  
             $this->sf = new SupportFuncStatus($this->ss);
            
@@ -51,11 +49,6 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
             $this->clearTableClanStatic();
             array_walk($this->list_server, "self::startWorkClan");
         }
-
-
-
-
-
 
 
         private function  clearTableClanStatic(){

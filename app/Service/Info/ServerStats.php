@@ -5,7 +5,7 @@
     use Config;
     use App\Models\CharactersStatic;
     use Log;
-    use App\Service\ProxyFilters\GeneralFilters;
+    use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
     use App\Models\ClanStatic;
 
     class ServerStats implements IServerStats

@@ -2,16 +2,7 @@
 
 namespace App\Service\Sheldure\Info\Support\SupportFunc;
 
-use Config;
-use App\Service\Status\StatusServer;
-use App\Service\Status\Support\SupportFuncStatus;
-use App\Models\InfoServer;
 use App\Models\CharactersStatic;
-use App\Service\Sheldure\ISheldure;
-use App\Service\Sheldure\Info\Support\GeneralFilters;
-use App\Service\Sheldure\Info\Support\SqlFilter\ClanDataByIdFilter;
-use App\Models\Server\ServerCharacters;
-use App\Models\Server\ServerClanData;
 use Illuminate\Support\Collection;
 
     class SupportFunc

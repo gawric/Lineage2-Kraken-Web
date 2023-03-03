@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\ProxyFilters;
+namespace App\Service\ProxySqlL2Server\Support\ProxyFilters;
 
 use Log;
 use App\Service\Sheldure\Info\Characters\Support\SqlFilter\SimpleFilter;
