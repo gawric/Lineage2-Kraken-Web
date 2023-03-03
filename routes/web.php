@@ -8,7 +8,7 @@ use App\Http\Controllers\Lineage2\StatusServerController;
 use App\Http\Controllers\Lineage2\StatisticServerController;
 use App\Http\Controllers\Lineage2\RegistrationController;
 use App\Http\Middleware\Lineage2\ValidateReg;
-use App\Http\Controllers\Lineage2\PersonalArea\Auth\Dashboard;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
 });
 
-Route::get('/dashboard', [Dashboard::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

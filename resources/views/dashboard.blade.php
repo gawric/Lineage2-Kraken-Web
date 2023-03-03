@@ -27,74 +27,44 @@
 <div class="bg-white">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl lg:mx-0">
-      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Игровые аккаунты gawric</h2>
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Игровые аккаунты {{ $username }}</h2>
    
-      <p class="mt-3 text-lg leading-8 text-gray-600">Количество разрешенных аккаунтов 25</p>
+      <p class="mt-3 text-lg leading-8 text-gray-600">Количество разрешенных аккаунтов {{ $allow_count }}</p>
     </div>
     <div class="mx-auto mt-10">
 
     <table style="width:100%;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <tbody>
+        @if(isset($arrayInfoDashboard))
+         @foreach($arrayInfoDashboard as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    1
+                {{ $model->id }}
                 </th>
                 <td class="px-6 py-4">
-                    gawric
+                {{ $model->username }}
                 </td>
                 <td class="px-6 py-4">
-                    24.06.2014 09:35:47
+                {{ $model->dateauth }}
                 </td>
                 <td class="px-6 py-4">
-                    Нет персонажей
+                {{ $model->count_characters }}
                 </td>
                 <td class="px-6 py-4">
-                    X50 Nightmare
+                {{ $model->name_server }}
                 </td>
                 <td>
                     <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сменить пароль</button>
                 </td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    2
-                </th>
-                <td class="px-6 py-4">
-                    gawric
-                </td>
-                <td class="px-6 py-4">
-                    24.06.2014 09:35:47
-                </td>
-                <td class="px-6 py-4">
-                    Нет персонажей
-                </td>
-                <td class="px-6 py-4">
-                    X1000 Warland
-                </td>
-                <td>
-                    <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сменить пароль</button>
-                </td>
+         @endforeach
+         @else
+            <tr>
+                <td>NULL</td>
             </tr>
-            <tr class="bg-white dark:bg-gray-800">
-            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    3
-                </th>
-                <td class="px-6 py-4">
-                    gawric
-                </td>
-                <td class="px-6 py-4">
-                    24.06.2014 09:35:47
-                </td>
-                <td class="px-6 py-4">
-                    Нет персонажей
-                </td>
-                <td class="px-6 py-4">
-                    X300 Paradise
-                </td>
-                <td>
-                    <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Сменить пароль</button>
-                </td>
-            </tr>
+        @endif
+        
+           
         </tbody>
     </table>
 

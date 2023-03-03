@@ -21,8 +21,8 @@ namespace App\Service\Registration;
             $this->reg->saveAS($login , $password , $modelAccountDb );
         }
 
-        public function saveAE($email , $login , $server_id , $password) : Accounts_expansion{
-            return $this->reg->saveAE($email , $login , $server_id , $password);
+        public function saveAE($email , $login , $server_id , $password ) : Accounts_expansion{
+            return $this->reg->saveAE($email , $login , $server_id , $password );
         }
 
         public function changePasswordAllAccounts($login , $new_pasword){

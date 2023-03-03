@@ -20,6 +20,7 @@ return new class extends Migration
             ->references('id')->on('accounts_expansion')
             ->onDelete('cascade');
             $table->integer('server_id');
+            $table->string('account_name');
         });
     }
 

@@ -12,27 +12,27 @@ namespace App\Service\Registration\Support;
      {
         public function saveAE($email , $login , $server_id , $password) : Accounts_expansion{
             //Log::info("save model Ok->RegSql");
-            $model = $this->createModelAE($email , $login , $server_id , $password);
+            $model = $this->createModelAccountsExpansion($email , $login , $server_id , $password);
             $model->save();
-            $model_server_id = $this->createModelServerIds($server_id , $model['id']);
+            $model_server_id = $this->createModelServerIds($server_id , $model['id'] , $login);
             $model->accounts_server_id()->save($model_server_id);
             
             return $model;
         }
 
         public function saveAS($login , $password , $modelAccountDb) : void {
-            $model = $this->createModelSa($login , $password , $modelAccountDb);
+            $model = $this->createModelServerAccount($login , $password , $modelAccountDb);
             $model->save();
         }
 
-        private function createModelSa($login , $password , $modelAccountDb){
+        private function createModelServerAccount($login , $password , $modelAccountDb){
             $sa = new $modelAccountDb;
             $sa->login = $login;
             $sa->password = $this->getServerHashPassword($password);
             return $sa;
         }
 
-        private function createModelAE($email , $login , $server_id , $password) : Accounts_expansion{
+        private function createModelAccountsExpansion($email , $login , $server_id , $password) : Accounts_expansion{
             $ae = new Accounts_expansion;
             $ae->login = $login;
             $ae->email = $email;
@@ -40,10 +40,12 @@ namespace App\Service\Registration\Support;
             return $ae;
         }
 
-        private function createModelServerIds($server_id , $model_id) : Accounts_server_id{
+        private function createModelServerIds($server_id , $model_id , $default_account_name) : Accounts_server_id{
             $accounts_server_id = new Accounts_server_id();
             $accounts_server_id->server_id = $server_id;
             $accounts_server_id->accounts_expansion_id = $model_id;
+            $accounts_server_id->account_name = $default_account_name;
+
             return $accounts_server_id;
         }
 
