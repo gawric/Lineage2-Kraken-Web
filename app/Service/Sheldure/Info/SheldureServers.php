@@ -76,12 +76,5 @@ use App\Service\Sheldure\Info\Clan\CalcClan;
             }
         }
 
-        
-
-        
-
-    
-      
-   
     }
 ?>

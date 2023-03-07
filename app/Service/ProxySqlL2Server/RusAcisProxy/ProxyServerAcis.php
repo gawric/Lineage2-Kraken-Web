@@ -6,6 +6,7 @@ use Config;
 use App\Service\ProxySqlL2Server\RusAcisProxy\Registration\RegSql;
 use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\CharactersSql;
 use App\Service\ProxySqlL2Server\IProxy;
+use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 
    class ProxyServerAcis implements IProxy
    {
@@ -17,6 +18,7 @@ use App\Service\ProxySqlL2Server\IProxy;
         public function __construct() {
              $this->reg = new RegSql();
              $this->charactersSql = new CharactersSql();
+             $this->topclansql = new TopClanSql();
         }
 
         public function regUser($modelAccountDb , $login , $password , $server_id , $email){
@@ -45,11 +47,11 @@ use App\Service\ProxySqlL2Server\IProxy;
 
 
 
-        public function getClanCountCharactersLimit($current_server_characters , $countLimit){
-            $this->topclansql->getClanCountCharactersLimit($current_server_characters , $countLimit);
+        public function getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit){
+            $this->topclansql->getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit);
         }
-        public function getClanAllCountCharacters(){
-            $this->topclansql->getClanAllCountCharacters();
+        public function getClanAllCountCharacters($current_server_characters){
+            $this->topclansql->getClanAllCountCharacters($current_server_characters);
         }
         public function saveClanSql($modelArr){
             $this->topclansql->saveClanSql($modelArr);
@@ -57,6 +59,10 @@ use App\Service\ProxySqlL2Server\IProxy;
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
             $this->topclansql->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
         }
+        
+
+      
+
  
    }
 ?>

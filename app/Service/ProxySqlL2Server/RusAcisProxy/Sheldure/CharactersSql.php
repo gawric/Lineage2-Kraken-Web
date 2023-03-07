@@ -19,9 +19,7 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
                 return $current_server_characters::filter($filtersPvp)->get(['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']);
             }
 
-            public function convertCharactersToModel($current_server_id , $resultArr){
-                return $this->support->createModel($current_server_id , $resultArr  , $this->listclassid);
-            }
+      
 
 
 

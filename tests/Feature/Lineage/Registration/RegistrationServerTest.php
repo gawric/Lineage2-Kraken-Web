@@ -56,7 +56,7 @@ class RegistrationServerTest extends TestCase
             'email' => 'admin@mail.ru',
             'server_id' => '1',
         ]);
-
+       // dd($response);
         $this->assertCount(1, Accounts_expansion::all());
      }
 

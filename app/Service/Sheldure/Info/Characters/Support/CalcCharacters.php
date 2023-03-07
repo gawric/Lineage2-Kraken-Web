@@ -22,10 +22,10 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
         private $support;
         private $listclassid;
         private ProxySqlServer $proxySql;
+
         public function __construct() {
             $this->support = new SupportFunc();
             $this->listclassid = Config::get('lineage2.class_id.list_class_id');
-            $this->proxySql = new ProxySqlServer();
         }
      
         public function run($current_servers){
@@ -35,14 +35,17 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
             $current_clandata_db_model = $current_servers['clandata_db_model'];
             //ID определяется в конфиге
             $current_server_id = $current_servers['id'];
+            $server_developer_id = $current_servers['developer_id'];
 
+            $this->proxySql = new ProxySqlServer($server_developer_id);
            // info("Запуск планировщика задач! SheldureServers->calcStaticCharacters  $current_server_id ");
 
             $resultArrPk = $this->proxySql->getPkServerCharacters($current_server_characters);
             $resultArrPvp = $this->proxySql->getPvpServerCharacters($current_server_characters);
 
-            $allModelCharactersPk = $this->proxySql->convertCharactersToModel($current_server_id , $resultArrPk);
-            $allModelCharactersPvp = $this->proxySql->convertCharactersToModel($current_server_id , $resultArrPvp);
+            $allModelCharactersPk = $this->convertCharactersToModel($current_server_id , $resultArrPk);
+            $allModelCharactersPvp = $this->convertCharactersToModel($current_server_id , $resultArrPvp);
+
 
             $unique_clan_id_pk = $this->getAllUniqueClanid($resultArrPk);
             $unique_clan_id_pvp = $this->getAllUniqueClanid($resultArrPvp);
@@ -59,12 +62,19 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
         }
 
         public function getAllUniqueClanid($resultArr){
-            return $resultArr->unique('clanid')->pluck('clanid');
+            if(isset($resultArr)){
+                return $resultArr->unique('clanid')->pluck('clanid');
+            }
+            
         }
 
         public function convertAllIdClanToName($allModelCharactersPk , $allModelCharactersPvp ,  $result_clan_pk , $result_clan_pvp){
             $this->support->convertIdClanToNameClan($allModelCharactersPk ,  $result_clan_pk);
             $this->support->convertIdClanToNameClan($allModelCharactersPvp ,  $result_clan_pvp);
+        }
+
+        public function convertCharactersToModel($current_server_id , $resultArr){
+            return $this->support->createModel($current_server_id , $resultArr  , $this->listclassid);
         }
 
 

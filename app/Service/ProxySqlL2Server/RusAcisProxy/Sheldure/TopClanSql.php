@@ -9,13 +9,17 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
    class TopClanSql 
    {
 
-        public function getClanAllCountCharacters(){
+        public function getClanAllCountCharacters($current_server_characters){
             $filtersPk = new GeneralFilters(['topusersclansfilter'] , []);
             $resultCol =  $current_server_characters::filter($filtersPk)->get()->sortBy('count');
             return $resultCol;
         }
         public function getClanCountCharactersLimit( $resultCol , $current_server_characters , $countLimit){
-           return  $resultLimit = $resultCol->take($countLimit);
+            if(isset($resultCol)){
+                return  $resultLimit = $resultCol->take($countLimit);
+            }
+           
+            return [];
         }   
 
         public  function saveClanSql(&$modelArr){

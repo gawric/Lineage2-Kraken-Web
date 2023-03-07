@@ -34,7 +34,7 @@ namespace App\Service\Registration\Support;
         //Данная функция изменяет пароль на всех серверах если находит нужный нам логин
         //Конфликта не должно быть т.к при регистрации мы не проверяем какой именно сервер испольуется для регистрации
         //Мы регистрируем общую учетку по сайту Accounts_Expansion
-        //После этого регистрируем в базе сервере в таблице Accounts
+        //После этого регистрируем в базе сервера в таблице Accounts
         private function sqlChange($temp_array_accounts , $login , $new_pasword){
             foreach($temp_array_accounts  as $accounts_model){
 

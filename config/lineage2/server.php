@@ -12,6 +12,7 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
+                'developer_id' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
                 'clandata_db_model' => "App\Models\Server\ServerClanData",
@@ -24,6 +25,9 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
+                //Применяется в ProxySqlServer > SelectServer
+                //ID берем из списка > support_developer
+                'developer_id' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
                 'clandata_db_model' => "App\Models\Server\ServerClanData",
@@ -36,6 +40,7 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
+                'developer_id' => 0,
                 //server_db_model -> модель созданная для обращения к нужной бд и конкретной таблице пример (ServerCharacters model)
                 //возможность использовать разные бд
                 'server_db_model' => "App\Models\Server\ServerCharacters",
@@ -53,4 +58,6 @@ return [
 
     //Количество разрешенных аккаунтов на одной учетке 
     'allowed_accounts' => 5,
+
+    'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "Lucera"],
 ];

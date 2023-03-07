@@ -11,13 +11,15 @@ class ClanDataByIdFilter
     {
        
 
-        //info($query->orWhere([['clan_id', '=', '1'],['clan_id', '=', '2']])->toSql());
+        if(isset($query) and isset($dataOr)){
+            return $query->where(function ($query) use ($dataOr) {
+                foreach ($dataOr as $keyword) {
+                   $query->orWhere('clan_id', '=', $keyword);
+                }
+            });
+        }
 
-       return $query->where(function ($query) use ($dataOr) {
-            foreach ($dataOr as $keyword) {
-               $query->orWhere('clan_id', '=', $keyword);
-            }
-        });
+     
     }
 
   

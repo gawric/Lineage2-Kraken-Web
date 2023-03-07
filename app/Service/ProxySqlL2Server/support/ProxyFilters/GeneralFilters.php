@@ -3,11 +3,11 @@
 namespace App\Service\ProxySqlL2Server\Support\ProxyFilters;
 
 use Log;
-use App\Service\Sheldure\Info\Characters\Support\SqlFilter\SimpleFilter;
-use App\Service\Sheldure\Info\Characters\Support\SqlFilter\TopPkFilter;
-use App\Service\Sheldure\Info\Characters\Support\SqlFilter\TopPvpFilter;
-use App\Service\Sheldure\Info\Characters\Support\SqlFilter\ClanDataByIdFilter;
-use App\Service\Sheldure\Info\Clan\Support\SqlFilter\TopUsersClansFilter;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\SimpleFilter;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopPkFilter;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopPvpFilter;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\ClanDataByIdFilter;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopUsersClansFilter;
 use Request;
 
     class GeneralFilters
