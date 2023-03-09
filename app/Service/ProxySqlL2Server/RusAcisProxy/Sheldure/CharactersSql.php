@@ -41,6 +41,9 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             }
 
             public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
+                info('CharactersSql->saveAllCharacters');
+                info(count($allModelCharactersPvp));
+                info(count($allModelCharactersPk));
                 $this->saveSql($allModelCharactersPvp);
                 $this->saveSql($allModelCharactersPk);
             }

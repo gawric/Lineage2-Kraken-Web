@@ -45,7 +45,7 @@ class RegistrationController extends Controller
     public function ajaxRequestPost(RegistrationStoreRequest $request)
     {
         $validated = $request->validated();
-        $service_reg = new Registration();
+        //$service_reg = new Registration();
 
         $login = $this->sfc->getData("login" , $validated );
         $password = $this->sfc->getData("password" , $validated );
@@ -71,7 +71,10 @@ class RegistrationController extends Controller
 
        
         $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
-  
+
+        info("User Account Expansion ");
+        info($user_account_expansion);
+        
         event(new Registered($user_account_expansion));
 
         return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);

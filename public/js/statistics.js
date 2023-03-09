@@ -14,16 +14,25 @@ function sendJsonDataServer( select_server_id , id_static){
             clearTempData();
             clearTempDataClan();
             if (response.success != undefined){
-                if(response.result.length > 0){
+
+                console.log(response);
+                if(Object.keys(response.result).length > 0){
                     if(id_static == 3){
-                        console.log(response.result);
-                        response.result.forEach(parceRowClan); 
+                        //console.log(response.result);
+                        Object.entries(response.result).forEach(parceRowClan);
+                       // response.result.forEach(parceRowClan); 
                     }
                     else{
-                        response.result.forEach(parceRowTop);
+                        Object.entries(response.result).forEach(parceRowTop);
+                       // response.result.forEach(parceRowTop);
                     }
                     hideLoadingReg("loading_reg");
                     showSucces(response.success)
+                }
+                else{
+                    console.log("succes reuqest: Empty array ");
+                    hideLoadingReg("loading_reg");
+                    parceEmpty();
                 }
             } 
             else{
@@ -53,8 +62,24 @@ function clearTempData(){
 function clearTempDataClan(){
     $("#customers_clan").find("tr:gt(0)").remove();
 }
+
+function parceEmpty(){
+
+    $('#customers').css("display", "table");
+    $('#customers_clan').css("display", "none");
+
+
+ 
+    $("#customers").find('tbody')
+    .append($('<tr align="center">')
+        .append($('<td colspan="9">').text("Нет данных"))
+    );
+}
+
+
 function parceRowTop(item, index, arr){
 
+    var item = item[1];
     $('#customers').css("display", "table");
     $('#customers_clan').css("display", "none");
 
@@ -71,7 +96,7 @@ function parceRowTop(item, index, arr){
         .append($('<td>').text(item['pvp']))
         .append($('<td>').text(item['pk']))
         .append($('<td>').text(online))
-);
+    );
 }
 
 function getTextOnline(data){
@@ -92,6 +117,7 @@ function convertTime(timestamp){
 
 
 function parceRowClan(item, index, arr){
+    var item = item[1];
     $('#customers').css("display", "none");
     $('#customers_clan').css("display", "table");
 
@@ -106,6 +132,19 @@ function parceRowClan(item, index, arr){
          .append($('<td>').text(item['member']))
 
  );
+
+ 
+
+}
+
+function parceEmptyClan(){
+    $('#customers').css("display", "none");
+    $('#customers_clan').css("display", "table");
+
+    $("#customers_clan").find('tbody')
+    .append($('<tr>')
+        .append($('<td colspan="9">').text("Нет данных"))
+    );
 
  
 

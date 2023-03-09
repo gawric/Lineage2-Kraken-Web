@@ -37,8 +37,12 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
 
         private function getTopUsersClan($current_server_id , $current_server_characters , $current_clandata_db_model){
            $resultCol= $this->proxySql->getClanAllCountCharacters($current_server_characters);
+           //info('CalcClan-> ResultCol');
+          // info($resultCol);
            //$resultLimit =  $this->proxySql->getCountCharactersLimit($current_server_characters , $this->top_count);
            $resultLimit =  $this->proxySql->getClanCountCharactersLimit($resultCol , $current_server_characters , $this->top_count);
+          // info('CalcClan-> ResultLimit');
+           //info($resultLimit);
            $unique_clan_id = $this->getAllUniqueClanid($resultCol);
            $arr_clan_data = $this->proxySql->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
            $modelArr = $this->support->createModel($current_server_id , $resultLimit , $arr_clan_data);

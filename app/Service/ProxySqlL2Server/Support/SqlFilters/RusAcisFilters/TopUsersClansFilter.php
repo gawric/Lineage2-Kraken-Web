@@ -20,7 +20,7 @@ class TopUsersClansFilter
        return  $query->select('clanid', DB::raw('COUNT(clanid) AS count'))
        ->where("clanid", ">", 0)
        ->groupBy('clanid')
-       ->havingRaw('count > 1')
+       ->havingRaw('count > 0')
        ->pluck('clanid','count');
     
     }

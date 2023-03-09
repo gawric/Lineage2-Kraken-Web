@@ -19,8 +19,10 @@
   
         public  function getDataPk($server_id){
             $filtersPk = new GeneralFilters(['simplefilter'] , [['pk', '>', 0] , ['server_id', '=', $server_id]]);
-            return CharactersStatic::filter($filtersPk)->limit($this->top_count)->get(['id', 'name' , 'class' , 'clan' , 'lvl' , 'pvp' , 'pk' , 'onlinetime' , 'online'])
+            $result =  CharactersStatic::filter($filtersPk)->limit($this->top_count)->get(['id', 'name' , 'class' , 'clan' , 'lvl' , 'pvp' , 'pk' , 'onlinetime' , 'online'])
             ->sortByDesc('pk');
+
+            return $result;
         }
 
         public function getDataPvp($server_id){

@@ -23,9 +23,7 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\Registration;
 
         public function save($modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
             if(!empty($modelAccountDb)) {
-                    //info("Run save db $modelAccountDb");
-                    $this->saveAccountServer($login , $password , $modelAccountDb);
-                    
+                   $this->saveAccountServer($login , $password , $modelAccountDb);
                    return $user_account_expan =  $this->saveAccountExpansion($email , $login , $server_id , $password);
             }
           return new Accounts_expansion();

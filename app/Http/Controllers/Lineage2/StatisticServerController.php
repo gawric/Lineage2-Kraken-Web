@@ -46,9 +46,12 @@ class StatisticServerController extends Controller
             return $this->getErrorJson();
         }
        
-        $retsult = $this->getData($sever_id , $stat_id);
-       // dd($retsult);
-        return Response::json(['success'=>Lang::get('messages.success') , 'result'=>$retsult]);
+        $result = $this->getData($sever_id , $stat_id);
+
+       //info('StatisticServerController->dataStat');
+        //info($result);
+
+        return Response::json(['success'=>Lang::get('messages.success') , 'result'=>$result]);
     }
 
     private function getData($sever_id , $stat_id){

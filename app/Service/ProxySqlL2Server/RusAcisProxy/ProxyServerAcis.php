@@ -23,7 +23,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 
         
         public function regUser($modelAccountDb , $login , $password , $server_id , $email){
-            $this->reg->save($modelAccountDb , $login , $password , $server_id , $email);
+            return $this->reg->save($modelAccountDb , $login , $password , $server_id , $email);
         }
 
         public function isUserExistServer($modelAccountDb , $login){
@@ -34,12 +34,15 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 
 
         public function getPkServerCharacters($current_server_characters){
-            $this->charactersSql->getPkServerCharacters($current_server_characters);
+            return $this->charactersSql->getPkServerCharacters($current_server_characters);
         }
 
         public function getPvpServerCharacters($current_server_characters){
-            $this->charactersSql->getPvpServerCharacters($current_server_characters);
-        }
+            $result =  $this->charactersSql->getPvpServerCharacters($current_server_characters);
+            info('ProxyServerAcis->getPvpServerCharacters');
+            info($result);
+            return $result;
+         }
 
         public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
             $this->charactersSql->saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk);
@@ -49,16 +52,16 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 
 
         public function getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit){
-            $this->topclansql->getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit);
+            return $this->topclansql->getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit);
         }
         public function getClanAllCountCharacters($current_server_characters){
-            $this->topclansql->getClanAllCountCharacters($current_server_characters);
+            return $this->topclansql->getClanAllCountCharacters($current_server_characters);
         }
         public function saveClanSql($modelArr){
             $this->topclansql->saveClanSql($modelArr);
         }
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
-            $this->topclansql->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
+            return $this->topclansql->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
         }
 
 
