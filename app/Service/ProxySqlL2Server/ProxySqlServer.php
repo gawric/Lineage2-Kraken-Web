@@ -15,15 +15,12 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
 
         public function __construct($developer_id) {
             $this->developer_id = $developer_id;
-            $this->select_server = new SelectServerById();
             info("Id номер созданного обьекта!");
-            //info(spl_object_id($this->select_server));
             $this->proxy_server = $this->getProxy($this->developer_id);
-            info(spl_object_id($this->select_server));
+            info(spl_object_id($this->proxy_server));
         }
     
         public function regUser($modelAccountDb , $login , $password , $server_id , $email){
-           
             $this->proxy_server->regUser($modelAccountDb , $login , $password , $server_id , $email);
         }
 
@@ -63,7 +60,7 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
         }
 
         private function getProxy($developer_id){
-           return $this->select_server->choose($developer_id);
+           return SelectServerById::choose($developer_id);
         }
       
 

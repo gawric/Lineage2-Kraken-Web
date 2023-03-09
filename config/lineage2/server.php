@@ -26,7 +26,7 @@ return [
                 'status' => 'offline',
                 'count_online' => 0,
                 //Применяется в ProxySqlServer > SelectServer
-                //ID берем из списка > support_developer
+                //ID берем из списка > support_developers
                 'developer_id' => 0,
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",

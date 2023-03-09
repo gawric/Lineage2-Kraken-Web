@@ -21,6 +21,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
              $this->topclansql = new TopClanSql();
         }
 
+        
         public function regUser($modelAccountDb , $login , $password , $server_id , $email){
             $this->reg->save($modelAccountDb , $login , $password , $server_id , $email);
         }
@@ -59,7 +60,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
             $this->topclansql->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
         }
-        
+
 
       
 

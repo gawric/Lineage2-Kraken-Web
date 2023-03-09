@@ -31,7 +31,7 @@ class RegistrationController extends Controller
     {
         $this->arr=[];
         $this->sfc = new SupportFuncReg();
-        $this->proxySql = new ProxySqlServer();
+     
         $this->list_server = Config::get('lineage2.server.list_server');
         
     }
@@ -52,20 +52,26 @@ class RegistrationController extends Controller
         $email = $this->sfc->getData("email" , $validated );
         $server_id = $this->sfc->getData("server_id" , $validated );
 
+
+        
         $arr_item = $this->sfc->getServerItemById($this->list_server ,  $server_id);
         $modelAccountDb = $this->sfc->getModelAccountDb($arr_item);
+        $developer_id_server = $this->sfc->getDeveloper_id($arr_item);
+        $this->proxySql = new ProxySqlServer($developer_id_server);
+
 
         if(!$this->sfc->checkModelAccountDb($modelAccountDb)){
           return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
         }
 
-        if($this->proxySql->isUserExistServer($modelAccountDb , $login)){
+        if($this->proxySql->isUserExistServer($modelAccountDb , $login) || $developer_id_server == -1){
             return $this->sfc->getErrorJson(Lang::get('validation.enter_use_db') , Lang::get('validation.enter_use_db'));
         }
 
+
        
         $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
-        //info($user_account_expansion);
+  
         event(new Registered($user_account_expansion));
 
         return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);

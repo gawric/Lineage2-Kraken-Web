@@ -20,6 +20,7 @@
         }
 
         
+        
         public function getErrorJson($errors , $message){
             return response()->json([
                 'errors' => $errors,
@@ -48,6 +49,15 @@
             }
             return "";
         }
+        public function getDeveloper_id($arr_item):int{
+            // info(count($arr_item));
+             if(isset($arr_item) and count($arr_item) == 1){
+                 foreach ($arr_item as &$value) {
+                    return $value['developer_id'];
+                 }
+             }
+             return -1;
+         }
     
         public function getData($name , $validated ) : string {
             return $validated["$name"];
@@ -80,5 +90,6 @@
             return $this->arr;
         }
 
+    
      }
 ?>
