@@ -6,6 +6,7 @@ namespace Tests\Feature\Lineage\Sheldure;
 use App\Models\Server\ServerCharacters;
 use App\Models\Server\ServerClanData;
 use App\Models\CharactersStatic;
+use App\Models\ClanStatic;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -44,10 +45,37 @@ class SheldureStatisticServerTest extends TestCase
      }
 
        
-     public function testServerTopClan(){
+     public function testServerTopClanRusAcis(){
+        array_walk($this->list_server, "self::startWorkClan");
+        $result_rusacis = $this->getServerRusAcis($this->list_server);
+
+        $all_count_server_clan = (int)count($result_rusacis);
+        $all_valid_model_clan = ServerClanData::all();
+
+        $finishtableclan = count(ClanStatic::all());
         
+
+    
+        $resultCharacters = ServerCharacters::all();
+        $uniqueidclan = $resultCharacters->unique('clanid')->pluck('clanid')->toArray();
+        //dd($uniqueidclan);
+
+        $clear_temp_mode_clan = [];
+        //Чистим созданные кланы если в таблице Characters нет не одного юзера с таким id клана 
+        //мы его выкидываем из конечного результата в таблице (ClanStatic)!
+        foreach($all_valid_model_clan as $item){
+            if(in_array($item['clan_id'], $uniqueidclan)){
+                    array_push($clear_temp_mode_clan , $item);
+            }
+        }
+      //  dd(count($clear_temp_mode_clan));
+        $finish_expected_records_clan = $all_count_server_clan  * count($clear_temp_mode_clan);
+
+        $this->assertEquals($finish_expected_records_clan  ,  $finishtableclan);
      }
-     public function testServerCharactersRusAcis()
+
+
+     public function testServerTopCharactersRusAcis()
      {
           array_walk($this->list_server, "self::startWork");
 
@@ -98,6 +126,11 @@ class SheldureStatisticServerTest extends TestCase
         }
 
         return $temp;
+     }
+
+     public function startWorkClan(&$item, $key)
+     {  
+         $this->calcClan->run($item);
      }
    
     
