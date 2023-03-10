@@ -44,6 +44,9 @@ class SheldureStatisticServerTest extends TestCase
      }
 
        
+     public function testServerTopClan(){
+        
+     }
      public function testServerCharactersRusAcis()
      {
           array_walk($this->list_server, "self::startWork");
