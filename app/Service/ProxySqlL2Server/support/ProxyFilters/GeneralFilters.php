@@ -4,8 +4,7 @@ namespace App\Service\ProxySqlL2Server\Support\ProxyFilters;
 
 use Log;
 use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\SimpleFilter;
-use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopPkFilter;
-use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopPvpFilter;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopPkPvpFilter;
 use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\ClanDataByIdFilter;
 use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopUsersClansFilter;
 use Request;
@@ -24,8 +23,7 @@ use Request;
         protected $filters = [
             'clandatafilter' => ClanDataByIdFilter::class,
             'simplefilter' => SimpleFilter::class,
-            'toppkfilter' => TopPkFilter::class,
-            'toppvpfilter' => TopPvpFilter::class,
+            'toppkpvpfilter' => TopPkPvpFilter::class,
             'topusersclansfilter' => TopUsersClansFilter::class,
         ];
 

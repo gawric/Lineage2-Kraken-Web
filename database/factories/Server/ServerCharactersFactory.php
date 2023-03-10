@@ -22,11 +22,11 @@ class ServerCharactersFactory extends Factory
      public function definition()
      {
          return [
-             'obj_id' => fake()->unique()->numberBetween(0,2),
+             'obj_id' => fake()->unique()->numberBetween(0,3),
              'account_name' => fake()->randomElement(['account_name_test']),
              'char_name' => fake()->unique()->randomElement(['test_user_1' , 'test_user_2' , 'test_user_3' , 'test_user_4']),
-             'pvpkills' => fake()->randomElement([0 , 5 , 9 , 3]),
-             'pkkills' =>  fake()->randomElement([0 , 10 , 20, 30]),
+             'pvpkills' => fake()->randomElement([0 , 20]),
+             'pkkills' =>  fake()->randomElement([0 , 30]),
              'classid' =>  fake()->randomElement([11, 99, 16 , 15]), 
              'level' =>  fake()->randomElement([11, 99, 16 , 15]), 
              'onlinetime' =>  fake()->randomElement([11, 99, 16 , 15]), 

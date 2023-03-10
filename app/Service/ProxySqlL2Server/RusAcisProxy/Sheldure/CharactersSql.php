@@ -9,17 +9,11 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
    class CharactersSql 
    {
        
-            public function getPkServerCharacters($current_server_characters){
-                $filtersPk = new GeneralFilters(['toppkfilter'] , [['pkkills', '>', 0] , ['accesslevel', '=', 0]]);
+            public function getPkPvpServerCharacters($current_server_characters){
+                $filtersPk = new GeneralFilters(['toppkpvpfilter'] , []);
                 return $current_server_characters::filter($filtersPk)->get(['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']);
             }
 
-            public function getPvpServerCharacters($current_server_characters){
-                $filtersPvp = new GeneralFilters(['toppvpfilter'] , [['pvpkills', '>', 0] , ['accesslevel', '=', 0]]);
-                return $current_server_characters::filter($filtersPvp)->get(['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']);
-            }
-
-      
 
 
 
@@ -41,10 +35,16 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             }
 
             public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
+
                 info('CharactersSql->saveAllCharacters');
                 info(count($allModelCharactersPvp));
                 info(count($allModelCharactersPk));
-                $this->saveSql($allModelCharactersPvp);
+
+                //$merged = $allModelCharactersPvp->merge($allModelCharactersPk);
+                //$result = array_merge($allModelCharactersPvp, $allModelCharactersPk);
+                //$merged = $allModelCharactersPvp + $allModelCharactersPk;
+               // info($result);
+                //$this->saveSql($allModelCharactersPvp);
                 $this->saveSql($allModelCharactersPk);
             }
 

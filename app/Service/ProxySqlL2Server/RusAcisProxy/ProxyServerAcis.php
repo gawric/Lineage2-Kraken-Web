@@ -33,16 +33,10 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 
 
 
-        public function getPkServerCharacters($current_server_characters){
-            return $this->charactersSql->getPkServerCharacters($current_server_characters);
+        public function getPkPvpServerCharacters($current_server_characters){
+            return $this->charactersSql->getPkPvpServerCharacters($current_server_characters);
         }
 
-        public function getPvpServerCharacters($current_server_characters){
-            $result =  $this->charactersSql->getPvpServerCharacters($current_server_characters);
-            info('ProxyServerAcis->getPvpServerCharacters');
-            info($result);
-            return $result;
-         }
 
         public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
             $this->charactersSql->saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk);

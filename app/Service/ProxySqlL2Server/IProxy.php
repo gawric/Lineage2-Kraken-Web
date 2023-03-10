@@ -9,8 +9,7 @@
         public function isUserExistServer($modelAccountDb , $login);
 
         //статистика
-        public function getPkServerCharacters($current_server_characters);
-        public function getPvpServerCharacters($current_server_characters);
+        public function getPkPvpServerCharacters($current_server_characters);
         public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk);
 
         //статистика по кланам

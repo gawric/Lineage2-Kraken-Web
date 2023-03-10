@@ -40,21 +40,21 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
             $this->proxySql = new ProxySqlServer($server_developer_id);
            // info("Запуск планировщика задач! SheldureServers->calcStaticCharacters  $current_server_id ");
 
-            $resultArrPk = $this->proxySql->getPkServerCharacters($current_server_characters);
-            $resultArrPvp = $this->proxySql->getPvpServerCharacters($current_server_characters);
+            $resultArrPk = $this->proxySql->getPkPvpServerCharacters($current_server_characters);
+
 
             $allModelCharactersPk = $this->convertCharactersToModel($current_server_id , $resultArrPk);
-            $allModelCharactersPvp = $this->convertCharactersToModel($current_server_id , $resultArrPvp);
+
 
 
             $unique_clan_id_pk = $this->getAllUniqueClanid($resultArrPk);
-            $unique_clan_id_pvp = $this->getAllUniqueClanid($resultArrPvp);
+
 
             $result_clan_pk = $this->proxySql->getClanIdToClanName($unique_clan_id_pk , $current_clandata_db_model);
-            $result_clan_pvp = $this->proxySql->getClanIdToClanName($unique_clan_id_pvp , $current_clandata_db_model);
 
+            $allModelCharactersPvp = [];
  
-            $this->convertAllIdClanToName($allModelCharactersPk , $allModelCharactersPvp ,  $result_clan_pk , $result_clan_pvp);
+            $this->convertAllIdClanToName($allModelCharactersPk ,  $result_clan_pk);
             $this->proxySql->saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk);
      
            // info("Завершение планировщика задач! SheldureServers->calcStaticCharacters для сервера:  $current_server_id   ");
@@ -68,9 +68,9 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
             
         }
 
-        public function convertAllIdClanToName($allModelCharactersPk , $allModelCharactersPvp ,  $result_clan_pk , $result_clan_pvp){
+        public function convertAllIdClanToName($allModelCharactersPk ,  $result_clan_pk ){
             $this->support->convertIdClanToNameClan($allModelCharactersPk ,  $result_clan_pk);
-            $this->support->convertIdClanToNameClan($allModelCharactersPvp ,  $result_clan_pvp);
+            //$this->support->convertIdClanToNameClan($allModelCharactersPvp ,  $result_clan_pvp);
         }
 
         public function convertCharactersToModel($current_server_id , $resultArr){

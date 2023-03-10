@@ -28,12 +28,8 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
            return $this->proxy_server->isUserExistServer($modelAccountDb , $login);
         }
 
-        public function getPkServerCharacters($current_server_characters){
-          return  $this->proxy_server->getPkServerCharacters($current_server_characters);
-        }
-
-        public function getPvpServerCharacters($current_server_characters){
-           return $this->proxy_server->getPvpServerCharacters($current_server_characters);
+        public function getPkPvpServerCharacters($current_server_characters){
+          return  $this->proxy_server->getPkPvpServerCharacters($current_server_characters);
         }
 
         public function saveClanSql($modelArr){
