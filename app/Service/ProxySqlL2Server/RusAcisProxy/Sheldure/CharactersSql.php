@@ -24,7 +24,17 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 
           
 
-            //insert массовая запись не сработала. Но теперь это и не нужно т.к мы ограничиваем сколько записей 
+    
+            public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
+
+                info('CharactersSql->saveAllCharacters');
+                info(count($allModelCharactersPvp));
+                info(count($allModelCharactersPk));
+
+                $this->saveSql($allModelCharactersPk);
+            }
+
+                    //insert массовая запись не сработала. Но теперь это и не нужно т.к мы ограничиваем сколько записей 
             //мы получим из игровой базы (настраиваем в конфиге!)
             private function saveSql(&$modelArr){
                 if(count($modelArr) > 0){
@@ -34,19 +44,6 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
                 }
             }
 
-            public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
-
-                info('CharactersSql->saveAllCharacters');
-                info(count($allModelCharactersPvp));
-                info(count($allModelCharactersPk));
-
-                //$merged = $allModelCharactersPvp->merge($allModelCharactersPk);
-                //$result = array_merge($allModelCharactersPvp, $allModelCharactersPk);
-                //$merged = $allModelCharactersPvp + $allModelCharactersPk;
-               // info($result);
-                //$this->saveSql($allModelCharactersPvp);
-                $this->saveSql($allModelCharactersPk);
-            }
 
 
             private function  clearTableCharactersStatic(){

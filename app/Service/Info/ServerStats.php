@@ -18,6 +18,9 @@
         
   
         public  function getDataPk($server_id){
+            info("getDataPk->");
+            info($server_id);
+
             $filtersPk = new GeneralFilters(['simplefilter'] , [['pk', '>', 0] , ['server_id', '=', $server_id]]);
             $result =  CharactersStatic::filter($filtersPk)->limit($this->top_count)->get(['id', 'name' , 'class' , 'clan' , 'lvl' , 'pvp' , 'pk' , 'onlinetime' , 'online'])
             ->sortByDesc('pk');
@@ -26,11 +29,17 @@
         }
 
         public function getDataPvp($server_id){
+            info("getDataPvp->");
+            info($server_id);
+
             $filtersPvp = new GeneralFilters(['simplefilter'] , [['pvp', '>', 0] , ['server_id', '=', $server_id]]);
             return CharactersStatic::filter($filtersPvp)->limit($this->top_count)->get(['id', 'name' , 'class' , 'clan' , 'lvl'  , 'pvp' , 'pk' , 'onlinetime' , 'online'])
             ->sortByDesc('pvp');
         }
         function getDataClan($server_id){
+            info("getDataClan->");
+            info($server_id);
+
             $filtersClan = new GeneralFilters(['simplefilter'] , [['clan_id', '>', 0] , ['server_id', '=', $server_id]]);
             $sorted =   ClanStatic::filter($filtersClan)->limit($this->top_count)->get(['id', 'clan_id', 'clan_name' , 'server_id' , 'clan_level' , 'reputation_score'  , 'hasCastle' , 'ally_id' , 'ally_name' , 'member'])
            ->sortByDesc(function ($model, $key) {

@@ -20,17 +20,17 @@ return [
             'server2' => [
                 'id'=>'2',
                 'name'=>'X300 Paradise',
-                'ip'=>'192.168.0.1',
+                'ip'=>'127.0.0.1',
                 'login_port'=>'2106',
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
                 //Применяется в ProxySqlServer > SelectServer
                 //ID берем из списка > support_developers
-                'developer_id' => 0,
-                'server_db_model' => "App\Models\Server\ServerCharacters",
-                'accounts_db_model' => "App\Models\Server\ServerAccounts",
-                'clandata_db_model' => "App\Models\Server\ServerClanData",
+                'developer_id' => 1,
+                'server_db_model' => "App\Models\Server\PwSoft\PwSoftServerCharacters",
+                'accounts_db_model' => "App\Models\Server\PwSoft\PwSoftServerAccounts",
+                'clandata_db_model' => "App\Models\Server\PwSoft\PwSoftServerClanData",
         ],
             'server3' => [
                 'id'=>'3',
@@ -59,5 +59,5 @@ return [
     //Количество разрешенных аккаунтов на одной учетке 
     'allowed_accounts' => 5,
 
-    'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "Lucera"],
+    'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft"],
 ];

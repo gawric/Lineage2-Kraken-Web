@@ -55,29 +55,37 @@ class RegistrationController extends Controller
 
         
         $arr_item = $this->sfc->getServerItemById($this->list_server ,  $server_id);
-        $modelAccountDb = $this->sfc->getModelAccountDb($arr_item);
-        $developer_id_server = $this->sfc->getDeveloper_id($arr_item);
-        $this->proxySql = new ProxySqlServer($developer_id_server);
+        //если мы нашли сервер по id номеру
+        if(count($arr_item) > 0){
 
+            $modelAccountDb = $this->sfc->getModelAccountDb($arr_item);
+            $developer_id_server = $this->sfc->getDeveloper_id($arr_item);
+            $this->proxySql = new ProxySqlServer($developer_id_server);
+    
+    
+            if(!$this->sfc->checkModelAccountDb($modelAccountDb)){
+              return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
+            }
+    
+            if($this->proxySql->isUserExistServer($modelAccountDb , $login) || $developer_id_server == -1){
+                return $this->sfc->getErrorJson(Lang::get('validation.enter_use_db') , Lang::get('validation.enter_use_db'));
+            }
+    
+    
+           
+            $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
+    
+            info("User Account Expansion ");
+            info($user_account_expansion);
+            
+            event(new Registered($user_account_expansion));
+    
+            return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);
 
-        if(!$this->sfc->checkModelAccountDb($modelAccountDb)){
-          return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
         }
-
-        if($this->proxySql->isUserExistServer($modelAccountDb , $login) || $developer_id_server == -1){
-            return $this->sfc->getErrorJson(Lang::get('validation.enter_use_db') , Lang::get('validation.enter_use_db'));
-        }
-
-
-       
-        $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
-
-        info("User Account Expansion ");
-        info($user_account_expansion);
-        
-        event(new Registered($user_account_expansion));
-
-        return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);
+        //не нашли сервер возвращаем ошибку
+        return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
+      
     }
 
    

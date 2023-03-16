@@ -8,8 +8,9 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\Registration;
  use Illuminate\Support\Facades\Hash;
  use App\Models\Accounts_server_id;
  use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
-     class RegSql
-     {
+
+    class RegSql
+    {
 
         public function isUserExistServer($modelAccountDb , $username){
             $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $username]]);
@@ -78,6 +79,13 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\Registration;
         private function getLaravelHashPassword($password):string{
             return bcrypt($password);
         }
+
+        public  function getServerHashSha1(string $password) : string{
+           // info("Encode base64");
+            return base64_encode(sha1($password, true));
+        }
+
+
         
      }
 ?>

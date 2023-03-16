@@ -17,6 +17,8 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
             $this->developer_id = $developer_id;
            // info("Id номер созданного обьекта!");
             $this->proxy_server = $this->getProxy($this->developer_id);
+           // info("developer_id $developer_id");
+           // info(get_class($this->proxy_server));
            // info(spl_object_id($this->proxy_server));
         }
     
@@ -29,6 +31,10 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
         }
 
         public function getPkPvpServerCharacters($current_server_characters){
+           // info("developer_id $this->developer_id" );
+            info("getPkPvpServerCharacters -> RUNNING");
+            //info(spl_object_id($this->proxy_server));
+
           return  $this->proxy_server->getPkPvpServerCharacters($current_server_characters);
         }
 
@@ -57,6 +63,13 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
 
         private function getProxy($developer_id){
            return SelectServerById::choose($developer_id);
+        }
+
+        public function getUseProxy($run_class){
+         info("Запущен из класса $run_class");
+         info("developer_id $this->developer_id");
+         info(get_class($this->proxy_server));
+         info(spl_object_id($this->proxy_server));
         }
       
 

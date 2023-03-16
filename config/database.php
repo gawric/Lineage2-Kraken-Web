@@ -80,6 +80,22 @@ return [
             'engine' => null,
         ],
 
+        'mysql3' => [
+            'driver' => env('DB_CONNECTION_THREE'),
+            'host' => env('DB_HOST_THREE', '127.0.0.1'),
+            'port' => env('DB_PORT_THREE', '3306'),
+            'database' => env('DB_DATABASE_THREE', 'pwsoft'),
+            'username' => env('DB_USERNAME_THREE', 'root'),
+            'password' => env('DB_PASSWORD_THREE', 'jtgEuZ8udR7F'),
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

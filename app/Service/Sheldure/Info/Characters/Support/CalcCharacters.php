@@ -41,17 +41,9 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
            // info("Запуск планировщика задач! SheldureServers->calcStaticCharacters  $current_server_id ");
 
             $resultArrPk = $this->proxySql->getPkPvpServerCharacters($current_server_characters);
-
-
             $allModelCharactersPk = $this->convertCharactersToModel($current_server_id , $resultArrPk);
-
-
-
             $unique_clan_id_pk = $this->getAllUniqueClanid($resultArrPk);
-
-
             $result_clan_pk = $this->proxySql->getClanIdToClanName($unique_clan_id_pk , $current_clandata_db_model);
-
             $allModelCharactersPvp = [];
  
             $this->convertAllIdClanToName($allModelCharactersPk ,  $result_clan_pk);
