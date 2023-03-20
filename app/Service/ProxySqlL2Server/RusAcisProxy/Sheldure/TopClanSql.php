@@ -12,9 +12,9 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
         public function getClanAllCountCharacters($current_server_characters){
             $filtersPk = new GeneralFilters(['topusersclansfilter'] , []);
             $resultCol =  $current_server_characters::filter($filtersPk)->get()->sortBy('count');
-            info("TopClanSql->getClanAllCountCharacters");
-            info( $resultCol );
-            info("current_server_characters  $current_server_characters" );
+           // info("TopClanSql->getClanAllCountCharacters");
+            //info( $resultCol );
+            //info("current_server_characters  $current_server_characters" );
             return $resultCol;
         }
         public function getClanCountCharactersLimit( $resultCol , $current_server_characters , $countLimit){
@@ -26,8 +26,9 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
         }   
 
         public  function saveClanSql(&$modelArr){
-            info('TopClanSql->');
-            info(count($modelArr));
+           // info('TopClanSql->');
+           // info(count($modelArr));
+           // info($modelArr);
             if(count($modelArr) > 0){
                 foreach($modelArr as $model){
                     $model->save();

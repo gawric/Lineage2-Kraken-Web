@@ -33,29 +33,29 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
         }
 
         public function getPkPvpServerCharacters($current_server_characters){
-            info("RUNNING ProxyPwSoft getPkPvpServerCharacters");
+           // info("RUNNING ProxyPwSoft getPkPvpServerCharacters");
             return $this->charactersSql->getPkPvpServerCharactersPwSoft($current_server_characters);
         }
 
         public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
-            info("RUNNING ProxyPwSoft saveAllCharacters");
+            //info("RUNNING ProxyPwSoft saveAllCharacters");
             $this->charactersSql->saveAllCharactersPwSoft($allModelCharactersPvp , $allModelCharactersPk);
         }
 
         public function getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit){
-            info("RUNNING ProxyPwSoft getClanCountCharactersLimit");
+           // info("RUNNING ProxyPwSoft getClanCountCharactersLimit");
             return $this->topclansql->getClanCountCharactersLimitPwSoft($resultCol , $current_server_characters , $countLimit);
         }
         public function getClanAllCountCharacters($current_server_characters){
-            info("RUNNING ProxyPwSoft getClanAllCountCharacters");
+            //info("RUNNING ProxyPwSoft getClanAllCountCharacters");
             return $this->topclansql->getClanAllCountCharactersPwSoft($current_server_characters);
         }
         public function saveClanSql($modelArr){
-            info("RUNNING ProxyPwSoft saveClanSql");
+            //info("RUNNING ProxyPwSoft saveClanSql");
             $this->topclansql->saveClanSqlPwSoft($modelArr);
         }
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
-            info("RUNNING ProxyPwSoft getClanAllCountCharacters");
+           // info("RUNNING ProxyPwSoft getClanAllCountCharacters");
             return $this->topclansql->getClanIdToClanNamePwSoft($unique_clan_id , $current_clandata_db_model);
         }
 

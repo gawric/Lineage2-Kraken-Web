@@ -41,26 +41,26 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
            $resultCol= $this->proxySql->getClanAllCountCharacters($current_server_characters);
            $this->proxySql->getUseProxy("CalcClan->getTopUsersClan");
 
-           info('CalcClan-> ResultCol');
-           info($resultCol);
-           info("Developer_id $this->server_developer_id");
-           info("Current_clandata_db_model $current_clandata_db_model");
-           info("Current_clandata_db_model $current_server_characters");
+          // info('CalcClan-> ResultCol');
+          // info($resultCol);
+          // info("Developer_id $this->server_developer_id");
+          // info("Current_clandata_db_model $current_clandata_db_model");
+           //info("Current_clandata_db_model $current_server_characters");
            //$resultLimit =  $this->proxySql->getCountCharactersLimit($current_server_characters , $this->top_count);
            $resultLimit =  $this->proxySql->getClanCountCharactersLimit($resultCol , $current_server_characters , $this->top_count);
-           info('CalcClan-> ResultLimit');
-           info($resultLimit);
+           //info('CalcClan-> ResultLimit');
+          // info($resultLimit);
            $unique_clan_id = $this->getAllUniqueClanid($resultCol);
            $arr_clan_data = $this->proxySql->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
 
-           info('CalcClan-> arr_clan_data');
-           info($arr_clan_data);
-           info("Developer_id $this->server_developer_id");
+          // info('CalcClan-> arr_clan_data');
+          // info($arr_clan_data);
+           //info("Developer_id $this->server_developer_id");
 
 
-           info("CalcClan->create model");
+           //info("CalcClan->create model");
            $modelArr = $this->support->createModel($current_server_id , $resultLimit , $arr_clan_data);
-           info("CalcClan->is done create model");
+           //info("CalcClan->is done create model");
           // info($this->proxySql);
            $this->proxySql->saveClanSql($modelArr);
           // info("server_id $current_server_id");

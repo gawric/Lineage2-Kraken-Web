@@ -21,16 +21,23 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
             info(count($modelArr));
             info('TopClanSqlPwSoft>>>>saveClanSql');
             //info($modelArr);
-            ConvertNullToFalse($modelArr);
-            info($modelArr);
+            $this->convertNullToFalse($modelArr);
+            //info($modelArr);
             $this->saveClanSql($modelArr);
         }
 
-        private function ConvertNullToFalse($modelArr){
+        private function convertNullToFalse($modelArr){
             if(count($modelArr) > 0){
+                $arr_field_clear = ['hasCastle' , 'ally_id' ,  'clan_level' , 'clan_name' ];
+                $this->clearNull($arr_field_clear , $modelArr);
+            }
+        }
+
+        private function clearNull($arr_field_clear , $modelArr){
+            foreach($arr_field_clear as $field_name){
                 foreach($modelArr as $model){
-                    if(is_null($model['hasCastle'])){
-                        $model['hasCastle'] = false;
+                    if(is_null($model[$field_name])){
+                        $model[$field_name] = false;
                     }
                 }
             }

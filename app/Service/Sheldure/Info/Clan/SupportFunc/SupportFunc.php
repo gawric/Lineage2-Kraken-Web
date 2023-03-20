@@ -51,9 +51,6 @@ use App\Models\ClanStatic;
 
 
         private function pushArray($clan_item , &$temp , $model){
-           // info("pushArray");
-           // info($model);
-           // info($model['clan_id']);
             if(isset($model['clan_id'])){
                 array_push($temp , $model);
             }

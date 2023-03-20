@@ -48,8 +48,8 @@ class StatisticServerController extends Controller
        
         $result = $this->getData($sever_id , $stat_id);
 
-       //info('StatisticServerController->dataStat');
-        //info($result);
+       info('StatisticServerController->dataStat');
+       info($result);
 
         return Response::json(['success'=>Lang::get('messages.success') , 'result'=>$result]);
     }

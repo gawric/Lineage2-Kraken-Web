@@ -43,7 +43,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
             return $this->topclansql->getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit);
         }
         public function getClanAllCountCharacters($current_server_characters){
-            info("RUNNING RUSAcis getClanAllCountCharacters");
+            //info("RUNNING RUSAcis getClanAllCountCharacters");
             return $this->topclansql->getClanAllCountCharacters($current_server_characters);
         }
         public function saveClanSql($modelArr){
