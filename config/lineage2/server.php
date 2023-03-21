@@ -40,13 +40,13 @@ return [
                 'game_port' =>'7777',
                 'status' => 'offline',
                 'count_online' => 0,
-                'developer_id' => 0,
+                'developer_id' => 2,
                 //server_db_model -> модель созданная для обращения к нужной бд и конкретной таблице пример (ServerCharacters model)
                 //возможность использовать разные бд
-                'server_db_model' => "App\Models\Server\ServerCharacters",
+                'server_db_model' => "App\Models\Server\Lucera\LuceraServerCharacters",
                 //accounts_db_model -> в модели мы указываем не только имя таблицы но и какая бд будет использоваться
-                'accounts_db_model' => "App\Models\Server\ServerAccounts",
-                'clandata_db_model' => "App\Models\Server\ServerClanData",
+                'accounts_db_model' => "App\Models\Server\Lucera\LuceraServerAccounts",
+                'clandata_db_model' => "App\Models\Server\Lucera\LuceraServerClanData",
         ],
     ],
 
@@ -59,5 +59,5 @@ return [
     //Количество разрешенных аккаунтов на одной учетке 
     'allowed_accounts' => 5,
 
-    'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft"],
+    'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft" , 2 => "App\Service\ProxySqlL2Server\LuceraProxy\ProxyLucera"],
 ];

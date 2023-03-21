@@ -13,8 +13,8 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\CharactersSql;
        
             public function getPkPvpServerCharactersPwSoft($current_server_characters){
                 $result =  $this->getPkPvpServerCharacters($current_server_characters);
-                info("CharactersSqlPwSoft>>>>getPkPvpServerCharacters результат->");
-                info(count($result));
+                //info("CharactersSqlPwSoft>>>>getPkPvpServerCharacters результат->");
+                //info(count($result));
                 return $result;
             }
 

@@ -19,8 +19,8 @@ class ValidateReg{
     public function handle($request, Closure $next)
     {
         //$data2 = $request->education;
-        Log::info("Finish request");
-        Log::info($request);
+       // Log::info("Finish request");
+       // Log::info($request);
         //$data = json_decode($data2, true);
         //$data = json_decode($request->all(), true);
        // $rules = [

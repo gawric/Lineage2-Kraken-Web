@@ -1,18 +1,18 @@
 <?php
  
-namespace App\Models\Server\PwSoft;
+namespace App\Models\Server\Lucera;
  
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class PwSoftServerCharacters extends Model
+class LuceraServerCharacters extends Model
 {
     use HasFactory;
 
     protected $table = 'characters';
-    protected $primaryKey = 'obj_Id';
+    protected $primaryKey = 'charId';
     public $timestamps = false;
-    protected $connection = 'mysql3';
+    protected $connection = 'mysql4';
 
     public function scopeFilter($query, $filters)
     {

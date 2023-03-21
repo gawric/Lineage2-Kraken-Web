@@ -95,6 +95,21 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'mysql4' => [
+            'driver' => env('DB_CONNECTION_FOUR'),
+            'host' => env('DB_HOST_FOUR', '127.0.0.1'),
+            'port' => env('DB_PORT_FOUR', '3306'),
+            'database' => env('DB_DATABASE_FOUR', 'lucera'),
+            'username' => env('DB_USERNAME_FOUR', 'root'),
+            'password' => env('DB_PASSWORD_FOUR', 'jtgEuZ8udR7F'),
+            'unix_socket' => '',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+        ],
 
         'pgsql' => [
             'driver' => 'pgsql',

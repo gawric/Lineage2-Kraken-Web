@@ -75,8 +75,8 @@ class RegistrationController extends Controller
            
             $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
     
-            info("User Account Expansion ");
-            info($user_account_expansion);
+           // info("User Account Expansion ");
+            //info($user_account_expansion);
             
             event(new Registered($user_account_expansion));
     

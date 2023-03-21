@@ -1,18 +1,18 @@
 <?php
  
-namespace App\Models\Server\PwSoft;
+namespace App\Models\Server\Lucera;
  
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
-class PwSoftServerCharacters extends Model
+//обращаемся к Lucera
+class LuceraServerClanData extends Model
 {
     use HasFactory;
 
-    protected $table = 'characters';
-    protected $primaryKey = 'obj_Id';
+    protected $table = 'clan_data';
+    protected $primaryKey = 'clan_id';
     public $timestamps = false;
-    protected $connection = 'mysql3';
+    protected $connection = 'mysql4';
 
     public function scopeFilter($query, $filters)
     {
