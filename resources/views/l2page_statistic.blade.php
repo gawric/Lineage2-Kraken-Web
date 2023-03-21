@@ -25,8 +25,8 @@
         <div  class="select">
             <select name="sel_server" id="select_server" onchange="GetSelectedServer(this)" >
                 <option selected disabled>{{ __('messages.select_server') }}</option>
-                @foreach ($arrayNameServers as $id)
-                  <option value={{$id}}>Сервер {{$id}}</option>
+                @foreach ($arrayNameServers as $arr)
+                  <option value={{$arr[0]}}>{{$arr[1]}}</option>
                 @endforeach
             </select>
         </div>
@@ -91,6 +91,7 @@
     var sleTex = education.options[education.selectedIndex].innerHTML;
     var selVal = education.value;
     select_server_id= selVal;
+    console.log(education.value);
 }
 
 function GetSelectedTop(education) {

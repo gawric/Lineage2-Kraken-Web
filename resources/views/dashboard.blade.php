@@ -30,23 +30,23 @@
     <div id="overlay" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
 
     <!-- Диалоговое окно для смены пароля -->
-    <div id="dialog"
+      <div id="dialog"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
         <h1 class="text-2xl font-semibold">{{ __('messages.lk_change_password_accounts_title') }}</h1>
         <div class="py-5 border-t border-b border-gray-300">
             <p>{{ __('messages.lk_change_password_accounts_descripte') }}</p>
         </div>
         <div>
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_oldPassword_title') }}</label>
-          <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+          <label for="password_old" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_oldPassword_title') }}</label>
+          <input type="password" id="password_old" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
         </div>
         <div>
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_newPassword_title') }}</label>
-          <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+          <label for="password_new" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_newPassword_title') }}</label>
+          <input type="password" id="password_new" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
         </div>
         <div>
-          <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_newPassword_confirm_title') }}</label>
-          <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+          <label for="password_new_repeat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_newPassword_confirm_title') }}</label>
+          <input type="password" id="password_new_repeat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
         </div>
         <div class="flex justify-end">
             <!-- This button is used to close the dialog -->
@@ -64,11 +64,11 @@
                   Loading...
             </button>
         </div>
-    </div>
+      </div>
 
 
        <!-- Overlay element -->
-       <div id="overlay_new_account" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
+<div id="overlay_new_account" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
 
 <!-- Диалоговое окно для создания нового аккаунта на l2серверах -->
 <div id="dialog_new_account"
@@ -81,10 +81,9 @@
         <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_list_server') }}</label>
         <select id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option selected>{{ __('messages.lk_new_accounts_select_server') }}</option>
-          <option value="US">United States</option>
-          <option value="CA">Canada</option>
-          <option value="FR">France</option>
-          <option value="DE">Germany</option>
+                @foreach ($arrayOnlyNameAndId as $arr)
+                  <option value={{$arr[0]}}>{{$arr[1]}}</option>
+                @endforeach
         </select>
     </div>
     <div>
@@ -92,19 +91,19 @@
         <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
     </div>
     <div>
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_newPassword_title') }}</label>
-      <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+      <label for="password_new_account" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_newPassword_title') }}</label>
+      <input type="password" id="password_new_account" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
     </div>
     <div>
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_newPassword_confirm_title') }}</label>
-      <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
+      <label for="password_new_account_repeat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_newPassword_confirm_title') }}</label>
+      <input type="password" id="password_new_account_repeat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
     </div>
     <div class="flex justify-end">
         <!-- This button is used to close the dialog -->
         <button id="close_new_account" style="margin-right: 2%;" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
           {{ __('messages.lk_new_accounts_button_exit') }}
         </button>
-        <button id="save_new_account" onclick="onSave()" class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
+        <button id="save_new_account" onclick="onSaveL2user()" class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
           {{ __('messages.lk_new_accounts_button') }}
         </button>
         <button id="loading" style="display: none;" disabled type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
@@ -186,20 +185,20 @@
         </div>
     </div>
 
-        <!-- Javascript code -->
+    <script src="{{asset('/js/jquery-2.1.4.min.js') }}"></script>
+    <script src="{{asset('/js/dashboard.js') }}"></script>
+
       <script>
         var openButton = document.getElementById('open');
         var dialog = document.getElementById('dialog');
         var closeButton = document.getElementById('close');
         var overlay = document.getElementById('overlay');
 
-        // show the overlay and the dialog
         openButton.addEventListener('click', function () {
             dialog.classList.remove('hidden');
             overlay.classList.remove('hidden');
         });
 
-        // hide the overlay and the dialog
         closeButton.addEventListener('click', function () {
             dialog.classList.add('hidden');
             overlay.classList.add('hidden');
@@ -240,6 +239,10 @@
             dialog.classList.add('hidden');
             overlay.classList.add('hidden');
         });
-        }
+      }
+
+      function onSaveL2user(){
+        regL2User(1 , "test_login" , "12345678" ,  "12345678");
+      }
     </script>
 </x-app-layout>

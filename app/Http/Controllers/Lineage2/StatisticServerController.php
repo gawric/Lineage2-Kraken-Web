@@ -11,7 +11,7 @@ use Validator;
 use Lang;
 use App\Service\Status\StatusServer;
 use App\Service\Info\ServerStats;
-
+use App\Service\Utils\FunctionSupport;
 
 class StatisticServerController extends Controller
 {
@@ -35,7 +35,7 @@ class StatisticServerController extends Controller
     public function index()
     {
         
-        return view('l2page_statistic', ['arrayNameServers' => $this->getServerNameOnly($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
+        return view('l2page_statistic', ['arrayNameServers' => FunctionSupport::getServerOnlyNameAndId($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
     }
 
     public function dataStat(Request $request , $sever_id , $stat_id)
@@ -47,9 +47,6 @@ class StatisticServerController extends Controller
         }
        
         $result = $this->getData($sever_id , $stat_id);
-
-       //info('StatisticServerController->dataStat');
-      // info($result);
 
         return Response::json(['success'=>Lang::get('messages.success') , 'result'=>$result]);
     }
@@ -82,9 +79,7 @@ class StatisticServerController extends Controller
         return $temp;
     }
 
-    private function addArray(&$temp , $value){
-        array_push($temp , $value['id']);
-    }
+ 
 
 
     private function getErrorJson(){

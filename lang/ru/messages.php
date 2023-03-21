@@ -42,7 +42,7 @@ return [
 
 
     'lk_new_accounts_title' => 'Создать аккаунт',
-    'lk_new_accounts_descripte' => 'Форма для создания новый аккаунтов',
+    'lk_new_accounts_descripte' => 'Форма для создания новых аккаунтов',
     'lk_new_accounts_new_login' => 'Новый логин',
     'lk_new_accounts_newPassword_title' => 'Пароль',
     'lk_new_accounts_newPassword_confirm_title' => 'Подтвердить пароль',

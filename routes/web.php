@@ -9,6 +9,7 @@ use App\Http\Controllers\Lineage2\StatisticServerController;
 use App\Http\Controllers\Lineage2\RegistrationController;
 use App\Http\Middleware\Lineage2\ValidateReg;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardAjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,11 @@ Route::middleware('valid')->group(function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified' , 'valid'])->group(function () {
+    Route::post('/addL2User', [DashboardAjaxController::class, 'addAjaxL2User']);
+});
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

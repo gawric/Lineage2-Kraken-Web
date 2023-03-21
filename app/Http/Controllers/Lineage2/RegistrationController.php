@@ -45,7 +45,7 @@ class RegistrationController extends Controller
     public function ajaxRequestPost(RegistrationStoreRequest $request)
     {
         $validated = $request->validated();
-        //$service_reg = new Registration();
+
 
         $login = $this->sfc->getData("login" , $validated );
         $password = $this->sfc->getData("password" , $validated );
