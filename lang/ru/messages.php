@@ -31,4 +31,24 @@ return [
     'lk_profile' => 'Профиль',
     'lk_characters' => 'Персонажи',
     'lk_add_new_account' => 'Добавить новый',
+
+    'lk_change_password_accounts_title' => 'Сменить пароль',
+    'lk_change_password_accounts_descripte' => 'Для смены пароля вам нужно ввести старый пароль и придумать новый!',
+    'lk_change_password_accounts_oldPassword_title' => 'Старый пароль',
+    'lk_change_password_accounts_newPassword_title' => 'Новый пароль',
+    'lk_change_password_accounts_newPassword_confirm_title' => 'Подтвердить новый пароль',
+    'lk_change_password_accounts_button' => 'Сохранить',
+    'lk_change_password_accounts_button_exit' => 'Закрыть',
+
+
+    'lk_new_accounts_title' => 'Создать аккаунт',
+    'lk_new_accounts_descripte' => 'Форма для создания новый аккаунтов',
+    'lk_new_accounts_new_login' => 'Новый логин',
+    'lk_new_accounts_newPassword_title' => 'Пароль',
+    'lk_new_accounts_newPassword_confirm_title' => 'Подтвердить пароль',
+    'lk_new_accounts_button' => 'Добавить',
+    'lk_new_accounts_button_exit' => 'Закрыть',
+    'lk_new_accounts_select_server' => 'Выберите сервер',
+    'lk_new_accounts_list_server' => 'Список серверов',
+    
 ];

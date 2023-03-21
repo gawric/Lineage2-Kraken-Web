@@ -33,4 +33,23 @@ return [
     'lk_profile' => 'Profile',
     'lk_characters' => 'Characters',
     'lk_add_new_account' => 'New Account',
+
+    'lk_change_password_accounts_title' => 'Change password',
+    'lk_change_password_accounts_descripte' => 'To change your password, you need to enter the old password and come up with a new one!',
+    'lk_change_password_accounts_oldPassword_title' => 'Old Password',
+    'lk_change_password_accounts_newPassword_title' => 'New Password',
+    'lk_change_password_accounts_newPassword_confirm_title' => 'Сonfirm new password',
+    'lk_change_password_accounts_button' => 'Save',
+    'lk_change_password_accounts_button_exit' => 'Close',
+
+
+    'lk_new_accounts_title' => 'Create an account',
+    'lk_new_accounts_descripte' => 'Form for creating new accounts on servers!',
+    'lk_new_accounts_new_login' => 'New login',
+    'lk_new_accounts_newPassword_title' => 'Password',
+    'lk_new_accounts_newPassword_confirm_title' => 'Confirm password',
+    'lk_new_accounts_button' => 'Add',
+    'lk_new_accounts_button_exit' => 'Close',
+    'lk_new_accounts_select_server' => 'Select server',
+    'lk_new_accounts_list_server' => 'Server list',
 ];
