@@ -1,6 +1,6 @@
 <?php
   
-namespace App\Http\Controllers\Lineage2\PersonalArea\Auth;
+namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax;
 
  use App\Http\Controllers\Controller;
  use App\Service\Utils\FunctionSupport;
@@ -8,10 +8,10 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth;
  use Illuminate\Http\Request;
  use Response;
  use Lang;
- use App\Http\Requests\Auth\DashboardAjaxStoreRequest;
+ use App\Http\Requests\Auth\DashboardChangel2PassUsersStoreRequest;
  
 
-class DashboardAjaxController extends Controller
+class DashboardChangel2PassUsersController extends Controller
 {
    
     private $list_server;
@@ -22,9 +22,9 @@ class DashboardAjaxController extends Controller
     }
 
 
-    public function addAjaxL2User(DashboardAjaxStoreRequest $request)
+    public function changeAjaxPassL2User(DashboardChangel2PassUsersStoreRequest $request)
     {
-        info("test endpount adduser");
+        info("test endpount changePassL2User");
         $validated = $request->validated();
         info($validated);
         //info(json_decode($request->json()->all()));

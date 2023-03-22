@@ -33,13 +33,23 @@
       <div id="dialog"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
         <h1 class="text-2xl font-semibold">{{ __('messages.lk_change_password_accounts_title') }}</h1>
+        <div id="info_change_pass" style="display:none;" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <span id="info_text_change_pass"  class="block sm:inline"></span>
+        </div>
+        <div id="info_change_pass_succes"  style="display:none;" class="bg-green-100 border border-green-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
+          <span id="info_text_change_pass_success"  class="block sm:inline"></span>
+        </div>
         <div class="py-5 border-t border-b border-gray-300">
             <p>{{ __('messages.lk_change_password_accounts_descripte') }}</p>
         </div>
         <div>
           <label for="server_id_change_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_server_id') }}</label>
               <input type="text" id="server_id_change_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled required>
-          </div>
+        </div>
+        <div>
+          <label for="login_change_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_login') }}</label>
+              <input type="text" id="login_change_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled required>
+        </div>
         <div>
           <label for="password_old" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_oldPassword_title') }}</label>
           <input type="password" id="password_old" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
@@ -57,10 +67,10 @@
             <button id="close" style="margin-right: 2%;" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
               {{ __('messages.lk_change_password_accounts_button_exit') }}
             </button>
-            <button id="save" onclick="onSave()" class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
+            <button id="save_change_password" onclick="onChangePassSave()" class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
               {{ __('messages.lk_change_password_accounts_button') }}
             </button>
-            <button id="loading" style="display: none;" disabled type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
+            <button id="loading_change_password" style="display: none;" disabled type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
               <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
                   <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
@@ -83,6 +93,9 @@
       <div id="info_new_account" style="display:none;" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
         <span id="info_text_new_account"  class="block sm:inline"></span>
       </div>
+      <div id="info_new_account_succes"  style="display:none;" class="bg-green-100 border border-green-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
+          <span id="info_text_account_success"  class="block sm:inline"></span>
+        </div>
      </div>
     <div class="py-5 border-t border-b border-gray-300">
         <p>{{ __('messages.lk_new_accounts_descripte') }}</p>
@@ -116,7 +129,7 @@
         <button id="save_new_account" onclick="onSaveL2user()" class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
           {{ __('messages.lk_new_accounts_button') }}
         </button>
-        <button id="loading" style="display: none;" disabled type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
+        <button id="loading_new_account" style="display: none;" disabled type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
           <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
               <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentColor"/>
@@ -158,7 +171,7 @@
                 {{ $model->name_server }}
                 </td>
                 <td>
-                    <button id="open" onClick="clickOpenDialog({{ $model->server_id }})" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  text-white cursor-pointer rounded-md">{{ __('messages.lk_change_password_accounts_title') }}</button>
+                    <button id="open" onClick="clickOpenDialog({{ $model->server_id }} , '{{ $model->username }}')" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  text-white cursor-pointer rounded-md">{{ __('messages.lk_change_password_accounts_title') }}</button>
                 </td>
             </tr>
          @endforeach
@@ -205,8 +218,9 @@
         var closeButton = document.getElementById('close');
         var overlay = document.getElementById('overlay');
 
-        function clickOpenDialog(server_id){
+        function clickOpenDialog(server_id , login_server){
           document.getElementById('server_id_change_password').value = server_id;
+          document.getElementById('login_change_password').value = login_server;
              dialog.classList.remove('hidden');
              overlay.classList.remove('hidden');
         }
@@ -218,18 +232,19 @@
         });
         newAccountModal();
 
-        function onSave(){
+        function onChangePassSave(){
           var saveButton = document.getElementById('save');
           var loadButton = document.getElementById('loading');
-          saveButton.style = "display: none;";
-          loadButton.style = "";
+
+          var server_id = document.getElementById('server_id_change_password').value;
+          var login_select = document.getElementById('login_change_password').value;
+          var old_password = document.getElementById('password_old').value;
+          var password_new= document.getElementById('password_new').value;
+          var password_new_repeat = document.getElementById('password_new_repeat').value;
 
 
-         // var saveButton = document.getElementById('save');
-         // var loadButton = document.getElementById('loading');
+          changePassL2User(server_id ,login_select , old_password , password_new , password_new_repeat);
 
-          //saveButton.style = "";
-          //loadButton.style = "display: none;";
 
         }
 
@@ -268,7 +283,7 @@
 
           var login_new_account = document.getElementById('login_new_account').value;
           var password_new_account = document.getElementById('password_new_account').value;;
-          var password_new_account_repeat = document.getElementById('password_new_account_repeat').value;;
+          var password_new_account_repeat = document.getElementById('password_new_account_repeat').value;
 
           regL2User(select_server_id , login_new_account , password_new_account ,  password_new_account_repeat);
       }

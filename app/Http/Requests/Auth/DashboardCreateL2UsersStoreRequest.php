@@ -7,7 +7,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Log;
 use Lang;
 
-class DashboardAjaxStoreRequest extends FormRequest
+class DashboardCreateL2UsersStoreRequest extends FormRequest
 {
  
     /**

@@ -1,8 +1,9 @@
 
 function regL2User(server_id ,login , pass , password_confirmed){
     hideAlertCreateAccount();
+    hideAlertSuccesCreateAccount();
+    showButtonLoadingCreateAccount();
     var json = getData(server_id , login , pass , password_confirmed);
-
     sendJsonDataServer(json);
 }
 
@@ -19,6 +20,9 @@ function sendJsonDataServer(json){
         success: function( data, textStatus, jQxhr ){
             if(!!jQxhr.responseJSON.success){
                console.log(jQxhr.responseJSON.success);
+               setTextSuccessAlertCreateAccount(jQxhr.responseJSON.success);
+               showAlertSuccesCreateAccount();
+               hideButtonLoadingCreateAccount();
             }
         },
         error: function (data) {
@@ -28,15 +32,73 @@ function sendJsonDataServer(json){
                 if (!!dataErrors.message) {
                     setTextAlertCreateAccount(getTextError(dataErrors.errors));
                     showAlertCreateAccount();
+                    hideButtonLoadingCreateAccount();
                 }
                 else{
                     setTextAlertCreateAccount("Неизвестная ошибка");
                     showAlertCreateAccount();
+                    hideButtonLoadingCreateAccount();
                 }
             }
             else{
                 setTextAlertCreateAccount("Нет подключения к серверу");
                 showAlertCreateAccount();
+                hideButtonLoadingCreateAccount();
+            }
+            
+
+        }
+    
+    });
+
+}
+
+function changePassL2User(server_id ,login , old_password , password , password_confirmed){
+    hideAlertChangePass();
+    showButtonLoadingChangePass();
+    hideAlertSuccessChangePass();
+
+    var json = getDataChangePass(server_id ,login , old_password , password , password_confirmed)
+    sendChagePassJsonDataServer(json);
+}
+
+function sendChagePassJsonDataServer(json){
+    $.ajax({
+        url: '/changePassL2User',
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(json),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            if(!!jQxhr.responseJSON.success){
+               console.log(jQxhr.responseJSON.success);
+               showAlertSuccessChangePass();
+               setTextAlertSuccessChangePass(jQxhr.responseJSON.success);
+               hideButtonLoadingChangePass()
+            }
+        },
+        error: function (data) {
+
+            if(data.responseText != undefined){
+                var dataErrors = $.parseJSON(data.responseText);
+                if (!!dataErrors.message) {
+                    setTextAlertChangePass(getTextError(dataErrors.errors));
+                    showAlertChangePass();
+                    hideButtonLoadingChangePass();
+                }
+                else{
+                    setTextAlertChangePass("Неизвестная ошибка");
+                    showAlertChangePass();
+                    hideButtonLoadingChangePass();
+                }
+            }
+            else{
+                setTextAlertChangePass("Нет подключения к серверу");
+                showAlertChangePass();
+                hideButtonLoadingChangePass();
             }
             
 
@@ -48,14 +110,24 @@ function sendJsonDataServer(json){
 //структура errors -> password-> Array(1)-> 0 "Не верный пароль"
 function getTextError(arrErrors){
     var textMessage = "";
-    if(Object.keys(arrErrors).length > 0){
-        Object.keys(arrErrors).forEach(key => {
-            textMessage =  arrErrors[key][0];
-          });
+    if(arrErrors != undefined){
+        if(Object.keys(arrErrors).length > 0){
+            Object.keys(arrErrors).forEach(key => {
+                textMessage =  arrErrors[key][0];
+              });
+        }
     }
+    else{
+        textMessage= "Неизвестная ошибка";
+    }
+   
 
     return textMessage;
 }
+function getDataChangePass(server_id ,login , old_password , password , password_confirmed){
+    return { server_id: server_id , login:login , old_password:old_password, password: password , password_confirmed: password_confirmed};
+}
+
 
 function getData(server_id , login , pass , password_confirmed){
     return { server_id: server_id, login:login , password:pass, password_confirmed: password_confirmed};

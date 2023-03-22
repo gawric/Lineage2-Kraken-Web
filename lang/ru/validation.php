@@ -38,6 +38,7 @@ return [
     'confirmed' => 'The :attribute confirmation does not match.',
     'current_password' => 'Не верный пароль',
     'confirmed_password' => 'Не верный пароль подтверждения!',
+    'old_password' => 'Старый пароль не корректен',
     'server_id' => 'Список доступных серверов не верный!',
     'date' => 'The :attribute is not a valid date.',
     'date_equals' => 'The :attribute must be a date equal to :date.',

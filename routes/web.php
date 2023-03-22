@@ -9,7 +9,8 @@ use App\Http\Controllers\Lineage2\StatisticServerController;
 use App\Http\Controllers\Lineage2\RegistrationController;
 use App\Http\Middleware\Lineage2\ValidateReg;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardController;
-use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardAjaxController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardCreateL2UsersController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardChangel2PassUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,8 @@ Route::middleware('valid')->group(function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified' , 'valid'])->group(function () {
-    Route::post('/addL2User', [DashboardAjaxController::class, 'addAjaxL2User']);
+    Route::post('/addL2User', [DashboardCreateL2UsersController::class, 'addAjaxL2User']);
+    Route::post('/changePassL2User', [DashboardChangel2PassUsersController::class, 'changeAjaxPassL2User']);
 });
 
 

@@ -48,3 +48,66 @@ function hideAlertCreateAccount(){
 function buttonHideAlertCreateAccount(){
     $('#info_new_account').css("display", "none");
 }
+
+function showButtonLoadingCreateAccount(){
+    $('#loading_new_account').css("display", "block");
+    $('#save_new_account').css("display", "none");
+}
+
+function hideButtonLoadingCreateAccount(){
+    $('#loading_new_account').css("display", "none");
+    $('#save_new_account').css("display", "block");
+}
+
+
+function showAlertSuccesCreateAccount(){
+    $('#info_new_account_succes').css("display", "block");
+}
+//Блок всего алерта
+function hideAlertSuccesCreateAccount(){
+    $('#info_new_account_succes').css("display", "none");
+}
+
+function setTextSuccessAlertCreateAccount(text){
+    $('#info_text_account_success').text(text);
+}
+
+
+
+
+
+
+function showButtonLoadingChangePass(){
+    $('#loading_change_password').css("display", "block");
+    $('#save_change_password').css("display", "none");
+}
+
+function hideButtonLoadingChangePass(){
+    $('#loading_change_password').css("display", "none");
+    $('#save_change_password').css("display", "block");
+}
+
+function showAlertChangePass(){
+    $('#info_change_pass').css("display", "block");
+}
+//Блок всего алерта
+function hideAlertChangePass(){
+    $('#info_change_pass').css("display", "none");
+}
+
+function setTextAlertChangePass(text){
+    $('#info_text_change_pass').text(text);
+}
+
+
+function showAlertSuccessChangePass(){
+    $('#info_change_pass_succes').css("display", "block");
+}
+//Блок всего алерта
+function hideAlertSuccessChangePass(){
+    $('#info_change_pass_succes').css("display", "none");
+}
+
+function setTextAlertSuccessChangePass(text){
+    $('#info_text_change_pass_success').text(text);
+}
