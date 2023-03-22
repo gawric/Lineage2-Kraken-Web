@@ -41,6 +41,7 @@ return [
     'lk_change_password_accounts_newPassword_confirm_title' => 'Сonfirm new password',
     'lk_change_password_accounts_button' => 'Save',
     'lk_change_password_accounts_button_exit' => 'Close',
+    'lk_change_password_accounts_server_id' => 'Server id',
 
 
     'lk_new_accounts_title' => 'Create an account',
@@ -52,4 +53,5 @@ return [
     'lk_new_accounts_button_exit' => 'Close',
     'lk_new_accounts_select_server' => 'Select server',
     'lk_new_accounts_list_server' => 'Server list',
+    
 ];

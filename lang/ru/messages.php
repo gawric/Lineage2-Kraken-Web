@@ -39,6 +39,7 @@ return [
     'lk_change_password_accounts_newPassword_confirm_title' => 'Подтвердить новый пароль',
     'lk_change_password_accounts_button' => 'Сохранить',
     'lk_change_password_accounts_button_exit' => 'Закрыть',
+    'lk_change_password_accounts_server_id' => 'Id сервера',
 
 
     'lk_new_accounts_title' => 'Создать аккаунт',

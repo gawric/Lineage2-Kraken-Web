@@ -29,3 +29,22 @@ function showLoadingReg(idloading){
 function hideLoadingReg(idloading){
     $("#"+idloading).removeClass("loading_min");
 }
+
+//Алерты для Личного кабинета -> Создать новый аккаунт
+
+//Только 1 конкретный span с текстом
+function setTextAlertCreateAccount(text){
+    $('#info_text_new_account').text(text);
+}
+
+function showAlertCreateAccount(){
+    $('#info_new_account').css("display", "block");
+}
+//Блок всего алерта
+function hideAlertCreateAccount(){
+    $('#info_new_account').css("display", "none");
+}
+
+function buttonHideAlertCreateAccount(){
+    $('#info_new_account').css("display", "none");
+}

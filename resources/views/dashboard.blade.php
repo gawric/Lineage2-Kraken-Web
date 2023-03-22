@@ -37,6 +37,10 @@
             <p>{{ __('messages.lk_change_password_accounts_descripte') }}</p>
         </div>
         <div>
+          <label for="server_id_change_password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_server_id') }}</label>
+              <input type="text" id="server_id_change_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled required>
+          </div>
+        <div>
           <label for="password_old" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_change_password_accounts_oldPassword_title') }}</label>
           <input type="password" id="password_old" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
         </div>
@@ -74,12 +78,18 @@
 <div id="dialog_new_account"
     class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 bg-white rounded-md px-8 py-6 space-y-5 drop-shadow-lg">
     <h1 class="text-2xl font-semibold">{{ __('messages.lk_new_accounts_title') }}</h1>
+
+     <div>
+      <div id="info_new_account" style="display:none;" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <span id="info_text_new_account"  class="block sm:inline"></span>
+      </div>
+     </div>
     <div class="py-5 border-t border-b border-gray-300">
         <p>{{ __('messages.lk_new_accounts_descripte') }}</p>
     </div>
     <div>
         <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_list_server') }}</label>
-        <select id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <select id="small" onchange="GetSelectedServer(this)" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <option selected>{{ __('messages.lk_new_accounts_select_server') }}</option>
                 @foreach ($arrayOnlyNameAndId as $arr)
                   <option value={{$arr[0]}}>{{$arr[1]}}</option>
@@ -87,8 +97,8 @@
         </select>
     </div>
     <div>
-        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_new_login') }}</label>
-        <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
+        <label for="login_new_account" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_new_login') }}</label>
+        <input type="text" id="login_new_account" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required>
     </div>
     <div>
       <label for="password_new_account" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_new_accounts_newPassword_title') }}</label>
@@ -148,7 +158,7 @@
                 {{ $model->name_server }}
                 </td>
                 <td>
-                    <button id="open" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  text-white cursor-pointer rounded-md">{{ __('messages.lk_change_password_accounts_title') }}</button>
+                    <button id="open" onClick="clickOpenDialog({{ $model->server_id }})" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  text-white cursor-pointer rounded-md">{{ __('messages.lk_change_password_accounts_title') }}</button>
                 </td>
             </tr>
          @endforeach
@@ -187,6 +197,7 @@
 
     <script src="{{asset('/js/jquery-2.1.4.min.js') }}"></script>
     <script src="{{asset('/js/dashboard.js') }}"></script>
+    <script src="{{asset('/js/alertsMessages.js') }}"></script>
 
       <script>
         var openButton = document.getElementById('open');
@@ -194,18 +205,18 @@
         var closeButton = document.getElementById('close');
         var overlay = document.getElementById('overlay');
 
-        openButton.addEventListener('click', function () {
-            dialog.classList.remove('hidden');
-            overlay.classList.remove('hidden');
-        });
+        function clickOpenDialog(server_id){
+          document.getElementById('server_id_change_password').value = server_id;
+             dialog.classList.remove('hidden');
+             overlay.classList.remove('hidden');
+        }
+
 
         closeButton.addEventListener('click', function () {
             dialog.classList.add('hidden');
             overlay.classList.add('hidden');
         });
         newAccountModal();
-
-        
 
         function onSave(){
           var saveButton = document.getElementById('save');
@@ -221,6 +232,8 @@
           //loadButton.style = "display: none;";
 
         }
+
+        
 
         function newAccountModal(){
           var openButton = document.getElementById('open_new_account');
@@ -241,8 +254,23 @@
         });
       }
 
+
+      var select_server_id;
+
+      function GetSelectedServer(education) {
+        var sleTex = education.options[education.selectedIndex].innerHTML;
+        var selVal = education.value;
+        select_server_id= selVal;
+      }
+
+
       function onSaveL2user(){
-        regL2User(1 , "test_login" , "12345678" ,  "12345678");
+
+          var login_new_account = document.getElementById('login_new_account').value;
+          var password_new_account = document.getElementById('password_new_account').value;;
+          var password_new_account_repeat = document.getElementById('password_new_account_repeat').value;;
+
+          regL2User(select_server_id , login_new_account , password_new_account ,  password_new_account_repeat);
       }
     </script>
 </x-app-layout>

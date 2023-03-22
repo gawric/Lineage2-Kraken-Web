@@ -1,6 +1,8 @@
 
 function regL2User(server_id ,login , pass , password_confirmed){
+    hideAlertCreateAccount();
     var json = getData(server_id , login , pass , password_confirmed);
+
     sendJsonDataServer(json);
 }
 
@@ -16,24 +18,25 @@ function sendJsonDataServer(json){
         },
         success: function( data, textStatus, jQxhr ){
             if(!!jQxhr.responseJSON.success){
-               // showSucces(jQxhr.responseJSON.success)
                console.log(jQxhr.responseJSON.success);
             }
         },
         error: function (data) {
 
             if(data.responseText != undefined){
-                var errors = $.parseJSON(data.responseText);
-                if (!!errors.message) {
-        
-                    console.log(errors);
+                var dataErrors = $.parseJSON(data.responseText);
+                if (!!dataErrors.message) {
+                    setTextAlertCreateAccount(getTextError(dataErrors.errors));
+                    showAlertCreateAccount();
                 }
                 else{
-                    console.log(errors);
+                    setTextAlertCreateAccount("Неизвестная ошибка");
+                    showAlertCreateAccount();
                 }
             }
             else{
-                console.log(errors);
+                setTextAlertCreateAccount("Нет подключения к серверу");
+                showAlertCreateAccount();
             }
             
 
@@ -42,10 +45,22 @@ function sendJsonDataServer(json){
     });
 
 }
+//структура errors -> password-> Array(1)-> 0 "Не верный пароль"
+function getTextError(arrErrors){
+    var textMessage = "";
+    if(Object.keys(arrErrors).length > 0){
+        Object.keys(arrErrors).forEach(key => {
+            textMessage =  arrErrors[key][0];
+          });
+    }
 
-function getData(server_id , login ,pass , password_confirmed){
-    return { server_id: server_id, login:login , pass:pass, password_confirmed: password_confirmed};
+    return textMessage;
 }
+
+function getData(server_id , login , pass , password_confirmed){
+    return { server_id: server_id, login:login , password:pass, password_confirmed: password_confirmed};
+}
+
 
 
 

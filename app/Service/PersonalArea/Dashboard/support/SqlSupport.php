@@ -28,7 +28,7 @@ use App\Models\Temp\InfoDashboard;
                             if(!$collect_server_accounts_array->isEmpty()){
                                $countCharacter =  $this->getCountCharactersToServer($account_name_current_server , $server_db_model );
                                $lastAccess = $this->getUserCharactersLastAccessServer($account_name_current_server , $server_db_model);
-                               $infoDashboard = $this->createModelInfoDashBoard($id , $username ,  $lastAccess , $countCharacter  , $server_name);
+                               $infoDashboard = $this->createModelInfoDashBoard($id , $username ,  $lastAccess , $countCharacter  , $server_name , $server_id);
                                array_push($finishArray, $infoDashboard );
                                
                             }
@@ -61,13 +61,14 @@ use App\Models\Temp\InfoDashboard;
             return $server_db_model::filter($filtersPk)->get(['lastAccess'])->max('lastAccess');
         }
 
-        private function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server){
+        private function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
             $infoDashboard = new InfoDashboard();
             $infoDashboard->id =$id ;
             $infoDashboard-> username = $username ;
             $infoDashboard-> dateauth = $dateauth;
             $infoDashboard-> count_characters = $count_characters;
             $infoDashboard-> name_server = $name_server;
+            $infoDashboard-> server_id = $server_id;
 
             return  $infoDashboard;
         }

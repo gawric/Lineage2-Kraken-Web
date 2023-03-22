@@ -12,4 +12,5 @@ namespace App\Models\Temp;
     public $dateauth;
     public $count_characters;
     public $name_server;
+    public $server_id;
  }

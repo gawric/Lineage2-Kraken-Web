@@ -19,13 +19,10 @@ class DashboardAjaxStoreRequest extends FormRequest
     {
        
         return [
-            
-            'login' => 'required|string|max:25'
-           /** 'password' => 'required|string|min:7|max:25',
-            * 'email' => 'required|email|unique:accounts_expansion|max:25',
-            *'password_confirmed' => "required_with:password|same:password",
-            *'server_id' => 'integer|max:10'
-             */
+            'login' => 'required|string|max:25',
+            'server_id' => 'required|integer|max:10',
+            'password' => 'required|string|min:7|max:25',
+            'password_confirmed' => "required_with:password|same:password",
         ];
     }
 
@@ -34,12 +31,9 @@ class DashboardAjaxStoreRequest extends FormRequest
 
         return [
             'login.required' => Lang::get('validation.name_error'),
-
-            /** 'email.required' => Lang::get('validation.email_error'),
-            *'password.required' => Lang::get('validation.current_password'),
-            *'password_confirmed' => Lang::get('validation.confirmed_password'),
-            *'server_id' => Lang::get('validation.server_id')
-            */
+            'password.required' => Lang::get('validation.current_password'),
+            'password_confirmed' => Lang::get('validation.confirmed_password'),
+            'server_id' => Lang::get('validation.server_id')
         ];
     }
 
