@@ -84,10 +84,23 @@ function sendChagePassJsonDataServer(json){
 
             if(data.responseText != undefined){
                 var dataErrors = $.parseJSON(data.responseText);
+                console.log(dataErrors.message);
+                console.log(data);
+
                 if (!!dataErrors.message) {
-                    setTextAlertChangePass(getTextError(dataErrors.errors));
-                    showAlertChangePass();
-                    hideButtonLoadingChangePass();
+                    console.log(dataErrors.errors);
+                    if(dataErrors.errors == undefined){
+                        console.log('Message undefined');
+                        setTextAlertChangePass(getTextError(dataErrors.message));
+                        showAlertChangePass();
+                        hideButtonLoadingChangePass();
+                    }
+                    else{
+                        setTextAlertChangePass(getTextError(dataErrors.errors));
+                        showAlertChangePass();
+                        hideButtonLoadingChangePass();
+                    }
+                    
                 }
                 else{
                     setTextAlertChangePass("Неизвестная ошибка");
@@ -109,6 +122,30 @@ function sendChagePassJsonDataServer(json){
 }
 //структура errors -> password-> Array(1)-> 0 "Не верный пароль"
 function getTextError(arrErrors){
+    console.log(arrErrors);
+    var textMessage = "";
+
+    if(typeof arrErrors === 'string' || arrErrors instanceof String){
+        textMessage = getParceStringError(arrErrors);
+    }
+    else
+    {
+        textMessage = getParceObjectError(arrErrors);
+    }
+
+    return textMessage;
+}
+
+function getParceStringError(arrErrors){
+    if(arrErrors.length > 0){
+           
+        return  arrErrors;
+    }
+    else{
+        return  "Неизвестная ошибка";
+    }
+}
+function getParceObjectError(arrErrors){
     var textMessage = "";
     if(arrErrors != undefined){
         if(Object.keys(arrErrors).length > 0){
@@ -116,11 +153,9 @@ function getTextError(arrErrors){
                 textMessage =  arrErrors[key][0];
               });
         }
+    }else{ 
+        textMessage = "Неизвестная ошибка";
     }
-    else{
-        textMessage= "Неизвестная ошибка";
-    }
-   
 
     return textMessage;
 }

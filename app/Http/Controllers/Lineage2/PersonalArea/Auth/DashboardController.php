@@ -31,14 +31,5 @@ class DashboardController extends Controller
    
         return view('dashboard' , ['allow_count' => $allow_count, 'username' => $username, 'arrayInfoDashboard' => $arrayInfoDashboard , 'arrayOnlyNameAndId' => FunctionSupport::getServerOnlyNameAndId($this->list_server)]);
     }
-
-    public function addAjaxL2User(Request $request)
-    {
-        info("test endpount adduser");
-         return Response::json(['success'=>Lang::get('messages.success') , 'result'=>'']);
-    }
-
-
-   
    
 }

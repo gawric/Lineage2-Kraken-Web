@@ -2,6 +2,8 @@
 
 namespace App\Service\Utils;
 
+use Auth;
+
  class FunctionSupport
  { 
 
@@ -38,6 +40,30 @@ namespace App\Service\Utils;
             }
         }
         return $temp;
+    }
+
+    public static function getDeveloperId($server_id , $list_servers){
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if($server_id == $value['id']){
+                    return $value['developer_id'];
+                }
+            }
+        }
+        //если не нашли
+        return -1;
+    }
+
+    public static function getModelAccountDb($server_id , $list_servers){
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if($server_id == $value['id']){
+                    return $value['accounts_db_model'];
+                }
+            }
+        }
+        //если не нашли
+        return "";
     }
 
     

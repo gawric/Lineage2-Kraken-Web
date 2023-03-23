@@ -28,6 +28,10 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
             return $this->reg->save($modelAccountDb , $login , $password , $server_id , $email);
         }
 
+        public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
+        
+        }
+
         public function isUserExistServer($modelAccountDb , $login){
             return  $this->reg->isUserExistServer($modelAccountDb , $login);
         }

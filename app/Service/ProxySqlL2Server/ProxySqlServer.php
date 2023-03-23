@@ -30,9 +30,13 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
            return $this->proxy_server->isUserExistServer($modelAccountDb , $login);
         }
 
+        public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
+            $this->proxy_server->changePassAccount($modelAccountDb , $login, $old_password , $new_password);
+        }
+
         public function getPkPvpServerCharacters($current_server_characters){
            // info("developer_id $this->developer_id" );
-            info("getPkPvpServerCharacters -> RUNNING");
+            //info("getPkPvpServerCharacters -> RUNNING");
             //info(spl_object_id($this->proxy_server));
 
           return  $this->proxy_server->getPkPvpServerCharacters($current_server_characters);

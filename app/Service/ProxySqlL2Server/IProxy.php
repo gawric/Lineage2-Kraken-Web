@@ -7,6 +7,7 @@
         //регистрация
         public function regUser($modelAccountDb , $login , $password , $server_id , $email);
         public function isUserExistServer($modelAccountDb , $login);
+        public function changePassAccount($modelAccountDb , $login, $old_password , $new_password);
 
         //статистика
         public function getPkPvpServerCharacters($current_server_characters);

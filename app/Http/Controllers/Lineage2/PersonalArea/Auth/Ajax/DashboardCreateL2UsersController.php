@@ -15,9 +15,11 @@ class DashboardCreateL2UsersController extends Controller
 {
    
     private $list_server;
+    private Dashboard $serviceDashboard;
 
     public function __construct()
     {
+        $this->serviceDashboard = new Dashboard();
         $this->list_server = Config::get('lineage2.server.list_server');
     }
 

@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+//Здесь хранятся все созданные accounts юзеров
+//По всем серверам. Заполняется при регистрации
+//server_id,accounts_name
 class Accounts_server_id extends Model
 {
     protected $table = 'accounts_server_ids';

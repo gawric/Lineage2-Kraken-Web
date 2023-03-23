@@ -153,7 +153,8 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'ulid' => 'The :attribute must be a valid ULID.',
     'uuid' => 'The :attribute must be a valid UUID.',
-   
+    'not_access' => 'Access is denied',
+    'not_fount_account' => 'Account not found',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
