@@ -7,7 +7,7 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\Registration\RegSqlPwSoft;
 use App\Service\ProxySqlL2Server\IProxy;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\CharactersSqlPwSoft;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
-
+use App\Models\Temp\InfoDashboard;
 
    class ProxyPwSoft implements IProxy
    {
@@ -29,6 +29,10 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
 
         public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
         
+        }
+
+        public function createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
+            
         }
 
         public function isUserExistServer($modelAccountDb , $login){

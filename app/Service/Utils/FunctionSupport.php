@@ -21,6 +21,17 @@ use Auth;
         return $temp;
     }
 
+    public static function getServerNameById($id_server , $list_servers){
+      
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if($value['id'] == $id_server){
+                    return $value['name'];
+                }
+            }
+        }
+        return "Non";
+    }
     public static  function getServerOnlyNameAndId($list_servers){
         $temp = [];
         if (isset($list_servers)) {

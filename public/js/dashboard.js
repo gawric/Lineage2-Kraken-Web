@@ -1,13 +1,14 @@
 
-function regL2User(server_id ,login , pass , password_confirmed){
+function regL2User(server_id ,login , pass , password_confirmed , id , button_name){
+   // console.log(button_name)
     hideAlertCreateAccount();
     hideAlertSuccesCreateAccount();
     showButtonLoadingCreateAccount();
     var json = getData(server_id , login , pass , password_confirmed);
-    sendJsonDataServer(json);
+    sendJsonDataServer(json , id ,  button_name);
 }
-
-function sendJsonDataServer(json){
+var  click_count = 0;
+function sendJsonDataServer(json , id , button_name){
     $.ajax({
         url: '/addL2User',
         dataType: 'json',
@@ -19,8 +20,9 @@ function sendJsonDataServer(json){
         },
         success: function( data, textStatus, jQxhr ){
             if(!!jQxhr.responseJSON.success){
-               console.log(jQxhr.responseJSON.success);
+              // console.log(jQxhr.responseJSON.success);
                setTextSuccessAlertCreateAccount(jQxhr.responseJSON.success);
+               addRowToTable(jQxhr.responseJSON.result , id + click_count++ , button_name);
                showAlertSuccesCreateAccount();
                hideButtonLoadingCreateAccount();
             }
@@ -30,9 +32,17 @@ function sendJsonDataServer(json){
             if(data.responseText != undefined){
                 var dataErrors = $.parseJSON(data.responseText);
                 if (!!dataErrors.message) {
-                    setTextAlertCreateAccount(getTextError(dataErrors.errors));
-                    showAlertCreateAccount();
-                    hideButtonLoadingCreateAccount();
+                    if(dataErrors.errors == undefined){
+                         setTextAlertCreateAccount(getTextError(dataErrors.message));
+                         showAlertCreateAccount();
+                         hideButtonLoadingCreateAccount();
+                     }
+                     else{
+                        setTextAlertCreateAccount(getTextError(dataErrors.errors));
+                        showAlertCreateAccount();
+                        hideButtonLoadingCreateAccount();
+                     }
+                
                 }
                 else{
                     setTextAlertCreateAccount("Неизвестная ошибка");
@@ -52,6 +62,42 @@ function sendJsonDataServer(json){
     });
 
 }
+
+function addRowToTable(data , id , button_name){
+    if(data != undefined){
+
+        var count = data.count_characters;
+        var dateauth = data.dateauth;
+        var username = data.username;
+        var name_server = data.name_server;
+        var server_id = data.server_id;
+        addRows(id , dateauth , username , count , name_server , server_id , button_name);
+    }
+}
+
+function addRows(id , dateauth , username , count ,name_server , server_id , button_name){
+    var button = createButton(server_id , username , id , button_name);
+    $("#table_accounts").find('tbody')
+    .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
+        .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
+        .append($('<td class="px-6 py-4">').text(username))
+        .append($('<td class="px-6 py-4">').text(""))
+        .append($('<td class="px-6 py-4">').text(count))
+        .append($('<td class="px-6 py-4">').text(name_server))
+        .append($('<td>').append(button))
+    );
+}
+
+function createButton(server_id , username , id , button_name){
+    let button = document.createElement("button");
+    button.className = "px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  text-white cursor-pointer rounded-md";
+    button.textContent = button_name;
+   // button.onclick = clickOpenDialog(server_id , "'"+username+"'");
+    button.setAttribute("onclick","clickOpenDialog("+server_id+" , "+"'"+username+"'"+");");
+
+    return button;
+}
+
 
 function changePassL2User(server_id ,login , old_password , password , password_confirmed){
     hideAlertChangePass();
@@ -84,13 +130,13 @@ function sendChagePassJsonDataServer(json){
 
             if(data.responseText != undefined){
                 var dataErrors = $.parseJSON(data.responseText);
-                console.log(dataErrors.message);
-                console.log(data);
+               // console.log(dataErrors.message);
+                //console.log(data);
 
                 if (!!dataErrors.message) {
-                    console.log(dataErrors.errors);
+                   // console.log(dataErrors.errors);
                     if(dataErrors.errors == undefined){
-                        console.log('Message undefined');
+                       // console.log('Message undefined');
                         setTextAlertChangePass(getTextError(dataErrors.message));
                         showAlertChangePass();
                         hideButtonLoadingChangePass();

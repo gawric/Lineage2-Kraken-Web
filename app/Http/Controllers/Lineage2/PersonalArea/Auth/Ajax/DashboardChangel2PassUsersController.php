@@ -33,7 +33,7 @@ class DashboardChangel2PassUsersController extends Controller
     {
         info("test endpount changePassL2User");
         $validated = $request->validated();
-        info($validated);
+        //info($validated);
 
         $account_name = $this->getData("login" , $validated );
         $old_password = $this->getData("old_password" , $validated );
@@ -44,12 +44,11 @@ class DashboardChangel2PassUsersController extends Controller
             $this->serviceDashboard->changePasswordToAccounts($account_name , $old_password, $new_password , $server_id);
         } catch (ModelNotFoundException $exception) {
             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
-           // return back()->withError($exception->getMessage())->withInput();
         }
 
        
 
-        return Response::json(['success'=>Lang::get('messages.success') , 'result'=>'']);
+        return Response::json(['success'=>Lang::get('messages.lk_change_password_accounts_succes') , 'result'=>'']);
     }
 
     public function getData($name , $validated ) : string {

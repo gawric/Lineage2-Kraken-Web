@@ -8,7 +8,7 @@ use App\Service\ProxySqlL2Server\IProxy;
 use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts\AccountsSqlLucera;
 use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\CharactersSqlLucera;
 use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\TopClanSqlLucera;
-
+use App\Models\Temp\InfoDashboard;
 
    class ProxyLucera implements IProxy
    {
@@ -32,6 +32,10 @@ use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\TopClanSqlLucera;
 
         public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
             $this->accountssql->changePassAccountLucera($modelAccountDb , $login, $old_password , $new_password);
+        }
+
+        public function createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
+           return  $this->accountssql->createAccountLucera($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name);
         }
 
         public function isUserExistServer($modelAccountDb , $login){

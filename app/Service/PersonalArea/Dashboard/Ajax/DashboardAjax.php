@@ -9,6 +9,7 @@
     use App\Service\Utils\FunctionAuthUser;
     use Illuminate\Database\Eloquent\ModelNotFoundException;
     use Lang;
+    use App\Models\Temp\InfoDashboard;
 
     class DashboardAjax 
     {
@@ -22,9 +23,23 @@
             $this->allowed_accounts_count = Config::get('lineage2.server.allowed_accounts');
         }
 
-        public function createAccount($account_name , $password , $server_id){
+        public function createAccount($auth_user_id , $account_name , $password , $server_id): InfoDashboard{
+            $server_name = FunctionSupport::getServerNameById($server_id , $this->list_servers);
+            $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_servers);
+            $this->proxy = new ProxySqlServer($developer_id);
+            $modelAccountDb = FunctionSupport::getModelAccountDb($server_id , $this->list_servers);
 
+            if(!$this->proxy->isUserExistServer($modelAccountDb , $account_name)){
+                //возможно нужно будет переделать в массив слишком много аргументов
+                return $this->proxy->createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name );
+            }
+            else{
+                throw new ModelNotFoundException(Lang::get('validation.enter_use_db') . " " . $account_name);
+            }
+
+           
         }
+
 
         public function changePasswordToAccounts($account_name , $old_password, $new_password , $server_id){
 

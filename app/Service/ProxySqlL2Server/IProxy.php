@@ -1,6 +1,7 @@
 <?php
 
  namespace App\Service\ProxySqlL2Server;
+ use App\Models\Temp\InfoDashboard;
  
     interface IProxy
     {
@@ -8,6 +9,7 @@
         public function regUser($modelAccountDb , $login , $password , $server_id , $email);
         public function isUserExistServer($modelAccountDb , $login);
         public function changePassAccount($modelAccountDb , $login, $old_password , $new_password);
+        public function createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard;
 
         //статистика
         public function getPkPvpServerCharacters($current_server_characters);

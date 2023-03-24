@@ -150,7 +150,7 @@
     </div>
     <div class="mx-auto mt-10">
 
-    <table style="width:100%;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table id="table_accounts" style="width:100%;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <tbody>
         @if(isset($arrayInfoDashboard))
          @foreach($arrayInfoDashboard as $model)
@@ -278,14 +278,14 @@
         select_server_id= selVal;
       }
 
-
+      
       function onSaveL2user(){
 
           var login_new_account = document.getElementById('login_new_account').value;
           var password_new_account = document.getElementById('password_new_account').value;;
           var password_new_account_repeat = document.getElementById('password_new_account_repeat').value;
-
-          regL2User(select_server_id , login_new_account , password_new_account ,  password_new_account_repeat);
+         // console.log({{ count($arrayInfoDashboard) }});
+          regL2User(select_server_id , login_new_account , password_new_account ,  password_new_account_repeat , {{ count($arrayInfoDashboard) }} , "{{ __('messages.lk_change_password_accounts_title') }}");
       }
     </script>
 </x-app-layout>

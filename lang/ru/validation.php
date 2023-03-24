@@ -155,6 +155,7 @@ return [
     'uuid' => 'The :attribute must be a valid UUID.',
     'not_access' => 'Доступ запрещен',
     'not_fount_account' => 'Не найден аккаунт',
+    'password_does_not_match' => 'Действующий пароль не совпадает',
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

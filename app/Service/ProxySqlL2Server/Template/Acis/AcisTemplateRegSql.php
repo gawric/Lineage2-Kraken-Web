@@ -8,7 +8,8 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
  use Illuminate\Support\Facades\Hash;
  use App\Models\Accounts_server_id;
  use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
-
+ use App\Models\Temp\InfoDashboard;
+ 
     class AcisTemplateRegSql
     {
 
@@ -41,6 +42,8 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return $model;
         }
 
+
+        //генерация пароля 1 bcrypt
         public function saveAccountServer($login , $password , $modelAccountDb) : void {
             $model = $this->createModelServerAccount($login , $password , $modelAccountDb);
             $model->save();
@@ -53,6 +56,22 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return $sa;
         }
 
+
+        //генерация пароля 2 SHA1
+        public function saveAccountServerSha1($login , $password , $modelAccountDb) : void {
+            $model = $this->createModelServerAccountSha1($login , $password , $modelAccountDb);
+            $model->save();
+        }
+
+        private function createModelServerAccountSha1($login , $password , $modelAccountDb){
+            $sa = new $modelAccountDb;
+            $sa->login = $login;
+            $sa->password = $this->getServerHashSha1($password);
+            return $sa;
+        }
+
+
+
         private function createModelAccountsExpansion($email , $login , $server_id , $password) : Accounts_expansion{
             $ae = new Accounts_expansion;
             $ae->login = $login;
@@ -61,7 +80,7 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return $ae;
         }
 
-        private function createModelServerIds($server_id , $model_id , $default_account_name) : Accounts_server_id{
+        public function createModelServerIds($server_id , $model_id , $default_account_name) : Accounts_server_id{
             $accounts_server_id = new Accounts_server_id();
             $accounts_server_id->server_id = $server_id;
             $accounts_server_id->accounts_expansion_id = $model_id;
@@ -83,6 +102,39 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
         public  function getServerHashSha1(string $password) : string{
            // info("Encode base64");
             return base64_encode(sha1($password, true));
+        }
+
+
+        public  function isEqualsOldPassword($old_password_hash , $current_password_hash ){
+            if(hash_equals($old_password_hash, $current_password_hash)){
+                return true;
+            }
+            return false;
+        }
+
+        public function getHashPassword($modelAccountDb , $login ){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
+            $first = $modelAccountDb::filter($filtersPk)->get(['password'])->first();
+            return $first['password'];
+        }
+
+        public function setNewPassword($modelAccountDb , $login , $new_hash_password){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
+            $firstModel = $modelAccountDb::filter($filtersPk)->get()->first();
+            $firstModel->password = $new_hash_password;
+            $firstModel->save();
+        }
+
+        public function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
+            $infoDashboard = new InfoDashboard();
+            $infoDashboard->id =$id ;
+            $infoDashboard-> username = $username ;
+            $infoDashboard-> dateauth = $dateauth;
+            $infoDashboard-> count_characters = $count_characters;
+            $infoDashboard-> name_server = $name_server;
+            $infoDashboard-> server_id = $server_id;
+
+            return  $infoDashboard;
         }
 
 

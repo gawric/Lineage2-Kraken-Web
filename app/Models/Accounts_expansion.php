@@ -18,4 +18,9 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
     {
       return $this->hasMany(Accounts_server_id::class);
     }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }

@@ -43,6 +43,7 @@ return [
     'lk_change_password_accounts_button_exit' => 'Close',
     'lk_change_password_accounts_server_id' => 'Server id',
     'lk_change_password_accounts_login' => 'User login',
+    'lk_change_password_accounts_succes' => 'Done',
 
 
 

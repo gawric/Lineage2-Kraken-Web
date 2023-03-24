@@ -5,7 +5,7 @@ namespace App\Service\ProxySqlL2Server;
 use Config;
 use App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis;
 use App\Service\ProxySqlL2Server\Support\SelectServerById;
-
+use App\Models\Temp\InfoDashboard;
 
    class ProxySqlServer
    {
@@ -33,6 +33,10 @@ use App\Service\ProxySqlL2Server\Support\SelectServerById;
         public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
             $this->proxy_server->changePassAccount($modelAccountDb , $login, $old_password , $new_password);
         }
+
+        public function createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
+         return $this->proxy_server->createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name );
+     }
 
         public function getPkPvpServerCharacters($current_server_characters){
            // info("developer_id $this->developer_id" );

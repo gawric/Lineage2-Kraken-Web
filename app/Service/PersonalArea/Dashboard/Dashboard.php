@@ -7,6 +7,7 @@
     use Auth;
     use App\Service\PersonalArea\Dashboard\Ajax\DashboardAjax;
     use App\Service\Utils\FunctionAuthUser;
+    use App\Models\Temp\InfoDashboard;
     
     class Dashboard implements IDashboard
     {
@@ -38,8 +39,8 @@
             //Auth::user()->login;
         }
 
-        public function createAccount($account_name , $password , $server_id): void{
-            $this->d_ajax->createAccount($account_name , $password , $server_id);
+        public function createAccountAjax($auth_user_id , $account_name , $password , $server_id): InfoDashboard{
+           return  $this->d_ajax->createAccount($auth_user_id , $account_name , $password , $server_id);
         }
         public function changePasswordToAccounts($account_name , $old_password, $new_password , $server_id):void{
             $this->d_ajax->changePasswordToAccounts($account_name , $old_password, $new_password , $server_id);
