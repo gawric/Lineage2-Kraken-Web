@@ -4,10 +4,10 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\Sheldure;
 
 use Config;
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
-use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
+use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateTopClanSql;
 
 
-   class TopClanSqlLucera  extends TopClanSql
+   class TopClanSqlLucera  extends AcisTemplateTopClanSql
    {
         public function getClanAllCountCharactersLucera($current_server_characters){
            return $this->getClanAllCountCharacters($current_server_characters);

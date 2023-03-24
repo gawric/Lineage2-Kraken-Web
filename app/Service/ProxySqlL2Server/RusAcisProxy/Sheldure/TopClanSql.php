@@ -4,48 +4,27 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure;
 
 use Config;
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
+use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateTopClanSql;
 
 
-   class TopClanSql 
+   class TopClanSql extends AcisTemplateTopClanSql
    {
 
-        public function getClanAllCountCharacters($current_server_characters){
-            $filtersPk = new GeneralFilters(['topusersclansfilter'] , []);
-            $resultCol =  $current_server_characters::filter($filtersPk)->get()->sortBy('count');
-           // info("TopClanSql->getClanAllCountCharacters");
-            //info( $resultCol );
-            //info("current_server_characters  $current_server_characters" );
-            return $resultCol;
+        public function getClanAllCountCharactersRusAcis($current_server_characters){
+          return $this->getClanAllCountCharacters($current_server_characters);
         }
-        public function getClanCountCharactersLimit( $resultCol , $current_server_characters , $countLimit){
-            if(isset($resultCol)){
-                return  $resultLimit = $resultCol->take($countLimit);
-            }
-           
-            return [];
+
+        public function getClanCountCharactersLimitRusAcis( $resultCol , $current_server_characters , $countLimit){
+           return $this->getClanCountCharactersLimit( $resultCol , $current_server_characters , $countLimit);
         }   
 
-        public  function saveClanSql(&$modelArr){
-           // info('TopClanSql->');
-           // info(count($modelArr));
-           // info($modelArr);
-            if(count($modelArr) > 0){
-                foreach($modelArr as $model){
-                    $model->save();
-                }
-            }
-            info("Save Clan Sql Done");
+        public  function saveClanSqlRusAcis(&$modelArr){
+          $this->saveClanSql($modelArr);
         }
 
-        public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
-            $clanidfilter = new GeneralFilters(['clandatafilter'] , $unique_clan_id);
-            return  $current_clandata_db_model::filter($clanidfilter)->get(['clan_name' ,'clan_id' , 'ally_id' , 'ally_name', 'reputation_score', 'clan_level' , 'hasCastle']);
+        public function getClanIdToClanNameRusAcis($unique_clan_id , $current_clandata_db_model){
+           return $this->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
         }
 
-        private function  clearTableClanStatic(){
-            ClanStatic::truncate();
-        }
-
-    
    }
 ?>

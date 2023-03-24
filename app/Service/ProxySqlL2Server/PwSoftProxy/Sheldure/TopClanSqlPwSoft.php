@@ -4,11 +4,11 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure;
 
 use Config;
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
-use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
+use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateTopClanSql;
 
     //используем наследование что-бы повторно использовать код из друкого developer_id
     //Этот код взят из RusAcis запросов
-   class TopClanSqlPwSoft  extends TopClanSql
+   class TopClanSqlPwSoft  extends AcisTemplateTopClanSql
    {
         public function getClanAllCountCharactersPwSoft($current_server_characters){
            return $this->getClanAllCountCharacters($current_server_characters);

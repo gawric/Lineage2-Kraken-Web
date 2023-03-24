@@ -4,11 +4,11 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure;
 
 use Config;
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
-use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\CharactersSql;
+use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateCharactersSql;
 
     //используем наследование что-бы повторно использовать код из друкого developer_id
     //Этот код взят из RusAcis запросов
-   class CharactersSqlPwSoft  extends CharactersSql
+   class CharactersSqlPwSoft  extends AcisTemplateCharactersSql
    {
        
             public function getPkPvpServerCharactersPwSoft($current_server_characters){

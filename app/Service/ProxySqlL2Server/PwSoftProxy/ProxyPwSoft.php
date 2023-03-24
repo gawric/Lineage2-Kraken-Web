@@ -5,7 +5,6 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy;
 use Config;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Registration\RegSqlPwSoft;
 use App\Service\ProxySqlL2Server\IProxy;
-use App\Service\ProxySqlL2Server\PwSoftProxy\Registration\RegSql;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\CharactersSqlPwSoft;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
 

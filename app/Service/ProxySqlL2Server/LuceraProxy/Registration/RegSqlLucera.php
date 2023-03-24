@@ -5,10 +5,10 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\Registration;
  use Log;
  use App\Models\Accounts_expansion;
  use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
- use App\Service\ProxySqlL2Server\RusAcisProxy\Registration\RegSql;
+ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateRegSql;
 
     //такая же генерация пароля, как и у pwsoft(но это старая сборка в будущем возможны изменения!)
-    class RegSqlLucera extends RegSql 
+    class RegSqlLucera extends AcisTemplateRegSql
     {
         public function save($modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
             if(!empty($modelAccountDb)) {

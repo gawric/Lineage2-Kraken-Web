@@ -4,10 +4,10 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\Sheldure;
 
 use Config;
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
-use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\CharactersSql;
+use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateCharactersSql;
 
 
-   class CharactersSqlLucera  extends CharactersSql
+   class CharactersSqlLucera  extends AcisTemplateCharactersSql
    {
        
             public function getPkPvpServerCharactersLucera($current_server_characters){

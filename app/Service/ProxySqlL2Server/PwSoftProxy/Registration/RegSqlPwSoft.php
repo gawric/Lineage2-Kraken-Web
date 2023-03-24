@@ -8,9 +8,9 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\Registration;
  use Illuminate\Support\Facades\Hash;
  use App\Models\Accounts_server_id;
  use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
- use App\Service\ProxySqlL2Server\RusAcisProxy\Registration\RegSql;
+ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateRegSql;
 
-    class RegSqlPwSoft extends RegSql 
+    class RegSqlPwSoft extends AcisTemplateRegSql
     {
         public function save($modelAccountDb , $login , $password , $server_id , $email) : Accounts_expansion{
             if(!empty($modelAccountDb)) {

@@ -5,12 +5,12 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
  use Log;
  use App\Models\Accounts_expansion;
  use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
- use App\Service\ProxySqlL2Server\RusAcisProxy\Registration\RegSql;
+ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateRegSql;
 
     //здесь реализация функций не регистрации
     //т.е добавление учеток через лк или смена пароля 
     //отдельная работа с accounts помимо регистрации
-    class AccountsSqlLucera extends RegSql  {
+    class AccountsSqlLucera extends AcisTemplateRegSql {
         public function changePassAccountLucera($modelAccountDb , $login, $old_password , $new_password){
             info("AccountsSqlLucera>>>>>");
             $old_password_hash  = $this->getServerHashSha1($old_password);
