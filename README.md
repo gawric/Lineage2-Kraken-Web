@@ -3,6 +3,9 @@
 
 ![Kraken Web!](https://i.ibb.co/M7jG4QD/Logokraken-Wev.png)
 
+**Личный кабинет** используем tailwind
+![Kraken Web!](https://i.ibb.co/6RHF7bS/finish.png)
+
 
 Web сервис для игры Lineage 2 В процессе разработки:\
 Планируется: 
