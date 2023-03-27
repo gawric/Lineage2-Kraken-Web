@@ -57,7 +57,7 @@ return [
     'top_count' => 5,
 
     //Количество разрешенных аккаунтов на одной учетке 
-    'allowed_accounts' => 5,
+    'allowed_accounts' => 10,
 
     'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft" , 2 => "App\Service\ProxySqlL2Server\LuceraProxy\ProxyLucera"],
 ];

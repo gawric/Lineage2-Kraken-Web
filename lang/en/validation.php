@@ -13,6 +13,7 @@ return [
     |
     */
     'success' => "Data saved successfully",
+    'no_access_create' => "Allowed account limit exceeded",
     'email_send' => "Please check your email",
     'enter_server_db' => "Selected server not found",
     'enter_use_db' => "There is such a user on the selected server",

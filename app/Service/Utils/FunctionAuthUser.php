@@ -7,7 +7,9 @@ use Auth;
  class FunctionAuthUser
  { 
 
-   
+   public static function getCountAccounts(){
+    return Auth::user()->getCountAccounts();
+   }
     
     public static  function getAuthLogin(){
         return Auth::user()->login;

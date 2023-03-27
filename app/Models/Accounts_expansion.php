@@ -23,4 +23,8 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
     {
         return $filters->apply($query);
     }
+
+    public function getCountAccounts(){
+      return $this->hasMany(Accounts_server_id::class)->where('accounts_expansion_id',$this->id)->count();
+  }
 }

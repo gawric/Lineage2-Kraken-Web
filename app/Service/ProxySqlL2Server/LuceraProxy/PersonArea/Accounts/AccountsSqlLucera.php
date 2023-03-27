@@ -14,11 +14,14 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
     //т.е добавление учеток через лк или смена пароля 
     //отдельная работа с accounts помимо регистрации
     class AccountsSqlLucera extends AcisTemplateRegSql {
+
+
         public function changePassAccountLucera($modelAccountDb , $login, $old_password , $new_password){
           //  info("AccountsSqlLucera>>>>>");
             $old_password_hash  = $this->getServerHashSha1($old_password);
             $current_password_hash = $this->getHashPassword($modelAccountDb , $login );
             $new_hash_password = $this->getServerHashSha1($new_password);
+         
 
             if($this->isEqualsOldPassword($old_password_hash , $current_password_hash )){
                 $this->setNewPassword($modelAccountDb , $login , $new_hash_password);
@@ -44,7 +47,7 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
         }
 
         private function getAccountExpansionById($auth_user_id){
-            info("getAccountExpansionById");
+            //info("getAccountExpansionById");
             $filters = new GeneralFilters(['simplefilter'] , [['id', '=', $auth_user_id]]);
             return Accounts_expansion::filter($filters)->get()->first();
         }

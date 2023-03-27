@@ -28,8 +28,16 @@
             $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_servers);
             $this->proxy = new ProxySqlServer($developer_id);
             $modelAccountDb = FunctionSupport::getModelAccountDb($server_id , $this->list_servers);
-
+            $allAccountsUser = FunctionAuthUser::getCountAccounts();
+            
             if(!$this->proxy->isUserExistServer($modelAccountDb , $account_name)){
+                if(isset($allAccountsUser)){
+                    info($allAccountsUser);
+                    if($allAccountsUser > $this->allowed_accounts_count){
+                        throw new ModelNotFoundException(Lang::get('validation.no_access_create') . " " . $this->allowed_accounts_count);
+                    }
+                }
+           
                 //возможно нужно будет переделать в массив слишком много аргументов
                 return $this->proxy->createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name );
             }
