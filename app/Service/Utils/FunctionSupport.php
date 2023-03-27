@@ -79,6 +79,7 @@ use Lang;
         return "";
     }
 
+    //Личный кабинет все аккаунты(инфа для вывода в таблицу)
     public static function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
         $infoDashboard = new InfoDashboard();
         
