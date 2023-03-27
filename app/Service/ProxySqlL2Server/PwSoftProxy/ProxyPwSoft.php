@@ -8,18 +8,22 @@ use App\Service\ProxySqlL2Server\IProxy;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\CharactersSqlPwSoft;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
 use App\Models\Temp\InfoDashboard;
+use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSoft;
 
+    //этот класс как и все прокси являются синглтонами
    class ProxyPwSoft implements IProxy
    {
         private RegSqlPwSoft $reg;
         private CharactersSqlPwSoft $charactersSql;
         private TopClanSqlPwSoft $topclansql;
+        private AccountsSqlPwSoft $accountssql;
 
 
         public function __construct() {
             $this->reg = new RegSqlPwSoft();
             $this->charactersSql = new CharactersSqlPwSoft();
             $this->topclansql = new TopClanSqlPwSoft();
+            $this->accountssql = new AccountsSqlPwSoft();
         }
 
         
@@ -28,11 +32,11 @@ use App\Models\Temp\InfoDashboard;
         }
 
         public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
-        
+            $this->accountssql->changePassAccountLucera($modelAccountDb , $login, $old_password , $new_password);
         }
 
         public function createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
-            
+            return  $this->accountssql->createAccountLucera($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name);
         }
 
         public function isUserExistServer($modelAccountDb , $login){

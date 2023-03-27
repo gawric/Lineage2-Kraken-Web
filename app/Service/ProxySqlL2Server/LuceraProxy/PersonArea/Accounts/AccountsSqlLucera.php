@@ -41,12 +41,12 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
            return  $this->createModelInfoDashBoard(0 , $account_name , date('Y-m-d H:i:s') , 0 , $server_name , $server_id);
         }
 
-        private function addAccountsServerId($server_id , $auth_user_id , $account_name ,  $auth_user_model){
+        public function addAccountsServerId($server_id , $auth_user_id , $account_name ,  $auth_user_model){
             $accounts_server_id_model = $this->createModelServerIds($server_id , $auth_user_id , $account_name);
             $auth_user_model->accounts_server_id()->save($accounts_server_id_model);
         }
 
-        private function getAccountExpansionById($auth_user_id){
+        public function getAccountExpansionById($auth_user_id){
             //info("getAccountExpansionById");
             $filters = new GeneralFilters(['simplefilter'] , [['id', '=', $auth_user_id]]);
             return Accounts_expansion::filter($filters)->get()->first();

@@ -57,6 +57,7 @@ return [
     'email_error' => 'Не верный адрес электронной почты!',
     'email' => 'Не верный адрес электронной почты!',
     'name_error' => 'Не верный логин!',
+    'no_data' => 'Нет данных',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
     'exists' => 'The selected :attribute is invalid.',

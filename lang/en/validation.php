@@ -17,6 +17,7 @@ return [
     'email_send' => "Please check your email",
     'enter_server_db' => "Selected server not found",
     'enter_use_db' => "There is such a user on the selected server",
+    'no_data' => 'No data',
     'accepted' => 'The :attribute must be accepted.',
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',

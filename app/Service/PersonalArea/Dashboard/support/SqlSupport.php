@@ -4,7 +4,7 @@ namespace App\Service\PersonalArea\Dashboard\Support;
 
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 use App\Models\Temp\InfoDashboard;
-
+use Lang;
     class SqlSupport
     {
         public function getInfoAllCharacters($list_server , $username , $list_user_server_accounts) : array{
@@ -68,12 +68,21 @@ use App\Models\Temp\InfoDashboard;
             
             $infoDashboard->id =$id ;
             $infoDashboard-> username = $username ;
-            $infoDashboard-> dateauth = $dateauth;
+            $timestampSeconds = $dateauth / 1000;
+            $infoDashboard-> dateauth = $this->getData($timestampSeconds);
             $infoDashboard-> count_characters = $count_characters;
             $infoDashboard-> name_server = $name_server;
             $infoDashboard-> server_id = $server_id;
 
             return  $infoDashboard;
+        }
+
+        private function getData($timestampSeconds){
+            if($timestampSeconds == 0){
+                return Lang::get('validation.no_data');
+            }
+
+            return date("Y/m/d H:m:s", $timestampSeconds);
         }
     }
 
