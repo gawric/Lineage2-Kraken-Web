@@ -3,6 +3,8 @@
 namespace App\Service\Utils;
 
 use Auth;
+use App\Models\Temp\InfoDashboard;
+use Lang;
 
  class FunctionSupport
  { 
@@ -75,6 +77,35 @@ use Auth;
         }
         //если не нашли
         return "";
+    }
+
+    public static function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
+        $infoDashboard = new InfoDashboard();
+        
+        $infoDashboard->id =$id ;
+        $infoDashboard-> username = $username ;
+        $timestampSeconds = $dateauth / 1000;
+        $infoDashboard-> dateauth = self::getData($timestampSeconds);
+        $infoDashboard-> count_characters = self::getCountCharacters($count_characters);
+        $infoDashboard-> name_server = $name_server;
+        $infoDashboard-> server_id = $server_id;
+
+        return  $infoDashboard;
+    }
+
+    private static function getCountCharacters($count_characters){
+        if($count_characters == 0){
+            return Lang::get('validation.no_chars');
+        }
+
+        return $count_characters;
+    }
+    private static function getData($timestampSeconds){
+        if($timestampSeconds == 0){
+            return Lang::get('validation.no_data');
+        }
+
+        return date("Y/m/d H:m:s", $timestampSeconds);
     }
 
     

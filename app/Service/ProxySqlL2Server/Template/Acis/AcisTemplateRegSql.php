@@ -92,7 +92,7 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
         }
 
         //приходиться заменять 2y на 2a т.к в серверах old salt version
-        private function getServerHashPassword($password): string {
+        public function getServerHashPassword($password): string {
            $ham =  bcrypt($password);
            return str_replace('$2y', '$2a', $ham);
         }
@@ -114,6 +114,13 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return false;
         }
 
+        public  function isEqualsBcryptOldPassword($old_password , $current_password_hash ){
+            if(password_verify ($old_password, $current_password_hash)){
+                return true;
+            }
+            return false;
+        }
+
         public function getHashPassword($modelAccountDb , $login ){
             $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
             $first = $modelAccountDb::filter($filtersPk)->get(['password'])->first();
@@ -127,17 +134,17 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             $firstModel->save();
         }
 
-        public function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
-            $infoDashboard = new InfoDashboard();
-            $infoDashboard->id =$id ;
-            $infoDashboard-> username = $username ;
-            $infoDashboard-> dateauth = $dateauth;
-            $infoDashboard-> count_characters = $count_characters;
-            $infoDashboard-> name_server = $name_server;
-            $infoDashboard-> server_id = $server_id;
+        //public function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
+       //   $infoDashboard = new InfoDashboard();
+          //  $infoDashboard->id =$id ;
+          //  $infoDashboard-> username = $username ;
+           // $infoDashboard-> dateauth = $dateauth;
+           // $infoDashboard-> count_characters = $count_characters;
+           // $infoDashboard-> name_server = $name_server;
+           // $infoDashboard-> server_id = $server_id;
 
-            return  $infoDashboard;
-        }
+          //  return  $infoDashboard;
+       // }
 
 
         

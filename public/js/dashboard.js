@@ -71,17 +71,18 @@ function addRowToTable(data , id , button_name){
         var username = data.username;
         var name_server = data.name_server;
         var server_id = data.server_id;
+
         addRows(id , dateauth , username , count , name_server , server_id , button_name);
     }
 }
 
 function addRows(id , dateauth , username , count ,name_server , server_id , button_name){
-    var button = createButton(server_id , username , id , button_name);
+    var button = createButton(server_id , username , id , button_name );
     $("#table_accounts").find('tbody')
     .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
         .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
         .append($('<td class="px-6 py-4">').text(username))
-        .append($('<td class="px-6 py-4">').text(""))
+        .append($('<td class="px-6 py-4">').text(dateauth))
         .append($('<td class="px-6 py-4">').text(count))
         .append($('<td class="px-6 py-4">').text(name_server))
         .append($('<td>').append(button))

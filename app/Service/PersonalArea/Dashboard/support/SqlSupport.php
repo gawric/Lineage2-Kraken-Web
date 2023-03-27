@@ -4,7 +4,9 @@ namespace App\Service\PersonalArea\Dashboard\Support;
 
 use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 use App\Models\Temp\InfoDashboard;
+use App\Service\Utils\FunctionSupport;
 use Lang;
+
     class SqlSupport
     {
         public function getInfoAllCharacters($list_server , $username , $list_user_server_accounts) : array{
@@ -30,7 +32,7 @@ use Lang;
                             if(!$collect_server_accounts_array->isEmpty()){
                                $countCharacter =  $this->getCountCharactersToServer($account_name_current_server , $server_db_model );
                                $lastAccess = $this->getUserCharactersLastAccessServer($account_name_current_server , $server_db_model);
-                               $infoDashboard = $this->createModelInfoDashBoard($id_i , $account_name_current_server ,  $lastAccess , $countCharacter  , $server_name , $server_id);
+                               $infoDashboard = FunctionSupport::createModelInfoDashBoard($id_i , $account_name_current_server ,  $lastAccess , $countCharacter  , $server_name , $server_id);
                                array_push($finishArray, $infoDashboard );
                                
                             }
@@ -63,27 +65,9 @@ use Lang;
             return $server_db_model::filter($filtersPk)->get(['lastAccess'])->max('lastAccess');
         }
 
-        private function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
-            $infoDashboard = new InfoDashboard();
-            
-            $infoDashboard->id =$id ;
-            $infoDashboard-> username = $username ;
-            $timestampSeconds = $dateauth / 1000;
-            $infoDashboard-> dateauth = $this->getData($timestampSeconds);
-            $infoDashboard-> count_characters = $count_characters;
-            $infoDashboard-> name_server = $name_server;
-            $infoDashboard-> server_id = $server_id;
+    
 
-            return  $infoDashboard;
-        }
-
-        private function getData($timestampSeconds){
-            if($timestampSeconds == 0){
-                return Lang::get('validation.no_data');
-            }
-
-            return date("Y/m/d H:m:s", $timestampSeconds);
-        }
+      
     }
 
 ?>

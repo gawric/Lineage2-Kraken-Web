@@ -9,7 +9,7 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
  use Illuminate\Database\Eloquent\ModelNotFoundException;
  use Lang;
  use App\Models\Temp\InfoDashboard;
-
+ use App\Service\Utils\FunctionSupport;
     //здесь реализация функций не регистрации
     //т.е добавление учеток через лк или смена пароля 
     //отдельная работа с accounts помимо регистрации
@@ -38,7 +38,7 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
             //сохраняем логин и пароль в базе выбранного сервера
             $this->saveAccountServerSha1($account_name , $password , $modelAccountDb);
            
-           return  $this->createModelInfoDashBoard(0 , $account_name , date('Y-m-d H:i:s') , 0 , $server_name , $server_id);
+           return  FunctionSupport::createModelInfoDashBoard(0 , $account_name , 0 , 0 , $server_name , $server_id);
         }
 
         public function addAccountsServerId($server_id , $auth_user_id , $account_name ,  $auth_user_model){

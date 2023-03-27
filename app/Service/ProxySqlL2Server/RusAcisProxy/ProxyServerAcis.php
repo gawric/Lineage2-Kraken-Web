@@ -8,18 +8,20 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\CharactersSql;
 use App\Service\ProxySqlL2Server\IProxy;
 use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 use App\Models\Temp\InfoDashboard;
+use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRusAcis;
 
    class ProxyServerAcis implements IProxy
    {
         private RegSql $reg;
         private CharactersSql $charactersSql;
         private TopClanSql $topclansql;
-
+        private AccountsSqlRusAcis $accountssql;
 
         public function __construct() {
              $this->reg = new RegSql();
              $this->charactersSql = new CharactersSql();
              $this->topclansql = new TopClanSql();
+             $this->accountssql = new AccountsSqlRusAcis();
         }
 
         
@@ -28,11 +30,11 @@ use App\Models\Temp\InfoDashboard;
         }
 
         public function changePassAccount($modelAccountDb , $login, $old_password , $new_password){
-           
+           $this->accountssql->changePassAccountRusAcis($modelAccountDb , $login, $old_password , $new_password);
         }
 
         public function createAccount($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
-
+            return $this->accountssql->createAccountRusAcis($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name );
         }
 
         public function isUserExistServer($modelAccountDb , $login){
