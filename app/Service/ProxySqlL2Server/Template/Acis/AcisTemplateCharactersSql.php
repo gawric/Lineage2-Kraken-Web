@@ -14,15 +14,23 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
                 return $current_server_characters::filter($filtersPk)->get(['obj_id', 'char_name' , 'classid' , 'clanid' , 'level' , 'pvpkills' , 'pkkills' , 'onlinetime' , 'online']);
             }
 
-
-
-
             public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
                 $clanidfilter = new GeneralFilters(['clandatafilter'] , $unique_clan_id);
                 return  $current_clandata_db_model::filter($clanidfilter)->get(['clan_name' ,'clan_id']);
             }
 
-          
+
+            //example $dataOr['field'], $dataOr['comparison'], $dataOr['data']
+            public function getAllCharsToArrayName($chacters_db_model , $data_search){
+                $filters = new GeneralFilters(['simplefilterarray'] , $data_search);
+                return  $chacters_db_model::filter($filters)->get(['char_name' , 'account_name' , 'level' , 'clanid' , 'pvpkills' , 'pkkills' , 'lastAccess' , 'online']);
+            }
+
+
+            public function getCharToByName(){
+                $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $username]]);
+                $resultmodel =  $modelAccountDb::filter($filtersPk)->get()->first();
+            }
 
     
             public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){

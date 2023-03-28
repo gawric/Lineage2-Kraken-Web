@@ -63,6 +63,9 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRus
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
             return $this->topclansql->getClanIdToClanNameRusAcis($unique_clan_id , $current_clandata_db_model);
         }
+        public function getAllChars($username){
+
+        }
 
 
       

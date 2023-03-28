@@ -4,7 +4,9 @@ namespace App\Service\Utils;
 
 use Auth;
 use App\Models\Temp\InfoDashboard;
+use App\Models\Temp\InfoDashboardChars;
 use Lang;
+
 
  class FunctionSupport
  { 
@@ -79,6 +81,18 @@ use Lang;
         return "";
     }
 
+    public static function getModelCharactersDb($server_id , $list_servers){
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if($server_id == $value['id']){
+                    return $value['server_db_model'];
+                }
+            }
+        }
+        //если не нашли
+        return "";
+    }
+
     //Личный кабинет все аккаунты(инфа для вывода в таблицу)
     public static function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
         $infoDashboard = new InfoDashboard();
@@ -97,7 +111,8 @@ use Lang;
      //Личный кабинет все персонажи игрока по всем аккаунтам(инфа для вывода в таблицу)
      public static function createModelInfoDashBoardChars($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online){
         $InfoDashboardChars = new InfoDashboardChars();
-        
+        info("createModelInfoDashBoardChars>>>>");
+        info($account_name);
         $InfoDashboardChars->id = $id;
         $InfoDashboardChars->char_name = $char_name;
         $InfoDashboardChars->account_name = $account_name;
@@ -105,13 +120,24 @@ use Lang;
         $InfoDashboardChars->clan_name = $clan_name;
         $InfoDashboardChars->pvp = $pvp;
         $InfoDashboardChars->pk = $pk;
-        $InfoDashboardChars->last_data = $last_data;
+        $InfoDashboardChars->last_data = self::getData($last_data);
         $InfoDashboardChars->server_name = $server_name;
-        $InfoDashboardChars->online = $online;
-
+        $InfoDashboardChars->online = self::getOnline($online);
+       // info($InfoDashboardChars);
         return  $InfoDashboardChars;
     }
 
+    
+    private static function getOnline($online){
+        if(isset($online)){
+            if($online > 0){
+                return "online";
+            }
+            return "offline";
+        }
+
+        return "offline";
+    }
     private static function getCountCharacters($count_characters){
         if($count_characters == 0){
             return Lang::get('validation.no_chars');
@@ -126,6 +152,8 @@ use Lang;
 
         return date("Y/m/d H:m:s", $timestampSeconds);
     }
+
+  
 
     
  }

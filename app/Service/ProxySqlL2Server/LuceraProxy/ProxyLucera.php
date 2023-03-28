@@ -9,6 +9,7 @@ use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts\AccountsSqlLuce
 use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\CharactersSqlLucera;
 use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\TopClanSqlLucera;
 use App\Models\Temp\InfoDashboard;
+use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLucera;
 
    class ProxyLucera implements IProxy
    {
@@ -16,6 +17,7 @@ use App\Models\Temp\InfoDashboard;
         private CharactersSqlLucera $charactersSql;
         private TopClanSqlLucera $topclansql;
         private AccountsSqlLucera $accountssql;
+        private CharactersLucera $characters;
 
 
         public function __construct() {
@@ -23,6 +25,7 @@ use App\Models\Temp\InfoDashboard;
             $this->charactersSql = new CharactersSqlLucera();
             $this->topclansql = new TopClanSqlLucera();
             $this->accountssql = new AccountsSqlLucera();
+            $this->characters = new CharactersLucera();
         }
 
         
@@ -67,6 +70,10 @@ use App\Models\Temp\InfoDashboard;
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
             //info("RUNNING Lucera getClanAllCountCharacters");
             return $this->topclansql->getClanIdToClanNameLucera($unique_clan_id , $current_clandata_db_model);
+        }
+
+        public function getAllChars($server_name, $auth_user_id , $modelCharactersDb , $server_id){
+            return $this->characters->getAllCharsLucera($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
 
 

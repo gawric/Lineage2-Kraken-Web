@@ -20,6 +20,7 @@
         public function getClanAllCountCharacters($current_server_characters);
         public function saveClanSql($modelArr);
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model);
+        public function getAllChars($server_name, $auth_user_id , $modelCharactersDb , $server_id);
         //public function clearTableClanStatic();
         
 

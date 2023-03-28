@@ -42,6 +42,11 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             return  $current_clandata_db_model::filter($clanidfilter)->get(['clan_name' ,'clan_id' , 'ally_id' , 'ally_name', 'reputation_score', 'clan_level' , 'hasCastle']);
         }
 
+        public function getClanNameByClanId($unique_clan_id , $current_clandata_db_model){
+            $clanidfilter = new GeneralFilters(['clandatafilter'] , $unique_clan_id);
+            return  $current_clandata_db_model::filter($clanidfilter)->get(['clan_name']);
+        }
+
         private function  clearTableClanStatic(){
             ClanStatic::truncate();
         }

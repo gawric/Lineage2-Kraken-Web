@@ -65,6 +65,10 @@ use App\Models\Temp\InfoDashboard;
            return  $this->proxy_server->getClanCountCharactersLimit($resultCol , $current_server_characters , $countLimit);
         }
 
+        public function getAllChars($server_name, $auth_user_id , $modelCharactersDb , $server_id){
+         return  $this->proxy_server->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
+        }
+
         public function clearTableClanStatic(){
             $proxy_server->clearTableClanStatic();
         }

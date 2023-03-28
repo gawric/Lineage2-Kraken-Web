@@ -70,6 +70,10 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSo
             return $this->topclansql->getClanIdToClanNamePwSoft($unique_clan_id , $current_clandata_db_model);
         }
 
+        public function getAllChars($username){
+
+        }
+
 
       
 

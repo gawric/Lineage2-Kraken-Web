@@ -9,7 +9,7 @@
         public function getUsernameAuth() : string;
         public function createAccountAjax($auth_user_id , $account_name , $password , $server_id): InfoDashboard;
         public function changePasswordToAccounts($account_name , $old_password, $new_password , $server_id): void;
-        public function getAllCharsAllServers(): InfoDashboardChars;
+        public function getAllCharsAllServers($list_servers , $auth_user_id);
     }
 
 ?>

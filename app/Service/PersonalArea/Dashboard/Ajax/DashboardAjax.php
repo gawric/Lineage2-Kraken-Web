@@ -32,7 +32,7 @@
             
             if(!$this->proxy->isUserExistServer($modelAccountDb , $account_name)){
                 if(isset($allAccountsUser)){
-                    info($allAccountsUser);
+                    //info($allAccountsUser);
                     if($allAccountsUser > $this->allowed_accounts_count){
                         throw new ModelNotFoundException(Lang::get('validation.no_access_create') . " " . $this->allowed_accounts_count);
                     }

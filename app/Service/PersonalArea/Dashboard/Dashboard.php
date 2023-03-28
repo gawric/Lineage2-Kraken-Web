@@ -46,7 +46,9 @@
         }
 
         //реализация не нужна метод используется в DashboardChars
-        public function getAllCharsAllServers(): InfoDashboardChars{}
+        public function getAllCharsAllServers($list_servers , $auth_user_id){
+            
+        }
     
     }
 ?>

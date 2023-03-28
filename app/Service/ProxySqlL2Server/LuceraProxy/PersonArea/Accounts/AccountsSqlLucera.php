@@ -10,6 +10,8 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
  use Lang;
  use App\Models\Temp\InfoDashboard;
  use App\Service\Utils\FunctionSupport;
+ use App\Service\Utils\FunctionAuthUser;
+
     //здесь реализация функций не регистрации
     //т.е добавление учеток через лк или смена пароля 
     //отдельная работа с accounts помимо регистрации
@@ -32,7 +34,7 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
         }
 
         public function createAccountLucera($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
-            $auth_user_model = $this->getAccountExpansionById($auth_user_id);
+            $auth_user_model = FunctionAuthUser::getAccountExpansionById($auth_user_id);
             //сохраняем логин в laravel, accounts_server_id хранит всех юзеров наших серверов
             $this->addAccountsServerId($server_id , $auth_user_id , $account_name ,  $auth_user_model);
             //сохраняем логин и пароль в базе выбранного сервера
@@ -46,10 +48,8 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
             $auth_user_model->accounts_server_id()->save($accounts_server_id_model);
         }
 
-        public function getAccountExpansionById($auth_user_id){
-            //info("getAccountExpansionById");
-            $filters = new GeneralFilters(['simplefilter'] , [['id', '=', $auth_user_id]]);
-            return Accounts_expansion::filter($filters)->get()->first();
-        }
+  
+
+    
     }
 ?>
