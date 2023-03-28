@@ -94,6 +94,24 @@ use Lang;
         return  $infoDashboard;
     }
 
+     //Личный кабинет все персонажи игрока по всем аккаунтам(инфа для вывода в таблицу)
+     public static function createModelInfoDashBoardChars($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online){
+        $InfoDashboardChars = new InfoDashboardChars();
+        
+        $InfoDashboardChars->id = $id;
+        $InfoDashboardChars->char_name = $char_name;
+        $InfoDashboardChars->account_name = $account_name;
+        $InfoDashboardChars->lvl = $lvl;
+        $InfoDashboardChars->clan_name = $clan_name;
+        $InfoDashboardChars->pvp = $pvp;
+        $InfoDashboardChars->pk = $pk;
+        $InfoDashboardChars->last_data = $last_data;
+        $InfoDashboardChars->server_name = $server_name;
+        $InfoDashboardChars->online = $online;
+
+        return  $InfoDashboardChars;
+    }
+
     private static function getCountCharacters($count_characters){
         if($count_characters == 0){
             return Lang::get('validation.no_chars');

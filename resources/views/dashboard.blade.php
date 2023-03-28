@@ -152,6 +152,13 @@
 
     <table id="table_accounts" style="width:100%;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <tbody>
+        <tr>
+            <th scope="col" class="px-6 py-4">#</th>
+            <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboard_account') }}</th>
+            <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboard_last_data') }}</th>
+            <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboard_count_chars') }}</th>
+            <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboard_name_server') }}</th>
+        </tr>
         @if(isset($arrayInfoDashboard))
          @foreach($arrayInfoDashboard as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

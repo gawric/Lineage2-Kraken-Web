@@ -4,7 +4,7 @@ namespace App\Models\Temp;
 
 
 
-//Обращемся к laravel бд
+
  class InfoDashboard
  {
     public $id;

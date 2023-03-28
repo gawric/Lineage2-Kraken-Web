@@ -50,7 +50,7 @@
                         {{ __('messages.lk_profile') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('dashboardchars')">
                         {{ __('messages.lk_characters') }}
                         </x-dropdown-link>
                         

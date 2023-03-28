@@ -46,6 +46,21 @@ return [
     'lk_change_password_accounts_succes' => 'Done',
 
 
+    'lk_table_dashboard_account' => 'Account',
+    'lk_table_dashboard_last_data' => 'Last Data',
+    'lk_table_dashboard_count_chars' => 'numb. of characters',
+    'lk_table_dashboard_name_server' => 'Server name',
+
+    'lk_table_dashboardchars_name_char' => 'Сharacter `s name',
+    'lk_table_dashboardchars_name_account' => 'Account name',
+    'lk_table_dashboardchars_name_server' => 'Имя сервера',
+    'lk_table_dashboardchars_lvl' => 'Server name',
+    'lk_table_dashboardchars_clan_name' => 'Clan',
+    'lk_table_dashboardchars_pvp' => 'PVP',
+    'lk_table_dashboardchars_pk' => 'PK',
+    'lk_table_dashboardchars_last_data' => 'Last connec.',
+    'lk_table_dashboardchars_online' => 'Online',
+
 
     'lk_new_accounts_title' => 'Create an account',
     'lk_new_accounts_descripte' => 'Form for creating new accounts on servers!',
@@ -56,5 +71,12 @@ return [
     'lk_new_accounts_button_exit' => 'Close',
     'lk_new_accounts_select_server' => 'Select server',
     'lk_new_accounts_list_server' => 'Server list',
+
+
+    'lk_all_chars' => 'Сharacter list',
+    'lk_all_chars_description' => 'List of all characters found on your accounts',
+
+
+
     
 ];

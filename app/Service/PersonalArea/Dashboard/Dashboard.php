@@ -36,7 +36,6 @@
 
         public function getUsernameAuth() : string{
             return FunctionAuthUser::getAuthLogin();
-            //Auth::user()->login;
         }
 
         public function createAccountAjax($auth_user_id , $account_name , $password , $server_id): InfoDashboard{
@@ -45,6 +44,9 @@
         public function changePasswordToAccounts($account_name , $old_password, $new_password , $server_id):void{
             $this->d_ajax->changePasswordToAccounts($account_name , $old_password, $new_password , $server_id);
         }
+
+        //реализация не нужна метод используется в DashboardChars
+        public function getAllCharsAllServers(): InfoDashboardChars{}
     
     }
 ?>
