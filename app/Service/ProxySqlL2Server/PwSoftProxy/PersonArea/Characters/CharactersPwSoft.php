@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters;
+namespace App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters;
 
  use Log;
  use App\Models\Accounts_expansion;
@@ -13,9 +13,9 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters;
  use App\Service\Utils\FunctionSupport;
  use App\Service\ProxySqlL2Server\Template\Chars\CharactersTemplateChars;
 
-    class CharactersLucera extends CharactersTemplateChars {
-        public function getAllCharsLucera($server_name , $auth_user_id , $modelCharactersDb , $server_id){
-            info("getAllCharsLucera>>>use characters to lucera");
+    class CharactersPwSoft extends CharactersTemplateChars {
+        public function getAllCharsPwSoft($server_name , $auth_user_id , $modelCharactersDb , $server_id){
+            info("getAllCharsPwSoft>>> use characters to PwSoft");
             return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
     }

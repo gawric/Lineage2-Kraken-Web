@@ -25,8 +25,11 @@ class DashboardCharsController extends Controller
     //return view('l2page_statistic', ['arrayNameServers' => $this->getServerNameOnly($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
     public function index()
     {
-        $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , FunctionAuthUser::getAuthUserId());
-        return view('dashboardchars');
+        $array_chars_user = $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , FunctionAuthUser::getAuthUserId());
+       // info("DashboardCharsController>>>>all_chars_user");
+       // info($all_chars_user);
+       
+        return view('dashboardchars' , ['arrayInfoDashboardChars' => $array_chars_user ]);
     }
    
 }

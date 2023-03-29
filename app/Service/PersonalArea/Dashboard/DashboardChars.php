@@ -32,21 +32,62 @@
         public function changePasswordToAccounts($account_name , $old_password, $new_password , $server_id):void{}
 
         public function getAllCharsAllServers($list_servers , $auth_user_id){
-           // foreach($this->list_servers as $server){
-            //    $server_id = $server['id'];
-             //   $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_servers);
-              //  $this->proxy = new ProxySqlServer($developer_id);
-           // }
+            $finishArr = [];
+            foreach($list_servers as $server){
+                $server_id = $server['id'];
+                $list_chars = $this->calcData($server_id , $list_servers , $auth_user_id);
+               // info("list_chars>>>>>>");
+               // info($list_chars);
+                $finishArr = $this->arrayMerge($finishArr, $list_chars);
+            }
             
-           $server_id = 3;
-           $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
-           $this->proxy = new ProxySqlServer($developer_id);
-           $modelCharactersDb = FunctionSupport::getModelCharactersDb($server_id , $list_servers);
-           $server_name = FunctionSupport::getServerNameById($server_id , $list_servers);
-           $list_chars = $this->proxy->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
-           info("list_chars");
-           info($list_chars);
-           return null;
+          
+           return  $finishArr;
+        }
+        //$list_servers - здесь происходит только чтение.
+        private function calcData($server_id , $list_servers , $auth_user_id){
+
+            $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
+            $this->proxy = new ProxySqlServer($developer_id);
+            $modelCharactersDb = FunctionSupport::getModelCharactersDb($server_id , $list_servers);
+            $modelClanDataDb = FunctionSupport::getModelClanDataDb($server_id , $list_servers);
+            $server_name = FunctionSupport::getServerNameById($server_id , $list_servers);
+
+            $list_chars = $this->proxy->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
+            $this->setNameClanByClanId($list_chars , $modelClanDataDb);
+            return $list_chars;
+        }
+
+        private function setNameClanByClanId($list_chars , $modelClanDataDb){
+            if(isset($list_chars)){
+                foreach($list_chars as $char){
+                    $unique_clan_id = [$char->clan_name];
+                    $all_data = $this->proxy->getClanIdToClanName($unique_clan_id , $modelClanDataDb);
+                   // info("Request clan data");
+                  //  info($all_data);
+                    $this->setClanName($all_data->first() , $char);
+                  
+                }
+
+            }
+           
+            
+        }
+
+        private function setClanName($all_data , $char){
+            if(isset($all_data)){
+                $char->clan_name = $all_data['clan_name'];
+            }else{
+                $char->clan_name = "Нет клана";
+            }
+        }
+
+        private function arrayMerge($finishArr, $list_chars){
+            if(isset($list_chars)){
+               // info("use merge");
+                return array_merge($finishArr, $list_chars);
+            }
+           return $finishArr;
         }
     
     }

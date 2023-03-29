@@ -93,6 +93,18 @@ use Lang;
         return "";
     }
 
+    public static function getModelClanDataDb($server_id , $list_servers){
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if($server_id == $value['id']){
+                    return $value['clandata_db_model'];
+                }
+            }
+        }
+        //если не нашли
+        return "";
+    }
+
     //Личный кабинет все аккаунты(инфа для вывода в таблицу)
     public static function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
         $infoDashboard = new InfoDashboard();
@@ -111,8 +123,8 @@ use Lang;
      //Личный кабинет все персонажи игрока по всем аккаунтам(инфа для вывода в таблицу)
      public static function createModelInfoDashBoardChars($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online){
         $InfoDashboardChars = new InfoDashboardChars();
-        info("createModelInfoDashBoardChars>>>>");
-        info($account_name);
+      //  info("createModelInfoDashBoardChars>>>>");
+      //  info($account_name);
         $InfoDashboardChars->id = $id;
         $InfoDashboardChars->char_name = $char_name;
         $InfoDashboardChars->account_name = $account_name;
@@ -120,7 +132,8 @@ use Lang;
         $InfoDashboardChars->clan_name = $clan_name;
         $InfoDashboardChars->pvp = $pvp;
         $InfoDashboardChars->pk = $pk;
-        $InfoDashboardChars->last_data = self::getData($last_data);
+        $timestampSeconds = $last_data / 1000;
+        $InfoDashboardChars->last_data = self::getData($timestampSeconds);
         $InfoDashboardChars->server_name = $server_name;
         $InfoDashboardChars->online = self::getOnline($online);
        // info($InfoDashboardChars);
@@ -149,8 +162,11 @@ use Lang;
         if($timestampSeconds == 0){
             return Lang::get('validation.no_data');
         }
-
-        return date("Y/m/d H:m:s", $timestampSeconds);
+     
+        $date =  date("Y/m/d H:m:s", $timestampSeconds);
+        info( $timestampSeconds );
+        info( $date );
+        return $date;
     }
 
   

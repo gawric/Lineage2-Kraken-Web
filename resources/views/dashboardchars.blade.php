@@ -33,26 +33,38 @@
             <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboardchars_last_data') }}</th>
             <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboardchars_online') }}</th>
          </tr>
-        @if(isset($arrayInfoDashboard))
-         @foreach($arrayInfoDashboard as $model)
+        @if(isset($arrayInfoDashboardChars))
+         @foreach($arrayInfoDashboardChars as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {{ $model->id }}
                 </th>
                 <td class="px-6 py-4">
-                {{ $model->username }}
+                {{ $model->char_name }}
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->dateauth }}
+                {{ $model->account_name }}
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->count_characters }}
+                {{ $model->server_name }}
+                </td>
+                <td align="center">
+                {{ $model->lvl }}
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->name_server }}
+                {{ $model->clan_name }}
                 </td>
-                <td>
-                    <button id="open" onClick="clickOpenDialog({{ $model->server_id }} , '{{ $model->username }}')" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  text-white cursor-pointer rounded-md">{{ __('messages.lk_change_password_accounts_title') }}</button>
+                <td align="center">
+                {{ $model->pvp }}
+                </td>
+                <td align="center">
+                {{ $model->pk }}
+                </td>
+                <td class="px-6 py-4">
+                {{ $model->last_data }}
+                </td>
+                <td class="px-6 py-4">
+                {{ $model->online }}
                 </td>
             </tr>
          @endforeach

@@ -9,6 +9,7 @@ use App\Service\ProxySqlL2Server\IProxy;
 use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRusAcis;
+use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRusAcis;
 
    class ProxyServerAcis implements IProxy
    {
@@ -16,12 +17,14 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRus
         private CharactersSql $charactersSql;
         private TopClanSql $topclansql;
         private AccountsSqlRusAcis $accountssql;
+        private CharactersRusAcis $characters;
 
         public function __construct() {
              $this->reg = new RegSql();
              $this->charactersSql = new CharactersSql();
              $this->topclansql = new TopClanSql();
              $this->accountssql = new AccountsSqlRusAcis();
+             $this->characters = new CharactersRusAcis();
         }
 
         
@@ -45,7 +48,6 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRus
             return $this->charactersSql->getPkPvpServerCharactersRusAcis($current_server_characters);
         }
 
-
         public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
             $this->charactersSql->saveAllCharactersRusAcis($allModelCharactersPvp , $allModelCharactersPk);
         }
@@ -63,8 +65,8 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRus
         public function getClanIdToClanName($unique_clan_id , $current_clandata_db_model){
             return $this->topclansql->getClanIdToClanNameRusAcis($unique_clan_id , $current_clandata_db_model);
         }
-        public function getAllChars($username){
-
+        public function getAllChars($server_name, $auth_user_id , $modelCharactersDb , $server_id){
+            return $this->characters->getAllCharsRusAcis($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
 
 

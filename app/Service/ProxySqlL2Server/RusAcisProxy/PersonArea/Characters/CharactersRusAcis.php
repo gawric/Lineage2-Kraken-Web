@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters;
+namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters;
 
  use Log;
  use App\Models\Accounts_expansion;
@@ -13,10 +13,14 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters;
  use App\Service\Utils\FunctionSupport;
  use App\Service\ProxySqlL2Server\Template\Chars\CharactersTemplateChars;
 
-    class CharactersLucera extends CharactersTemplateChars {
-        public function getAllCharsLucera($server_name , $auth_user_id , $modelCharactersDb , $server_id){
-            info("getAllCharsLucera>>>use characters to lucera");
-            return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
+    class CharactersRusAcis extends CharactersTemplateChars {
+        public function getAllCharsRusAcis($server_name , $auth_user_id , $modelCharactersDb , $server_id){
+                info("getAllCharsRusAcis>>>use characters to RusAcis");
+                return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
+
+
+
+
     }
 ?>

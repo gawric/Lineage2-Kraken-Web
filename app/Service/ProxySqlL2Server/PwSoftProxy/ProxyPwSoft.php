@@ -9,7 +9,7 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\CharactersSqlPwSoft;
 use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSoft;
-
+use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwSoft;
     //этот класс как и все прокси являются синглтонами
    class ProxyPwSoft implements IProxy
    {
@@ -17,13 +17,14 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSo
         private CharactersSqlPwSoft $charactersSql;
         private TopClanSqlPwSoft $topclansql;
         private AccountsSqlPwSoft $accountssql;
-
+        private CharactersPwSoft $characters;
 
         public function __construct() {
             $this->reg = new RegSqlPwSoft();
             $this->charactersSql = new CharactersSqlPwSoft();
             $this->topclansql = new TopClanSqlPwSoft();
             $this->accountssql = new AccountsSqlPwSoft();
+            $this->characters = new CharactersPwSoft();
         }
 
         
@@ -70,8 +71,8 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSo
             return $this->topclansql->getClanIdToClanNamePwSoft($unique_clan_id , $current_clandata_db_model);
         }
 
-        public function getAllChars($username){
-
+        public function getAllChars($server_name, $auth_user_id , $modelCharactersDb , $server_id){
+           return  $this->characters->getAllCharsPwSoft($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
 
 
