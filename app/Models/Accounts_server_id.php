@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 //server_id,accounts_name
 class Accounts_server_id extends Model
 {
+    use HasFactory;
     protected $table = 'accounts_server_ids';
     public $timestamps = false;
 

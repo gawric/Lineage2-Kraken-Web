@@ -13,7 +13,8 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
 {
     protected $table = 'accounts_expansion';
     use Notifiable;
-
+    use HasFactory;
+    
     //Возрващаем все записи accounts_server_id
     public function accounts_server_id()
     {
@@ -32,5 +33,7 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
 
     public function getCountAccounts(){
       return $this->hasMany(Accounts_server_id::class)->where('accounts_expansion_id',$this->id)->count();
-  }
+    }
+
+    protected $fillable = ['id', 'login', 'email', 'password'];
 }

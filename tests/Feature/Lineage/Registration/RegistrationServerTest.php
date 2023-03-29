@@ -16,18 +16,12 @@ use App\Models\Server\ServerAccounts;
 class RegistrationServerTest extends TestCase
 {
      use RefreshDatabase;
-
-
-
      //создание тестовой модели
      public function setUp(): void
      {
          parent::setUp();
          ServerAccounts::query()->delete();
      }
-
- 
-  
 
      public function test_registration_pages()
      {

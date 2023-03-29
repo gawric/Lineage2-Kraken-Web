@@ -33,17 +33,19 @@
 
         public function getAllCharsAllServers($list_servers , $auth_user_id){
             $finishArr = [];
+            $id = 0;
             foreach($list_servers as $server){
                 $server_id = $server['id'];
                 $list_chars = $this->calcData($server_id , $list_servers , $auth_user_id);
-               // info("list_chars>>>>>>");
-               // info($list_chars);
                 $finishArr = $this->arrayMerge($finishArr, $list_chars);
+                $this->setIDItem($list_chars , $id);
             }
             
           
            return  $finishArr;
         }
+
+
         //$list_servers - здесь происходит только чтение.
         private function calcData($server_id , $list_servers , $auth_user_id){
 
@@ -88,6 +90,12 @@
                 return array_merge($finishArr, $list_chars);
             }
            return $finishArr;
+        }
+
+        private function setIDItem($list_chars , &$id){
+            foreach($list_chars as $item){
+                $item->id = $id++;
+            }
         }
     
     }
