@@ -23,7 +23,7 @@ class ServerClanDataFactory extends Factory
      {
          return [
              'clan_id' => fake()->unique()->randomElement([1 , 2 , 3]),
-             'clan_name' => fake()->unique()->randomElement(['clan_test_name_1' , 'clan_test_name_2' , 'clan_test_name_3']),
+             'clan_name' => fake()->unique()->randomElement(['clan_test_1_acis' , 'clan_test_2_acis' , 'clan_test_3_acis']),
              'clan_level' => fake()->randomElement([1 , 2 , 3]),
              'reputation_score' => fake()->randomElement([10 , 20 , 5 , 3]),
              'hasCastle' =>  fake()->randomElement([0 , 1 , 0 , 0]),
