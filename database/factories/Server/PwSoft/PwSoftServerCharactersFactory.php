@@ -1,11 +1,11 @@
 <?php
 
-namespace Database\Factories\Server;
+namespace Database\Factories\Server\PwSoft;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-//Фейковые данные для тестирования RusAcis
-class ServerCharactersFactory extends Factory
+//Фейковые данные для тестирования PwSoft
+class PwSoftServerCharactersFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -23,8 +23,8 @@ class ServerCharactersFactory extends Factory
      {
          return [
              'obj_id' => fake()->unique()->numberBetween(0,3999),
-             'account_name' => fake()->randomElement(['account_name_test_acis']),
-             'char_name' => fake()->unique()->randomElement(['test_user_1_acis' , 'test_user_2_acis' , 'test_user_3_acis' , 'test_user_4_acis']),
+             'account_name' => fake()->randomElement(['account_name_test_pwsoft']),
+             'char_name' => fake()->unique()->randomElement(['test_user_1_pwsoft' , 'test_user_2_pwsoft' , 'test_user_3_pwsoft' , 'test_user_4_pwsoft']),
              'pvpkills' => fake()->randomElement([0 , 20]),
              'pkkills' =>  fake()->randomElement([0 , 30]),
              'classid' =>  fake()->randomElement([11, 99, 16 , 15]), 
@@ -32,7 +32,7 @@ class ServerCharactersFactory extends Factory
              'onlinetime' =>  fake()->randomElement([11, 99, 16 , 15]), 
              'online' =>  fake()->randomElement([0,1]), 
              //clan_id - генерируем в таблиц ServerClanData
-             'clanid' => fake()->randomElement([1, 2, 3]), 
+             'clanid' => fake()->randomElement([4, 5, 6]), 
          ];
      }
 }
