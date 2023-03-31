@@ -14,12 +14,18 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
     protected $table = 'accounts_expansion';
     use Notifiable;
     use HasFactory;
-    
+
     //Возрващаем все записи accounts_server_id
     public function accounts_server_id()
     {
       return $this->hasMany(Accounts_server_id::class);
     }
+
+     //Возрващаем все записи Accounts_ip / храним все ип адреса пользователя с корорых он заходил
+     public function accounts_ip()
+     {
+       return $this->hasMany(Accounts_ip::class);
+     }
 
     //Возрващаем записи с фильтром по server_id
     public function accountsServerFilterById($search_server_id){
