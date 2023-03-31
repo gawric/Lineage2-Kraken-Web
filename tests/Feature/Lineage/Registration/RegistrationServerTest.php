@@ -45,8 +45,8 @@ class RegistrationServerTest extends TestCase
      public function test_new_user_registration(){
         $response = $this->post('/adduser', [
             'login' => 'admin99',
-            'password' => '1234567',
-            'password_confirmed' => '1234567',
+            'password' => '12345678',
+            'password_confirmed' => '12345678',
             'email' => 'admin@mail.ru',
             'server_id' => '1',
         ]);
