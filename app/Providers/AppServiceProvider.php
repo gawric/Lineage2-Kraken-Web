@@ -4,7 +4,13 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
-//use App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis;
+use App\Service\PersonalArea\AccessIp\DetectedIp;
+use App\Service\PersonalArea\AccessIp\IDetectedIp;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
+use Lang;
+use App\Service\Utils\FunctionEmailActivate;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,12 +21,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-       //
+        $this->app->singleton('IDetectedIp', DetectedIp::class);
+        FunctionEmailActivate::toMailText();
     }
 
-   // public $singletons = [
-    //    ProxyServerAcis::class => ProxyServerAcis::class,
-    //];
 
     /**
      * Bootstrap any application services.

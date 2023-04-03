@@ -8,7 +8,8 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Providers\Events\L2PasswordReset;
 use App\Providers\Listeners\SendCharactersResetPassword;
-use Illuminate\Auth\Events\Authenticated;
+//use Illuminate\Auth\Events\Authenticated;
+use Illuminate\Auth\Events\Login;
 use App\Providers\Listeners\SendLogAutentificationUser;
 use App\Providers\Listeners\SendVerifiedIpAddress;
 use Illuminate\Auth\Events\Verified;
@@ -27,7 +28,7 @@ class EventServiceProvider extends ServiceProvider
         L2PasswordReset::class => [
             SendCharactersResetPassword::class,
         ],
-        Authenticated::class => [
+        Login::class => [
             SendLogAutentificationUser::class,
         ],
 

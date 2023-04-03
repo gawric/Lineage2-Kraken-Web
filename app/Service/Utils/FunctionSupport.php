@@ -5,6 +5,7 @@ namespace App\Service\Utils;
 use Auth;
 use App\Models\Temp\InfoDashboard;
 use App\Models\Temp\InfoDashboardChars;
+use App\Models\Accounts_ip;
 use Lang;
 
 
@@ -164,9 +165,18 @@ use Lang;
         }
      
         $date =  date("Y/m/d H:m:s", $timestampSeconds);
-        info( $timestampSeconds );
-        info( $date );
+       // info( $timestampSeconds );
+      //  info( $date );
         return $date;
+    }
+
+    public static function createModelAccounts_ip($ip_address , $accounts_expansion_id , $date_auth){
+        $model = new Accounts_ip();
+        $model->ip_address = $ip_address;
+        $model->email_verified_at = $date_auth;
+        $model->accounts_expansion_id = $accounts_expansion_id;
+
+        return $model;
     }
 
   

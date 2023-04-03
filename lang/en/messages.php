@@ -27,6 +27,20 @@ return [
     'info_first_page_static' => 'Select server and statistics',
     'no_data' => 'no data',
     'success' => 'Data received',
+
+    
+    'email_activate_header' => 'Thank you for registering!',
+    'email_activate_text_button' => 'Verify Email',
+    'email_activate_subject' => 'Thank you for registering!',
+
+
+    'email_ipaddress_activate_header' => 'Suspicious activity detected',
+    'email_ipaddress_activate_text' => 'Logged in from an unknown ip if it not you then we recommend that you change your password or press the confirm button if everything is in order',
+    'email_ipaddress_activate_text_button' => 'Confirm',
+    'email_ipaddress_activate_subject' => 'Login from unknown ip address',
+    'email_ipaddress_activate_unknow_ip' => 'Trying from ip address: ',
+
+
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',
     'lk_buy_gold' => 'Buy gold',

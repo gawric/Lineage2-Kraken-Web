@@ -25,6 +25,17 @@ return [
     'info_first_page_static' => 'Выберите сервер и статистику',
     'no_data' => 'Нет данных',
     'success' => 'Данные получены',
+
+    'email_activate_header' => 'Спасибо за регистрацию!',
+    'email_activate_text_button' => 'Активировать',
+    'email_activate_subject' => 'Спасибо за регистрацию',
+
+    'email_ipaddress_activate_header' => 'Внимание обнаружена подозрительная активность',
+    'email_ipaddress_activate_text' => 'Осуществлен вход в систему с неизвестного ip. Нажмите кнопку подтвердить если это ваших рук дело в противном случае рекомендую вам сменить пароль!',
+    'email_ipaddress_activate_unknow_ip' => 'Попытка входа с ip адреса: ',
+    'email_ipaddress_activate_text_button' => 'Подтвердить',
+    'email_ipaddress_activate_subject' => 'Вход с неизвестного ip адреса',
+
     'lk_home' => 'Главная',
     'lk_kits' => 'Cтартовые наборы',
     'lk_buy_gold' => 'Купить золото',
