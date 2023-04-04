@@ -59,5 +59,8 @@ return [
     //Количество разрешенных аккаунтов на одной учетке 
     'allowed_accounts' => 10,
 
+    //Блокировка пользователя если вход произошел с неизвестного ip
+    'blocked_login_with_unknown_ip' => true,
+
     'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft" , 2 => "App\Service\ProxySqlL2Server\LuceraProxy\ProxyLucera"],
 ];

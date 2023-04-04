@@ -21,10 +21,12 @@ class SendVerifiedIpAddress
   
     public function handle(Verified $event)
     {
+      //$ip_address = Request::ip();
+      $ip_address = "192.168.0.54";
       info(FunctionAuthUser::getAuthUserId());
-      info("Verified user ip  " . Request::ip());
+      info("Verified user ip  " . $ip_address);
       
-      $this->detected->saveAccess(Request::ip());
+      $this->detected->saveAccess($ip_address);
       info("SendVerifiedIpAddress save model ip");
     }
 

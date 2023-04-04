@@ -2,7 +2,7 @@
 
 <h1>{{ __('messages.email_ipaddress_activate_header') }}</h1>
 <br>
-{{ __('messages.email_ipaddress_activate_text') }} {{ __($unknow_ip) }}
+{{ __('messages.email_ipaddress_activate_text') }}
 <br>
 <h6>{{ __('messages.email_ipaddress_activate_unknow_ip') }} {{ __($unknow_ip) }}</h6>
 

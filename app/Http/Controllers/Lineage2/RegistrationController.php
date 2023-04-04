@@ -17,6 +17,8 @@ namespace App\Http\Controllers\Lineage2;
  use Illuminate\Auth\Events\Registered;
  use App\Models\Accounts_expansion;
  use App\Service\ProxySqlL2Server\ProxySqlServer;
+ use App\Service\PersonalArea\AccessIp\DetectedIp;
+
 
 class RegistrationController extends Controller
 {
@@ -26,10 +28,12 @@ class RegistrationController extends Controller
     private $model_account_db;
     private  SupportFuncReg $sfc;
     private  ProxySqlServer $proxySql;
+    private  DetectedIp $detected_ip;
 
-    public function __construct()
+    public function __construct(DetectedIp $detected_ip)
     {
         $this->arr=[];
+        $this->detected_ip = $detected_ip;
         $this->sfc = new SupportFuncReg();
      
         $this->list_server = Config::get('lineage2.server.list_server');
@@ -74,9 +78,10 @@ class RegistrationController extends Controller
     
            
             $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
-    
-           // info("User Account Expansion ");
-            //info($user_account_expansion);
+            $ip_address_access = \Request::getClientIp(true);
+            info($ip_address_access);
+            $this->saveAllowIpAddress($ip_address_access , $user_account_expansion->id);
+
             
             event(new Registered($user_account_expansion));
     
@@ -86,6 +91,11 @@ class RegistrationController extends Controller
         //не нашли сервер возвращаем ошибку
         return $this->sfc->getErrorJson(Lang::get('validation.enter_server_db') , Lang::get('validation.enter_server_db'));
       
+    }
+
+    private function saveAllowIpAddress($ip_address_access , $account_expansion_id){
+        $model_access = $this->detected_ip->createAccessModelByIdAccount_expansion($ip_address_access , $account_expansion_id , now());
+        $model_access->save();
     }
 
    
