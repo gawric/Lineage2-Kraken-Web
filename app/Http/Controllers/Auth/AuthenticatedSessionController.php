@@ -7,9 +7,13 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Config;
+
 
 class AuthenticatedSessionController extends Controller
 {
+
+   
     /**
      * Display the login view.
      *
@@ -29,13 +33,49 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-       // info("auth test login store");
+
+
         $request->authenticate();
 
         $request->session()->regenerate();
         
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $role_name_auth = $request->user()->accounts_role->first()->name;
+
+        return $this->getRedirect($role_name_auth);
+        //return redirect()->intended("adminDashboard");
     }
+
+
+  
+    private  function getRedirect($role_name_auth){
+
+        if(strcmp($this->getRoleNameUser(), $role_name_auth) == 0){
+            info("redirect HOME");
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+        else{
+            if(strcmp($this->getRoleNameAdmin(), $role_name_auth) == 0){
+                info("redirect HOME ADMIN");
+                info(RouteServiceProvider::HOME_ADMIN);
+                return redirect()->intended(RouteServiceProvider::HOME_ADMIN);
+            }
+            else{
+                info("redirect HOME UNKNOW");
+                return redirect()->intended(RouteServiceProvider::HOME);
+            }
+        }
+    }
+
+
+    private function getRoleNameAdmin(){
+        return  Config::get('lineage2.server.role_name_admin');
+    }
+
+    private function getRoleNameUser(){
+        return Config::get('lineage2.server.role_name_user');
+    }
+
+    
 
     /**
      * Destroy an authenticated session.

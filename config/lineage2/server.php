@@ -62,5 +62,9 @@ return [
     //Блокировка пользователя если вход произошел с неизвестного ip
     'blocked_login_with_unknown_ip' => true,
 
+    'role_name_user' => 'role_user',
+
+    'role_name_admin' => 'role_admin',
+
     'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft" , 2 => "App\Service\ProxySqlL2Server\LuceraProxy\ProxyLucera"],
 ];

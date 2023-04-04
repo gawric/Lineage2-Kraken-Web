@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Accounts_role;
+use App\Models\Accounts_ip;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 //Обращемся к laravel бд
@@ -27,6 +29,12 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
      public function accounts_ip()
      {
        return $this->hasMany(Accounts_ip::class);
+     }
+
+     //Возвращаем роль учетки
+     public function accounts_role()
+     {
+       return $this->hasMany(Accounts_role::class);
      }
 
     //Возрващаем записи с фильтром по server_id

@@ -10,8 +10,10 @@ use App\Http\Controllers\Lineage2\RegistrationController;
 use App\Http\Middleware\Lineage2\ValidateReg;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardCharsController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminDashboardController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardCreateL2UsersController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardChangel2PassUsersController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,12 +41,16 @@ Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/dashboardchars', [DashboardCharsController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboardchars');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified' , 'roles_user'])->name('dashboard');
+Route::get('/dashboardchars', [DashboardCharsController::class, 'index'])->middleware(['auth', 'verified' , 'roles_user'])->name('dashboardchars');
 
-Route::middleware(['auth', 'verified' , 'valid'])->group(function () {
+Route::middleware(['auth', 'verified' , 'valid' , 'roles_user'])->group(function () {
     Route::post('/addL2User', [DashboardCreateL2UsersController::class, 'addAjaxL2User']);
     Route::post('/changePassL2User', [DashboardChangel2PassUsersController::class, 'changeAjaxPassL2User']);
+});
+
+Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
+    Route::get('/adminDashboard', [AdminDashboardController::class, 'index']);
 });
 
 

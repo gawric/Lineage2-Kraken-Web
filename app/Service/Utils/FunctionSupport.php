@@ -6,6 +6,7 @@ use Auth;
 use App\Models\Temp\InfoDashboard;
 use App\Models\Temp\InfoDashboardChars;
 use App\Models\Accounts_ip;
+use App\Models\Accounts_role;
 use Lang;
 
 
@@ -179,7 +180,16 @@ use Lang;
         return $model;
     }
 
-  
+    public static function createModelAccounts_role($role_name , $accounts_expansion_id , $description , $date_auth){
+        $model = new Accounts_role();
+        $model->name = $role_name;
+        $model->accounts_expansion_id = $accounts_expansion_id;
+        $model->description = $description;
+        $model->created_at = $date_auth;
+        $model->updated_at = $date_auth;
+        return $model;
+    }
+
 
     
  }

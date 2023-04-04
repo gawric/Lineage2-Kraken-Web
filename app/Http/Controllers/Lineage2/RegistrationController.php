@@ -18,6 +18,7 @@ namespace App\Http\Controllers\Lineage2;
  use App\Models\Accounts_expansion;
  use App\Service\ProxySqlL2Server\ProxySqlServer;
  use App\Service\PersonalArea\AccessIp\DetectedIp;
+ use App\Service\Utils\FunctionSupport;
 
 
 class RegistrationController extends Controller
@@ -29,6 +30,7 @@ class RegistrationController extends Controller
     private  SupportFuncReg $sfc;
     private  ProxySqlServer $proxySql;
     private  DetectedIp $detected_ip;
+    private $role_name_user;
 
     public function __construct(DetectedIp $detected_ip)
     {
@@ -37,6 +39,7 @@ class RegistrationController extends Controller
         $this->sfc = new SupportFuncReg();
      
         $this->list_server = Config::get('lineage2.server.list_server');
+        $this->role_name_user = Config::get('lineage2.server.role_name_user');
         
     }
 
@@ -79,9 +82,9 @@ class RegistrationController extends Controller
            
             $user_account_expansion = $this->proxySql->regUser($modelAccountDb , $login , $password , $server_id , $email);
             $ip_address_access = \Request::getClientIp(true);
-            info($ip_address_access);
-            $this->saveAllowIpAddress($ip_address_access , $user_account_expansion->id);
 
+            $this->saveAllowIpAddress($ip_address_access , $user_account_expansion->id);
+            $this->setRoleUser($this->role_name_user , $user_account_expansion->id , "Роль юзера в жизни сервера" , now());
             
             event(new Registered($user_account_expansion));
     
@@ -97,6 +100,13 @@ class RegistrationController extends Controller
         $model_access = $this->detected_ip->createAccessModelByIdAccount_expansion($ip_address_access , $account_expansion_id , now());
         $model_access->save();
     }
+
+    private function setRoleUser($role_name , $accounts_expansion_id , $description , $date_auth){
+        $model_role = FunctionSupport::createModelAccounts_role($role_name , $accounts_expansion_id , $description , $date_auth);
+        $model_role->save();
+    }
+
+
 
    
    

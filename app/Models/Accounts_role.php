@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-//хранятся ип адреса разрешенные для авторизации
-class Accounts_ip extends Model
+//Хранится роль ючетки
+class Accounts_role extends Model
 {
     use HasFactory;
-    protected $table = 'accounts_ip';
-    public $timestamps = false;
+    protected $table = 'accounts_role';
+    //public $timestamps = false;
 
     public function account_expansion()
     {

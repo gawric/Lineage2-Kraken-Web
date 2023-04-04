@@ -26,8 +26,8 @@ class SendLogAutentificationUser
     public function handle(Login $event)
     {
 
-       // $ip_address = Request::ip();
-        $ip_address = "192.168.0.54";
+        $ip_address = Request::ip();
+        //$ip_address = "192.168.0.54";
         //info(FunctionAuthUser::getAllAccounts_ip());
         if($this->detected->getAllowAccess(FunctionAuthUser::getAllAccounts_ip() , $ip_address)){
           info("DetectedIp->>>getAllowAccess success access detected ip " . $ip_address);

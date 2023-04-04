@@ -21,8 +21,8 @@ class SendVerifiedIpAddress
   
     public function handle(Verified $event)
     {
-      //$ip_address = Request::ip();
-      $ip_address = "192.168.0.54";
+      $ip_address = Request::ip();
+      //$ip_address = "192.168.0.54";
       info(FunctionAuthUser::getAuthUserId());
       info("Verified user ip  " . $ip_address);
       
