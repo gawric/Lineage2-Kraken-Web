@@ -50,17 +50,17 @@ class AuthenticatedSessionController extends Controller
     private  function getRedirect($role_name_auth){
 
         if(strcmp($this->getRoleNameUser(), $role_name_auth) == 0){
-            info("redirect HOME");
+         //   info("redirect HOME");
             return redirect()->intended(RouteServiceProvider::HOME);
         }
         else{
             if(strcmp($this->getRoleNameAdmin(), $role_name_auth) == 0){
-                info("redirect HOME ADMIN");
-                info(RouteServiceProvider::HOME_ADMIN);
+              //  info("redirect HOME ADMIN");
+             //   info(RouteServiceProvider::HOME_ADMIN);
                 return redirect()->intended(RouteServiceProvider::HOME_ADMIN);
             }
             else{
-                info("redirect HOME UNKNOW");
+                //info("redirect HOME UNKNOW");
                 return redirect()->intended(RouteServiceProvider::HOME);
             }
         }

@@ -36,6 +36,14 @@ return [
     'email_ipaddress_activate_text_button' => 'Подтвердить',
     'email_ipaddress_activate_subject' => 'Вход с неизвестного ip адреса',
 
+    'lk_admin_donate'=> 'Донаты',
+    'lk_admin_home'=> 'Главная',
+    'lk_admin_accounts'=> 'Пользователи',
+    'lk_admin_static'=> 'Статистика',
+    'lk_admin_panel_admin'=> 'Панель администратора',
+    'lk_admin_panel_donate_descript'=> 'Список последних 30 донатов',
+
+
     'lk_home' => 'Главная',
     'lk_kits' => 'Cтартовые наборы',
     'lk_buy_gold' => 'Купить золото',

@@ -41,6 +41,16 @@ return [
     'email_ipaddress_activate_unknow_ip' => 'Trying from ip address: ',
 
 
+
+    'lk_admin_donate'=> 'Donations',
+    'lk_admin_home'=> 'Home',
+    'lk_admin_accounts'=> 'Users',
+    'lk_admin_static'=> 'Statistics',
+    'lk_admin_panel_admin'=> 'Admin panel',
+    'lk_admin_panel_donate_descript'=> 'List of last 30 donations',
+
+
+
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',
     'lk_buy_gold' => 'Buy gold',
