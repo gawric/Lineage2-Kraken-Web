@@ -190,6 +190,22 @@ use Lang;
         return $model;
     }
 
+    public static function getAllPaymentsNameAndId($list_payments){
+        $temp = [];
+        if (isset($list_payments)) {
+            $index = 0;
+            foreach($list_payments as $value){
+                $arr = [$index++ , $value];
+                self::addArray($temp , $arr);
+            }
+        }
+        return $temp;
+    }
+
+    public static function getDataVariable($name , $validated ) : string {
+        return $validated["$name"];
+    }
+
 
     
  }

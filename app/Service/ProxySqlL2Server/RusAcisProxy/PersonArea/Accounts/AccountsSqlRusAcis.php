@@ -51,5 +51,11 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts;
             return Accounts_expansion::filter($filters)->get()->first();
         }
 
+        public function getAccountsExpansionByAccountLoginRusAcis($login){
+            return $this->getAccountsExpansionByAccountLogin($login);
+        }
+
+
+
     }
 ?>

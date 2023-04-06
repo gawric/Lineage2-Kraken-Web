@@ -27,6 +27,10 @@ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateCharactersSql;
                 $this->saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk);
             }
 
+            public function getLoginByCharnameRusAcis($charactersDb , $char_name){
+                return $this->getLoginByCharName($charactersDb , $char_name);
+            }
+
    }
 ?>
 

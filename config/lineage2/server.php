@@ -66,5 +66,8 @@ return [
 
     'role_name_admin' => 'role_admin',
 
+    //Какие платежные системы поддерживаем
+    'support_paymonts' => [0 => "Enot.io", 1 => "Test.io"],
+
     'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft" , 2 => "App\Service\ProxySqlL2Server\LuceraProxy\ProxyLucera"],
 ];

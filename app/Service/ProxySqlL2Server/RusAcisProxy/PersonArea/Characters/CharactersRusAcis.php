@@ -21,6 +21,10 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters;
 
 
 
+        
+
+
+
 
     }
 ?>

@@ -44,6 +44,15 @@ return [
     'lk_admin_panel_donate_descript'=> 'Список последних 30 донатов',
 
 
+    'payments_header' => 'Донаты',
+    'payments_login' => 'Ник персонажа',
+    'payments_sum' => 'Монеты',
+    'payments_range' => 'От 0 .... 10 000',
+    'payments_select_operator' => 'Выбрать сервис платежей',
+    'payments_select_server' => 'Выбрать сервер',
+    'payments_confirm_pay' => 'Купить',
+
+
     'lk_home' => 'Главная',
     'lk_kits' => 'Cтартовые наборы',
     'lk_buy_gold' => 'Купить золото',

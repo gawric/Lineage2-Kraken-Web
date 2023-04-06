@@ -42,6 +42,14 @@ return [
 
 
 
+    'payments_header' => 'Donations',
+    'payments_login' => 'Player nickname',
+    'payments_sum' => 'Coins',
+    'payments_range' => 'From 0 .... 10 000',
+    'payments_select_operator' => 'Payment service',
+    'payments_select_server' => 'Select payment service',
+    'payments_confirm_pay' => 'Buy',
+
     'lk_admin_donate'=> 'Donations',
     'lk_admin_home'=> 'Home',
     'lk_admin_accounts'=> 'Users',

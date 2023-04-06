@@ -19,7 +19,7 @@
 
   <div style="margin-bottom: 1%;margin-right: 95%;"id="loading_reg"></div>
   <div class="container">
-      <div style="display:block; float: left;" class=body_ts>
+    <div style="display:block; float: left;" class=body_ts>
      
     <div style="display:inline-block;">
         <div  class="select">
@@ -91,7 +91,7 @@
     var sleTex = education.options[education.selectedIndex].innerHTML;
     var selVal = education.value;
     select_server_id= selVal;
-    console.log(education.value);
+    //console.log(education.value);
 }
 
 function GetSelectedTop(education) {

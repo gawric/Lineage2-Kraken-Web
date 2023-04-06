@@ -13,6 +13,8 @@ namespace App\Service\ProxySqlL2Server\Template\Chars;
  use App\Service\Utils\FunctionSupport;
   
     class CharactersTemplateChars extends AcisTemplateCharactersSql {
+
+
         public function getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id){
       
             $list_accounts_name = FunctionAuthUser::getAccountsUserByServerId($server_id)->get(['account_name']);

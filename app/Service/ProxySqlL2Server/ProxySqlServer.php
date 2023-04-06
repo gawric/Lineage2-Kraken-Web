@@ -69,6 +69,10 @@ use App\Models\Temp\InfoDashboard;
          return  $this->proxy_server->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
 
+        public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
+         return  $this->proxy_server->getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name);
+        }
+
         public function clearTableClanStatic(){
             $proxy_server->clearTableClanStatic();
         }

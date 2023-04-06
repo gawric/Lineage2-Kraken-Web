@@ -75,8 +75,9 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwS
            return  $this->characters->getAllCharsPwSoft($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
 
-
-      
+        public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name  ){
+            
+        }
 
  
    }

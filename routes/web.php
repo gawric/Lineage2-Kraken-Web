@@ -13,7 +13,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardCharsController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminDashboardController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardCreateL2UsersController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardChangel2PassUsersController;
-
+use App\Http\Controllers\Payments\EnotIoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,12 @@ Route::get('/registration', [RegistrationController::class, 'index']);
 Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
+Route::get('/payments', [EnotIoController::class, 'index']);
+
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
+    Route::post('/addPayments', [EnotIoController::class, 'paymentUser']);
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified' , 'roles_user'])->name('dashboard');

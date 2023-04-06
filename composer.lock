@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e2cb08f5480d5bfa502ddc34ff49def",
+    "content-hash": "c80af6f836b2574e856f4bb6832d1536",
     "packages": [
         {
             "name": "brick/math",
@@ -5457,6 +5457,59 @@
                 "source": "https://github.com/webmozarts/assert/tree/1.11.0"
             },
             "time": "2022-06-03T18:03:27+00:00"
+        },
+        {
+            "name": "weishaypt/laravel-enot-io",
+            "version": "v4.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Weishaypt/laravel-enot-io.git",
+                "reference": "0b51090b9878b55c5093f25789da19ce3fd6d1e2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Weishaypt/laravel-enot-io/zipball/0b51090b9878b55c5093f25789da19ce3fd6d1e2",
+                "reference": "0b51090b9878b55c5093f25789da19ce3fd6d1e2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "7.*",
+                "laravel/framework": "9.*",
+                "php": ">=8.1"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Weishaypt\\EnotIo\\EnotIoServiceProvider"
+                    ],
+                    "aliases": {
+                        "EnotIo": "Weishaypt\\EnotIo\\Facades\\EnotIo"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Weishaypt\\EnotIo\\": "src",
+                    "Weishaypt\\EnotIo\\Facades\\": "src/Facades"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "weishaypt",
+                    "email": "ya@sanek.dev"
+                }
+            ],
+            "description": "enot.io payments for Laravel",
+            "support": {
+                "issues": "https://github.com/Weishaypt/laravel-enot-io/issues",
+                "source": "https://github.com/Weishaypt/laravel-enot-io/tree/v4.0.0"
+            },
+            "time": "2022-11-25T20:30:24+00:00"
         }
     ],
     "packages-dev": [

@@ -77,6 +77,10 @@ use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLuc
         }
 
 
+        public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
+            
+        }
+
       
 
  

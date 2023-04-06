@@ -70,6 +70,25 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRu
         }
 
 
+        public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
+            $characterModel =  $this->charactersSql->getLoginByCharnameRusAcis($modelCharactersDb , $char_name);
+           // info("RusAcis >>>>>getAccountsExpansionByCharName characterModel ". $characterModel);
+            if(isset($characterModel)){
+               
+                $login = $characterModel->account_name;
+               // info("RusAcis >>>>>getAccountsExpansionByCharName isset access " . $login);
+                if($this->reg->isUserExistServerRusAcis($modelAccountDb , $login)){
+                   // info("RusAcis >>>>>getAccountsExpansionByCharName isUserExistServerRusAcis access ");
+                   return $this->accountssql->getAccountsExpansionByAccountLoginRusAcis($login);
+                   // info("RusAcis >>>>>getAccountsExpansionByCharName ". $accounts_expansion);
+                  //  return $accounts_expansion;
+                }
+    
+            }
+           // info("RusAcis >>>>>getAccountsExpansionByCharName not found ");
+            return [];
+        }
+
       
 
  

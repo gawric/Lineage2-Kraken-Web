@@ -121,7 +121,7 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return false;
         }
 
-        public function getHashPassword($modelAccountDb , $login ){
+        public function getHashPassword($modelAccountDb , $login){
             $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
             $first = $modelAccountDb::filter($filtersPk)->get(['password'])->first();
             return $first['password'];
@@ -134,17 +134,10 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             $firstModel->save();
         }
 
-        //public function createModelInfoDashBoard($id , $username , $dateauth , $count_characters , $name_server , $server_id){
-       //   $infoDashboard = new InfoDashboard();
-          //  $infoDashboard->id =$id ;
-          //  $infoDashboard-> username = $username ;
-           // $infoDashboard-> dateauth = $dateauth;
-           // $infoDashboard-> count_characters = $count_characters;
-           // $infoDashboard-> name_server = $name_server;
-           // $infoDashboard-> server_id = $server_id;
-
-          //  return  $infoDashboard;
-       // }
+        public function getAccountsExpansionByAccountLogin($login){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
+            return Accounts_expansion::filter($filtersPk)->get(['id' , 'login'])->first();
+        }
 
 
         

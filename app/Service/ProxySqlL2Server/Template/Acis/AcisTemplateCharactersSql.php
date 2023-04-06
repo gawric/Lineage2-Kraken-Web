@@ -32,7 +32,12 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
                 $resultmodel =  $modelAccountDb::filter($filtersPk)->get()->first();
             }
 
+            public function getLoginByCharName($charactersDb , $char_name){
+                $filtersPk = new GeneralFilters(['simplefilter'] , [['char_name', '=', $char_name]]);
+                return $charactersDb::filter($filtersPk)->get(['account_name','char_name'])->first();
+            }
     
+
             public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
 
               //  info('CharactersSql->saveAllCharacters');
