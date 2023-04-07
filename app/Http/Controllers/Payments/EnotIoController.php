@@ -21,7 +21,7 @@ use App\Http\Requests\EnotIoStoreRequest;
 use App\Service\Payments\IPaymentsService;
 use App\Service\ProxySqlL2Server\ProxySqlServer;
 use App\Service\Registration\Support\SupportFuncReg;
-
+use App\Models\Accounts_expansion;
 
 class EnotIoController extends Controller
 {
@@ -48,16 +48,21 @@ class EnotIoController extends Controller
         $char_name = FunctionSupport::getDataVariable("char_name" , $validated);
         $select_service_payment = FunctionSupport::getDataVariable("select_service_payment" , $validated);
         $sum = FunctionSupport::getDataVariable("sum" , $validated );
-        $result = $this->getAccountsExpansionId($server_id , $this->list_servers , $char_name);
-        info("paymentUser>>>> getAccountsExpansionId");
-        info($result);
-       // $model_order = FunctionPaymonts::createOrders($sum , "init" , $char_name , $accounts_expansion_id , now() , now());
-       // $model_order->save();
+        $accounts_expansion = $this->getAccountsExpansionId($server_id , $this->list_servers , $char_name);
+        if(isset($accounts_expansion)){
+        
+            info("paymentUser>>>> getAccountsExpansionId");
+            info($accounts_expansion);
+            $model_order = FunctionPaymonts::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now());
+            $model_order->save();
+        
+        
+            $url = $this->paymentsService->getPayUrlRequestEnot($sum , $model_order->id);
+            info("EnotIoController>>>>paymentUser");
+            info($url);
+          
+        }
 
-
-       // $url = $this->paymentsService->getPayUrlRequestEnot($sum , $model_order->id);
-       // info("EnotIoController>>>>paymentUser");
-       // info($url);
 
         return response()->json(['success'=>Lang::get('validation.payments_success')]);
     }

@@ -19,6 +19,8 @@ use Lang;
         $order->accounts_expansion_id = $accounts_expansion_id;
         $order->created_at = $created_at;
         $order->updated_at = $updated_at;
+
+        return $order;
     }
 
     public static function getAllPaymentsNameAndId($list_payments){
