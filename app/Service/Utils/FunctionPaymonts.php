@@ -30,7 +30,12 @@ use Lang;
                 self::addArray($temp , $arr);
             }
         }
+    
         return $temp;
+    }
+
+    private static function addArray(&$temp , $value){
+        array_push($temp , $value);
     }
 
  }

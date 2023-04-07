@@ -89,8 +89,9 @@ class EnotIoController extends Controller
        // $ORDER_AMOUNT  = 10;                 // Сумма заказа
         $PAYMENT_ID    = time();             // ID заказа (мы используем time(), чтобы был всегда уникальный ID)
 
+      
 
-        return view('page_payments' , ['MERCHANT_ID' => $MERCHANT_ID , 'SECRET_WORD' => $SECRET_WORD , 'PAYMENT_ID' => $PAYMENT_ID , 'arrayServersOnlyNameAndId' => FunctionSupport::getServerOnlyNameAndId($this->list_server) , 'arrayPaymentsOnlyNameAndId' => FunctionPaymonts::getAllPaymentsNameAndId($this->list_payments)   ]);
+        return view('page_payments' , ['MERCHANT_ID' => $MERCHANT_ID , 'SECRET_WORD' => $SECRET_WORD , 'PAYMENT_ID' => $PAYMENT_ID , 'arrayServersOnlyNameAndId' => FunctionSupport::getServerOnlyNameAndId($this->list_servers) , 'arrayPaymentsOnlyNameAndId' => FunctionPaymonts::getAllPaymentsNameAndId($this->list_payments)]);
     }
 
 

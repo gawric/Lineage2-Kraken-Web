@@ -10,6 +10,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRusAcis;
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRusAcis;
+use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
 
    class ProxyServerAcis implements IProxy
    {
@@ -18,6 +19,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRu
         private TopClanSql $topclansql;
         private AccountsSqlRusAcis $accountssql;
         private CharactersRusAcis $characters;
+        private CommonSql $commonSql;
 
         public function __construct() {
              $this->reg = new RegSql();
@@ -25,6 +27,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRu
              $this->topclansql = new TopClanSql();
              $this->accountssql = new AccountsSqlRusAcis();
              $this->characters = new CharactersRusAcis();
+             $this->commonSql = new CommonSql();
         }
 
         
@@ -71,22 +74,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRu
 
 
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
-            $characterModel =  $this->charactersSql->getLoginByCharnameRusAcis($modelCharactersDb , $char_name);
-           // info("RusAcis >>>>>getAccountsExpansionByCharName characterModel ". $characterModel);
-            if(isset($characterModel)){
-               
-                $login = $characterModel->account_name;
-               // info("RusAcis >>>>>getAccountsExpansionByCharName isset access " . $login);
-                if($this->reg->isUserExistServerRusAcis($modelAccountDb , $login)){
-                   // info("RusAcis >>>>>getAccountsExpansionByCharName isUserExistServerRusAcis access ");
-                   return $this->accountssql->getAccountsExpansionByAccountLoginRusAcis($login);
-                   // info("RusAcis >>>>>getAccountsExpansionByCharName ". $accounts_expansion);
-                  //  return $accounts_expansion;
-                }
-    
-            }
-           // info("RusAcis >>>>>getAccountsExpansionByCharName not found ");
-            return [];
+            return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
 
       

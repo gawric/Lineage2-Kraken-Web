@@ -10,6 +10,8 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\Sheldure\TopClanSqlPwSoft;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSoft;
 use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwSoft;
+use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
+
     //этот класс как и все прокси являются синглтонами
    class ProxyPwSoft implements IProxy
    {
@@ -18,6 +20,7 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwS
         private TopClanSqlPwSoft $topclansql;
         private AccountsSqlPwSoft $accountssql;
         private CharactersPwSoft $characters;
+        private CommonSql $commonSql;
 
         public function __construct() {
             $this->reg = new RegSqlPwSoft();
@@ -25,6 +28,7 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwS
             $this->topclansql = new TopClanSqlPwSoft();
             $this->accountssql = new AccountsSqlPwSoft();
             $this->characters = new CharactersPwSoft();
+            $this->commonSql = new CommonSql();
         }
 
         
@@ -75,8 +79,8 @@ use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwS
            return  $this->characters->getAllCharsPwSoft($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
 
-        public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name  ){
-            
+        public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
+            return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
 
  

@@ -10,6 +10,8 @@ use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\CharactersSqlLucera;
 use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\TopClanSqlLucera;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLucera;
+use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
+
 
    class ProxyLucera implements IProxy
    {
@@ -18,6 +20,7 @@ use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLuc
         private TopClanSqlLucera $topclansql;
         private AccountsSqlLucera $accountssql;
         private CharactersLucera $characters;
+        private CommonSql $commonSql;
 
 
         public function __construct() {
@@ -26,6 +29,7 @@ use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLuc
             $this->topclansql = new TopClanSqlLucera();
             $this->accountssql = new AccountsSqlLucera();
             $this->characters = new CharactersLucera();
+            $this->commonSql = new CommonSql();
         }
 
         
@@ -78,7 +82,7 @@ use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLuc
 
 
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
-            
+            return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
 
       
