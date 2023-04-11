@@ -21,7 +21,7 @@ services:
     networks:
       my-net:
         ipv4_address: 172.20.0.4
-laravel:
+  laravel:
     build: ./files_docker/laravel9
     stdin_open: true
     ports:
