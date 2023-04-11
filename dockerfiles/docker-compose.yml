@@ -1,0 +1,43 @@
+version: '2'
+
+networks:
+  my-net:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+services:
+  mysql8:
+    build: ./files_docker/mysql8
+    ports:
+       - '3306:3306'
+    environment:
+       - MYSQL_ROOT_PASSWORD=jtgEuZ8udR7F
+       - MYSQL_DATABASE=laravel
+    volumes:
+       - 'mysql_data:/bitnami/mysql/data'
+    networks:
+      my-net:
+        ipv4_address: 172.20.0.4
+  laravel:
+    build: ./files_docker/laravel9
+    stdin_open: true
+    ports:
+      - '8000:8000'
+    networks:
+      my-net:
+        ipv4_address: 172.20.0.5
+      #command: "composer install"
+      #command:  "/bin/bash"
+      #command: "php artisan key:generate"
+      #environment:
+      #- DB_HOST=mariadb
+        # - DB_PORT=3306
+        #- DB_USERNAME=bn_myapp
+        # - DB_DATABASE=bitnami_myapp
+        #volumes:
+      #- './Lineage2-Kraken-Web:/app'
+        # depends_on:
+        #- mysql8
+volumes:
+  mysql_data:
+    driver: local
