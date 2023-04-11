@@ -1,4 +1,15 @@
-FROM docker.io/bitnami/mysql:8.0
+#FROM docker.io/bitnami/mysql:8.0
+FROM bitnami/mysql:8.0
 LABEL maintainer="admin@hh-soft.ru"
-#RUN  apt-get install -y iputils-ping
-#RUN ["apt-get" , "install" , "-y" , "iputils-ping"]
+
+### Change user to perform privileged actions
+USER 0
+### Install 'vim'
+RUN install_packages vim
+#COPY /files/start.sh /docker-entrypoint-initdb.d/
+COPY /files/init.sh /docker-entrypoint-startdb.d/
+### Revert to the original non-root user
+USER 1001
+#COPY /files/init.sh /docker-entrypoint-initdb.d/
+#COPY /files/init.sh /docker-entrypoint-startdb.d/
+

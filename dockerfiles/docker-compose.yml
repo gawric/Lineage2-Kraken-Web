@@ -11,14 +11,17 @@ services:
     ports:
        - '3306:3306'
     environment:
-       - MYSQL_ROOT_PASSWORD=jtgEuZ8udR7F
-       - MYSQL_DATABASE=laravel
+      #- MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=jtgEuZ8udR7F
+      # - MYSQL_DATABASE=laravel
+      - MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password
+         # - ALLOW_EMPTY_PASSWORD=yes
     volumes:
        - 'mysql_data:/bitnami/mysql/data'
     networks:
       my-net:
         ipv4_address: 172.20.0.4
-  laravel:
+laravel:
     build: ./files_docker/laravel9
     stdin_open: true
     ports:
@@ -28,16 +31,17 @@ services:
         ipv4_address: 172.20.0.5
       #command: "composer install"
       #command:  "/bin/bash"
+      #command: "php artisan migrate"
       #command: "php artisan key:generate"
-      #environment:
-      #- DB_HOST=mariadb
+    environment:
+      - DB_HOST=mysql8
         # - DB_PORT=3306
         #- DB_USERNAME=bn_myapp
         # - DB_DATABASE=bitnami_myapp
         #volumes:
       #- './Lineage2-Kraken-Web:/app'
-        # depends_on:
-        #- mysql8
+    depends_on:
+      - mysql8
 volumes:
   mysql_data:
     driver: local
