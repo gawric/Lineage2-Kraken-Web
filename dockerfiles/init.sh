@@ -14,4 +14,3 @@ mv ./Lineage2-Kraken-Web/dockerfiles/docker-compose.yml ./docker-compose.yml
 rm -rf ./files_docker/laravel9/Lineage2-Kraken-Web
 mv ./Lineage2-Kraken-Web ./files_docker/laravel9
 mv ./files_docker/laravel9//Lineage2-Kraken-Web/.env.example ./files_docker/laravel9//Lineage2-Kraken-Web/.env
-

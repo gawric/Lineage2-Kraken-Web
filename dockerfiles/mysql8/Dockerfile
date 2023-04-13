@@ -8,8 +8,11 @@ USER 0
 RUN install_packages vim
 #COPY /files/start.sh /docker-entrypoint-initdb.d/
 COPY /files/init.sh /docker-entrypoint-startdb.d/
+RUN mkdir /temp_sql
+#COPY /files/sql  /temp
 ### Revert to the original non-root user
 USER 1001
 #COPY /files/init.sh /docker-entrypoint-initdb.d/
 #COPY /files/init.sh /docker-entrypoint-startdb.d/
-
+#RUN mkdir /temp
+COPY /files/sql  /temp_sql

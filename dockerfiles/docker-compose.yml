@@ -15,11 +15,23 @@ services:
       - MYSQL_ROOT_PASSWORD=jtgEuZ8udR7F
       #Эти параметры передаются в /docker_files/mysql8/files/init.sh
       - MYSQL_ACCESS_IP=172.20.0.5
+
       - MYSQL_USER_LOGIN=gawric
       - MYSQL_USER_PASSWORD=jtgEuZ8udR7F
+
       - MYSQL_DATABASE=laravel
+
+      #Скрипт /docker_files/mysql8/files/init.sh создаст 3 базы и вызовет импорт всех схем в этих папках
+      - MYSQL_DATABASE_OTHER1=rusacis
+      - MYSQL_DATABASE_SHEMA1=/temp_sql/acis/*.sql
+
+      - MYSQL_DATABASE_OTHER2=lucera
+      - MYSQL_DATABASE_SHEMA2=/temp_sql/lucera/*.sql
+
+      - MYSQL_DATABASE_OTHER3=pwsoft
+      - MYSQL_DATABASE_SHEMA3=/temp_sql/pwsoft/*.sql
+
       - MYSQL_AUTHENTICATION_PLUGIN=mysql_native_password
-         # - ALLOW_EMPTY_PASSWORD=yes
     volumes:
        - 'mysql_data:/bitnami/mysql/data'
     networks:
