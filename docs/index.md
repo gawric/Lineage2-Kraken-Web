@@ -22,5 +22,13 @@ dockerfiles в ней лежат все файлы связанные с раз�
 `dockerfiles/mysql8/files/init.sh` - bash скрипт в нем создается учетка для laravel docer и основные базы данных laravel/rusacis/lucera/pwsoft. Запускаются схемы для базе данных lucera/pwsoft/rusacis файл миграции laravel запускается в контейнере laravel.
 
 ### Запуск Docker-контейнеров Kraken-Web
-1. Подключаемся по ssh к своему северу у меня это `Ubuntu 22.04`  
-2. Создаем папку docker ![ssh!](https://i.ibb.co/7Ngy24D/1.png)  
+1. Снимаем в аренду сервер у меня к примеру `Ubuntu 22.04`
+2. Подключаемся к ssh сервера  
+3. Создаем папку docker ![ssh!](https://i.ibb.co/7Ngy24D/1.png)  
+4. Устанавливаем docker и docker compose [docker](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-install-Docker-and-docker-compose-on-Ubuntu)
+5. Устанавливаем git client
+6. Находясь в папке /docker запускаем `git clone https://github.com/gawric/Lineage2-Kraken-Web.git`
+7. Выполняем `mv ./Lineage2-Kraken-Web/dockerfiles/init.sh ./` Вытаскиваем файл Lineage2-Kraken-Web/dockerfiles/init.sh - наш файл для создания папок
+8. Скачанный Lineage2-Kraken-Web можно удалить `rm -rf Lineage2-Kraken-Web`
+9. Запускаем скачанный файл и создаем файлы  и папки `bash init.sh`
+[git_clone!](https://i.ibb.co/XtJB9XJ/2.png)  
