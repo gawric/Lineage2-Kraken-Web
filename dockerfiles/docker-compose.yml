@@ -50,11 +50,32 @@ services:
       #command: "php artisan migrate"
       #command: "php artisan key:generate"
     environment:
-        - DB_HOST=172.20.0.4
+      - DB_HOST=172.20.0.4
         # - DB_PORT=3306
-        - DB_USERNAME=gawric
-        - DB_DATABASE=laravel
-        - DB_PASSWORD=jtgEuZ8udR7F
+      - DB_USERNAME=gawric
+      - DB_DATABASE=laravel
+      - DB_PASSWORD=jtgEuZ8udR7F
+        
+      - DB_CONNECTION_SECOND=mysql
+      - DB_HOST_SECOND=172.20.0.4
+      - DB_PORT_SECOND=3306
+      - DB_DATABASE_SECOND=rusacis
+      - DB_USERNAME_SECOND=gawric
+      - DB_PASSWORD_SECOND=jtgEuZ8udR7F
+      
+      - DB_CONNECTION_THREE=mysql
+      - DB_HOST_THREE=172.20.0.4
+      - DB_PORT_THREE=3306
+      - DB_DATABASE_THREE=pwsoft
+      - DB_USERNAME_THREE=gawric
+      - DB_PASSWORD_THREE=jtgEuZ8udR7F
+
+      - DB_CONNECTION_FOUR=mysql
+      - DB_HOST_FOUR=172.20.0.4
+      - DB_PORT_FOUR=3306
+      - DB_DATABASE_FOUR=lucera
+      - DB_USERNAME_FOUR=gawric
+      - DB_PASSWORD_FOUR=jtgEuZ8udR7F
     depends_on:
         - mysql8
 volumes:
