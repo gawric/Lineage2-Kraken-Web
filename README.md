@@ -6,6 +6,9 @@
 **Личный кабинет** используем tailwind
 ![Kraken Web!](https://i.ibb.co/6RHF7bS/finish.png)
 
+##### Тестовый вариант можно посмотреть здесь [Демо сайт](http://45.12.236.179:8000/)
+##### Инструкция как развернуть у себя [Дока](https://github.com/gawric/Lineage2-Kraken-Web/blob/master/docs/index.md)
+
 
 ### В процессе разработки: ###
 Планируется: 
