@@ -50,14 +50,13 @@ services:
       #command: "php artisan migrate"
       #command: "php artisan key:generate"
     environment:
-      - DB_HOST=mysql8
+        - DB_HOST=172.20.0.4
         # - DB_PORT=3306
-        #- DB_USERNAME=bn_myapp
-        # - DB_DATABASE=bitnami_myapp
-        #volumes:
-      #- './Lineage2-Kraken-Web:/app'
+        - DB_USERNAME=gawric
+        - DB_DATABASE=laravel
+        - DB_PASSWORD=jtgEuZ8udR7F
     depends_on:
-      - mysql8
+        - mysql8
 volumes:
   mysql_data:
     driver: local
