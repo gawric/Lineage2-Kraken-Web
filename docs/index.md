@@ -31,4 +31,4 @@ dockerfiles в ней лежат все файлы связанные с раз�
 7. Выполняем `mv ./Lineage2-Kraken-Web/dockerfiles/init.sh ./` Вытаскиваем файл Lineage2-Kraken-Web/dockerfiles/init.sh - наш файл для создания папок
 8. Скачанный Lineage2-Kraken-Web можно удалить `rm -rf Lineage2-Kraken-Web`
 9. Запускаем скачанный файл и создаем файлы  и папки `bash init.sh`
-[git_clone!](https://i.ibb.co/XtJB9XJ/2.png)  
+![git_clone!](https://i.ibb.co/XtJB9XJ/2.png)  
