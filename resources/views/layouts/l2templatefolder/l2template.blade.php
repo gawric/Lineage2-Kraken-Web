@@ -29,11 +29,11 @@
 			<span></span>
 			<span></span>
 		</div>
-		<a href="/" class="topPanel-logo"><img src="images/logo-white.png" alt="Logo"></a>
+		<a href="{{ route('home') }}" class="topPanel-logo"><img src="images/logo-white.png" alt="Logo"></a>
 		<nav class="nav flex-c">
 			<div class="topPanel-menu flex-c">
 				<ul class="menu flex">
-					<li><a href="/">{{ __('messages.home') }}</a></li>
+					<li><a href="{{ route('home') }}">{{ __('messages.home') }}</a></li>
 					<li><a href="/statistic">{{ __('messages.static') }}</a></li>
 					<li><a href="/registration">{{ __('messages.reg') }}</a></li>
 					<li>
@@ -51,9 +51,9 @@
 			<div class="topPanel-button flex-c">
 
 			@if(session()->get('locale') == 'ru')
-				<img id="count" src="{{asset('/images/rus.svg') }}" width="50" height="60">
+				<img id="count" src="{{ asset('/images/rus.svg') }}" width="50" height="60">
 			@else
-				<img id="count" src="{{asset('/images/eng.svg') }}" width="50" height="60">
+				<img id="count" src="{{ asset('/images/eng.svg') }}" width="50" height="60">
 			@endif
 
 		  	<select class="loginButton bright changeLang">
@@ -61,7 +61,7 @@
 			  	<option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
 		  	</select>
 				<a href="/login" class="loginButton bright">{{ __('messages.enter_lk') }}</a>
-				<a href="/download" class="downloadButton bright">{{ __('messages.download_game') }}</a>
+				<a href="{{ route('download') }}" class="downloadButton bright">{{ __('messages.download_game') }}</a>
 			</div>
 		</nav>
 		<div class="topSocBlock socBlock">
@@ -71,7 +71,7 @@
 	</div><!--topPanel-->
 	<div class="wrapper">
 		<header class="header">
-			<div class="logo"><a href="/"><img src="images/logo-dark.png" alt="Logo"></a></div>
+			<div class="logo"><a href="{{ route('home') }}"><img src="images/logo-dark.png" alt="Logo"></a></div>
 			<div class="serverBlock flex">
 				<div id="loadStatus" class="server">
 					<div id="loading"></div>
@@ -96,7 +96,7 @@
 		<div class="footerTopBlock">
 			<div class="container">
 				<div class="footerLogo">
-					<a href="/"><img src="images/logo-white.png" alt="Logo"></a>
+					<a href="{{ route('home') }}"><img src="images/logo-white.png" alt="Logo"></a>
 				</div>
 				<ul class="flex-c-c">
 					<li><a href="">Terms of service</a></li>
@@ -131,9 +131,9 @@
 	</div>
 	<div id="overlay"></div>
 
-	<script src="{{asset('/js/jquery-2.1.4.min.js') }}"></script>
-	<script src="{{asset('/js/swiper.min.js') }}"></script>
-	<script src="{{asset('/js/main.js') }}"></script>
+	<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+	<script src="{{ asset('js/swiper.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
 
 	<script type="text/javascript">
     		var url = "{{ route('changeLang') }}";
