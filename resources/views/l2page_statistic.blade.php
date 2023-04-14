@@ -2,12 +2,12 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
-@section("page-title" , "Регистрация")
+@section("page-title" , "Kraken-Web Статистика по серверам Lineage 2")
 @section('inside_info')
 <script src="{{asset('/js/statistics.js') }}"></script>
 <script src="{{asset('/js/alertsMessages.js') }}"></script>
 
-	<h1 class="page-title"><p style="color:black;">{{ __('messages.static') }}</p></h1>
+	<h1 style="margin: auto;padding-left:0px;" class="page-title"><p style="color:black;">{{ __('messages.static') }}</p></h1>
 	<div style="margin: auto;width: 100%;"class="contentHomeStatic">
 
 	<div class="message"></div>

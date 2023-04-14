@@ -14,7 +14,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminDashboardControll
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardCreateL2UsersController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardChangel2PassUsersController;
 use App\Http\Controllers\Payments\EnotIoController;
-
+use App\Http\Controllers\Lineage2\DownloadController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +37,7 @@ Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 Route::get('/payments', [EnotIoController::class, 'index']);
-
+Route::get('/download', [DownloadController::class, 'index']);
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);

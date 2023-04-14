@@ -1,7 +1,7 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@section("title" , "Страница описания!")
+@section("title" , "Kraken-Web Регистрация пользователя Lineage 2")
 @section("page-title" , "Регистрация")
 @section('inside_info')
 <script src="{{asset('/js/registration.js') }}"></script>
@@ -20,7 +20,7 @@
 
 
 
-	<h1 class="page-title"><p style="color:black;">{{ __('messages.reg') }}</p></h1>
+	<h1 style="margin: auto;padding-left:0px;" class="page-title"><p style="color:black;">{{ __('messages.reg') }}</p></h1>
 	<div style="margin: auto;"class="contentHomeReg">
 
 	<div class="message"></div>

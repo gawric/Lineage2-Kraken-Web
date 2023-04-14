@@ -36,13 +36,13 @@
 					<li><a href="/statistic">{{ __('messages.static') }}</a></li>
 					<li><a href="/registration">{{ __('messages.reg') }}</a></li>
 					<li>
-						<a data-class="m_4" class="menu-a">Community</a>
+					<!--	<a data-class="m_4" class="menu-a">Community</a>
 						<ul class="dropDown-menu m_4">
 							<li><a href="">Statistic</a></li>
 							<li><a href="">Guides</a></li>
 							<li><a href="">Support</a></li>
 							<li><a href="">Characters & Races</a></li>
-						</ul>
+						</ul>-->
 					</li>
 					<div class="container">
 				</ul>
@@ -59,9 +59,8 @@
 			  	<option value="ru" {{ session()->get('locale') == 'ru' ? 'selected' : '' }}>Russia</option>
 			  	<option value="en" {{ session()->get('locale') == 'en' ? 'selected' : '' }}>English</option>
 		  	</select>
-	
-				<a href="#modal-login" class="loginButton bright open_modal">Log In</a>
-				<a href="" class="downloadButton bright">Download</a>
+				<a href="/login" class="loginButton bright">{{ __('messages.enter_lk') }}</a>
+				<a href="/download" class="downloadButton bright">{{ __('messages.download_game') }}</a>
 			</div>
 		</nav>
 		<div class="topSocBlock socBlock">
