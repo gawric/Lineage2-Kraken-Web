@@ -1,7 +1,5 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
-
 @section("page-title" , "Kraken-Web Статистика по серверам Lineage 2")
 @section('inside_info')
 <script src="{{asset('/js/statistics.js') }}"></script>
@@ -11,16 +9,16 @@
 	<div style="margin: auto;width: 100%;"class="contentHomeStatic">
 
 	<div class="message"></div>
-	
+
 	<div id="show_alert" class="alert info">
-  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
   		<strong id="text_alert">{{ __('messages.info_first_page_static') }}</strong>
 	</div>
 
   <div style="margin-bottom: 1%;margin-right: 95%;"id="loading_reg"></div>
   <div class="container">
     <div style="display:block; float: left;" class=body_ts>
-     
+
     <div style="display:inline-block;">
         <div  class="select">
             <select name="sel_server" id="select_server" onchange="GetSelectedServer(this)" >
@@ -44,10 +42,10 @@
             </select>
         </div>
     </div>
-    
+
 </div>
 
-    
+
   <table id="customers" class="table_top">
   <tr>
     <th>ID</th>
@@ -62,7 +60,7 @@
   <tr align="center">
   <td colspan="9">{{ __('messages.no_data') }}</td>
   </tr>
-  
+
  </table>
 
  <table id="customers_clan" class="table_top" style="display:none;">
@@ -78,7 +76,7 @@
   <tr align="center">
   <td colspan="9">{{ __('messages.no_data') }}</td>
   </tr>
-  
+
  </table>
 
 </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
 	<meta charset="utf-8" />
 	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
@@ -7,10 +7,11 @@
 	<meta name="keywords" content="" />
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<link href="{{asset('/css/swiper.min.css') }}" rel="stylesheet">
-	<link href="{{asset('/css/style.css') }}" rel="stylesheet">
-	<link href="{{asset('/css/mobile_style.css') }}" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<link href="{{ asset('css/swiper.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/mobile_style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +22,7 @@
 	<div class="toTop buttonTop">
 		TOP
 	</div>
-	
+
 	<div class="topPanel flex-c">
 		<div class="topButton menuButton" data-class="nav">
 			<span></span>
@@ -49,8 +50,8 @@
 			</div>
 			<div class="topPanel-button flex-c">
 
-			@if(session()->get('locale') == 'ru')         
-				<img id="count" src="{{asset('/images/rus.svg') }}" width="50" height="60">    
+			@if(session()->get('locale') == 'ru')
+				<img id="count" src="{{asset('/images/rus.svg') }}" width="50" height="60">
 			@else
 				<img id="count" src="{{asset('/images/eng.svg') }}" width="50" height="60">
 			@endif
@@ -75,7 +76,7 @@
 				<div id="loadStatus" class="server">
 					<div id="loading"></div>
 					<div><h10 id="loadingText">Загрузка статуса!</h10></div>
-					
+
 				</div>
 			</div>
 			<div class="stars">
@@ -105,12 +106,12 @@
 		</div><!--footerTopBlock-->
 		<div class="footerBottomBlock">
 			<p><span>© 2019</span> Giran: Lineage 2</p>
-			<p>This server is a test option of the game lineage 2 and is intended only for the acquaintance of players.</p> 
-			<p>All rights owned by NCSOFT</p>  
+			<p>This server is a test option of the game lineage 2 and is intended only for the acquaintance of players.</p>
+			<p>All rights owned by NCSOFT</p>
 		</div><!--footerBottomBlock-->
 	</footer><!-- .footer -->
 
-	<div id="modal-login" class="modal_div t-center"> 
+	<div id="modal-login" class="modal_div t-center">
 		<div class="modal_close">
 			<span></span>
 			<span></span>
@@ -168,7 +169,7 @@
         			textError(request.responseText , statusError);
     			}
     		});
- 
+
       		$.get('status/server', function (data) {
 				//console.log(Object.keys(data).length);
 				var index2 = 0;
@@ -181,9 +182,9 @@
 				else{
 					console.log('нет данных status/server')
 				}
-			
+
 				hideLoad(index2);
-				
+
       		});
   });
 
