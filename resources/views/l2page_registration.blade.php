@@ -1,11 +1,10 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
-<meta name="csrf-token" content="{{ csrf_token() }}">
 @section("title" , "Kraken-Web Регистрация пользователя Lineage 2")
 @section("page-title" , "Регистрация")
 @section('inside_info')
-<script src="{{asset('/js/registration.js') }}"></script>
-<script src="{{asset('/js/alertsMessages.js') }}"></script>
+<script src="{{ asset('js/registration.js') }}"></script>
+<script src="{{ asset('js/alertsMessages.js') }}"></script>
 <script>
 	function getInfo(){
 		var login = $('#login').val();
@@ -24,9 +23,9 @@
 	<div style="margin: auto;"class="contentHomeReg">
 
 	<div class="message"></div>
-	
+
 	<div id="show_alert">
-  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  		<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
   		<strong id="text_alert"></strong>
 	</div>
 	<div style="float: left;" id="loading_reg"></div>
@@ -49,7 +48,7 @@
 					<button onclick="getInfo()">{{ __('messages.reg') }}</button>
 				<div>
 		</div>
-		
+
 	</div>
 
 @endsection
