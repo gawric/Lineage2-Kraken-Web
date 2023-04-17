@@ -11,13 +11,15 @@ RUN ["npm" ,"install"]
 RUN ["npm" , "run" , "build"]
 RUN ["apt-get" , "install" ,"-y", "cron"]
 # Add docker custom crontab
-ADD /files/my_laravel_docker_crontab /etc/cron.d/my_laravel_docker_crontab
-ADD /files/preload.sh /app
-ADD /files/loader_cron.sh /app
+COPY /files/my_laravel_docker_crontab /etc/cron.d/my_laravel_docker_crontab
+COPY /files/preload.sh /app
+COPY /files/loader_cron.sh /app
 # Update the crontab file permission
 RUN chmod 0644 /etc/cron.d/my_laravel_docker_crontab
-
+RUN chmod +x  /app/preload.sh
+RUN chmod +x  /app/loader_cron.sh
 # Specify crontab file for running
-RUN crontab /etc/cron.d/my_laravel_docker_crontab
+RUN crontab -u bitnami  /etc/cron.d/my_laravel_docker_crontab
+RUN touch /app/cron.log
 
 SHELL ["/bin/bash", "-c"]

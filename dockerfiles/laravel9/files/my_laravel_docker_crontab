@@ -1,7 +1,9 @@
 # my_laravel_docker_crontab
 # m h  dom mon dow   command
 # use the bin/bash as the default environment
-
+#Running Docker container
+#printenv | grep -v "no_proxy" >> /etc/environment
+#service cron start
 # If your docker doesn't use the bin/bash as the default environment
-* * * * * BASH_ENV=/app/preload.sh bash -c "/app/loader_cron.sh" >> /var/log/cron.log
+* * * * * BASH_ENV=/app/preload.sh bash -l -c "/app/loader_cron.sh" >> /app/cron.log
 
