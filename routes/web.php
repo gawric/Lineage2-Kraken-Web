@@ -28,7 +28,7 @@ use App\Http\Controllers\Lineage2\DownloadController;
 
 Route::get('/', function () {
     return view('l2index');
-});
+})->name('home');
 
 Route::get('/statistic/server/{server_id}/stats/{id}', [StatisticServerController::class, 'dataStat']);
 Route::get('/statistic', [StatisticServerController::class, 'index']);
@@ -37,15 +37,17 @@ Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 Route::get('/payments', [EnotIoController::class, 'index']);
-Route::get('/download', [DownloadController::class, 'index']);
+Route::get('/download', DownloadController::class)->name('download');
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
     Route::post('/addPayments', [EnotIoController::class, 'paymentUser']);
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified' , 'roles_user'])->name('dashboard');
-Route::get('/dashboardchars', [DashboardCharsController::class, 'index'])->middleware(['auth', 'verified' , 'roles_user'])->name('dashboardchars');
+Route::middleware(['auth', 'verified', 'roles_user'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboardchars', [DashboardCharsController::class, 'index'])->name('dashboardchars');
+});
 
 Route::middleware(['auth', 'verified' , 'valid' , 'roles_user'])->group(function () {
     Route::post('/addL2User', [DashboardCreateL2UsersController::class, 'addAjaxL2User']);
