@@ -10,6 +10,7 @@ touch ./files_docker/laravel9/Dockerfile
 mv ./Lineage2-Kraken-Web/dockerfiles/laravel9/Dockerfile ./files_docker/laravel9/Dockerfile
 mv ./Lineage2-Kraken-Web/dockerfiles/mysql8/Dockerfile ./files_docker/mysql8/Dockerfile
 mv ./Lineage2-Kraken-Web/dockerfiles/mysql8/files ./files_docker/mysql8/
+mv ./Lineage2-Kraken-Web/dockerfiles/laravel9/files ./files_docker/laravel9/
 mv ./Lineage2-Kraken-Web/dockerfiles/docker-compose.yml ./docker-compose.yml
 rm -rf ./files_docker/laravel9/Lineage2-Kraken-Web
 mv ./Lineage2-Kraken-Web ./files_docker/laravel9

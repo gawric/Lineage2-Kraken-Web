@@ -10,7 +10,14 @@ RUN ["php" , "artisan" , "key:generate"]
 RUN ["npm" ,"install"]
 RUN ["npm" , "run" , "build"]
 RUN ["apt-get" , "install" ,"-y", "cron"]
-RUN crontab -l | { cat; echo "* * * * * cd /app && php artisan schedule:run"; } | crontab -
-CMD cron
+# Add docker custom crontab
+ADD /files/my_laravel_docker_crontab /etc/cron.d/my_laravel_docker_crontab
+ADD /files/preload.sh /app
+ADD /files/loader_cron.sh /app
+# Update the crontab file permission
+RUN chmod 0644 /etc/cron.d/my_laravel_docker_crontab
 
-#SHELL ["/bin/bash", "-c"]
+# Specify crontab file for running
+RUN crontab /etc/cron.d/my_laravel_docker_crontab
+
+SHELL ["/bin/bash", "-c"]
