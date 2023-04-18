@@ -53,3 +53,15 @@ dockerfiles в ней лежат все файлы связанные с раз�
 P/s Для запуска сайта `docker-compose up`, для остановки `docker-compose stop`, для обновления файлов `docker-compose build`.
 
 
+### Дополнительные функции Docker-контейнеров Kraken-Web
+Запуск cronjob   
+1. `printenv | grep -v "no_proxy" >> /etc/environment`    
+2. `service cron start`      
+Просмотреть конфиг laravel   
+1. `vi ./files_docker/laravel9/Lineage2-Kraken-Web/.env`   
+Запустить создание схемы  laravel   
+1. `docker exec 472d6003aa6d  php artisan migrate`      
+Запустить проверку cronjob laravel   
+1. `docker exec 472d6003aa6d  php artisan schedule:run`     
+Запустить  тесты laravel   
+1. `docker exec 472d6003aa6d  php artisan test`

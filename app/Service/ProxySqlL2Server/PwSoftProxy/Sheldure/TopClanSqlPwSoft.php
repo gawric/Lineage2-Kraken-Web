@@ -18,8 +18,8 @@ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateTopClanSql;
         }   
 
         public  function saveClanSqlPwSoft(&$modelArr){
-            info(count($modelArr));
-            info('TopClanSqlPwSoft>>>>saveClanSql');
+          //  info(count($modelArr));
+          //  info('TopClanSqlPwSoft>>>>saveClanSql');
             //info($modelArr);
             $this->convertNullToFalse($modelArr);
             //info($modelArr);

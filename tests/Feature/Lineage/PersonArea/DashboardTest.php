@@ -10,23 +10,25 @@ use Tests\TestCase;
 use Config;
 use App\Models\Accounts_expansion;
 use App\Models\Accounts_server_id;
-
+use App\Service\Utils\FunctionSupport;
 
 class DashboardTest extends TestCase
 {
      //Чистит только подк. ларавел
      use RefreshDatabase;
      public $list_server;
-
+     public $role_name_user;
  
      public function setUp(): void
      {
          parent::setUp();
          $this->list_server = Config::get('lineage2.server.list_server');
+         $this->role_name_user = Config::get('lineage2.server.role_name_user');
      }
 
      public function test_tables_all_accounts_user(){
         $user = Accounts_expansion::factory()->create();
+        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $response = $this->actingAs($user)->get('/dashboard');
         $response->assertStatus(200);
      }
@@ -34,6 +36,7 @@ class DashboardTest extends TestCase
      public function test_create_l2user_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
+        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $array_response = [];
         foreach($this->list_server as $server){
 
@@ -57,7 +60,7 @@ class DashboardTest extends TestCase
      public function test_valid_create_l2user_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
-     
+        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         foreach($this->list_server as $server){
             $response = $this->actingAs($user)->post('/addL2User', [
                 'login' => 'sadqqeweqwe',
@@ -75,6 +78,7 @@ class DashboardTest extends TestCase
      public function test_change_password_users_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
+        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $array_fake_data = $this->createFakeData($this->list_server , $user );
 
 
@@ -99,6 +103,7 @@ class DashboardTest extends TestCase
      public function test_faild_valid_change_password_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
+        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $array_fake_data = $this->createFakeData($this->list_server , $user );
 
 
@@ -151,6 +156,11 @@ class DashboardTest extends TestCase
             }
         }
      }
+
+     private function setRoleUser($role_name , $accounts_expansion_id , $description , $date_auth){
+        $model_role = FunctionSupport::createModelAccounts_role($role_name , $accounts_expansion_id , $description , $date_auth);
+        $model_role->save();
+    }
      
 
    

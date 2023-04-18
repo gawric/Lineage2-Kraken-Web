@@ -82,10 +82,10 @@ use App\Models\Temp\InfoDashboard;
         }
 
         public function getUseProxy($run_class){
-         info("Запущен из класса $run_class");
-         info("developer_id $this->developer_id");
-         info(get_class($this->proxy_server));
-         info(spl_object_id($this->proxy_server));
+       //  info("Запущен из класса $run_class");
+        // info("developer_id $this->developer_id");
+        // info(get_class($this->proxy_server));
+        // info(spl_object_id($this->proxy_server));
         }
       
 
