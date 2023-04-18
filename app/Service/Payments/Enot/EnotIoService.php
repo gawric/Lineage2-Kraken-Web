@@ -26,14 +26,14 @@
             info($amount);
             info("order_id");
             info($order_id);
-           // $url = EnotIo::getPayUrl($amount, $order_id);
-            $redirect = EnotIo::redirectToPayUrl($amount, $order_id);
+            $url = EnotIo::getPayUrl($amount, $order_id);
+            //$redirect = EnotIo::redirectToPayUrl($amount, $order_id);
            // $redirect = EnotIo::redirectToPayUrl($amount, $order_id, $desc, $payment_methood, $rows);
             info("getPayUrlRequestEnot>>>>");
           //  info("URL>>>>");
           //  info($url);
             info("Redirect>>>>");
-            info($redirect);
+            info($url);
         }
         //public function sendGetRequestEnot(){
            // $response = Http::get('http://example.com/users', [

@@ -5,7 +5,7 @@ return [
     /*
      * Project`s id
      */
-    'project_id' => env('ENOTIO_PROJECT_ID', '15'),
+    'project_id' => env('ENOTIO_PROJECT_ID', '19'),
 
     /*
      * First project`s secret key
@@ -60,6 +60,7 @@ return [
      * URL where to redirect the user after successful payment.
      * (If empty, the value is taken from the store settings.
      *  This parameter is in priority for redirection)
+     * куда перенаправить после успешной оплаты
      */
     'success_url' => null,
     /*

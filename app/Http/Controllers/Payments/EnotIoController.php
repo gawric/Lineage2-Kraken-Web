@@ -65,7 +65,6 @@ class EnotIoController extends Controller
             }
             else{
                 info("paymentUser>>>> Fail not found account_expansion");
-              
                 return FunctionSupport::getErrorJson(Lang::get('validation.payments_char_name'), Lang::get('validation.payments_char_name'));
                 //return Response::json(['error'=>Lang::get('validation.payments_char_name'), 'result'=>'']);
             }
