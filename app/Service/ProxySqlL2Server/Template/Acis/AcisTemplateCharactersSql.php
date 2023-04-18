@@ -22,8 +22,13 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 
             //example $dataOr['field'], $dataOr['comparison'], $dataOr['data']
             public function getAllCharsToArrayName($chacters_db_model , $data_search){
-                $filters = new GeneralFilters(['simplefilterarray'] , $data_search);
-                return  $chacters_db_model::filter($filters)->get(['char_name' , 'account_name' , 'level' , 'clanid' , 'pvpkills' , 'pkkills' , 'lastAccess' , 'online']);
+                if(count($data_search) > 0){
+                    $filters = new GeneralFilters(['simplefilterarray'] , $data_search);
+                    $result =   $chacters_db_model::filter($filters)->get(['char_name' , 'account_name' , 'level' , 'clanid' , 'pvpkills' , 'pkkills' , 'lastAccess' , 'online']);
+                    return $result;
+                }
+                
+                return [];
             }
 
 

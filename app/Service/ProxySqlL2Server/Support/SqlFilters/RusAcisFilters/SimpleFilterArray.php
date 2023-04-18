@@ -14,11 +14,21 @@ class SimpleFilterArray
     function __invoke($query, $dataOr)
     {
         if(isset($query) and isset($dataOr)){
-            return $query->where(function ($query) use ($dataOr) {
-                foreach ($dataOr as $keyword) {
-                   $query->orWhere($keyword['field'], $keyword['comparison'], $keyword['data']);
-                }
-            });
+           // $data = [];
+            if(count($dataOr)> 0){
+                return $query->where(function ($query) use ($dataOr) {
+                  //  info("SimpleFilterArray>>>>DataOr+++++++++++++++++++++++++++++++++++++++++++++++++");
+                  //  info($dataOr);
+                    foreach ($dataOr as $keyword) {
+                       $query->orWhere($keyword['field'], $keyword['comparison'], $keyword['data']);
+                    }
+                
+                });
+            }
+     
+           // info("SimpleFilterArray>>>> resullllllllllllllllllllllllllt ");
+           // info($data);
+
         }
 
        

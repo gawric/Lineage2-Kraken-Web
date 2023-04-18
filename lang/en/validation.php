@@ -159,6 +159,14 @@ return [
     'not_access' => 'Access is denied',
     'not_fount_account' => 'Account not found',
     'password_does_not_match' => 'Password does not match',
+
+    'payments_char_name' => 'Не найден чар с таким ником!',
+    'payments_select_server_id' => 'Такой сервер не найден!',
+    'payments_select_operator' => 'Такой оператор не найден!',
+    'payments_sum' => 'Сумма не прошла валидацию!',
+    'payments_success' => 'Проверка успешна',
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

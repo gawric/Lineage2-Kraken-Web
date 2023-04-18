@@ -26,6 +26,20 @@ namespace App\Service\ProxySqlL2Server\Template\Chars;
             return $listModel;
         }
 
+     
+        //field - поле в таблице Characters сервера
+        //list_accounts_name - столбик таблицы из базы laravel c фильтром по серверу
+        private function createWhereOr($list_accounts_name){
+            $temp = [];
+            foreach($list_accounts_name as $item){
+                $account_name = $item['account_name'];
+                $arrWhere = ['field' =>'account_name', 'comparison'=>'=', 'data'=>$account_name];
+                array_push($temp , $arrWhere);
+            }
+
+            return $temp;
+        }
+
         private function forEachResut($resultArr , $server_name){
             $id = 0;
             $temp = [];
@@ -46,18 +60,6 @@ namespace App\Service\ProxySqlL2Server\Template\Chars;
         }
         private function createModel($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online){
             return FunctionSupport::createModelInfoDashBoardChars($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online);
-        }
-        //field - поле в таблице Characters сервера
-        //list_accounts_name - столбик таблицы из базы laravel c фильтром по серверу
-        private function createWhereOr($list_accounts_name){
-            $temp = [];
-            foreach($list_accounts_name as $item){
-                $account_name = $item['account_name'];
-                $arrWhere = ['field' =>'account_name', 'comparison'=>'=', 'data'=>$account_name];
-                array_push($temp , $arrWhere);
-            }
-
-            return $temp;
         }
     }
 ?>

@@ -22,7 +22,7 @@ class AdminDashboardController extends Controller
         $this->list_servers = Config::get('lineage2.server.list_server');
     }
 
-    //return view('l2page_statistic', ['arrayNameServers' => $this->getServerNameOnly($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
+    
     public function index()
     {
 

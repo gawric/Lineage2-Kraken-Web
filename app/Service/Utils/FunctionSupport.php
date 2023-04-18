@@ -206,6 +206,13 @@ use Lang;
         return $validated["$name"];
     }
 
+    public static function getErrorJson($text_error, $text_message){
+        return response()->json([
+            'errors' => Lang::get($text_error),
+            'message'=> Lang::get($text_message),
+        ], 422);
+    
+    }
 
     
  }

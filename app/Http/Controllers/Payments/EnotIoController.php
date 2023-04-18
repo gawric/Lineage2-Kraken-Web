@@ -23,6 +23,7 @@ use App\Service\ProxySqlL2Server\ProxySqlServer;
 use App\Service\Registration\Support\SupportFuncReg;
 use App\Models\Accounts_expansion;
 
+
 class EnotIoController extends Controller
 {
     private $list_server;
@@ -51,15 +52,24 @@ class EnotIoController extends Controller
         $accounts_expansion = $this->getAccountsExpansionId($server_id , $this->list_servers , $char_name);
         if(isset($accounts_expansion)){
         
-            info("paymentUser>>>> getAccountsExpansionId");
-            info($accounts_expansion);
-            $model_order = FunctionPaymonts::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now());
-            $model_order->save();
-        
-        
-            $url = $this->paymentsService->getPayUrlRequestEnot($sum , $model_order->id);
-            info("EnotIoController>>>>paymentUser");
-            info($url);
+            if(!is_array($accounts_expansion)){
+                info("paymentUser>>>> getAccountsExpansionId");
+                info($accounts_expansion);
+                $model_order = FunctionPaymonts::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now());
+                $model_order->save();
+            
+            
+                $url = $this->paymentsService->getPayUrlRequestEnot($sum , $model_order->id);
+                info("EnotIoController>>>>paymentUser");
+                info($url);
+            }
+            else{
+                info("paymentUser>>>> Fail not found account_expansion");
+              
+                return FunctionSupport::getErrorJson(Lang::get('validation.payments_char_name'), Lang::get('validation.payments_char_name'));
+                //return Response::json(['error'=>Lang::get('validation.payments_char_name'), 'result'=>'']);
+            }
+      
           
         }
 

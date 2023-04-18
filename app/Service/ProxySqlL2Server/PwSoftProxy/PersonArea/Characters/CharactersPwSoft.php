@@ -15,7 +15,7 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters;
 
     class CharactersPwSoft extends CharactersTemplateChars {
         public function getAllCharsPwSoft($server_name , $auth_user_id , $modelCharactersDb , $server_id){
-            info("getAllCharsPwSoft>>> use characters to PwSoft");
+            //info("getAllCharsPwSoft>>> use characters to PwSoft");
             return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
     }
