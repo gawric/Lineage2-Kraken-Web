@@ -5,7 +5,7 @@ return [
     /*
      * Project`s id
      */
-    'project_id' => env('ENOTIO_PROJECT_ID', '19'),
+    'project_id' => env('ENOTIO_PROJECT_ID', '21'),
 
     /*
      * First project`s secret key
