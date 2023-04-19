@@ -5,17 +5,17 @@ return [
     /*
      * Project`s id
      */
-    'project_id' => env('ENOTIO_PROJECT_ID', '21'),
+    'project_id' => env('ENOTIO_PROJECT_ID', env('ENOTIO_PROJECT_ID')),
 
     /*
      * First project`s secret key
      */
-    'secret_key' => env('ENOTIO_SECRET_KEY', '23123123123123'),
+    'secret_key' => env('ENOTIO_SECRET_KEY', env('ENOTIO_SECRET_KEY')),
 
     /*
      * Second project`s secret key
      */
-    'secret_key_second' => env('ENOTIO_SECRET_KEY_SECOND', '123123123123'),
+    'secret_key_second' => env('ENOTIO_SECRET_KEY_SECOND', env('ENOTIO_SECRET_KEY_SECOND')),
 
     /*
      * Allowed currenc'ies https://enot.io/knowledge/first-payment#pay_form

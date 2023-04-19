@@ -4,7 +4,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/config/enotio.php
 .env
 .env.backup
 .env.production

@@ -1,7 +1,8 @@
 @extends('layouts.l2templatefolder.l2template')
 
-@section("title" , "Игровой сервер Lineage 2")
+@section("title" , "Главная")
 @section('content')
+<!--
 <main class="content">
 			<div class="flex-s block">
 				<div class="newsBlock">
@@ -30,7 +31,7 @@
 				</div>
 				<div class="eventsBlock">
 					<h2 class="content-title white-title">Events <a href="#" class="more"><span></span><span></span></a></h2>
-					<!-- Swiper -->
+	
 					<div class="swiper-container">
 						<div class="swiper-wrapper">
 							<div class="swiper-slide">
@@ -58,11 +59,11 @@
 								</a>
 							</div>
 						</div>
-					<!-- Add Pagination -->
+			
 						<div class="swiper-pagination"></div>
-					</div><!--swiper-container-->
+					</div>
 				</div>
-			</div><!--block-->
+			</div>
 			<div class="block blockBorder">
 				<h2 class="content-title dark-title">Find out our streamers</h2>
 				<div class="flex streamBlock">
@@ -73,7 +74,7 @@
 						<img src="images/youtube-icon.png" alt="Youtube">
 					</a>
 				</div>
-			</div><!--block-->
+			</div>
 			<div class="contentHome">
 				<h1>Content</h1>
 				<h3>Check out what makes "Giran" special</h3>
@@ -100,6 +101,19 @@
 				<div class="allContent">
 					<a href="" class="button button-not-bg">See all content</a>
 				</div>
-			</div><!--contentHome-->
+			</div>
+		</main>-->
+
+		<main class="content">
+			<div class="main-content">
+			<h1 style="margin: auto; padding-left:0px" class="page-title"><p style="color:black;">{{ __('messages.home_title') }}</p></h1>
+			<div style="margin: auto;"class="contentHomeReg">
+				<div>
+					<p style="color:black; float:left;">{{ __('messages.home_description') }}</p>
+					<p style="color:black; float:left;">{{ __('messages.home_description1') }}</p>
+
+					<button class="btn" onclick="location.href='https://github.com/gawric/Lineage2-Kraken-Web'" style="width:100%"><i class="fa fa-download"></i>  {{ __('messages.home_button') }}</button>
+				</div>
+			</div>
 		</main><!-- .content -->
 @endsection

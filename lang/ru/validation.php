@@ -17,6 +17,7 @@ return [
     'accepted' => 'The :attribute must be accepted.',
     'enter_server_db' => "Выбранный сервер не найден",
     'enter_use_db' => "На выбранном сервер есть такой юзер",
+    'text_policy_agree' => "Я согласен с",
     'no_access_create' => "Превышен лимит разрешенных аккаунтов",
     'accepted_if' => 'The :attribute must be accepted when :other is :value.',
     'active_url' => 'The :attribute is not a valid URL.',

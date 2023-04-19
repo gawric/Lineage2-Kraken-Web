@@ -1,6 +1,6 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
-@section("title" , "Kraken-Web Скачать иру Lineage 2")
+@section("title" , "Скачать иру Lineage 2")
 @section("page-title" , "Скачать игру")
 @section('inside_info')
 

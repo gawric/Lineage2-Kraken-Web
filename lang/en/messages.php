@@ -4,6 +4,15 @@
 
 return [
     'title' => 'This is English Language Title.',
+    'home_title' => 'Welcome to the site '. env('APP_NAME'),
+    'home_description' => 'You have reached the Open Source demo site'. env('APP_NAME') .' personal account for lineage2 servers',
+    'home_description1' => 'The source code for this project is stored',
+    'home_button' => 'Here',
+
+    'useragreement_title' =>'User Agreement',
+    'privacy_policy_title' => 'Privacy Policy',
+    'useragreement_reg_title' =>'User Agreement',
+    'privacy_policy_reg_title' => 'Privacy Policy',
     'home' => 'Home',
     'static' => 'Statistics',
     'reg' => 'Registration',

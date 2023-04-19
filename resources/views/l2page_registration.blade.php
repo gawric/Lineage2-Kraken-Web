@@ -1,6 +1,6 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
-@section("title" , "Kraken-Web Регистрация пользователя Lineage 2")
+@section("title" , "Регистрация пользователя")
 @section("page-title" , "Регистрация")
 @section('inside_info')
 <script src="{{ asset('js/registration.js') }}"></script>
@@ -16,6 +16,13 @@
 		reg(login , email , pass  , pass_confirmed, server_id)
 	}
 </script>
+
+<style>
+a {
+  color: dodgerblue;
+}
+
+</style>
 
 
 
@@ -45,6 +52,7 @@
 					@endforeach
 				</select>
 				<div class="allContent">
+				<p style="color:black;float:left; font-size:12px;">{{ __('validation.text_policy_agree') }} <a href="{{ route('privacypolicy') }}">{{ __('messages.privacy_policy_reg_title') }}</a>.&  <a href="{{ route('useragreement') }}">{{ __('messages.useragreement_reg_title') }}</a>.</p>
 					<button onclick="getInfo()">{{ __('messages.reg') }}</button>
 				<div>
 		</div>

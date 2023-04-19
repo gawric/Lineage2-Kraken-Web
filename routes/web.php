@@ -14,6 +14,8 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminDashboardControll
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardCreateL2UsersController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardChangel2PassUsersController;
 use App\Http\Controllers\Payments\EnotIoController;
+use App\Http\Controllers\Payments\UserAgreementController;
+use App\Http\Controllers\Payments\PrivacyPolicyController;
 use App\Http\Controllers\Lineage2\DownloadController;
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +40,8 @@ Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
 Route::get('/payments', [EnotIoController::class, 'index']);
 Route::get('/download', DownloadController::class)->name('download');
+Route::get('/privacypolicy', PrivacyPolicyController::class)->name('privacypolicy');
+Route::get('/useragreement', UserAgreementController::class)->name('useragreement');
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
@@ -57,6 +61,8 @@ Route::middleware(['auth', 'verified' , 'valid' , 'roles_user'])->group(function
 Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard', [AdminDashboardController::class, 'index']);
 });
+
+Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);
 
 
 Route::middleware('auth')->group(function () {

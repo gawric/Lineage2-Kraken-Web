@@ -1,6 +1,7 @@
 @extends('layouts.l2templatefolder.l2templatepages')
 
-@section("page-title" , "Kraken-Web Статистика по серверам Lineage 2")
+@section("title" , "Статистика по серверам")
+@section("page-title" , "Статистика по серверам")
 @section('inside_info')
 <script src="{{asset('/js/statistics.js') }}"></script>
 <script src="{{asset('/js/alertsMessages.js') }}"></script>

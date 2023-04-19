@@ -99,8 +99,8 @@
 					<a href="{{ route('home') }}"><img src="images/logo-white.png" alt="Logo"></a>
 				</div>
 				<ul class="flex-c-c">
-					<li><a href="">Terms of service</a></li>
-					<li><a href="">Privacy policy</a></li>
+					<li><a href="{{ route('privacypolicy') }}">{{ __('messages.privacy_policy_title') }}</a></li>
+					<li><a href="{{ route('useragreement') }}">{{ __('messages.useragreement_title') }}</a></li>
 				</ul>
 			</div>
 		</div><!--footerTopBlock-->

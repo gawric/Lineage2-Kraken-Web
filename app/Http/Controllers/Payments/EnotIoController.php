@@ -16,7 +16,7 @@ use App\Service\Status\StatusServer;
 use App\Service\Info\ServerStats;
 use App\Service\Utils\FunctionSupport;
 use App\Service\Utils\FunctionPaymonts;
-use Weishaypt\EnotIo;
+use Weishaypt\EnotIo\Facades\EnotIo;
 use App\Http\Requests\EnotIoStoreRequest;
 use App\Service\Payments\IPaymentsService;
 use App\Service\ProxySqlL2Server\ProxySqlServer;

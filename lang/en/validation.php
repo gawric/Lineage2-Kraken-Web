@@ -15,6 +15,7 @@ return [
     'success' => "Data saved successfully",
     'no_access_create' => "Allowed account limit exceeded",
     'email_send' => "Please check your email",
+    'text_policy_agree' => "By creating an account you agree to our",
     'enter_server_db' => "Selected server not found",
     'enter_use_db' => "There is such a user on the selected server",
     'no_data' => 'No data',
@@ -165,6 +166,7 @@ return [
     'payments_select_operator' => 'Такой оператор не найден!',
     'payments_sum' => 'Сумма не прошла валидацию!',
     'payments_success' => 'Проверка успешна',
+ 
 
 
     /*
