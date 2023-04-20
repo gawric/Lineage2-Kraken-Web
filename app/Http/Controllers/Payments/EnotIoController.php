@@ -53,44 +53,45 @@ class EnotIoController extends Controller
         if(isset($accounts_expansion)){
         
             if(!is_array($accounts_expansion)){
-                info("paymentUser>>>> getAccountsExpansionId");
-                info($accounts_expansion);
+                
                 $model_order = FunctionPaymonts::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now());
                 $model_order->save();
             
             
                 $url = $this->paymentsService->getPayUrlRequestEnot($sum , $model_order->id);
-                info("EnotIoController>>>>paymentUser");
-                info($url);
+                return $this->getUrlWeb($url);
             }
             else{
                 info("paymentUser>>>> Fail not found account_expansion");
                 return FunctionSupport::getErrorJson(Lang::get('validation.payments_char_name'), Lang::get('validation.payments_char_name'));
-                //return Response::json(['error'=>Lang::get('validation.payments_char_name'), 'result'=>'']);
             }
       
           
         }
 
-
-        return response()->json(['success'=>Lang::get('validation.payments_success')]);
+        return FunctionSupport::getErrorJson(Lang::get('validation.enot_url_error'), Lang::get('validation.enot_url_error'));
+       
     }
+
+ 
+    
 
     private function getAccountsExpansionId($server_id , $list_servers , $char_name){
         $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
         if( $developer_id != -1){
-            info("paymentUser>>>");
-            info($developer_id);
-            info("paymentUser>>>server_id");
-            info($server_id);
-            info("paymentUser>>>char_name");
-            info($char_name);
             $this->proxy = new ProxySqlServer($developer_id);
             return $this->proxy->getAccountsExpansionByCharName(FunctionSupport::getModelAccountDb($server_id , $list_servers),  FunctionSupport::getModelCharactersDb($server_id , $list_servers), $char_name);
-        }
+            }
         }
     
+  
+    private function getUrlWeb($url){
+        if (!empty($url)) {
+            return response()->json(['success'=>$url]);
+        }
 
+        return FunctionSupport::getErrorJson(Lang::get('validation.enot_url_error'), Lang::get('validation.enot_url_error'));
+    }
        
 
 

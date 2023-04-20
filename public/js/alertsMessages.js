@@ -49,6 +49,16 @@ function buttonHideAlertCreateAccount(){
     $('#info_new_account').css("display", "none");
 }
 
+function showButtonLoadingBuyPayment(){
+    $('#buy_button').css("display", "block");
+}
+
+function hideButtonLoadingBuyPayment(){
+    $('#buy_button').css("display", "none");
+   // $('#save_new_account').css("display", "block");
+}
+
+
 function showButtonLoadingCreateAccount(){
     $('#loading_new_account').css("display", "block");
     $('#save_new_account').css("display", "none");
@@ -110,4 +120,7 @@ function hideAlertSuccessChangePass(){
 
 function setTextAlertSuccessChangePass(text){
     $('#info_text_change_pass_success').text(text);
+}
+function setTextAlertSuccessChangePassPrepand(text){
+    $('#info_text_change_pass_success').append(text);
 }

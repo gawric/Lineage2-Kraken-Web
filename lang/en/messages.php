@@ -65,6 +65,8 @@ return [
     'payments_select_operator' => 'Payment service',
     'payments_select_server' => 'Select payment service',
     'payments_confirm_pay' => 'Buy',
+    'payments_success' => 'Payment completed successfully!',
+    'payments_fail' => 'Unfortunately, the payment did not go through!',
 
     'lk_admin_donate'=> 'Donations',
     'lk_admin_home'=> 'Home',

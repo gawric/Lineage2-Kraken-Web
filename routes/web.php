@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\UserShowTest;
@@ -17,6 +18,9 @@ use App\Http\Controllers\Payments\EnotIoController;
 use App\Http\Controllers\Payments\UserAgreementController;
 use App\Http\Controllers\Payments\PrivacyPolicyController;
 use App\Http\Controllers\Lineage2\DownloadController;
+use App\Http\Controllers\Payments\PagesAlertSuccessController;
+use App\Http\Controllers\Payments\PagesAlertFailController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +46,9 @@ Route::get('/payments', [EnotIoController::class, 'index']);
 Route::get('/download', DownloadController::class)->name('download');
 Route::get('/privacypolicy', PrivacyPolicyController::class)->name('privacypolicy');
 Route::get('/useragreement', UserAgreementController::class)->name('useragreement');
+Route::get('/payments_success', PagesAlertSuccessController::class)->name('payments_success');
+Route::get('/payments_fail', PagesAlertFailController::class)->name('payments_fail');
+
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);

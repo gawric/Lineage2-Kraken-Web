@@ -98,7 +98,15 @@ module.exports = {
         <div id="info_new_account" style="display:none;" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
           <span id="info_text_new_account"  class="block sm:inline"></span>
         </div>
+
+        <div id="info_change_pass_succes"  style="display:none;" class="bg-green-100 border border-green-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
+          <span id="info_text_change_pass_success"  class="block sm:inline"></span>
+        </div>
+
+
       </div>
+
+      
 
 
         <div style="width: 45%;margin-left: auto;margin-right: auto; margin-bottom: 5%">
@@ -136,7 +144,7 @@ module.exports = {
           <input id="range_sum" type="range" value="1000" min="0" max="10000"  step="500" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
         </div>
         <div>
-            <button onClick="getStart()"class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i>{{ __('messages.payments_confirm_pay') }}</button>
+            <button id="buy_button" onClick="getStart()"class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"><i class="mdi mdi-lock-outline mr-1"></i>{{ __('messages.payments_confirm_pay') }}</button>
             <button id="loading_new_account"  style="display:none;" disabled type="button" class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
           <svg aria-hidden="true" role="status" class="inline w-4 h-4 mr-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>

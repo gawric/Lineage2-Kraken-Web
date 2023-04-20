@@ -11,44 +11,43 @@
     use App\Models\Temp\InfoDashboard;
     use App\Service\Payments\IPaymentsService;
     use Weishaypt\EnotIo\Facades\EnotIo;
+    use Illuminate\Support\Facades\Http;
+    use Illuminate\Http\Client\Response;
+    use App\Service\Payments\Enot\Request\RequestEnotIo;
     
     class EnotIoService implements IPaymentsService
     {
 
-     
-        public function __construct() {
-  
-        }
+        private RequestEnotIo $requestEnotIo;
 
+        public function __construct() {
+          $this->requestEnotIo = new RequestEnotIo();
+        }
 
         public function getPayUrlRequestEnot($amount , $order_id){
-            info("amount");
-            info($amount);
-            info("order_id");
-            info($order_id);
-            
-            $rows = [
-              'time' => Carbon::now(),
-              'info' => 'Local payment'
-            ];
+          $response = $this->requestEnotIo->cretaeUrlPayment($amount , $order_id);
+          if(isset($response)){
+            if($response['status'] == 200){
+              $array = $response['data'];
+              return $array['url'];
+            }
+            $this->printLogError($response);
+          }
 
-            //$url = EnotIo::getPayUrl($amount, $order_id);
-            $url = EnotIo::getPayUrl($amount, $order_id, $desc, $payment_methood, $rows);
-            //$redirect = EnotIo::redirectToPayUrl($amount, $order_id);
-           // $redirect = EnotIo::redirectToPayUrl($amount, $order_id, $desc, $payment_methood, $rows);
-           // info("getPayUrlRequestEnot>>>>");
-          //  info("URL>>>>");
-          //  info($url);
-            info("Redirect>>>>");
-            info($url);
-
-            return $url;
+          return "";
         }
-        //public function sendGetRequestEnot(){
-           // $response = Http::get('http://example.com/users', [
-              //  'name' => 'Taylor',
-              ////  'page' => 1,
-            //]);
-       // }
+
+        private function printLogError($response){
+          if(isset($response['error'])){
+            info("EnotIoService>>>printLogError>>>> Ошибка создания страницы платежа EnotIo " . $response['error']);
+            //info($response['error']);
+          }
+          else{
+            info("EnotIoService>>>printLogError>>>> Ошибка создания страницы платежа EnotIo");
+            info($response);
+          }
+        }
+      
+       
     }
 ?>

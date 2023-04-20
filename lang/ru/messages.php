@@ -68,10 +68,12 @@ return [
     'payments_select_operator' => 'Выбрать сервис платежей',
     'payments_select_server' => 'Выбрать сервер',
     'payments_confirm_pay' => 'Купить',
+    'payments_success' => 'Платеж выполнен успешно!',
+    'payments_fail' => 'К сожалению платеж не прошел!',
 
 
     'lk_home' => 'Главная',
-    'lk_kits' => 'Cтартовые наборы',
+    'lk_kits' => 'Стартовые наборы',
     'lk_buy_gold' => 'Купить золото',
     'lk_profile' => 'Профиль',
     'lk_characters' => 'Персонажи',

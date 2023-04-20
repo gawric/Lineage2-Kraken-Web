@@ -166,7 +166,7 @@ return [
     'payments_select_operator' => 'Такой оператор не найден!',
     'payments_sum' => 'Сумма не прошла валидацию!',
     'payments_success' => 'Проверка успешна',
- 
+    'enot_url_error' => 'Server issues, please try again later!',
 
 
     /*

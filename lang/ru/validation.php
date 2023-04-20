@@ -148,6 +148,7 @@ return [
         'numeric' => 'The :attribute must be :size.',
         'string' => 'The :attribute must be :size characters.',
     ],
+    'enot_url_error' => 'Проблемы с сервером попробуйте повторить позже!',
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid timezone.',

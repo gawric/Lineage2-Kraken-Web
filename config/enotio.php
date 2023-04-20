@@ -7,7 +7,12 @@ return [
      */
     'project_id' => env('ENOTIO_PROJECT_ID', env('ENOTIO_PROJECT_ID')),
 
-    /*
+    //проверка домена для enotio внедряет тэг в l2index нужен для подтверждения домена
+    'enot_head_id' => env('ENOTIO_HEAD_ID', env('ENOTIO_HEAD_ID')),
+
+    'project_uuid' => env('ENOTIO_PROJECT_UUID', env('ENOTIO_PROJECT_UUID')),
+
+    /*'project_id' => env('ENOTIO_PROJECT_ID', env('ENOTIO_PROJECT_ID')),
      * First project`s secret key
      */
     'secret_key' => env('ENOTIO_SECRET_KEY', env('ENOTIO_SECRET_KEY')),
@@ -62,11 +67,11 @@ return [
      *  This parameter is in priority for redirection)
      * куда перенаправить после успешной оплаты
      */
-    'success_url' => null,
+    'success_url' => env('ENOTIO_PROJECT_URL_SUCCESS', env('ENOTIO_PROJECT_URL_SUCCESS')),
     /*
      * URL where to redirect the user after error payment.
      * (If empty, the value is taken from the store settings.
      *  This parameter is in priority for redirection)
      */
-    'fail_url' => null,
+    'fail_url' => env('ENOTIO_PROJECT_URL_FAIL', env('ENOTIO_PROJECT_URL_FAIL')),
 ];

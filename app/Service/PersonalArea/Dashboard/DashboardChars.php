@@ -56,6 +56,8 @@
             $server_name = FunctionSupport::getServerNameById($server_id , $list_servers);
 
             $list_chars = $this->proxy->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
+           // info("DashboardChars>>>>>>>calcData");
+           // info($list_chars);
             $this->setNameClanByClanId($list_chars , $modelClanDataDb);
             return $list_chars;
         }

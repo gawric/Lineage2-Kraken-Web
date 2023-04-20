@@ -17,6 +17,7 @@ class LangController extends Controller
     */
     public function index()
     {
+        
         return view('l2index');
     }
   

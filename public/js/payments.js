@@ -1,9 +1,12 @@
 function paymentsUser(select_server_id , char_name , select_service_payment , sum){
     // console.log(button_name)
      hideAlertCreateAccount();
+     hideButtonLoadingBuyPayment();
      showButtonLoadingCreateAccount();
+     hideAlertSuccessChangePass();
+
      var json = getData(select_server_id , char_name , select_service_payment , sum);
-     console.log(json);
+    // console.log(json);
      sendJsonDataServer(json);
  }
 
@@ -21,10 +24,15 @@ function paymentsUser(select_server_id , char_name , select_service_payment , su
              if(!!jQxhr.responseJSON.success){
                 console.log(jQxhr.responseJSON.success);
                 hideButtonLoadingCreateAccount();
+                showButtonLoadingBuyPayment();
+                showAlertSuccessChangePass();
+                autoRedirect(jQxhr.responseJSON.success);
+                setTextAlertSuccessChangePass("");
+                setTextAlertSuccessChangePass("Если ваc автоматически не перенаправило: \n");
+                setTextAlertSuccessChangePassPrepand("<b><a href="+jQxhr.responseJSON.success+">Нажми для перехода </a></b>");
              }
          },
          error: function (data) {
- 
              if(data.responseText != undefined){
                  var dataErrors = $.parseJSON(data.responseText);
                  if (!!dataErrors.message) {
@@ -32,11 +40,13 @@ function paymentsUser(select_server_id , char_name , select_service_payment , su
                           setTextAlertCreateAccount(getTextError(dataErrors.message));
                           showAlertCreateAccount();
                           hideButtonLoadingCreateAccount();
+                          showButtonLoadingBuyPayment();
                       }
                       else{
                          setTextAlertCreateAccount(getTextError(dataErrors.errors));
                          showAlertCreateAccount();
                          hideButtonLoadingCreateAccount();
+                         showButtonLoadingBuyPayment();
                       }
                  
                  }
@@ -44,12 +54,14 @@ function paymentsUser(select_server_id , char_name , select_service_payment , su
                      setTextAlertCreateAccount("Неизвестная ошибка");
                      showAlertCreateAccount();
                      hideButtonLoadingCreateAccount();
+                     showButtonLoadingBuyPayment();
                  }
              }
              else{
                  setTextAlertCreateAccount("Нет подключения к серверу");
                  showAlertCreateAccount();
                  hideButtonLoadingCreateAccount();
+                 showButtonLoadingBuyPayment();
              }
              
  
@@ -59,6 +71,9 @@ function paymentsUser(select_server_id , char_name , select_service_payment , su
  
  }
 
+ function autoRedirect(url){
+    $(location).attr('href', url); // Using this
+ }
 
  function getData(select_server_id , char_name , select_service_payment , sum){
     return { 'select_server_id': select_server_id, 'char_name':char_name , 'select_service_payment':select_service_payment, 'sum': parseInt(sum)};

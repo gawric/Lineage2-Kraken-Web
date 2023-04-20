@@ -5,6 +5,7 @@
 	<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script><![endif]-->
 	<title>@yield('title')</title>
 	<meta name="keywords" content="" />
+	<meta name="enot" content={{ config('enotio.enot_head_id') }}>
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,7 +21,7 @@
 		<a href="" class="dc"></a>
 	</div>
 	<div class="toTop buttonTop">
-		TOP
+
 	</div>
 
 	<div class="topPanel flex-c">
