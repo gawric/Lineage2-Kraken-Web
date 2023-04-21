@@ -20,7 +20,7 @@ use App\Http\Controllers\Payments\PrivacyPolicyController;
 use App\Http\Controllers\Lineage2\DownloadController;
 use App\Http\Controllers\Payments\PagesAlertSuccessController;
 use App\Http\Controllers\Payments\PagesAlertFailController;
-
+use App\Http\Controllers\Payments\EnotIoTestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,6 +49,7 @@ Route::get('/useragreement', UserAgreementController::class)->name('useragreemen
 Route::get('/payments_success', PagesAlertSuccessController::class)->name('payments_success');
 Route::get('/payments_fail', PagesAlertFailController::class)->name('payments_fail');
 Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);
+Route::post('/enotio/result1', [EnotIoTestController::class, 'index']);
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
