@@ -7,7 +7,7 @@
     use Auth;
     use Illuminate\Support\Facades\Http;
     use Illuminate\Http\Client\Response;
-
+    use  Weishaypt\EnotIo\Facades\EnotIo;
     
     class RequestEnotIo
     {
@@ -27,7 +27,7 @@
             $this->fail_url = Config::get('enotio.fail_url');
 
         }
-
+        //Новый апи для запроса страницы на оплату
         public  function cretaeUrlPayment($amount , $order_id){
           $dataEn = [
             'amount' => $amount,
@@ -48,7 +48,19 @@
 
         }
 
-        
-   
-    }
+        public function cretaeUrlPaymentOld($amount , $order_id){
+          $rows = [
+            'time' => Carbon::now(),
+            'info' => 'Local payment'
+          ];
+
+
+          $url = EnotIo::getPayUrl($amount, $order_id, null, null, $rows);
+
+          info("Redirect>>>>");
+          info($url);
+
+          return $url;
+       }
+      }
 ?>

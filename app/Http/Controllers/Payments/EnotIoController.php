@@ -58,7 +58,7 @@ class EnotIoController extends Controller
                 $model_order->save();
             
             
-                $url = $this->paymentsService->getPayUrlRequestEnot($sum , $model_order->id);
+                $url = $this->paymentsService->getPayUrlRequestOldEnot($sum , $model_order->id);
                 return $this->getUrlWeb($url);
             }
             else{
@@ -126,6 +126,7 @@ class EnotIoController extends Controller
         $order = OrderEnot::where('id', $order_id)->first();
 
         if($order) {
+            info("use EnotIoController >>>> access searchOrder: orderId");
             $order['_orderSum'] = $order->sum;
 
             // If your field can be `paid` you can set them like string
@@ -137,6 +138,7 @@ class EnotIoController extends Controller
             return $order;
         }
 
+         info("use EnotIoController >>>> not access searchOrder: orderId");
         return false;
     }
 

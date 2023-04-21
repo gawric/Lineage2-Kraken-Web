@@ -11,4 +11,6 @@ class PagesAlertSuccessController extends Controller
     {
         return view('page_payments_success');
     }
+
+  
 }

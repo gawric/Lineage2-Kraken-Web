@@ -37,6 +37,10 @@
           return "";
         }
 
+        public function getPayUrlRequestOldEnot($amount , $order_id){
+          return $this->requestEnotIo->cretaeUrlPaymentOld($amount , $order_id);
+        }
+
         private function printLogError($response){
           if(isset($response['error'])){
             info("EnotIoService>>>printLogError>>>> Ошибка создания страницы платежа EnotIo " . $response['error']);

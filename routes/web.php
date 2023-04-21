@@ -48,7 +48,7 @@ Route::get('/privacypolicy', PrivacyPolicyController::class)->name('privacypolic
 Route::get('/useragreement', UserAgreementController::class)->name('useragreement');
 Route::get('/payments_success', PagesAlertSuccessController::class)->name('payments_success');
 Route::get('/payments_fail', PagesAlertFailController::class)->name('payments_fail');
-
+Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);
 
 Route::middleware('valid')->group(function () {
     Route::post('/adduser', [RegistrationController::class, 'ajaxRequestPost']);
