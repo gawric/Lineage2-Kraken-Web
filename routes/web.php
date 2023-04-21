@@ -69,7 +69,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard', [AdminDashboardController::class, 'index']);
 });
 
-Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);
+//Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);
 
 
 Route::middleware('auth')->group(function () {

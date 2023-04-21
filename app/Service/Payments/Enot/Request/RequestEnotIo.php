@@ -50,7 +50,7 @@
 
         public function cretaeUrlPaymentOld($amount , $order_id){
           $rows = [
-            'time' => Carbon::now(),
+           //'time' => Carbon::now(),
             'info' => 'Local payment'
           ];
 

@@ -170,6 +170,8 @@ class EnotIoController extends Controller
      */
     public function handlePayment(Request $request)
     {
+        info("enotio handle request >>>>>");
+        info($request);
         return EnotIo::handle($request);
     }
 }
