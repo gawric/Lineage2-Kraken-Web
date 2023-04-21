@@ -122,19 +122,20 @@ class EnotIoController extends Controller
     {
         info("use EnotIoController >>>> searchOrder: orderId");
         info($order_id);
-
+        info("use EnotIoController >>>> enter request data");
+        info($request);
         $order = OrderEnot::where('id', $order_id)->first();
 
         if($order) {
             info("use EnotIoController >>>> access searchOrder: orderId");
-            $order['_orderSum'] = $order->sum;
+            $order['sum'] = $order->sum;
 
             // If your field can be `paid` you can set them like string
-            $order['_orderStatus'] = $order['status'];
+            $order['status'] = $order['status'];
 
             // Else your field doesn` has value like 'paid', you can change this value
-            $order['_orderStatus'] = ('1' == $order['status']) ? 'paid' : false;
-
+            $order['status'] = ('1' == $order['status']) ? 'paid' : false;
+            info("use EnotIoController >>>> save access return order");
             return $order;
         }
 
@@ -170,8 +171,8 @@ class EnotIoController extends Controller
      */
     public function handlePayment(Request $request)
     {
-        info("enotio handle request >>>>>");
-        info($request);
+        //info("enotio handle request >>>>>");
+        //info($request);
         return EnotIo::handle($request);
     }
 }
