@@ -15,13 +15,14 @@ use Lang;
 use App\Service\Status\StatusServer;
 use App\Service\Info\ServerStats;
 use App\Service\Utils\FunctionSupport;
-use App\Service\Utils\FunctionPaymonts;
+use App\Service\Utils\FunctionPayments;
 use Weishaypt\EnotIo\Facades\EnotIo;
 use App\Http\Requests\EnotIoStoreRequest;
 use App\Service\Payments\IPaymentsService;
 use App\Service\ProxySqlL2Server\ProxySqlServer;
 use App\Service\Registration\Support\SupportFuncReg;
 use App\Models\Accounts_expansion;
+use App\Providers\Events\L2AddItem;
 
 
 class EnotIoController extends Controller
@@ -50,19 +51,20 @@ class EnotIoController extends Controller
         $select_service_payment = FunctionSupport::getDataVariable("select_service_payment" , $validated);
         $sum = FunctionSupport::getDataVariable("sum" , $validated );
         $accounts_expansion = $this->getAccountsExpansionId($server_id , $this->list_servers , $char_name);
+
         if(isset($accounts_expansion)){
         
             if(!is_array($accounts_expansion)){
                 
-                $model_order = FunctionPaymonts::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now());
+                $model_order = FunctionPayments::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now() , $server_id , $accounts_expansion->login );
                 $model_order->save();
             
-            
+                
                 $url = $this->paymentsService->getPayUrlRequestOldEnot($sum , $model_order->id);
                 return $this->getUrlWeb($url);
             }
             else{
-                info("paymentUser>>>> Fail not found account_expansion");
+                info("paymentUser>>>> Fail! not found account_expansion");
                 return FunctionSupport::getErrorJson(Lang::get('validation.payments_char_name'), Lang::get('validation.payments_char_name'));
             }
       
@@ -99,14 +101,7 @@ class EnotIoController extends Controller
     {
         info("use EnotIoController >>>> l2index");
 
-        $MERCHANT_ID   = 15;                 // ID магазина
-        $SECRET_WORD   = 'Секретный ключ';   // Секретный ключ
-       // $ORDER_AMOUNT  = 10;                 // Сумма заказа
-        $PAYMENT_ID    = time();             // ID заказа (мы используем time(), чтобы был всегда уникальный ID)
-
-      
-
-        return view('page_payments' , ['MERCHANT_ID' => $MERCHANT_ID , 'SECRET_WORD' => $SECRET_WORD , 'PAYMENT_ID' => $PAYMENT_ID , 'arrayServersOnlyNameAndId' => FunctionSupport::getServerOnlyNameAndId($this->list_servers) , 'arrayPaymentsOnlyNameAndId' => FunctionPaymonts::getAllPaymentsNameAndId($this->list_payments)]);
+        return view('page_payments' , ['arrayServersOnlyNameAndId' => FunctionSupport::getServerOnlyNameAndId($this->list_servers) , 'arrayPaymentsOnlyNameAndId' => FunctionPayments::getAllPaymentsNameAndId($this->list_payments)]);
     }
 
 
@@ -122,8 +117,8 @@ class EnotIoController extends Controller
     {
         info("use EnotIoController >>>> searchOrder: orderId");
         info($order_id);
-        info("use EnotIoController >>>> enter request data");
-        info($request);
+        //info("use EnotIoController >>>> enter request data");
+        //info($request);
         $order = OrderEnot::where('id', $order_id)->first();
 
         if($order) {
@@ -131,11 +126,11 @@ class EnotIoController extends Controller
             $order['sum'] = $order->sum;
 
             // If your field can be `paid` you can set them like string
-            $order['status'] = $order['status'];
+            $order['status'] = "found";
 
             // Else your field doesn` has value like 'paid', you can change this value
             $order['status'] = ('1' == $order['status']) ? 'paid' : false;
-            info("use EnotIoController >>>> save access return order");
+           // info("use EnotIoController >>>> save access return order");
             return $order;
         }
 
@@ -158,7 +153,8 @@ class EnotIoController extends Controller
         $order->status = 'paid';
         $order->save();
 
-        //
+        //Отправляем сообщение слушателю, что нужно добавить итем по выполненному платежу!
+        event(new L2AddItem($order));
 
         return true;
     }
@@ -171,8 +167,6 @@ class EnotIoController extends Controller
      */
     public function handlePayment(Request $request)
     {
-        //info("enotio handle request >>>>>");
-        //info($request);
         return EnotIo::handle($request);
     }
 }
