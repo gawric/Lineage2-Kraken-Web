@@ -12,6 +12,8 @@ use Lang;
 use App\Service\Status\StatusServer;
 use App\Service\Info\ServerStats;
 use App\Service\Utils\FunctionSupport;
+use App\Providers\Events\L2AddItem;
+use App\Service\Utils\FunctionPayments;
 
 class StatisticServerController extends Controller
 {
@@ -33,9 +35,18 @@ class StatisticServerController extends Controller
     }
 
     public function index()
-    {
-        
+    {   
+        //только для теста
+        info("Статистика тест");
+        event(new L2AddItem($this->createTestOrder()));
+
         return view('l2page_statistic', ['arrayNameServers' => FunctionSupport::getServerOnlyNameAndId($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
+    }
+
+    private function createTestOrder(){
+        $test =  FunctionPayments::createOrders("333" , "paid" , "testacischar" , "3" , now() , now() , 1 , "gawric" );
+        info("createTestOrder  " . $test);
+        return $test;
     }
 
     public function dataStat(Request $request , $sever_id , $stat_id)

@@ -16,6 +16,7 @@ return [
                 'server_db_model' => "App\Models\Server\ServerCharacters",
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
                 'clandata_db_model' => "App\Models\Server\ServerClanData",
+                'items_db_model' => "App\Models\Server\ServerItems",
         ],
             'server2' => [
                 'id'=>'2',
@@ -31,6 +32,7 @@ return [
                 'server_db_model' => "App\Models\Server\PwSoft\PwSoftServerCharacters",
                 'accounts_db_model' => "App\Models\Server\PwSoft\PwSoftServerAccounts",
                 'clandata_db_model' => "App\Models\Server\PwSoft\PwSoftServerClanData",
+                'items_db_model' => "App\Models\Server\ServerItems",
         ],
             'server3' => [
                 'id'=>'3',
@@ -47,6 +49,7 @@ return [
                 //accounts_db_model -> в модели мы указываем не только имя таблицы но и какая бд будет использоваться
                 'accounts_db_model' => "App\Models\Server\Lucera\LuceraServerAccounts",
                 'clandata_db_model' => "App\Models\Server\Lucera\LuceraServerClanData",
+                'items_db_model' => "App\Models\Server\ServerItems",
         ],
     ],
 

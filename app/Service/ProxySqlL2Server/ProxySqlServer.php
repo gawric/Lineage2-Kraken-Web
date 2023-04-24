@@ -77,9 +77,14 @@ use App\Models\Temp\InfoDashboard;
             $proxy_server->clearTableClanStatic();
         }
 
+        public function addL2Item($modelItemsDb , $char_name , $item_id, $count){
+            $this->proxy_server->addL2Item($modelItemsDb , $char_name , $item_id, $count);
+        }
+
         private function getProxy($developer_id){
            return SelectServerById::choose($developer_id);
         }
+    
 
         public function getUseProxy($run_class){
        //  info("Запущен из класса $run_class");

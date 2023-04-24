@@ -20,9 +20,9 @@ class L2AddItem
      *
      * @return void
      */
-    public function __construct($order_item)
+    public function __construct($order_item_new)
     {
-        $this->$order_item = $order_item;
+        $this->order_item = $order_item_new;
     }
 
     /**

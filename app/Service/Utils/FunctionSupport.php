@@ -83,6 +83,18 @@ use Lang;
         return "";
     }
 
+    public static function getModelOtherDbByName($server_id , $list_servers , $othername){
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if($server_id == $value['id']){
+                    return $value[$othername];
+                }
+            }
+        }
+        //если не нашли
+        return "";
+    }
+
     public static function getModelCharactersDb($server_id , $list_servers){
         if (isset($list_servers)) {
             foreach($list_servers as $value){

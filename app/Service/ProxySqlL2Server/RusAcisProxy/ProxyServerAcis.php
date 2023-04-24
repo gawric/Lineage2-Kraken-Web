@@ -10,6 +10,7 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\Sheldure\TopClanSql;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRusAcis;
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRusAcis;
+use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\ItemsRusAcis;
 use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
 
    class ProxyServerAcis implements IProxy
@@ -20,6 +21,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
         private AccountsSqlRusAcis $accountssql;
         private CharactersRusAcis $characters;
         private CommonSql $commonSql;
+        private ItemsRusAcis $itemssql;
 
         public function __construct() {
              $this->reg = new RegSql();
@@ -28,6 +30,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
              $this->accountssql = new AccountsSqlRusAcis();
              $this->characters = new CharactersRusAcis();
              $this->commonSql = new CommonSql();
+             $this->itemssql = new ItemsRusAcis();
         }
 
         
@@ -75,6 +78,10 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
 
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
             return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
+        }
+
+        public function addL2Item($modelItemsDb , $char_name , $item_id, $count){
+            $this->itemssql->addL2itemRusAcis($modelItemsDb , $char_name , $item_id, $count);
         }
 
       

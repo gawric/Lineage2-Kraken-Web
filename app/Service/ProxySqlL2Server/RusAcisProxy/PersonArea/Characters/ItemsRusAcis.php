@@ -12,11 +12,11 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters;
  use App\Service\Utils\FunctionAuthUser;
  use App\Service\Utils\FunctionSupport;
  use App\Service\ProxySqlL2Server\Template\Chars\CharactersTemplateChars;
+ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateItemsSql;
 
-    class CharactersRusAcis extends CharactersTemplateChars {
-        public function getAllCharsRusAcis($server_name , $auth_user_id , $modelCharactersDb , $server_id){
-                info("getAllCharsRusAcis>>>use characters to RusAcis");
-                return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
+    class ItemsRusAcis extends AcisTemplateItemsSql {
+        public function addL2itemRusAcis($modelItemsDb , $char_name , $item_id, $count){
+            info("L2Items последний метод запроса");
         }
     }
 ?>

@@ -6,10 +6,15 @@ use Auth;
 
 use App\Models\OrderEnot;
 use Lang;
-
+use Config;
 
  class FunctionPayments
  { 
+    //'coin_payments' =>['coin_of_luck' =>4037],
+    public static function getPaymentsItemIdByName($name_item){
+        $array = Config::get('lineage2.server.coin_payments');
+        return $array[$name_item];
+    }
 
     public static function createOrders($sum , $status , $char_name , $accounts_expansion_id , $created_at , $updated_at , $server_id , $login){
         $order = new OrderEnot();
