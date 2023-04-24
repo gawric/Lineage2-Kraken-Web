@@ -8,14 +8,16 @@ use App\Models\OrderEnot;
 use Lang;
 
 
- class FunctionPaymonts
+ class FunctionPayments
  { 
 
-    public static function createOrders($sum , $status , $char_name , $accounts_expansion_id , $created_at , $updated_at){
+    public static function createOrders($sum , $status , $char_name , $accounts_expansion_id , $created_at , $updated_at , $server_id , $login){
         $order = new OrderEnot();
         $order->sum = $sum;
         $order->status = $status;
-        $order->login = $char_name;
+        $order->char_name = $char_name;
+        $order->login = $login;
+        $order->server_id = $server_id;
         $order->accounts_expansion_id = $accounts_expansion_id;
         $order->created_at = $created_at;
         $order->updated_at = $updated_at;

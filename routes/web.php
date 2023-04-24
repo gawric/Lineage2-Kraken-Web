@@ -48,7 +48,7 @@ Route::get('/privacypolicy', PrivacyPolicyController::class)->name('privacypolic
 Route::get('/useragreement', UserAgreementController::class)->name('useragreement');
 Route::get('/payments_success', PagesAlertSuccessController::class)->name('payments_success');
 Route::get('/payments_fail', PagesAlertFailController::class)->name('payments_fail');
-Route::get('/enotio/result1', [EnotIoController::class, 'handlePayment'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
+Route::post('/enotio/result1', [EnotIoController::class, 'handlePayment'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 //Route::get('/enotio/result1', [EnotIoTestController::class, 'index'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);
 
 Route::middleware('valid')->group(function () {

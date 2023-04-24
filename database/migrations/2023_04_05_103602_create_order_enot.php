@@ -18,7 +18,9 @@ return new class extends Migration
             $table->id();
             $table->integer('sum');
             $table->string('status');
+            $table->string('char_name');
             $table->string('login');
+            $table->integer('server_id');
             $table->unsignedBigInteger('accounts_expansion_id');
             $table->foreign('accounts_expansion_id')
             ->references('id')->on('accounts_expansion')
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts_role');
+        Schema::dropIfExists('order_enot');
     }
 };
