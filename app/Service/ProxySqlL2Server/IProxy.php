@@ -25,7 +25,7 @@
 
         //доп функции проверка есть ли char на сервере
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name);
-        public function addL2Item($modelItemsDb , $char_name , $item_id, $count);
+        public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count);
         
 
     }

@@ -77,8 +77,8 @@ use App\Models\Temp\InfoDashboard;
             $proxy_server->clearTableClanStatic();
         }
 
-        public function addL2Item($modelItemsDb , $char_name , $item_id, $count){
-            $this->proxy_server->addL2Item($modelItemsDb , $char_name , $item_id, $count);
+        public function addL2Item($modelItemsDb , $charactersDb ,$char_name , $item_id, $count){
+            $this->proxy_server->addL2Item($modelItemsDb , $charactersDb ,$char_name , $item_id, $count);
         }
 
         private function getProxy($developer_id){

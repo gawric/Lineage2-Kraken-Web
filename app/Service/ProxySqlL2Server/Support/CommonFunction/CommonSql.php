@@ -37,5 +37,9 @@ namespace App\Service\ProxySqlL2Server\Support\CommonFunction;
            // info("RusAcis >>>>>getAccountsExpansionByCharName not found ");
             return [];
         }
+
+        public function getObjIdByCharName($charactersDb , $char_name){
+            return $this->templateCharacters->getObjIdByCharName($charactersDb , $char_name);
+        }
     }
 ?>

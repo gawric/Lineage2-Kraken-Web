@@ -39,6 +39,8 @@ class L2AddItemListener
             $server_id = $event->order_item->server_id;
            
             $modelItemsDb = FunctionSupport::getModelOtherDbByName($server_id , $this->list_servers , "items_db_model");
+            $charactersDb = FunctionSupport::getModelCharactersDb($server_id , $this->list_servers);
+            
             $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_servers);
             $proxy = $this->getProxySqlServerObject($developer_id);
 
@@ -46,7 +48,7 @@ class L2AddItemListener
             $item_id = FunctionPayments::getPaymentsItemIdByName("coin_of_luck");
             $count_item = ceil($event->order_item->sum); 
            // info($event->order_item);
-            $this->addItem($proxy , $modelItemsDb , $char_name , $count_item , $item_id);
+            $this->addItem($proxy , $modelItemsDb , $charactersDb ,$char_name , $count_item , $item_id);
         }
     }
 
@@ -54,7 +56,7 @@ class L2AddItemListener
         return  new ProxySqlServer($developer_id);
     }
 
-    private function addItem($proxy , $modelItemsDb , $char_name , $count_item , $item_id){
-        $proxy->addL2Item($modelItemsDb , $char_name , $item_id, $count_item);
+    private function addItem($proxy , $modelItemsDb ,$charactersDb ,$char_name , $count_item , $item_id){
+        $proxy->addL2Item($modelItemsDb ,$charactersDb ,$char_name , $item_id, $count_item);
     }
 }

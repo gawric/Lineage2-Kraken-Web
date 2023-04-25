@@ -80,8 +80,13 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
             return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
 
-        public function addL2Item($modelItemsDb , $char_name , $item_id, $count){
-            $this->itemssql->addL2itemRusAcis($modelItemsDb , $char_name , $item_id, $count);
+        public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count){
+            $owner_id  = $this->commonSql->getObjIdByCharName($charactersDb , $char_name);
+            info("addL2Item" .  $owner_id);
+            if(isset($owner_id) and isset($owner_id->obj_Id)){
+                $this->itemssql->addL2itemRusAcis($modelItemsDb , $char_name , $item_id, $count , $owner_id->obj_Id);
+            }
+            
         }
 
       
