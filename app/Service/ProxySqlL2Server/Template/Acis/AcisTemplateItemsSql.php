@@ -28,6 +28,11 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             return  $modelItems;
         }
 
+        public function addItemToSql($modelItemsDb , $owner_id , $object_id , $item_id , $count , $loc){
+            $model = $this->createModelItemAcis($modelItemsDb , $owner_id , $object_id , $item_id , $count , $loc);
+            $model->save();
+        }
+
         
     }
 ?>

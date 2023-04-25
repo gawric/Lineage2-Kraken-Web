@@ -11,6 +11,7 @@ use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts\AccountsSqlPwSoft;
 use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\CharactersPwSoft;
 use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
+use App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters\ItemsPwSoft;
 
     //этот класс как и все прокси являются синглтонами
    class ProxyPwSoft implements IProxy
@@ -21,6 +22,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
         private AccountsSqlPwSoft $accountssql;
         private CharactersPwSoft $characters;
         private CommonSql $commonSql;
+        private ItemsPwSoft $itemssql;
 
         public function __construct() {
             $this->reg = new RegSqlPwSoft();
@@ -29,6 +31,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
             $this->accountssql = new AccountsSqlPwSoft();
             $this->characters = new CharactersPwSoft();
             $this->commonSql = new CommonSql();
+            $this->itemssql = new ItemsPwSoft();
         }
 
         
@@ -84,7 +87,16 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
         }
 
         public function addL2Item($modelItemsDb ,$charactersDb , $char_name , $item_id, $count){
-            
+            $owner_id  = $this->commonSql->getObjIdByCharName($charactersDb , $char_name);
+            info("addL2Item>>>> PwSoft " . $owner_id);
+            info($modelItemsDb);
+            info($charactersDb);
+            if(isset($owner_id) and isset($owner_id->obj_Id)){
+                $this->itemssql->addL2itemPwSoft($modelItemsDb , $char_name , $item_id, $count , $owner_id->obj_Id);
+            }
+            else{
+                info("ProxyPwSoft: AddL2item не критическая ошибка. Не смогли найти пользователя для добавления item char_name: " . $char_name);
+            }
         }
 
  

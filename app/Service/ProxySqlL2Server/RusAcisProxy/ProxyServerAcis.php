@@ -82,9 +82,12 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
 
         public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count){
             $owner_id  = $this->commonSql->getObjIdByCharName($charactersDb , $char_name);
-            info("addL2Item" .  $owner_id);
+           
             if(isset($owner_id) and isset($owner_id->obj_Id)){
                 $this->itemssql->addL2itemRusAcis($modelItemsDb , $char_name , $item_id, $count , $owner_id->obj_Id);
+            }
+            else{
+                info("ProxyRusAcis: AddL2item не критическая ошибка. Не смогли найти пользователя для добавления item char_name: " . $char_name);
             }
             
         }

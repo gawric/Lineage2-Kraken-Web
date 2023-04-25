@@ -32,7 +32,7 @@ return [
                 'server_db_model' => "App\Models\Server\PwSoft\PwSoftServerCharacters",
                 'accounts_db_model' => "App\Models\Server\PwSoft\PwSoftServerAccounts",
                 'clandata_db_model' => "App\Models\Server\PwSoft\PwSoftServerClanData",
-                'items_db_model' => "App\Models\Server\ServerItems",
+                'items_db_model' => "App\Models\Server\PwSoft\PwSoftItems",
         ],
             'server3' => [
                 'id'=>'3',
@@ -68,6 +68,8 @@ return [
     'role_name_user' => 'role_user',
 
     'role_name_admin' => 'role_admin',
+
+    'inventory_item' => 'INVENTORY',
 
     //Какие платежные системы поддерживаем
     'support_paymonts' => [0 => "Enot.io", 1 => "Test.io"],

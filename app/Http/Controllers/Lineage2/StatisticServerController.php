@@ -37,14 +37,14 @@ class StatisticServerController extends Controller
     public function index()
     {   
         //только для теста
-        info("Статистика тест");
+        //info("Статистика тест");
         event(new L2AddItem($this->createTestOrder()));
 
         return view('l2page_statistic', ['arrayNameServers' => FunctionSupport::getServerOnlyNameAndId($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
     }
 
     private function createTestOrder(){
-        $test =  FunctionPayments::createOrders("333" , "paid" , "testacischar" , "3" , now() , now() , 1 , "gawric" );
+        $test =  FunctionPayments::createOrders("444" , "paid" , "test_user_1_pwsoft" , "3" , now() , now() , 2 , "gawric" );
         info("createTestOrder  " . $test);
         return $test;
     }
