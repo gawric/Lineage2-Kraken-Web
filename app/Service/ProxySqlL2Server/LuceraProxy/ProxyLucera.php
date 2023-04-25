@@ -11,7 +11,8 @@ use App\Service\ProxySqlL2Server\LuceraProxy\Sheldure\TopClanSqlLucera;
 use App\Models\Temp\InfoDashboard;
 use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\CharactersLucera;
 use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
-
+use App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters\ItemsLucera;
+use Exception;
 
    class ProxyLucera implements IProxy
    {
@@ -21,6 +22,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
         private AccountsSqlLucera $accountssql;
         private CharactersLucera $characters;
         private CommonSql $commonSql;
+        private ItemsLucera $itemssql;
 
 
         public function __construct() {
@@ -30,6 +32,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
             $this->accountssql = new AccountsSqlLucera();
             $this->characters = new CharactersLucera();
             $this->commonSql = new CommonSql();
+            $this->itemssql = new ItemsLucera();
         }
 
         
@@ -84,9 +87,17 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
             return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
-
+        //throw new Exception( 'File not found');  будем выбрасывать если найдем 
         public function addL2Item($modelItemsDb , $charactersDb  , $char_name , $item_id, $count){
-            
+            $owner_id  = $this->charactersSql->getObjIdByCharNameLucera($charactersDb , $char_name);
+            info("addL2Item>>>> ProxyLucera " . $owner_id);
+            if(isset($owner_id) and isset($owner_id->obj_Id)){
+                $this->itemssql->addL2itemLucera($modelItemsDb , $char_name , $item_id, $count , $owner_id->obj_Id);
+            }
+            else{
+                info("ProxyLucera: AddL2item не критическая ошибка. Не смогли найти пользователя для добавления item char_name: " . $char_name);
+                throw new Exception( 'characters not found obj_id by char_name'); 
+            }
         }
 
       

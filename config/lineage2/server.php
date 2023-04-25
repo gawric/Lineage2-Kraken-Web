@@ -49,7 +49,7 @@ return [
                 //accounts_db_model -> в модели мы указываем не только имя таблицы но и какая бд будет использоваться
                 'accounts_db_model' => "App\Models\Server\Lucera\LuceraServerAccounts",
                 'clandata_db_model' => "App\Models\Server\Lucera\LuceraServerClanData",
-                'items_db_model' => "App\Models\Server\ServerItems",
+                'items_db_model' => "App\Models\Server\Lucera\LuceraServerItems",
         ],
     ],
 
@@ -65,11 +65,23 @@ return [
     //Блокировка пользователя если вход произошел с неизвестного ip
     'blocked_login_with_unknown_ip' => true,
 
+     //название роли для юзера
     'role_name_user' => 'role_user',
 
+    //название роли для админа
     'role_name_admin' => 'role_admin',
 
+    //Для таблицы items в стобике loc
     'inventory_item' => 'INVENTORY',
+
+     //Order status
+    'order_status_complete' => 'complete',
+
+    'order_status_fail_add' => 'fail_add',
+
+    'order_status_paid' => 'paid',
+
+    'order_status_found' => 'found',
 
     //Какие платежные системы поддерживаем
     'support_paymonts' => [0 => "Enot.io", 1 => "Test.io"],

@@ -46,7 +46,7 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
                 $filtersPk = new GeneralFilters(['simplefilter'] , [['char_name', '=', $char_name]]);
                 return $charactersDb::filter($filtersPk)->get(['obj_Id','char_name'])->first();
             }
-    
+
 
             public function saveAllCharacters($allModelCharactersPvp , $allModelCharactersPk){
 

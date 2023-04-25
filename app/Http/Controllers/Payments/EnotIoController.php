@@ -115,18 +115,18 @@ class EnotIoController extends Controller
      */
     public function searchOrder(Request $request, $order_id)
     {
-        info("use EnotIoController >>>> searchOrder: orderId");
-        info($order_id);
+       // info("use EnotIoController >>>> searchOrder: orderId");
+        //info($order_id);
         //info("use EnotIoController >>>> enter request data");
         //info($request);
         $order = OrderEnot::where('id', $order_id)->first();
 
         if($order) {
-            info("use EnotIoController >>>> access searchOrder: orderId");
+           // info("use EnotIoController >>>> access searchOrder: orderId");
             $order['sum'] = $order->sum;
 
             // If your field can be `paid` you can set them like string
-            $order['status'] = "found";
+            $order['status'] = Config::get('lineage2.server.order_status_found');
 
             // Else your field doesn` has value like 'paid', you can change this value
             $order['status'] = ('1' == $order['status']) ? 'paid' : false;
@@ -150,7 +150,7 @@ class EnotIoController extends Controller
         info("use EnotIoController >>>> paidOrder: order");
         info($order);
 
-        $order->status = 'paid';
+        $order->status = Config::get('lineage2.server.order_status_paid');
         $order->save();
 
         //Отправляем сообщение слушателю, что нужно добавить итем по выполненному платежу!

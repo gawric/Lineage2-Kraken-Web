@@ -18,6 +18,10 @@ use App\Service\ProxySqlL2Server\Template\Acis\AcisTemplateCharactersSql;
             }
 
 
+            public function getObjIdByCharNameLucera($charactersDb , $char_name){
+                $filtersPk = new GeneralFilters(['simplefilter'] , [['char_name', '=', $char_name]]);
+                return $charactersDb::filter($filtersPk)->get(['charId as obj_Id','char_name'])->first();
+            }
 
             public function getClanIdToClanNameLucera($unique_clan_id , $current_clandata_db_model){
                return $this->getClanIdToClanName($unique_clan_id , $current_clandata_db_model);

@@ -12,6 +12,8 @@ use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts\AccountsSqlRus
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\CharactersRusAcis;
 use App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters\ItemsRusAcis;
 use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
+use Exception;
+
 
    class ProxyServerAcis implements IProxy
    {
@@ -88,6 +90,7 @@ use App\Service\ProxySqlL2Server\Support\CommonFunction\CommonSql;
             }
             else{
                 info("ProxyRusAcis: AddL2item не критическая ошибка. Не смогли найти пользователя для добавления item char_name: " . $char_name);
+                throw new Exception( 'characters not found obj_id by char_name'); 
             }
             
         }

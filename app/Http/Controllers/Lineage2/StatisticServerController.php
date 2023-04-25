@@ -38,16 +38,16 @@ class StatisticServerController extends Controller
     {   
         //только для теста
         //info("Статистика тест");
-        event(new L2AddItem($this->createTestOrder()));
+       // event(new L2AddItem($this->createTestOrder()));
 
         return view('l2page_statistic', ['arrayNameServers' => FunctionSupport::getServerOnlyNameAndId($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
     }
 
-    private function createTestOrder(){
-        $test =  FunctionPayments::createOrders("444" , "paid" , "test_user_1_pwsoft" , "3" , now() , now() , 2 , "gawric" );
-        info("createTestOrder  " . $test);
-        return $test;
-    }
+    //private function createTestOrder(){
+       // $test =  FunctionPayments::createOrders("444" , "paid" , "test_user_1_lucera" , "3" , now() , now() , 3 , "gawric" );
+       // info("createTestOrder  " . $test);
+       // return $test;
+   // }
 
     public function dataStat(Request $request , $sever_id , $stat_id)
     {

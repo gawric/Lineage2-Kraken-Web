@@ -61,5 +61,8 @@ namespace App\Service\ProxySqlL2Server\Template\Chars;
         private function createModel($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online){
             return FunctionSupport::createModelInfoDashBoardChars($id , $char_name , $account_name , $lvl , $clan_name , $pvp , $pk , $last_data , $server_name , $online);
         }
+
+            
+     
     }
 ?>
