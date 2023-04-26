@@ -83,8 +83,8 @@ class EnotIoController extends Controller
         if( $developer_id != -1){
             $this->proxy = new ProxySqlServer($developer_id);
             return $this->proxy->getAccountsExpansionByCharName(FunctionSupport::getModelAccountDb($server_id , $list_servers),  FunctionSupport::getModelCharactersDb($server_id , $list_servers), $char_name);
-            }
         }
+    }
     
   
     private function getUrlWeb($url){

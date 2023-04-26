@@ -4,7 +4,7 @@ namespace Database\Factories\Server;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-//Фейковые данные для тестирования RusAcis
+//Фейковые данные для тестирования RusAcis Characters
 class ServerCharactersFactory extends Factory
 {
     /**
