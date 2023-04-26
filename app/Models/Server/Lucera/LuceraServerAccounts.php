@@ -3,11 +3,13 @@
 namespace App\Models\Server\Lucera;
  
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
  
 //обращаемся к lucera
 class LuceraServerAccounts extends Model
 {
-    
+    use HasFactory;
+
     protected $table = 'accounts';
     protected $primaryKey = 'login';
     public $timestamps = false;

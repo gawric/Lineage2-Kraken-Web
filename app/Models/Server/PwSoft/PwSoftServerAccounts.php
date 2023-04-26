@@ -3,11 +3,12 @@
 namespace App\Models\Server\PwSoft;
  
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
  
-//обращаемся к pwsoft
+
 class PwSoftServerAccounts extends Model
 {
-    
+    use HasFactory;
     protected $table = 'accounts';
     protected $primaryKey = 'login';
     public $timestamps = false;

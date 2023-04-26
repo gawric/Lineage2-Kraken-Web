@@ -139,6 +139,17 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return Accounts_expansion::filter($filtersPk)->get(['id' , 'login'])->first();
         }
 
+        public function getIdAccountExpansionByAccountName($account_name){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['account_name', '=', $account_name]]);
+            return Accounts_server_id::filter($filtersPk)->get(['accounts_expansion_id'])->first();
+        }
+
+        public function getIdAccountExpansionById($account_expansion_id){
+            $filtersPk = new GeneralFilters(['simplefilter'] , [['id', '=', $account_expansion_id]]);
+            return Accounts_expansion::filter($filtersPk)->get()->first();
+        }
+
+
 
         
      }

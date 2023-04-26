@@ -79,7 +79,10 @@ use Exception;
 
 
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
-            return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
+            $result = $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
+            info('RESULTTTTTTTTTTTTTTTTTTTT');
+            info($result);
+            return $result;
         }
 
         public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count){

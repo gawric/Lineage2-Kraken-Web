@@ -18,4 +18,9 @@ class Accounts_server_id extends Model
     {
       return $this->belongsTo(Accounts_expansion::class);
     }
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }

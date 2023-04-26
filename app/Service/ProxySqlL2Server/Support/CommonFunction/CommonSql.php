@@ -27,10 +27,12 @@ namespace App\Service\ProxySqlL2Server\Support\CommonFunction;
                 $login = $characterModel->account_name;
                // info("RusAcis >>>>>getAccountsExpansionByCharName isset access " . $login);
                 if($this->templateReg->isUserExistServer($modelAccountDb , $login)){
-                   // info("RusAcis >>>>>getAccountsExpansionByCharName isUserExistServerRusAcis access ");
-                   return $this->templateReg->getAccountsExpansionByAccountLogin($login);
-                   // info("RusAcis >>>>>getAccountsExpansionByCharName ". $accounts_expansion);
-                  //  return $accounts_expansion;
+
+                    $account_expansion_id = $this->templateReg->getIdAccountExpansionByAccountName($login);
+                    if(isset($account_expansion_id)){
+                        return  $this->templateReg->getIdAccountExpansionById($account_expansion_id->accounts_expansion_id);
+                    }
+
                 }
     
             }
@@ -38,6 +40,7 @@ namespace App\Service\ProxySqlL2Server\Support\CommonFunction;
             return [];
         }
 
+     
         public function getObjIdByCharName($charactersDb , $char_name){
             return $this->templateCharacters->getObjIdByCharName($charactersDb , $char_name);
         }
