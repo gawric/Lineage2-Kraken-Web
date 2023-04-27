@@ -183,27 +183,14 @@
             </tr>
          @endforeach
          @else
-            <tr>
-                <td>   <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                  Нет данных
-                </th>
-                <td class="px-6 py-4">
-                  Нет данных
-                </td>
-                <td class="px-6 py-4">
-                  Нет данных
-                </td>
-                <td class="px-6 py-4">
+         <tr>
+              <td>  
+                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td align="center" colspan="10" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                         Нет данных
+                    </th>
+                </tr>
 
-                </td>
-                <td class="px-6 py-4">
-
-                </td>
-                <td>
-               
-                </td>
-            </tr></td>
             </tr>
         @endif
         
@@ -256,6 +243,7 @@
             dialog.classList.add('hidden');
             overlay.classList.add('hidden');
         });
+        
         newAccountModal();
 
         function onChangePassSave(){

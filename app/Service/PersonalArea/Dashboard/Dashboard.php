@@ -27,7 +27,7 @@
 
         public function getInfoAccountsServer($username){
             $list_user_server_accounts = Auth::user()->accounts_server_id();
-           return  $this->sql_support->getInfoAllCharacters($this->list_server , $username , $list_user_server_accounts);
+           return  $this->sql_support->getInfoAllCharacters($this->list_server , $list_user_server_accounts);
         }
 
         public function getAllowedAccountsCount() : int{

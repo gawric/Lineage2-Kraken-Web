@@ -51,6 +51,23 @@ class PaymentsExistsAccountExpansionTest extends TestCase
          $this->assertCount($count_success , $this->list_server);
      }
 
+     public function testFailExistAccountExpansionByCharName(){
+      $count_success = 0;
+      foreach($this->list_server as $server){
+         $character_model =  $server['server_db_model'];
+         $server_id =  $server['id'];
+         $char_name  = "char_name_test";
+         $account_expansion_model =  $this->getAccountsExpansionId($server_id , $this->list_server , $char_name);
+         if(isset($account_expansion_model)){
+            if(!is_array($account_expansion_model)){
+               $count_success = $count_success + 1;
+            }
+         }
+      
+      }
+      $this->assertEquals($count_success , 0 );
+  }
+
 
 
 

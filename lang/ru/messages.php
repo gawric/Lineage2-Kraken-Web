@@ -58,7 +58,21 @@ return [
     'lk_admin_accounts'=> 'Пользователи',
     'lk_admin_static'=> 'Статистика',
     'lk_admin_panel_admin'=> 'Панель администратора',
-    'lk_admin_panel_donate_descript'=> 'Список последних 30 донатов',
+    'lk_admin_panel_descript'=> 'Список зарегистрированных пользователей',
+    'lk_admin_panel_data_reg' => 'Дата рег.',
+    'lk_admin_panel_username'=> 'Имя поль.',
+    'lk_admin_panel_email'=> 'Email',
+    'lk_admin_panel_accounts'=> 'Кол. акк.',
+    'lk_admin_panel_chars'=> 'Кол. чаров',
+    'lk_admin_panel_blocked'=> 'Заблок.',
+    'lk_admin_panel_last_ip'=> 'Пос. ip',
+    'lk_admin_panel_title_chars'=> 'Список чаров',
+
+    'lk_admin_panel_windows_chars_char_name'=> 'Имя чара',
+    'lk_admin_panel_windows_chars_account_name'=> 'Имя аккаунта',
+    'lk_admin_panel_windows_chars_number_coins'=> 'Кол. coin',
+    'lk_admin_panel_windows_chars_number_coins'=> 'Кол. coin',
+
 
 
     'payments_header' => 'Донаты',
@@ -95,6 +109,8 @@ return [
     'lk_table_dashboard_last_data' => 'Посл.дата',
     'lk_table_dashboard_count_chars' => 'Кол-во перс.',
     'lk_table_dashboard_name_server' => 'Имя сервера',
+
+ 
 
 
     'lk_table_dashboardchars_name_char' => 'Имя персонажа',

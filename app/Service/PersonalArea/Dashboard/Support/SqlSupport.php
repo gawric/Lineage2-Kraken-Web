@@ -9,14 +9,14 @@ use Lang;
 
     class SqlSupport
     {
-        public function getInfoAllCharacters($list_server , $username , $list_user_server_accounts) : array{
+        public function getInfoAllCharacters($list_server , $list_user_server_accounts) : array{
             $finishArray = [];
             $n = 0;
             foreach($list_server as $i =>$serverModel){
                     
   
                 
-                    $list_user_server_accounts->each(function($current_user_item, $key) use ($serverModel ,&$n , $username , &$finishArray)  {
+                    $list_user_server_accounts->each(function($current_user_item, $key) use ($serverModel ,&$n , &$finishArray)  {
                        
 
                         $server_name = $serverModel['name'];

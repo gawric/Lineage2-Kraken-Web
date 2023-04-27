@@ -71,6 +71,9 @@ return [
     //название роли для админа
     'role_name_admin' => 'role_admin',
 
+    //название роли для заблокированного пользователя
+    'role_name_blocked' => 'role_blocked',
+
     //Для таблицы items в стобике loc
     'inventory_item' => 'INVENTORY',
 

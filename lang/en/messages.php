@@ -73,9 +73,19 @@ return [
     'lk_admin_accounts'=> 'Users',
     'lk_admin_static'=> 'Statistics',
     'lk_admin_panel_admin'=> 'Admin panel',
-    'lk_admin_panel_donate_descript'=> 'List of last 30 donations',
+    'lk_admin_username' => 'Username',
+    'lk_admin_panel_email' => 'Email',
+    'lk_admin_panel_data_reg' => 'Data create',
+    'lk_admin_panel_accounts' => 'Accounts',
+    'lk_admin_panel_chars' => 'Chars',
+    'lk_admin_panel_blocked' => 'Is Blocked',
+    'lk_admin_panel_descript' => 'List of registered users',
+    'lk_admin_panel_last_ip'=> 'Last ip',
+    'lk_admin_panel_title_chars'=> 'List Chars',
 
-
+    'lk_admin_panel_windows_chars_char_name'=> 'Char name',
+    'lk_admin_panel_windows_chars_account_name'=> 'Account name',
+    'lk_admin_panel_windows_chars_number_coins'=> 'Num. coins',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

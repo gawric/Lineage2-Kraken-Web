@@ -12,6 +12,8 @@ use Lang;
 use App\Service\Utils\FunctionEmailActivate;
 use App\Service\Payments\Enot\EnotIoService;
 use App\Service\Payments\IPaymentsService;
+use App\Service\PersonalArea\AdminDashboard\AdminDashboard;
+use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('IDetectedIp', DetectedIp::class);
         FunctionEmailActivate::toMailText();
         $this->app->bind(IPaymentsService::class, EnotIoService::class);
+        $this->app->bind(IAdminDashboard::class, AdminDashboard::class);
     }
 
 

@@ -80,8 +80,8 @@ use Exception;
 
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
             $result = $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
-            info('RESULTTTTTTTTTTTTTTTTTTTT');
-            info($result);
+          //  info('RESULTTTTTTTTTTTTTTTTTTTT');
+          //  info($result);
             return $result;
         }
 
