@@ -29,6 +29,12 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
     public static function getAllAccounts_ip(){
         return Auth::user()->accounts_ip;
     }
+
+    //еще не проверял работу
+    public static function getRoleName(){
+        return Auth::user()->accounts_role()->name;
+    }
+
     public static function getAccountsUserByServerId($search_server_id){
         return Auth::user()->accountsServerFilterById($search_server_id);
     }

@@ -30,10 +30,10 @@ class RoleAdminMiddleware
        // dd($request->user()->accounts_role->first()->name);
         $role_name_auth = $request->user()->accounts_role->first()->name;
        // dd($this->role_admin);
-        info("RoleAdminMiddleware>>>>");
+       // info("RoleAdminMiddleware>>>>");
         
-        info($role_name_auth);
-        info($this->role_admin);
+        //info($role_name_auth);
+       // info($this->role_admin);
 
 
         if(strcmp($this->role_admin, $role_name_auth) == 0){

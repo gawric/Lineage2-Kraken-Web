@@ -25,30 +25,64 @@
       <div id="dialog"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-196 bg-white rounded-md px-8 py-6 space-y-15 drop-shadow-lg">
         <h1 class="text-2xl font-semibold">{{ __('messages.lk_admin_panel_title_chars') }}</h1>
+        <div style="margin-top:3%;width: 50%;"class="grid mb-6 md:grid-cols-3">
+          <div>
+             <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_item')}}</label>
+              <select id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected> {{ __('messages.lk_admin_panel_windows_chars_select_choose_item_title')}}</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="FR">France</option>
+                <option value="DE">Germany</option>
+              </select>
+          </div>
+          <div style="margin-left:5%;width: 50%;">
+              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_count')}}</label>
+              <input type="text" id="last_name" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="10" required>
+          </div>
+          <div style="float:left;margin-top:1px;" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+            <label for="last_name_1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_add')}}</label>
+            <button type="button" class="p-2 mb-6 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5  mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">{{ __('messages.lk_admin_panel_windows_chars_select_add')}}</button>
+          </div>
+        </div>
         <div style="margin-top:3%;">
-          <table id="" style="width:100%;" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table id="" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
           <tbody>
             <tr>
               <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_select_row')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_account_name')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_char_name') }}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_number_coins')}}</th>
-              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_accounts')}}</th>
-              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_chars')}}</th>
-              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_blocked')}}</th>
-              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_last_ip')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_server_name')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_server_lvl')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_online')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_last_data')}}</th>
             </tr>
             <tr>
-              <td>  
                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">  
-                 <td class="px-6 py-4">1</td>
-                 <td class="px-6 py-4">account_test</td>
-                 <td class="px-6 py-4">test_char_name</td>
-                 <td class="px-6 py-4">16</td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
-                 <td></td>
+                  <td class="px-6 py-4 bg-gray-50">1</td>
+                  <td class="px-6 py-4 bg-gray-50"> <input checked id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></td>
+                  <td class="px-6 py-4 bg-gray-50">account_gawric</td>
+                  <td class="px-6 py-4 bg-gray-50">gawric_char_name</td>
+                  <td class="px-6 py-4 bg-gray-50">999</td>
+                  <td class="px-6 py-4 bg-gray-50">X300 Paradise</td>
+                  <td class="px-6 py-4 bg-gray-50">54</td>
+                  <td class="px-6 py-4 bg-gray-50">offline</td>
+                  <td class="px-6 py-4 bg-gray-50">2023-04-12 12:32:53</td>
+                </tr>
+            </tr>
+            <tr>
+                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">  
+                  <td class="px-6 py-4 ">1</td>
+                  <td class="px-6 py-4 "> <input  id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></td>
+                  <td class="px-6 py-4 ">account_test</td>
+                  <td class="px-6 py-4 ">test_char_name</td>
+                  <td class="px-6 py-4 ">16</td>
+                  <td class="px-6 py-4 ">X50 Nightmare</td>
+                  <td class="px-6 py-4">16</td>
+                  <td class="px-6 py-4">online</td>
+                  <td class="px-6 py-4">2023-04-27 06:00:53</td>
                 </tr>
             </tr>
         </tbody>
@@ -62,9 +96,9 @@
             <button id="save"  class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
               save
             </button>
-
         </div>
       </div>
+  
 </div>
 
 
@@ -133,7 +167,17 @@
            
         </tbody>
     </table>
+    <div style="margin-top:3%;" >
+      <!-- Previous Button -->
+      <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        Previous
+      </a>
 
+      <!-- Next Button -->
+      <a href="#" class="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        Next
+      </a>
+    </div>
     <div>
         <button id="open_new_account" style="margin-top: 3%;"class="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 mr-2 mb-2">
         {{ __('messages.lk_add_new_account') }}

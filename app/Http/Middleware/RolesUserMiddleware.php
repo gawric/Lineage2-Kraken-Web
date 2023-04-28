@@ -32,9 +32,9 @@ class RolesUserMiddleware
         $role_name_auth = $request->user()->accounts_role->first()->name;
 
 
-        info("RolesUserMiddleware>>>>");
-        info($role_name_auth);
-        info($this->role_user_config);
+        //info("RolesUserMiddleware>>>>");
+       // info($role_name_auth);
+       // info($this->role_user_config);
 
         if(strcmp($this->role_user_config, $role_name_auth) == 0){
             return $next($request);

@@ -86,6 +86,16 @@ return [
     'lk_admin_panel_windows_chars_char_name'=> 'Char name',
     'lk_admin_panel_windows_chars_account_name'=> 'Account name',
     'lk_admin_panel_windows_chars_number_coins'=> 'Num. coins',
+    'lk_admin_panel_windows_chars_select'=> 'Select',
+    'lk_admin_panel_windows_chars_select_item'=> 'Itm',
+    'lk_admin_panel_windows_chars_select_count'=> 'Count',
+    'lk_admin_panel_windows_chars_select_add' => 'Add Char',
+    'lk_admin_panel_windows_chars_select_row'=> 'Sel.',
+    'lk_admin_panel_windows_chars_select_choose_item_title'=> 'Choose item',
+    'lk_admin_panel_windows_chars_server_name' => 'Server name', 
+    'lk_admin_panel_windows_chars_server_lvl' => 'Lvl', 
+    'lk_admin_panel_windows_chars_online' => 'On.',
+    'lk_admin_panel_windows_chars_last_data' => 'Date',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',
@@ -131,6 +141,7 @@ return [
     'lk_new_accounts_button_exit' => 'Close',
     'lk_new_accounts_select_server' => 'Select server',
     'lk_new_accounts_list_server' => 'Server list',
+    
 
 
     'lk_all_chars' => 'Сharacter list',

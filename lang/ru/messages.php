@@ -71,7 +71,18 @@ return [
     'lk_admin_panel_windows_chars_char_name'=> 'Имя чара',
     'lk_admin_panel_windows_chars_account_name'=> 'Имя аккаунта',
     'lk_admin_panel_windows_chars_number_coins'=> 'Кол. coin',
-    'lk_admin_panel_windows_chars_number_coins'=> 'Кол. coin',
+   // 'lk_admin_panel_windows_chars_number_coins'=> 'Кол. coin',
+    'lk_admin_panel_windows_chars_select_item'=> 'Итем',
+    'lk_admin_panel_windows_chars_select'=> 'Выбр.',
+    'lk_admin_panel_windows_chars_select_count'=> 'Кол-во',
+    'lk_admin_panel_windows_chars_select_add' => 'Добавить',
+    'lk_admin_panel_windows_chars_select_row'=> 'Выбр.',
+    'lk_admin_panel_windows_chars_select_choose_item_title'=> 'Выбрать итем',
+    'lk_admin_panel_windows_chars_server_name' => 'Имя сервера', 
+    'lk_admin_panel_windows_chars_server_lvl' => 'Ур.', 
+    'lk_admin_panel_windows_chars_online' => 'Подк.',
+    'lk_admin_panel_windows_chars_last_data' => 'Дата',
+    
 
 
 
