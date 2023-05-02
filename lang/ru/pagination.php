@@ -15,5 +15,11 @@ return [
 
     'previous' => '&laquo; Предыдущий',
     'next' => 'Далее &raquo;',
+    'Showing' => 'Показано ',
+    'to' => ' c ',
+    'of' => ' по ',
+    'on' => ' из ',
+    'Entries' => ' записей ',
+    
 
 ];

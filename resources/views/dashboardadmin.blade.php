@@ -168,21 +168,29 @@
         </tbody>
     </table>
     <div style="margin-top:3%;" >
-      <!-- Previous Button -->
-      <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-        Previous
-      </a>
-
-      <!-- Next Button -->
-      <a href="#" class="inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+   
+    <div class="flex flex-col ">
+  <!-- Help text -->
+  <span class="text-sm text-gray-700 dark:text-gray-400">
+  {{ __('pagination.Showing')}} <span class="font-semibold text-gray-900 dark:text-white">{{ __('pagination.to')}} {{ $data_result->from }}</span>{{ __('pagination.of')}} <span class="font-semibold text-gray-900 dark:text-white">{{ $data_result->to }}</span> {{ __('pagination.on')}}  <span class="font-semibold text-gray-900 dark:text-white">{{ $data_result->total }}</span> {{ __('pagination.Entries')}}
+  </span>
+  <div class="inline-flex mt-2 xs:mt-0">
+    <!-- Buttons -->
+    <button class="inline-flex  px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+        <svg aria-hidden="true" class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+        Prev
+    </button>
+    <button class="inline-flex  px-4 py-2 text-sm font-medium text-white bg-gray-800 border-0 border-l border-gray-700 rounded-r hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
         Next
-      </a>
+        <svg aria-hidden="true" class="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+  </div>
+</div>
+
+
+    
     </div>
-    <div>
-        <button id="open_new_account" style="margin-top: 3%;"class="text-white bg-[#FF9119] hover:bg-[#FF9119]/80 focus:ring-4 focus:outline-none focus:ring-[#FF9119]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:hover:bg-[#FF9119]/80 dark:focus:ring-[#FF9119]/40 mr-2 mb-2">
-        {{ __('messages.lk_add_new_account') }}
-        </button>
-    </div>
+
 
     
 </div>
