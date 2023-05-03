@@ -33,9 +33,8 @@ class AdminDashboardController extends Controller
        $data_pages = $this->getPage($this->count_rows);
        $array_admindashboard = $this->getInfoDataAccounts($data_pages);
        $data_pages->withPath('/adminDashboard/users');
-
-       $data = json_encode($data_pages);
-       $data_result = json_decode($data);
+       $data_result = $this->unlockedData($data_pages);
+     
      //  dd($data_result);
        return view('dashboardadmin', ['data_result' => $data_result] ,['array_admindashboard' => $array_admindashboard]) ;
     }
@@ -50,11 +49,12 @@ class AdminDashboardController extends Controller
 
         $data_pages = $this->getPage($this->count_rows);
         $array_admindashboard = $this->getInfoDataAccounts($data_pages);
-        $data = json_encode($data_pages);
-       $data_result = json_decode($data);
-       //dd($data_result);
-        //dd($data_pages->currentPage);
-        return view('dashboardadmin', ['data_result' => $data_result]  ,['array_admindashboard' => $array_admindashboard]) ;
+       
+
+        $data_result_json = $this->unlockedData($data_pages);
+        $data_result_json->data = $array_admindashboard;
+        
+        return $data_result_json;
     }
     
 
@@ -69,6 +69,12 @@ class AdminDashboardController extends Controller
     }
     public function getData($name , $validated ) : string {
         return $validated["$name"];
+    }
+
+    private function unlockedData($data_pages){
+        $data = json_encode($data_pages);
+        $data_result = json_decode($data);
+        return $data_result;
     }
    
 }

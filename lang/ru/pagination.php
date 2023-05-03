@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'previous' => '&laquo; Предыдущий',
-    'next' => 'Далее &raquo;',
+    'previous' => ' Назад ',
+    'next' => ' Далее ',
     'Showing' => 'Показано ',
     'to' => ' c ',
     'of' => ' по ',

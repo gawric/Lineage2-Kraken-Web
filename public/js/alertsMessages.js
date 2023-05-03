@@ -69,6 +69,15 @@ function hideButtonLoadingCreateAccount(){
     $('#save_new_account').css("display", "block");
 }
 
+function showButtonLoadingById(id_element){
+    $('#'+id_element).css("display", "block");
+
+}
+
+function hideButtonLoadingById(id_element){
+    $('#'+id_element).css("display", "none");
+}
+
 
 function showAlertSuccesCreateAccount(){
     $('#info_new_account_succes').css("display", "block");
@@ -80,6 +89,11 @@ function hideAlertSuccesCreateAccount(){
 
 function setTextSuccessAlertCreateAccount(text){
     $('#info_text_account_success').text(text);
+}
+
+
+function setTextById(text , id_element){
+    $('#'+id_element).text(text);
 }
 
 
