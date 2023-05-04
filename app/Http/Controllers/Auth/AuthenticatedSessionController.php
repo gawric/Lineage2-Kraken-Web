@@ -8,7 +8,9 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Config;
-
+use Session;
+use Illuminate\Validation\ValidationException;
+use App\Service\Utils\FunctionRedirectUser;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -21,7 +23,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-       // info("auth test login create");
+      
         return view('auth.login');
     }
 
@@ -33,47 +35,23 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-
-
         $request->authenticate();
-
+  
         $request->session()->regenerate();
-        
-        $role_name_auth = $request->user()->accounts_role->first()->name;
+       
+        $user = $request->user();
 
-        return $this->getRedirect($role_name_auth);
-        //return redirect()->intended("adminDashboard");
+        if(isset($user)){
+            $role_name_auth = $request->user()->accounts_role->first()->name;
+            return FunctionRedirectUser::getRedirect($role_name_auth , $request->user()->login);
+        }
+        
+        return redirect()->intended("/");
     }
 
 
   
-    private  function getRedirect($role_name_auth){
-
-        if(strcmp($this->getRoleNameUser(), $role_name_auth) == 0){
-         //   info("redirect HOME");
-            return redirect()->intended(RouteServiceProvider::HOME);
-        }
-        else{
-            if(strcmp($this->getRoleNameAdmin(), $role_name_auth) == 0){
-              //  info("redirect HOME ADMIN");
-             //   info(RouteServiceProvider::HOME_ADMIN);
-                return redirect()->intended(RouteServiceProvider::HOME_ADMIN);
-            }
-            else{
-                //info("redirect HOME UNKNOW");
-                return redirect()->intended(RouteServiceProvider::HOME);
-            }
-        }
-    }
-
-
-    private function getRoleNameAdmin(){
-        return  Config::get('lineage2.server.role_name_admin');
-    }
-
-    private function getRoleNameUser(){
-        return Config::get('lineage2.server.role_name_user');
-    }
+    
 
     
 

@@ -54,9 +54,6 @@
                         {{ __('messages.lk_characters') }}
                         </x-dropdown-link>
                         
-                        <x-dropdown-link :href="route('profile.edit')">
-                        {{ __('messages.lk_characters') }}
-                        </x-dropdown-link>
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">

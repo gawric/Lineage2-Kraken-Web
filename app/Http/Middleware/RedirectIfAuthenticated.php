@@ -6,6 +6,7 @@ use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Service\Utils\FunctionRedirectUser;
 
 class RedirectIfAuthenticated
 {
@@ -23,10 +24,21 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+                $user = $request->user();
+
+                if(isset($user)){
+                    $role_name_auth = $request->user()->accounts_role->first()->name;
+                    return FunctionRedirectUser::getRedirect($role_name_auth , $request->user()->login);
+                }
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }
 
         return $next($request);
+    }
+
+    private function getRedirect(){
+
     }
 }

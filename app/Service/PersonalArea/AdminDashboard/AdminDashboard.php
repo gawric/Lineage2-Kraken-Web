@@ -28,16 +28,17 @@
         }
 
         public function getListAllInfoAdminDashboard($all_users):array{
-                return $this->admin_support->forEach($all_users);
+                return $this->admin_support->forEach($all_users , $this->sql_support , $this->list_server);
         }
 
         public function blockAccountExpansionAndAllAccounts($account_expansion_id){
-            $model = $this->admin_sql_support->isExistAccountExpansion($account_expansion_id);
-            if(isset($model)){
-                info("blockAccountExpansionAndAllAccounts>>> model found: $model");
+            $model_account_expansion = $this->admin_sql_support->isExistAccountExpansion($account_expansion_id);
+            if(isset($model_account_expansion)){
+                //info("blockAccountExpansionAndAllAccounts>>> model found: $model");
+                $this->admin_sql_support->blockAccountExpansion($model_account_expansion);
                 return "{status:success}";
             }
-            info("blockAccountExpansionAndAllAccounts>>> model NOT found:");
+            //info("blockAccountExpansionAndAllAccounts>>> model NOT found:");
 
             throw new ModelNotFoundException(Lang::get('validation.not_fount_account') . " " . $account_expansion_id);
         }

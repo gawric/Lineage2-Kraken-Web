@@ -16,4 +16,8 @@ class Accounts_role extends Model
     {
       return $this->belongsTo(Accounts_expansion::class);
     }
+
+    public function __toString() {
+      return " Роль юзера " . $this->name . " id юзера " . $this->accounts_expansion_id;
+    }
 }

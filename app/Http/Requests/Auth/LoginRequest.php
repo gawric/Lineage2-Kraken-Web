@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Service\Utils\FunctionAuthUser;
+use Config;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginRequest extends FormRequest
 {
@@ -44,14 +47,16 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-
+        info("LoginRequest1  ");
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+            info("LoginRequest3  ");
             RateLimiter::hit($this->throttleKey());
-
+           // info("LoginRequest auth failed, please try again");
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
+        info("LoginRequest1  2");
 
         RateLimiter::clear($this->throttleKey());
     }
@@ -79,6 +84,10 @@ class LoginRequest extends FormRequest
                 'minutes' => ceil($seconds / 60),
             ]),
         ]);
+    }
+
+    private function getRoleNameBlock(){
+        return Config::get('lineage2.server.role_name_blocked');
     }
 
     /**

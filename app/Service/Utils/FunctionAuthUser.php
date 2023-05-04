@@ -32,7 +32,7 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 
     //еще не проверял работу
     public static function getRoleName(){
-        return Auth::user()->accounts_role()->name;
+        return Auth::user()->accounts_role()->first()->name;
     }
 
     public static function getAccountsUserByServerId($search_server_id){

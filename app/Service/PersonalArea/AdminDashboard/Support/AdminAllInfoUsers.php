@@ -14,14 +14,14 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
     class AdminAllInfoUsers
     {
        
-        public function forEach($all_users){
+        public function forEach($all_users , $sql_support , $list_server){
             $temp =[];
 
             foreach($all_users as $user){
                // dd($user);
                 $all_accounts = $user->accounts_server_id();
                 $first_auth_ip = $user->accounts_ip()->first();
-                $array_infoDashboard = $this->sql_support->getInfoAllCharacters($this->list_server , $all_accounts);
+                $array_infoDashboard = $sql_support->getInfoAllCharacters($list_server , $all_accounts);
                 $count_chars = $this->getCountChars($array_infoDashboard);
                 $infoAdminDashboard = $this->createInfoAdminDashboard($user->id , count($array_infoDashboard) , $count_chars , $user->login, $user->email , $user->created_at, $first_auth_ip->ip_address , false);
                 
