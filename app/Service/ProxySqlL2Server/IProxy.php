@@ -26,6 +26,9 @@
         //доп функции проверка есть ли char на сервере
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name);
         public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count);
+
+        //Блокировка аккаунта в игре
+        public function blockAccount($modelAccounts , $blockLogin);
         
 
     }

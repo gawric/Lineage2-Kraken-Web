@@ -8,62 +8,45 @@
  use App\Service\PersonalArea\Dashboard\Support\SqlSupport;
  use App\Models\Temp\InfoAdminDashboard;
  use App\Models\Temp\InfoDashboard;
-    
+ use App\Service\PersonalArea\AdminDashboard\Support\AdminSqlSupport;
+ use App\Service\PersonalArea\AdminDashboard\Support\AdminAllInfoUsers;
+ use Lang;  
+ use Illuminate\Database\Eloquent\ModelNotFoundException;
+
     class AdminDashboard implements IAdminDashboard
     {
 
         private SqlSupport $sql_support;
-
+        private AdminSqlSupport $admin_sql_support;
+        private AdminAllInfoUsers $admin_support;
 
         public function __construct() {
             $this->sql_support = new SqlSupport();
+            $this->admin_sql_support = new AdminSqlSupport();
+            $this->admin_support = new AdminAllInfoUsers();
             $this->list_server = Config::get('lineage2.server.list_server');
         }
 
         public function getListAllInfoAdminDashboard($all_users):array{
-                return $this->forEach($all_users);
+                return $this->admin_support->forEach($all_users);
         }
 
-        private function forEach($all_users){
-            $id = 0;
-            $temp =[];
-
-            foreach($all_users as $user){
-               // dd($user);
-                $all_accounts = $user->accounts_server_id();
-                $first_auth_ip = $user->accounts_ip()->first();
-                $array_infoDashboard = $this->sql_support->getInfoAllCharacters($this->list_server , $all_accounts);
-                $count_chars = $this->getCountChars($array_infoDashboard);
-                $infoAdminDashboard = $this->createInfoAdminDashboard($id++ , count($array_infoDashboard) , $count_chars , $user->login, $user->email , $user->created_at, $first_auth_ip->ip_address , false);
-                
-                array_push($temp  ,  $infoAdminDashboard);
+        public function blockAccountExpansionAndAllAccounts($account_expansion_id){
+            $model = $this->admin_sql_support->isExistAccountExpansion($account_expansion_id);
+            if(isset($model)){
+                info("blockAccountExpansionAndAllAccounts>>> model found: $model");
+                return "{status:success}";
             }
+            info("blockAccountExpansionAndAllAccounts>>> model NOT found:");
 
-            return $temp;
+            throw new ModelNotFoundException(Lang::get('validation.not_fount_account') . " " . $account_expansion_id);
         }
 
-        private function getCountChars($array_infoDashboard){
-            $count_chars = 0;
-            foreach($array_infoDashboard as $infoDashboard){
-               // dd($infoDashboard->count_characters);
-                $count_chars = $count_chars + (int)$infoDashboard->count_characters;
-            }
 
-            return $count_chars;
-        }
 
-        private function createInfoAdminDashboard($id , $count_accounts , $count_chars , $login , $email , $datager, $last_ip ,$is_blocked){
-             $adminDashboardmodel = new InfoAdminDashboard();
-             $adminDashboardmodel->id = $id;
-             $adminDashboardmodel->username = $login;
-             $adminDashboardmodel->email = $email;
-             $adminDashboardmodel->datereg = $datager;
-             $adminDashboardmodel->count_accounts = $count_accounts;
-             $adminDashboardmodel->count_chars = $count_chars;
-             $adminDashboardmodel->last_ip = $last_ip;
-             $adminDashboardmodel->is_blocked = $is_blocked;
-             return $adminDashboardmodel;
-        }
+
+
+      
 
     }
 ?>

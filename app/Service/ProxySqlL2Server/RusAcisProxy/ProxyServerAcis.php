@@ -98,6 +98,10 @@ use Exception;
             
         }
 
+        public function blockAccount($modelAccounts , $blockLogin){
+            info("ProxyAcis: blockAccount");
+        }
+
       
 
  

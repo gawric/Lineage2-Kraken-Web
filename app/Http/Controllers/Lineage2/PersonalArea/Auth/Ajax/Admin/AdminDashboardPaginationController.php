@@ -1,9 +1,8 @@
 <?php
   
-namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin;
+namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
 
  use App\Http\Controllers\Controller;
- use App\Service\PersonalArea\Dashboard\DashboardChars;
  use App\Service\Utils\FunctionAuthUser;
  use Config;
  use Illuminate\Http\Request;
@@ -11,11 +10,10 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin;
  use Lang;
  use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
  use App\Models\Accounts_expansion;
-
-
-class AdminDashboardController extends Controller
+ 
+class AdminDashboardPaginationController extends Controller
 {
-
+  
     private $list_servers;
     private $admin_service;
     private $count_rows;
@@ -27,29 +25,32 @@ class AdminDashboardController extends Controller
         $this->count_rows = Config::get('lineage2.server.top_count_dashboard');
     }
 
+   // /adminDashboard/users?page=2 как пример
+   public function page(Request $request){
+      
+
+        $this->validate($request, [
+            'page' => 'required|integer|max:1000',
+        ]);
+
+        $data_pages = $this->getPage($this->count_rows);
+        $array_admindashboard = $this->getInfoDataAccounts($data_pages);
+   
+
+        $data_result_json = $this->unlockedData($data_pages);
+        $data_result_json->data = $array_admindashboard;
     
-    public function index()
-    {
-       $data_pages = $this->getPage($this->count_rows);
-       $array_admindashboard = $this->getInfoDataAccounts($data_pages);
-       $data_pages->withPath('/adminDashboard/users');
-       $data_result = $this->unlockedData($data_pages);
-     
-     //  dd($data_result);
-       return view('dashboardadmin', ['data_result' => $data_result] ,['array_admindashboard' => $array_admindashboard]) ;
+        return $data_result_json;
     }
 
-
-    //вспомогательные
+      //вспомогательные
     private function getPage($count_rows){
         return Accounts_expansion::paginate($count_rows);
     }
+
     private function getInfoDataAccounts($data_pages){
         return $this->admin_service->getListAllInfoAdminDashboard($data_pages);
     }
-    //public function getData($name , $validated ) : string {
-    //    return $validated["$name"];
-    //}
 
     private function unlockedData($data_pages){
         $data = json_encode($data_pages);
