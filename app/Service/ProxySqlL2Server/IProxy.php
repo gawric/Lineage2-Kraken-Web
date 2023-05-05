@@ -27,8 +27,9 @@
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name);
         public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count);
 
-        //Блокировка аккаунта в игре
+        //Блокировка и разблокировка аккаунта в игре
         public function blockAccount($modelAccounts , $blockLogin);
+        public function unblockAccount($modelAccounts , $unblockLogin);
         
 
     }

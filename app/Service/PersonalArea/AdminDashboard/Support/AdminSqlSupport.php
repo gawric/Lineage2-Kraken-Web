@@ -12,10 +12,12 @@ use Config;
     class AdminSqlSupport
     {
         private $role_blocked_name;
+        private $role_name_user;
 
         public function __construct()
         {
             $this->role_blocked_name = Config::get('lineage2.server.role_name_blocked');
+            $this->role_name_user = Config::get('lineage2.server.role_name_user');
         }
        
         public  function isExistAccountExpansion($account_expansion_id){
@@ -23,11 +25,20 @@ use Config;
         }
 
         public function blockAccountExpansion($account_expansion){
+            $this->changeRoleAccauntExpansion($account_expansion , $this->role_blocked_name);
+        }
+
+        public function unblockAccountExpansion($account_expansion){
+            $this->changeRoleAccauntExpansion($account_expansion , $this->role_name_user);
+        }
+
+
+        private function changeRoleAccauntExpansion($account_expansion , $role_name){
             $role = $account_expansion->accounts_role->first();
-            $role->name = $this->role_blocked_name;
+            $role->name = $role_name;
             $role->save();
 
-            info("blockAccountExpansion-> ". $account_expansion->id . " accountName " . $account_expansion->login . " roleName " . $role->name);
+            info("changeRoleAccauntExpansion-> ". $account_expansion->id . " accountName " . $account_expansion->login . " roleName " . $role->name);
         }
     }
 

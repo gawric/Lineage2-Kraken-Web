@@ -81,6 +81,14 @@ use App\Models\Temp\InfoDashboard;
             $this->proxy_server->addL2Item($modelItemsDb , $charactersDb ,$char_name , $item_id, $count);
         }
 
+        public function blockAccount($modelAccounts , $blockLogin){
+         return  $this->proxy_server->blockAccount($modelAccounts , $blockLogin);
+        }
+
+         public function unblockAccount($modelAccounts , $unblockLogin){
+         return  $this->proxy_server->unblockAccount($modelAccounts , $unblockLogin);
+        }
+
         private function getProxy($developer_id){
            return SelectServerById::choose($developer_id);
         }

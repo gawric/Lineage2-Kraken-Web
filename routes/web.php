@@ -22,6 +22,7 @@ use App\Http\Controllers\Payments\PagesAlertSuccessController;
 use App\Http\Controllers\Payments\PagesAlertFailController;
 use App\Http\Controllers\Payments\EnotIoTestController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardBlockUserController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardUnBlockUserController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardPaginationController;
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard', [AdminDashboardController::class, 'index']);
     Route::get('/adminDashboard/users', [AdminDashboardPaginationController::class, 'page']);
     Route::get('/adminDashboard/block', [AdminDashboardBlockUserController::class, 'index']);
+    Route::get('/adminDashboard/unblock', [AdminDashboardUnBlockUserController::class, 'index']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

@@ -24,6 +24,8 @@ use Exception;
         private CharactersRusAcis $characters;
         private CommonSql $commonSql;
         private ItemsRusAcis $itemssql;
+        private $block_access_level;
+        private $unblock_access_level;
 
         public function __construct() {
              $this->reg = new RegSql();
@@ -33,6 +35,8 @@ use Exception;
              $this->characters = new CharactersRusAcis();
              $this->commonSql = new CommonSql();
              $this->itemssql = new ItemsRusAcis();
+             $this->block_access_level = Config::get('lineage2.server.access_Level_block');
+             $this->unblock_access_level = Config::get('lineage2.server.access_Level_unblock');
         }
 
         
@@ -99,7 +103,11 @@ use Exception;
         }
 
         public function blockAccount($modelAccounts , $blockLogin){
-            info("ProxyAcis: blockAccount");
+            $this->accountssql->blockAccountRusAcis($modelAccounts , $blockLogin , $this->block_access_level);
+        }
+
+        public function unblockAccount($modelAccounts , $unblockLogin){
+            $this->accountssql->unblockAccountRusAcis($modelAccounts , $unblockLogin , $this->unblock_access_level);
         }
 
       

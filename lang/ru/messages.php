@@ -82,6 +82,7 @@ return [
     'lk_admin_panel_windows_chars_server_lvl' => 'Ур.', 
     'lk_admin_panel_windows_chars_online' => 'Подк.',
     'lk_admin_panel_windows_chars_last_data' => 'Дата',
+    'lk_admin_panel_windows_success' => 'Выполненно успешно!',
     
 
 

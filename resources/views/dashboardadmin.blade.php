@@ -163,7 +163,7 @@
                   <a href="#" onclick="return clickOpenDialog()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_chars }}</a>
                 </td>
                 <td class="px-6 py-4">
-                  <input {{ $model->is_blocked ? 'checked' : '' }} id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <input {{ $model->is_blocked ? 'checked' : '' }} id="block_checkbox" onclick='clickBlockCheckbox(this , {{ $model->id }});' type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 </td>
                 <td class="px-6 py-4">
                   {{$model->last_ip }}
@@ -260,6 +260,16 @@
             console.log(" clickLastNext>>> " + lastPage);
             createNextPage(lastPage);
           }
+        }
+
+        function clickBlockCheckbox(checkbox , id){
+           console.log(checkbox.checked);
+            if(checkbox.checked){
+              blockOrunblock("/adminDashboard/block?accountId="+id);
+            }
+            else{
+              blockOrunblock("/adminDashboard/unblock?accountId="+id);
+            }
         }
     </script>
 

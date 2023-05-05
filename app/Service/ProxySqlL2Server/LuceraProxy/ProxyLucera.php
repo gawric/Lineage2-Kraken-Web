@@ -23,6 +23,8 @@ use Exception;
         private CharactersLucera $characters;
         private CommonSql $commonSql;
         private ItemsLucera $itemssql;
+        private $block_access_level;
+        private $unblock_access_level;
 
 
         public function __construct() {
@@ -33,6 +35,8 @@ use Exception;
             $this->characters = new CharactersLucera();
             $this->commonSql = new CommonSql();
             $this->itemssql = new ItemsLucera();
+            $this->block_access_level = Config::get('lineage2.server.access_Level_block');
+            $this->unblock_access_level = Config::get('lineage2.server.access_Level_unblock');
         }
 
         
@@ -101,7 +105,11 @@ use Exception;
         }
 
         public function blockAccount($modelAccounts , $blockLogin){
-            info("ProxyLucera: blockAccount");
+            $this->accountssql->blockAccountLucera($modelAccounts , $blockLogin , $this->block_access_level);
+        }
+
+        public function unblockAccount($modelAccounts , $unblockLogin){
+            $this->accountssql->unblockAccountLucera($modelAccounts , $unblockLogin , $this->unblock_access_level);
         }
 
       

@@ -96,6 +96,7 @@ return [
     'lk_admin_panel_windows_chars_server_lvl' => 'Lvl', 
     'lk_admin_panel_windows_chars_online' => 'On.',
     'lk_admin_panel_windows_chars_last_data' => 'Date',
+    'lk_admin_panel_windows_success' => 'Success',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

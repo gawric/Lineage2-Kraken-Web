@@ -48,6 +48,14 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
             $auth_user_model->accounts_server_id()->save($accounts_server_id_model);
         }
 
+        public function blockAccountLucera($modelAccounts , $blockLogin , $access_level){
+            $this->accountAcceessLevel($modelAccounts , $blockLogin , $access_level);
+        }
+
+        public function unblockAccountLucera($modelAccounts , $unblockLogin , $access_level){
+            $this->accountAcceessLevel($modelAccounts , $unblockLogin , $access_level);
+        }
+
   
 
     

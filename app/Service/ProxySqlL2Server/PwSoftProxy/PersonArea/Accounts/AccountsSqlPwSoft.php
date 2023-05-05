@@ -8,8 +8,8 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts;
  use Lang;
  use App\Models\Temp\InfoDashboard;
 
-    //Благодаря наследования мы переиспользуем класс Lucera 
-    //для регистрации и смены паролья у сервера Pwsoft т.к таблцы Accounts очень схожие
+    //Благодаря наследованию мы переиспользуем класс Lucera 
+    //для регистрации и смены паролья у сервера Pwsoft т.к таблицы Accounts очень схожие
     class AccountsSqlPwSoft extends AccountsSqlLucera {
 
         public function changePassAccountPwSoft($modelAccountDb , $login, $old_password , $new_password){
@@ -18,6 +18,14 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts;
 
         public function createAccountPwSoft($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name ): InfoDashboard{
             return $this->createAccountLucera($modelAccountDb , $auth_user_id , $account_name , $password , $server_id , $server_name );
+        }
+
+        public function blockAccountPwSoft($modelAccounts , $blockLogin , $access_level){
+            $this->blockAccountLucera($modelAccounts , $blockLogin , $access_level);
+        }
+
+        public function unblockAccountPwSoft($modelAccounts , $blockLogin , $access_level){
+            $this->blockAccountLucera($modelAccounts , $blockLogin , $access_level);
         }
 
     }

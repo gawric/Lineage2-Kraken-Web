@@ -55,6 +55,14 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts;
             return $this->getAccountsExpansionByAccountLogin($login);
         }
 
+        public function blockAccountRusAcis($modelAccounts , $blockLogin , $access_level){
+            $this->accountAcceessLevel($modelAccounts , $blockLogin , $access_level);
+        }
+
+        public function unblockAccountRusAcis($modelAccounts , $unblockLogin , $access_level){
+            $this->accountAcceessLevel($modelAccounts , $unblockLogin , $access_level);
+        }
+
 
 
     }

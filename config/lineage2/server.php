@@ -56,6 +56,8 @@ return [
     //секунды
     'timeout_socket' => 5,
     
+   
+
     //Количество строчек в статистике Топ Пк - Топ Пвп
     'top_count' => 5,
 
@@ -77,8 +79,14 @@ return [
     //название роли для заблокированного пользователя
     'role_name_blocked' => 'role_blocked',
 
-    //Для таблицы items в стобике loc
+    //Для таблицы items в столбике loc
     'inventory_item' => 'INVENTORY',
+
+     //при блокировке аккаунта админом мы вписываем этот access lvl
+    'access_Level_block' => -1,
+
+    //при разблокировке аккаунта админом мы вписываем этот access lvl
+    'access_Level_unblock' => 0,
 
      //Order status
     'order_status_complete' => 'complete',
@@ -88,7 +96,8 @@ return [
     'order_status_paid' => 'paid',
 
     'order_status_found' => 'found',
-
+   
+    
     //Какие платежные системы поддерживаем
     'support_paymonts' => [0 => "Enot.io", 1 => "Test.io"],
 

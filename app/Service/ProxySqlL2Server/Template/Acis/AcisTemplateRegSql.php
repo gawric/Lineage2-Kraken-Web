@@ -149,7 +149,30 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return Accounts_expansion::filter($filtersPk)->get()->first();
         }
 
+        public function accountAcceessLevel($modelAccountDb , $login , $access_level){
+            //info("change accountAcceessLevel  " . $modelAccountDb . "   " . $login . " " . $access_level);
+          
+            if(isset($login)){
 
+                $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $login]]);
+                $account_user = $modelAccountDb::filter($filtersPk)->get()->first();
+               // info($account_user);
+                if(isset($account_user)){
+                    //если в модели есть такое свойство (в разных серверах l2j разные название столбца access_level | accessLevel)
+                    if(isset($account_user->accessLevel)){
+                        $account_user->accessLevel = $access_level;
+                        $account_user->save();
+                    }
+                    else{
+                        $account_user->access_level = $access_level;
+                        $account_user->save();
+                    }
+               
+                }
+            }
+            
+        
+        }
 
         
      }

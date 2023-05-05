@@ -10,7 +10,7 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
  use Lang;
  use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
 
-class AdminDashboardBlockUserController extends Controller
+class AdminDashboardUnBlockUserController extends Controller
 {
   
     private $list_servers;
@@ -22,7 +22,7 @@ class AdminDashboardBlockUserController extends Controller
         $this->list_servers = Config::get('lineage2.server.list_server');
     }
 
-    //adminDashboard/block?accountId=2 как пример
+    //adminDashboard/unblock?accountId=2 как пример
     public function index(Request $request)
     {
         $validated = $request->validate([
@@ -32,17 +32,17 @@ class AdminDashboardBlockUserController extends Controller
         $account_expansion_id = $this->getData("accountId", $validated);
         try 
         {
-            $block_account_expansion = $this->admin_service->blockAccountExpansion($account_expansion_id);
+            $block_account_expansion = $this->admin_service->unblockAccountExpansion($account_expansion_id);
 
             if(isset($block_account_expansion)){
 
                 $all_accounts_server = $block_account_expansion->accounts_server_id;
 
                 if(isset($all_accounts_server)){
-                    $this->admin_service->blockAllAccountsServer($all_accounts_server);
+                    $this->admin_service->unblockAllAccountsServer($all_accounts_server);
                 }
                 
-                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']);     
             }
         } catch (ModelNotFoundException $exception) {
             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
