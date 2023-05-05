@@ -110,6 +110,7 @@
 			<div style="margin: auto;"class="contentHomeReg">
 				<div>
 					<p style="color:black; float:left;">{{ __('messages.home_description') }}</p>
+					<p style="color:black; float:left;">{{ __('messages.home_description3') }}</p>
 					<p style="color:black; float:left;">{{ __('messages.home_description1') }}</p>
 
 					<button class="btn" onclick="location.href='https://github.com/gawric/Lineage2-Kraken-Web'" style="width:100%"><i class="fa fa-download"></i>  {{ __('messages.home_button') }}</button>

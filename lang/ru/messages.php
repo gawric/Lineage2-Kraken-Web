@@ -5,6 +5,7 @@ return [
     'home_title' => 'Добро пожаловать в наш '. env('APP_NAME'),
     'home_description' => 'Вы зашли на демо сайт Open Source '. env('APP_NAME') .' личный кабинет для серверов lineage2',
     'home_description1' => 'Исходный код данного проекта хранится',
+    'home_description3' => 'На тестовом сервере установлен почтовый сервис yandex! Он не работает с почтой gmail',
     'home_button' => 'Здесь',
 
     'useragreement_title' =>'Пользовательское соглашение',

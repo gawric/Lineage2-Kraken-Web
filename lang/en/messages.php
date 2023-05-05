@@ -7,6 +7,7 @@ return [
     'home_title' => 'Welcome to the site '. env('APP_NAME'),
     'home_description' => 'You have reached the Open Source demo site'. env('APP_NAME') .' personal account for lineage2 servers',
     'home_description1' => 'The source code for this project is stored',
+    'home_description3' => 'The yandex mail service is installed on the test server! It doesn t work with gmail',
     'home_button' => 'Here',
 
     'useragreement_title' =>'User Agreement',
