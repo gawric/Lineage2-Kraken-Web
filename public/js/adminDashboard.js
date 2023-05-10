@@ -1,9 +1,5 @@
 
 function createNextPage(nextlink){
-
-
-   
-
     if(nextlink != "null"){
         hideButtonLoadingById("warning_all_accounts");
         showButtonLoadingById("loading_all_accounts");
@@ -13,6 +9,13 @@ function createNextPage(nextlink){
 
         sendJsonDataServer(nextlink);
     }
+ }
+
+ function getAllCharsUser(account_expansion_id){
+    
+    hideButtonLoadingById("warning_all_accounts");
+    showButtonLoadingById("loading_all_chars");
+    getAllCharsByIdUser(account_expansion_id);
  }
 
  function sendJsonDataServer(nextlink){
@@ -58,13 +61,45 @@ function createNextPage(nextlink){
  
  }
 
+ function getAllCharsByIdUser(account_expansion_id){
+    $.ajax({
+        url: "/adminDashboard/allUsers?accountExpansionId="+account_expansion_id,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            if(!!jQxhr.responseJSON != undefined){
+               console.log(jQxhr.responseJSON);
+            }
+        },
+        error: function (data) {
+            console.log(data);
+           if(data.status == 422) {
+               //setTextById("Запрос не прошел валидацию!" , "text_warning_all_accounts");
+              // showButtonLoadingById("warning_all_accounts");
+               //hideButtonLoadingById("loading_all_accounts");
+             } else {
+              // setTextById("Неизвестная ошибка!" , "text_warning_all_accounts");
+              // showButtonLoadingById("warning_all_accounts");
+              // hideButtonLoadingById("loading_all_accounts");
+             }
+            
+
+        }
+    
+    });
+
+}
+
+
  function blockOrunblock(nextlink)
-{
+ {
     hideButtonLoadingById("warning_all_accounts");
     //hideButtonLoadingById("success_all_accounts");
     showButtonLoadingById("loading_all_accounts");
     sendJsonBlockOrUnblock(nextlink);
-}
+ }
  function sendJsonBlockOrUnblock(nextlink){
     $.ajax({
         url: nextlink,
@@ -152,7 +187,7 @@ function addRows(id , username , email , datereg , count_accounts , last_ip , is
         .append($('<td class="px-6 py-4">').text(email))
         .append($('<td class="px-6 py-4">').text(datereg))
         .append($('<td class="px-6 py-4">').text(count_accounts))
-        .append($('<td class="px-6 py-4"><a href="#" onclick="return clickOpenDialog()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">'+count_chars+'</a>'))
+        .append($('<td class="px-6 py-4"><a href="#" onclick="return clickOpenDialog('+id+')" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">'+count_chars+'</a>'))
         .append($('<td class="px-6 py-4"><input '+is_blocker+' id="default-checkbox"  onclick=\'clickBlockCheckbox(this , '+id+');\' type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
         .append($('<td class="px-6 py-4">').text(last_ip))
     );

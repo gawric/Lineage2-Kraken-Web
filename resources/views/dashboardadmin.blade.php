@@ -39,10 +39,21 @@
     <div class="mx-auto mt-10">
     <div id="overlay" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
 
-<!-- Диалоговое окно для смены пароля -->
+<!-- Диалоговое окно для чаров -->
       <div id="dialog"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-196 bg-white rounded-md px-8 py-6 space-y-15 drop-shadow-lg">
         <h1 class="text-2xl font-semibold">{{ __('messages.lk_admin_panel_title_chars') }}</h1>
+        <div>
+        <div style="display:none;margin-top:3%" id="loading_all_chars">
+          <div role="status">
+          <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+          </svg>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+        </div>
         <div style="margin-top:3%;width: 50%;"class="grid mb-6 md:grid-cols-3">
           <div>
              <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_item')}}</label>
@@ -65,8 +76,8 @@
         </div>
         <div style="margin-top:3%;">
           <table id="" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <tbody>
-            <tr>
+          <thead>
+          <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_select_row')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_account_name')}}</th>
@@ -77,32 +88,49 @@
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_online')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_last_data')}}</th>
             </tr>
-            <tr>
-                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">  
-                  <td class="px-6 py-4 bg-gray-50">1</td>
-                  <td class="px-6 py-4 bg-gray-50"> <input checked id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></td>
-                  <td class="px-6 py-4 bg-gray-50">account_gawric</td>
-                  <td class="px-6 py-4 bg-gray-50">gawric_char_name</td>
-                  <td class="px-6 py-4 bg-gray-50">999</td>
-                  <td class="px-6 py-4 bg-gray-50">X300 Paradise</td>
-                  <td class="px-6 py-4 bg-gray-50">54</td>
-                  <td class="px-6 py-4 bg-gray-50">offline</td>
-                  <td class="px-6 py-4 bg-gray-50">2023-04-12 12:32:53</td>
-                </tr>
+          </thead>
+          <tbody>
+         @if(isset($array_adminchars))
+         @foreach($array_adminchars as $model)
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ $model->id }}
+                </th>
+                <td class="px-6 py-4">
+                {{ $model->username }}
+                </td>
+                <td class="px-6 py-4">
+                {{ $model->email }}
+                </td>
+                <td class="px-6 py-4">
+                {{ $model->datereg }}
+                </td>
+                <td class="px-6 py-4">
+                <a href="#" onclick="return clickOpenDialogAccouts()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_accounts }}</a>
+                </td>
+                <td class="px-6 py-4">
+                  <a href="#" onclick="return clickOpenDialog()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_chars }}</a>
+                </td>
+                <td class="px-6 py-4">
+                  <input {{ $model->is_blocked ? 'checked' : '' }} id="block_checkbox" onclick='clickBlockCheckbox(this , {{ $model->id }});' type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                </td>
+                <td class="px-6 py-4">
+                  {{$model->last_ip }}
+                </td>
             </tr>
-            <tr>
-                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">  
-                  <td class="px-6 py-4 ">1</td>
-                  <td class="px-6 py-4 "> <input  id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></td>
-                  <td class="px-6 py-4 ">account_test</td>
-                  <td class="px-6 py-4 ">test_char_name</td>
-                  <td class="px-6 py-4 ">16</td>
-                  <td class="px-6 py-4 ">X50 Nightmare</td>
-                  <td class="px-6 py-4">16</td>
-                  <td class="px-6 py-4">online</td>
-                  <td class="px-6 py-4">2023-04-27 06:00:53</td>
+         @endforeach
+         @else
+         <tr>
+              <td>  
+                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td align="center" colspan="10" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                         Нет данных
+                    </th>
                 </tr>
+
             </tr>
+        @endif
+
         </tbody>
         </table>
         </div>
@@ -112,6 +140,60 @@
               exit
             </button>
             <button id="save"  class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
+              save
+            </button>
+        </div>
+      </div>
+  
+</div>
+
+
+
+
+
+<div id="overlay_accounts" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
+
+<!-- Диалоговое окно для аккаунтов -->
+<div id="dialog_accounts"
+        class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-196 bg-white rounded-md px-8 py-6 space-y-15 drop-shadow-lg">
+        <h1 class="text-2xl font-semibold">{{ __('messages.lk_admin_panel_title_accounts') }}</h1>
+        <div style="margin-top:3%;width: 50%;"class="grid mb-6 md:grid-cols-3">
+     
+        </div>
+        <div style="margin-top:3%;">
+          <table id="" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <tbody>
+            <tr>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_account_select_row')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_account_name')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_account_data_auth')}}</th>
+            </tr>
+            <tr>
+                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">  
+                  <td class="px-6 py-4 bg-gray-50">1</td>
+                  <td class="px-6 py-4 bg-gray-50"> <input checked id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></td>
+                  <td class="px-6 py-4 bg-gray-50">account_gawric</td>
+                  <td class="px-6 py-4 bg-gray-50">2023-04-12 12:32:53</td>
+                </tr>
+            </tr>
+            <tr>
+                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">  
+                  <td class="px-6 py-4 ">2</td>
+                  <td class="px-6 py-4 "> <input  id="default-checkbox"  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></td>
+                  <td class="px-6 py-4 ">account_test</td>
+                  <td class="px-6 py-4">2023-04-27 06:00:53</td>
+                </tr>
+            </tr>
+        </tbody>
+        </table>
+        </div>
+        <div style="margin-top:10%;"class="flex justify-end">
+            <!-- This button is used to close the dialog -->
+            <button id="closeAccounts" style="margin-right: 2%;" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
+              exit
+            </button>
+            <button id="saveAccounts"  class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
               save
             </button>
         </div>
@@ -139,8 +221,6 @@
           </tr>
       </thead>
       <tbody>
-      
-      
         @if(isset($array_admindashboard))
          @foreach($array_admindashboard as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -157,10 +237,10 @@
                 {{ $model->datereg }}
                 </td>
                 <td class="px-6 py-4">
-                 {{ $model->count_accounts }}
+                <a href="#" onclick='return clickOpenDialogAccouts( {{ $model->id }})' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_accounts }}</a>
                 </td>
                 <td class="px-6 py-4">
-                  <a href="#" onclick="return clickOpenDialog()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_chars }}</a>
+                  <a href="#" onclick='return clickOpenDialog( {{ $model->id }})' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_chars }}</a>
                 </td>
                 <td class="px-6 py-4">
                   <input {{ $model->is_blocked ? 'checked' : '' }} id="block_checkbox" onclick='clickBlockCheckbox(this , {{ $model->id }});' type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
@@ -236,9 +316,20 @@
         var overlay = document.getElementById('overlay');
 
 
-        function clickOpenDialog(){
+        var dialog_accounts = document.getElementById('dialog_accounts');
+        var overlay_accounts = document.getElementById('overlay_accounts');
+        var closeButtonAccouts = document.getElementById('closeAccounts')
+
+        function clickOpenDialog(accountExpansionId){
              dialog.classList.remove('hidden');
              overlay.classList.remove('hidden');
+             getAllCharsUser(accountExpansionId);
+             return false;
+        }
+
+        function clickOpenDialogAccouts(accountExpansionId){
+             dialog_accounts.classList.remove('hidden');
+             overlay_accounts.classList.remove('hidden');
              return false;
         }
 
@@ -247,9 +338,20 @@
             overlay.classList.add('hidden');
         });
 
+        closeButtonAccouts.addEventListener('click', function () {
+            dialog_accounts.classList.add('hidden');
+            overlay_accounts.classList.add('hidden');
+        });
+
+
+        
+
+
+
+
         function clickButtonNext(nextPage){
           if(nextPage != "null" || nextPage){
-            console.log(" clickButtonNext>>> " +nextPage);
+           // console.log(" clickButtonNext>>> " +nextPage);
             createNextPage(nextPage)
           }
          
@@ -257,13 +359,13 @@
 
         function clickLastNext(lastPage){
           if(lastPage != "null" || lastPage){
-            console.log(" clickLastNext>>> " + lastPage);
+           // console.log(" clickLastNext>>> " + lastPage);
             createNextPage(lastPage);
           }
         }
 
         function clickBlockCheckbox(checkbox , id){
-           console.log(checkbox.checked);
+           
             if(checkbox.checked){
               blockOrunblock("/adminDashboard/block?accountId="+id);
             }

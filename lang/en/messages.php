@@ -99,6 +99,12 @@ return [
     'lk_admin_panel_windows_chars_last_data' => 'Date',
     'lk_admin_panel_windows_success' => 'Success',
 
+    'lk_admin_panel_title_accounts' => 'List Accounts',
+    'lk_admin_panel_windows_account_select_row'=> 'Blocked',
+    'lk_admin_panel_windows_accounts_account_name'=> 'Account name',
+    'lk_admin_panel_windows_account_data_auth' => 'Data',
+
+
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',
     'lk_buy_gold' => 'Buy gold',

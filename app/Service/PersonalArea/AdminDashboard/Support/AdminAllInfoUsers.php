@@ -35,7 +35,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
                 $array_infoDashboard = $sql_support->getInfoAllCharacters($list_server , $all_accounts);
                 $count_chars = $this->getCountChars($array_infoDashboard);
                 $infoAdminDashboard = $this->createInfoAdminDashboard($user->id , count($array_infoDashboard) , $count_chars , $user->login, $user->email , $user->created_at, $first_auth_ip->ip_address , $role_model->name);
-               
+               // info("AdminAllInfoUsers>>> count chars " . $count_chars);
                 if(!$this->isAdminRole($role_model->name)){
                     array_push($temp  ,  $infoAdminDashboard);
                 }
