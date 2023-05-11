@@ -92,14 +92,17 @@ use Exception;
 
         public function addL2Item($modelItemsDb ,$charactersDb , $char_name , $item_id, $count){
             $owner_id  = $this->commonSql->getObjIdByCharName($charactersDb , $char_name);
-            info("addL2Item>>>> PwSoft " . $owner_id);
+           // info("addL2Item>>>> PwSoft " . $owner_id);
             if(isset($owner_id) and isset($owner_id->obj_Id)){
                 $this->itemssql->addL2itemPwSoft($modelItemsDb , $char_name , $item_id, $count , $owner_id->obj_Id);
             }
             else{
-                info("ProxyPwSoft: AddL2item не критическая ошибка. Не смогли найти пользователя для добавления item char_name: " . $char_name);
+               // info("ProxyPwSoft: AddL2item не критическая ошибка. Не смогли найти пользователя для добавления item char_name: " . $char_name);
                 throw new Exception( 'characters not found obj_id by char_name'); 
             }
+        }
+        public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id){
+            info("ProxyPwSoft Lucera getL2Item ");
         }
 
         public function blockAccount($modelAccounts , $blockLogin){

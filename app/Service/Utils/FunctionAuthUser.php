@@ -39,6 +39,8 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
         return Auth::user()->accountsServerFilterById($search_server_id);
     }
 
+  
+
     public static function getAccountExpansionById($auth_user_id){
         $filters = new GeneralFilters(['simplefilter'] , [['id', '=', $auth_user_id]]);
         return Accounts_expansion::filter($filters)->get()->first();

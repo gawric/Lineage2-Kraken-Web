@@ -9,15 +9,20 @@ namespace App\Service\ProxySqlL2Server\Template\Chars;
  use Illuminate\Database\Eloquent\ModelNotFoundException;
  use Lang;
  use App\Models\Temp\InfoDashboard;
- use App\Service\Utils\FunctionAuthUser;
+ //use App\Service\Utils\FunctionAuthUser;
+ use App\Service\Utils\FunctionOtherUser;
  use App\Service\Utils\FunctionSupport;
   
     class CharactersTemplateChars extends AcisTemplateCharactersSql {
 
-
+        //переделал запрос на получение всех юзеров по всем серверам т.к раньше работали только с теми кто авторизовался
+        //для админки это не подходит
         public function getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id){
       
-            $list_accounts_name = FunctionAuthUser::getAccountsUserByServerId($server_id)->get(['account_name']);
+            $user = FunctionOtherUser::getUserById($auth_user_id);
+            $list_accounts_name =  FunctionOtherUser::getAccountsUserByServerId($user , $server_id)->get(['account_name']);
+        
+           // $list_accounts_name = FunctionAuthUser::getAccountsUserByServerId($server_id)->get(['account_name']);
           
             $dataOr = $this->createWhereOr($list_accounts_name);
             $resultArr = $this->getAllCharsToArrayName($modelCharactersDb , $dataOr);

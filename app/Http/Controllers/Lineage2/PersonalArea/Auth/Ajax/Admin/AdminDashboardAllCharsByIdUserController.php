@@ -10,16 +10,19 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
  use Lang;
  use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
  use App\Service\PersonalArea\Dashboard\DashboardChars;
- 
-class AdminDashboardAllUsersByIdController extends Controller
+ use App\Models\Temp\InfoDashboardCharsCoin;
+ use App\Service\Utils\FunctionSupport;
+
+class AdminDashboardAllCharsByIdUserController extends Controller
 {
   
     private $list_servers;
     private DashboardChars $serviceDashboardChars;
-
+    private $item_id;
     public function __construct()
     {
         $this->list_servers = Config::get('lineage2.server.list_server');
+        $this->item_id = Config::get('lineage2.server.coin_payments')['coin_of_luck'];
         $this->serviceDashboardChars = new DashboardChars();
     }
 
@@ -36,7 +39,7 @@ class AdminDashboardAllUsersByIdController extends Controller
         {
             info("AdminDashboardAllUsersByIdController>>>> success request ajax! " . $acccount_expansion_id);
             $array_chars_user = $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , $acccount_expansion_id);
-            info($array_chars_user);
+            $this->convertArrModel($array_chars_user);
             return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
         }
          catch (ModelNotFoundException $exception) {
@@ -44,8 +47,18 @@ class AdminDashboardAllUsersByIdController extends Controller
         }
     }
 
-    public function getData($name , $validated ) : string {
+    private function getData($name , $validated ) : string {
         return $validated[$name];
     }
+
+    private function convertArrModel($array_chars_user){
+        $temp = [];
+        foreach($array_chars_user as $model){
+            $convert =new InfoDashboardCharsCoin($model);
+            $server_id = FunctionSupport::getServerNameToServerId($this->list_servers , $convert->server_name);
+            $this->serviceDashboardChars->getItemById($server_id , $this->item_id , $convert->char_name , $this->list_servers);
+        }
+    }
+    
    
 }

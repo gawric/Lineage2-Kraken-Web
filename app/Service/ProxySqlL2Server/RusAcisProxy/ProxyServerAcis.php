@@ -102,6 +102,10 @@ use Exception;
             
         }
 
+        public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id){
+            info("ProxyAcis Lucera getL2Item ");
+        }
+
         public function blockAccount($modelAccounts , $blockLogin){
             $this->accountssql->blockAccountRusAcis($modelAccounts , $blockLogin , $this->block_access_level);
         }

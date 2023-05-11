@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Accounts_role;
 use App\Models\Accounts_ip;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Accounts_server_id;
 
 //Обращемся к laravel бд
 class Accounts_expansion extends Authenticatable implements MustVerifyEmail

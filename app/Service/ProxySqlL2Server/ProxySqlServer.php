@@ -80,6 +80,9 @@ use App\Models\Temp\InfoDashboard;
         public function addL2Item($modelItemsDb , $charactersDb ,$char_name , $item_id, $count){
             $this->proxy_server->addL2Item($modelItemsDb , $charactersDb ,$char_name , $item_id, $count);
         }
+        public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id){
+         $this->proxy_server->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
+        }
 
         public function blockAccount($modelAccounts , $blockLogin){
          return  $this->proxy_server->blockAccount($modelAccounts , $blockLogin);

@@ -49,6 +49,11 @@
         public function getAllCharsAllServers($list_servers , $auth_user_id){
             
         }
+
+        //реализация не нужна метод используется в DashboardChars
+        public function getItemById($server_id , $item_id , $char_name , $list_servers){
+
+        }
     
     }
 ?>

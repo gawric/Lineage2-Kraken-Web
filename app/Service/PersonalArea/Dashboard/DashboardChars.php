@@ -45,12 +45,26 @@
            return  $finishArr;
         }
 
+        public function getItemById($server_id , $item_id , $char_name , $list_servers){
+            $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
+            $this->proxy = $this->getProxyServer($developer_id);
+            $modelItemsDb = FunctionSupport::getModelOtherDbByName($server_id , $list_servers , "items_db_model");
+            $charactersDb = FunctionSupport::getModelCharactersDb($server_id , $list_servers , "items_db_model");
+            $items = $this->proxy->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
+        }
+
+
+
+
+
+
+
 
         //$list_servers - здесь происходит только чтение.
         private function calcData($server_id , $list_servers , $auth_user_id){
 
             $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
-            $this->proxy = new ProxySqlServer($developer_id);
+            $this->proxy = $this->getProxyServer($developer_id);
             $modelCharactersDb = FunctionSupport::getModelCharactersDb($server_id , $list_servers);
             $modelClanDataDb = FunctionSupport::getModelClanDataDb($server_id , $list_servers);
             $server_name = FunctionSupport::getServerNameById($server_id , $list_servers);
@@ -76,6 +90,10 @@
             }
            
             
+        }
+
+        private function getProxyServer($developer_id){
+            return $this->proxy = new ProxySqlServer($developer_id);
         }
 
         private function setClanName($all_data , $char){

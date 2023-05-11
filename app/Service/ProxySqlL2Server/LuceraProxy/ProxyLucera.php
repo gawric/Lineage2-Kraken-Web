@@ -103,6 +103,10 @@ use Exception;
                 throw new Exception( 'characters not found obj_id by char_name'); 
             }
         }
+        
+        public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id){
+            info("Proxy Lucera getL2Item ");
+        }
 
         public function blockAccount($modelAccounts , $blockLogin){
             $this->accountssql->blockAccountLucera($modelAccounts , $blockLogin , $this->block_access_level);

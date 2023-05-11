@@ -17,6 +17,16 @@ use Lang;
         array_push($temp , $value);
     }
     
+    public static function getServerNameToServerId($list_servers , $server_name){
+        if (isset($list_servers)) {
+            foreach($list_servers as $value){
+                if(strcmp($value['name'], $server_name) == 0){
+                    return $value['id'];
+                }
+            }
+        }
+        return "Non";
+    }
     public static  function getServerOnlyId($list_servers){
         $temp = [];
         if (isset($list_servers)) {

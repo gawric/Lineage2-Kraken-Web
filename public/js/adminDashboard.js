@@ -63,7 +63,7 @@ function createNextPage(nextlink){
 
  function getAllCharsByIdUser(account_expansion_id){
     $.ajax({
-        url: "/adminDashboard/allUsers?accountExpansionId="+account_expansion_id,
+        url: "/adminDashboard/allChars?accountExpansionId="+account_expansion_id,
         type: 'get',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
