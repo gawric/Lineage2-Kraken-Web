@@ -32,6 +32,15 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             $model->save();
         }
 
+        public function getItemToSql($modelItemsDb , $obj_id_char , $item_id){
+            if(isset($item_id) and isset($obj_id_char)){
+                $filtersItems = new GeneralFilters(['simplefilter'] , [['owner_id', '=', $obj_id_char] , ['item_id', '=', $item_id]]);
+                return $modelItemsDb::filter($filtersItems)->get(['item_id' , 'count']);
+            }
+            return [];
+    
+        }
+
         
     }
 ?>

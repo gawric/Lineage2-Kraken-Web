@@ -101,9 +101,17 @@ use Exception;
                 throw new Exception( 'characters not found obj_id by char_name'); 
             }
         }
+      
         public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id){
-            info("ProxyPwSoft Lucera getL2Item ");
-        }
+            $owner_id  = $this->charactersSql->getObjIdByCharName($charactersDb , $char_name);
+           if(isset($owner_id) and isset($owner_id->obj_Id)){
+             return $this->itemssql->getL2itemPwSoft($modelItemsDb , $char_name , $item_id, $owner_id->obj_Id);
+           }
+           else{
+               info("ProxyLucera: getL2items не критическая ошибка. Не смогли найти пользователя для получения его итемов: " . $char_name);
+               throw new Exception( 'characters not found obj_id by char_name'); 
+           }
+       }
 
         public function blockAccount($modelAccounts , $blockLogin){
             $this->accountssql->blockAccountPwSoft($modelAccounts , $blockLogin , $this->block_access_level);

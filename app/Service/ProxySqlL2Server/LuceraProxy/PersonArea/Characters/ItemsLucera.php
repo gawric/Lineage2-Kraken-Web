@@ -23,5 +23,9 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters;
             info("addL2itemLucera>>> зачислен итем char_name " . $char_name . " id item " . $item_id . " количество " . $count);
         }
 
+        public function getL2itemLucera($modelItemsDb , $char_name , $item_id, $obj_id_char){
+           return $this->getItemToSql($modelItemsDb , $obj_id_char , $item_id);
+        }
+
     }
 ?>

@@ -45,14 +45,37 @@
            return  $finishArr;
         }
 
-        public function getItemById($server_id , $item_id , $char_name , $list_servers){
+        public function getItemByIdCount($server_id , $item_id , $char_name , $list_servers){
             $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
             $this->proxy = $this->getProxyServer($developer_id);
             $modelItemsDb = FunctionSupport::getModelOtherDbByName($server_id , $list_servers , "items_db_model");
-            $charactersDb = FunctionSupport::getModelCharactersDb($server_id , $list_servers , "items_db_model");
-            $items = $this->proxy->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
+            $charactersDb = FunctionSupport::getModelCharactersDb($server_id , $list_servers);
+            return $this->getItemsCount($modelItemsDb , $charactersDb , $char_name , $item_id);
         }
 
+        private function getItemsCount($modelItemsDb , $charactersDb , $char_name , $item_id){
+            $items = $this->proxy->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
+            info("getItemsCount>>>>");
+            info($items);
+            if(!is_array($items)){
+                return $this->isNotEmptyResult($items);
+            }
+            else{
+               info("DashboardChars>>> мы не нашли итемы у юзера " . $char_name . " item_id " . $item_id);
+               return 0;
+            }
+            
+        }
+
+        private function isNotEmptyResult($items){
+            if(isset($items)){
+                if($items->isNotEmpty()){
+                    return  $items->sum('count');
+                }
+            }
+            
+            return 0;
+        }
 
 
 

@@ -25,6 +25,11 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters;
             info("ItemsRusAcis>>> зачислен итем char_name " . $char_name . " id item " . $item_id . " количество " . $count);
         }
 
+        public function getL2itemAcis($modelItemsDb , $char_name , $item_id, $obj_id_char){
+            $result =  $this->getItemToSql($modelItemsDb , $obj_id_char , $item_id);
+            return $result;
+         }
+
 
     }
 ?>

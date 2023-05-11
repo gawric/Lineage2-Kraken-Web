@@ -23,5 +23,10 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Characters;
             info("ItemsPwSoft>>> зачислен итем char_name " . $char_name . " id item " . $item_id . " количество " . $count);
         }
 
+        public function getL2itemPwSoft($modelItemsDb , $char_name , $item_id, $obj_id_char){
+            $result =  $this->getItemToSql($modelItemsDb , $obj_id_char , $item_id);
+            return $result;
+         }
+
     }
 ?>

@@ -39,8 +39,8 @@ class AdminDashboardAllCharsByIdUserController extends Controller
         {
             info("AdminDashboardAllUsersByIdController>>>> success request ajax! " . $acccount_expansion_id);
             $array_chars_user = $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , $acccount_expansion_id);
-            $this->convertArrModel($array_chars_user);
-            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+            $result = $this->convertArrModel($array_chars_user);
+            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$result]); 
         }
          catch (ModelNotFoundException $exception) {
             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
@@ -56,8 +56,12 @@ class AdminDashboardAllCharsByIdUserController extends Controller
         foreach($array_chars_user as $model){
             $convert =new InfoDashboardCharsCoin($model);
             $server_id = FunctionSupport::getServerNameToServerId($this->list_servers , $convert->server_name);
-            $this->serviceDashboardChars->getItemById($server_id , $this->item_id , $convert->char_name , $this->list_servers);
+            $count = $this->serviceDashboardChars->getItemByIdCount($server_id , $this->item_id , $convert->char_name , $this->list_servers);
+            $convert->col = $count;
+            array_push($temp ,  $convert);
         }
+
+        return $temp;
     }
     
    

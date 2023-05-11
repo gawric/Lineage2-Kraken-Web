@@ -81,7 +81,7 @@ use App\Models\Temp\InfoDashboard;
             $this->proxy_server->addL2Item($modelItemsDb , $charactersDb ,$char_name , $item_id, $count);
         }
         public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id){
-         $this->proxy_server->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
+         return $this->proxy_server->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
         }
 
         public function blockAccount($modelAccounts , $blockLogin){
