@@ -102,7 +102,7 @@ return [
     'support_paymonts' => [0 => "Enot.io", 1 => "Test.io"],
 
     //список донатных вещей. Выдаем только их
-    'coin_payments' =>['coin_of_luck' =>4037],
+    'coin_payments' =>['coin_of_luck' =>4037 , 'adena' =>57],
 
     'support_developers' => [0 => "App\Service\ProxySqlL2Server\RusAcisProxy\ProxyServerAcis", 1 => "App\Service\ProxySqlL2Server\PwSoftProxy\ProxyPwSoft" , 2 => "App\Service\ProxySqlL2Server\LuceraProxy\ProxyLucera"],
 ];

@@ -55,8 +55,8 @@
 
         private function getItemsCount($modelItemsDb , $charactersDb , $char_name , $item_id){
             $items = $this->proxy->getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);
-            info("getItemsCount>>>>");
-            info($items);
+          //  info("getItemsCount>>>>");
+          //  info($items);
             if(!is_array($items)){
                 return $this->isNotEmptyResult($items);
             }

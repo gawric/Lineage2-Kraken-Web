@@ -23,7 +23,7 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             $modelItems->count = $count;
             $modelItems->loc = $loc;
             $modelItems->first_owner_id = $owner_id;
-            info("LuceraTemplateItemsSql>createModelItemAcis> Create Model " . $modelItems);
+           // info("LuceraTemplateItemsSql>createModelItemAcis> Create Model " . $modelItems);
             return  $modelItems;
         }
 

@@ -24,7 +24,7 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
             $modelItems->item_id = $item_id;
             $modelItems->count = $count;
             $modelItems->loc = $loc;
-            info("AcisTemplateItemsSql>createModelItemAcis> Create Model " . $modelItems);
+           // info("AcisTemplateItemsSql>createModelItemAcis> Create Model " . $modelItems);
             return  $modelItems;
         }
 

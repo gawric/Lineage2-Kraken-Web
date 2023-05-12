@@ -15,7 +15,7 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Characters;
 
     class CharactersLucera extends CharactersTemplateChars {
         public function getAllCharsLucera($server_name , $auth_user_id , $modelCharactersDb , $server_id){
-            info("getAllCharsLucera>>>use characters to lucera");
+           // info("getAllCharsLucera>>>use characters to lucera");
             return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
     }

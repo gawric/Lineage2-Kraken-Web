@@ -43,39 +43,40 @@
       <div id="dialog"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-196 bg-white rounded-md px-8 py-6 space-y-15 drop-shadow-lg">
         <h1 class="text-2xl font-semibold">{{ __('messages.lk_admin_panel_title_chars') }}</h1>
+        <div style="margin-top:1%; margin-bottom:1%; width:50%;">
+          <div style="display:none;" id="warning_all_chars"  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <span id="text_warning_all_chars"  class="block sm:inline"></span>
+          </div>
+        </div>
         <div>
-        <div style="display:none;margin-top:3%" id="loading_all_chars">
-          <div role="status">
-          <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-            <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-          </svg>
-        <span class="sr-only">Loading...</span>
-      </div>
+          <div style="display:none;margin-top:3%" id="loading_all_chars">
+            <div role="status">
+            <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+              <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+            </svg>
+          <span class="sr-only">Loading...</span>
+        </div>
     </div>
         </div>
         <div style="margin-top:3%;width: 50%;"class="grid mb-6 md:grid-cols-3">
           <div>
-             <label for="small" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_item')}}</label>
-              <select id="small" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected> {{ __('messages.lk_admin_panel_windows_chars_select_choose_item_title')}}</option>
-                <option value="US">United States</option>
-                <option value="CA">Canada</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
+             <label for="select_chars_items" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_item')}}</label>
+              <select id="select_chars_items" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option id="-1" selected> {{ __('messages.lk_admin_panel_windows_chars_select_choose_item_title')}}</option>
               </select>
           </div>
           <div style="margin-left:5%;width: 50%;">
-              <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_count')}}</label>
-              <input type="text" id="last_name" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="10" required>
+              <label for="text_count_items" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_count')}}</label>
+              <input type="text" id="text_count_items" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="10" required>
           </div>
           <div style="float:left;margin-top:1px;" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
             <label for="last_name_1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_windows_chars_select_add')}}</label>
-            <button type="button" class="p-2 mb-6 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5  mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">{{ __('messages.lk_admin_panel_windows_chars_select_add')}}</button>
+            <button id="button_add_items_char" onClick="addItemsChar()" type="button" class="p-2 mb-6 focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5  mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">{{ __('messages.lk_admin_panel_windows_chars_select_add')}}</button>
           </div>
         </div>
         <div style="margin-top:3%;">
-          <table id="" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <table id="table_all_chars" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead>
           <tr>
               <th scope="col" class="px-6 py-4">#</th>
@@ -94,28 +95,31 @@
          @foreach($array_adminchars as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ $model->id }}
+            
                 </th>
                 <td class="px-6 py-4">
-                {{ $model->username }}
+                  <input  id="select_chars" onclick='clickBlockCheckbox(this , {{ $model->id }});' type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->email }}
+          
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->datereg }}
+          
                 </td>
                 <td class="px-6 py-4">
-                <a href="#" onclick="return clickOpenDialogAccouts()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_accounts }}</a>
+              
                 </td>
                 <td class="px-6 py-4">
-                  <a href="#" onclick="return clickOpenDialog()" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count_chars }}</a>
+                
                 </td>
                 <td class="px-6 py-4">
-                  <input {{ $model->is_blocked ? 'checked' : '' }} id="block_checkbox" onclick='clickBlockCheckbox(this , {{ $model->id }});' type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  
                 </td>
                 <td class="px-6 py-4">
-                  {{$model->last_ip }}
+                  
+                </td>
+                <td class="px-6 py-4">
+                
                 </td>
             </tr>
          @endforeach

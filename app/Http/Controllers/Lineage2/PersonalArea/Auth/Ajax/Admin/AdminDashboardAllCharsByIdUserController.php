@@ -12,6 +12,7 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
  use App\Service\PersonalArea\Dashboard\DashboardChars;
  use App\Models\Temp\InfoDashboardCharsCoin;
  use App\Service\Utils\FunctionSupport;
+ use App\Service\Utils\FunctionPayments;
 
 class AdminDashboardAllCharsByIdUserController extends Controller
 {
@@ -19,10 +20,15 @@ class AdminDashboardAllCharsByIdUserController extends Controller
     private $list_servers;
     private DashboardChars $serviceDashboardChars;
     private $item_id;
+    private $array_success_items;
+
+
     public function __construct()
     {
         $this->list_servers = Config::get('lineage2.server.list_server');
-        $this->item_id = Config::get('lineage2.server.coin_payments')['coin_of_luck'];
+       // $this->item_id = Config::get('lineage2.server.coin_payments')['coin_of_luck'];
+       $this->item_id = FunctionPayments::getPaymentsItemIdByName("coin_of_luck");
+        $this->array_success_items = Config::get('lineage2.server.coin_payments');
         $this->serviceDashboardChars = new DashboardChars();
     }
 
@@ -37,10 +43,10 @@ class AdminDashboardAllCharsByIdUserController extends Controller
 
         try 
         {
-            info("AdminDashboardAllUsersByIdController>>>> success request ajax! " . $acccount_expansion_id);
+          //  info("AdminDashboardAllUsersByIdController>>>> success request ajax! " . $acccount_expansion_id);
             $array_chars_user = $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , $acccount_expansion_id);
             $result = $this->convertArrModel($array_chars_user);
-            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$result]); 
+            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$result , 'access_items'=>$this->array_success_items]); 
         }
          catch (ModelNotFoundException $exception) {
             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);

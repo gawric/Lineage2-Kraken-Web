@@ -25,6 +25,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardBlo
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardUnBlockUserController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardPaginationController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllCharsByIdUserController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAddL2ItemsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -75,7 +76,8 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard/users', [AdminDashboardPaginationController::class, 'page']);
     Route::get('/adminDashboard/block', [AdminDashboardBlockUserController::class, 'index']);
     Route::get('/adminDashboard/unblock', [AdminDashboardUnBlockUserController::class, 'index']);
-    Route::get('/adminDashboard/allChars', [AdminDashboardAllCharsByIdUserController::class, 'index']);
+    Route::get('/adminDashboard/allchars', [AdminDashboardAllCharsByIdUserController::class, 'index']);
+    Route::post('/adminDashboard/additems', [AdminDashboardAddL2ItemsController::class, 'index']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

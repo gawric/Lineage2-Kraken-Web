@@ -11,5 +11,4 @@ class OrderEnot extends Model
 {
     protected $table = 'order_enot';
     use HasFactory;
-
 }

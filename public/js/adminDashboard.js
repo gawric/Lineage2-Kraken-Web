@@ -13,8 +13,9 @@ function createNextPage(nextlink){
 
  function getAllCharsUser(account_expansion_id){
     
-    hideButtonLoadingById("warning_all_accounts");
+    hideButtonLoadingById("warning_all_chars");
     showButtonLoadingById("loading_all_chars");
+    clearTableRowsChars();
     getAllCharsByIdUser(account_expansion_id);
  }
 
@@ -63,26 +64,43 @@ function createNextPage(nextlink){
 
  function getAllCharsByIdUser(account_expansion_id){
     $.ajax({
-        url: "/adminDashboard/allChars?accountExpansionId="+account_expansion_id,
+        url: "/adminDashboard/allchars?accountExpansionId="+account_expansion_id,
         type: 'get',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
             if(!!jQxhr.responseJSON != undefined){
-               console.log(jQxhr.responseJSON);
+               var success = jQxhr.responseJSON.success;
+               var result = jQxhr.responseJSON.result;
+               var access_items = jQxhr.responseJSON.access_items;
+              
+               if(!!result & !!access_items){
+                    forEachChars(result);
+                    addSelecOptions(access_items , "select_chars_items");
+                    hideButtonLoadingById("loading_all_chars");
+               }
+
             }
         },
         error: function (data) {
-            console.log(data);
+
            if(data.status == 422) {
-               //setTextById("Запрос не прошел валидацию!" , "text_warning_all_accounts");
-              // showButtonLoadingById("warning_all_accounts");
-               //hideButtonLoadingById("loading_all_accounts");
+               setTextById("Запрос не прошел валидацию!" , "text_warning_all_chars");
+               showButtonLoadingById("warning_all_chars");
+               hideButtonLoadingById("loading_all_chars");
              } else {
-              // setTextById("Неизвестная ошибка!" , "text_warning_all_accounts");
-              // showButtonLoadingById("warning_all_accounts");
-              // hideButtonLoadingById("loading_all_accounts");
+                if (data.status === 0) {
+                    setTextById("Потеряно соединение с сервером!" , "text_warning_all_chars");
+                    showButtonLoadingById("warning_all_chars");
+                    hideButtonLoadingById("loading_all_chars");
+                }
+                else{
+                    setTextById("Неизвестная ошибка!" , "text_warning_all_chars");
+                    showButtonLoadingById("warning_all_chars");
+                    hideButtonLoadingById("loading_all_chars");
+                }
+             
              }
             
 
@@ -91,6 +109,8 @@ function createNextPage(nextlink){
     });
 
 }
+
+
 
 
  function blockOrunblock(nextlink)
@@ -111,7 +131,8 @@ function createNextPage(nextlink){
             if(!!jQxhr.responseJSON != undefined){
 
                datajson = jQxhr.responseJSON;
-               console.log(datajson);
+               //console.log(datajson);
+    
                //setTextById("Обновлено" , "success_all_accounts");
                hideButtonLoadingById("loading_all_accounts");
                //showButtonLoadingById("success_all_accounts");
@@ -155,6 +176,10 @@ function createNextPage(nextlink){
     $("#table_all_accounts").children('tbody').children('tr').remove();
  }
 
+ function clearTableRowsChars(){
+    $("#table_all_chars").children('tbody').children('tr').remove();
+ }
+
  function forEachAccount(newdata){
     newdata.forEach(function(item) {
         addRowToTable(item);
@@ -173,6 +198,7 @@ function createNextPage(nextlink){
         var dateObj =  new Date(item.datereg);
         var last_ip = item.last_ip;
 
+       
         addRows(id , username , email , formatDate(dateObj) , count_accounts , last_ip , is_blocker , count_chars);
     }
 }
@@ -202,6 +228,8 @@ function addNumberOfAccounts(number_current, number_total){
  
 
  function formatDate(dateObj){
+    
+
     day =  dateObj.getMonth();
     month = dateObj.getDate();
     minutes = dateObj.getMinutes();
@@ -223,6 +251,166 @@ function addNumberOfAccounts(number_current, number_total){
    // dateObj.getHours() + ":" + dateObj.getMinutes();
 }
 
+
+
+function forEachChars(newdata){
+    newdata.forEach(function(item) {
+        addRowToTableChars(item);
+    });
+ }
+
+
+ function addRowToTableChars(item){
+    if(item != undefined){
+        var id = item.id;
+        var char_name = item.char_name;
+        var account_name = item.account_name;
+        var lvl = item.lvl;
+        var server_name= item.server_name;
+        var online= item.online;
+        var col= item.col;
+        
+
+        addData(id , char_name , account_name , lvl , server_name , online , col , item.last_data);
+            
+    }
+}
+
+function addData(id , char_name , account_name , lvl , server_name , online , col , data){
+    if(data == "Нет данных"){
+        addRowsChars(id , char_name , account_name , lvl , server_name , online , col , data);
+    }
+    else{
+        var last_data = new Date(item.last_data);
+        addRowsChars(id , char_name , account_name , lvl , server_name , online , col , formatDate(last_data));
+    }
+}
+
+
+
+function addRowsChars(id , char_name , account_name , lvl , server_name , online , col , last_data){
+    $("#table_all_chars").find('tbody')
+    .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
+        .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
+        .append($('<td class="px-6 py-4"><input id="select_checkbox" '+id+'  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
+        .append($('<td class="px-6 py-4">').text(account_name))
+        .append($('<td class="px-6 py-4">').text(char_name))
+        .append($('<td class="px-6 py-4">').text(col))
+        .append($('<td class="px-6 py-4">').text(server_name))
+        .append($('<td class="px-6 py-4">').text(lvl))
+        .append($('<td class="px-6 py-4">').text(online))
+        .append($('<td class="px-6 py-4">').text(last_data))
+    );
+}
+
+function addSelecOptions(array , id_select){
+
+    var selectElement = document.getElementById(id_select);
+    Object.keys(array).forEach(key => {
+            var opt = new Option(key);
+            opt.id = array[key];
+            selectElement.add(opt);
+      });
+}
+
+
+function addItemsChar(){
+
+    var count_item = document.getElementById("text_count_items");
+    var select_item = document.getElementById("select_chars_items");
+
+    var select_index = select_item.selectedIndex;
+    var count = count_item.value;
+    var arraySelectItems = getSelectRowsTableChars("table_all_chars");
+
+    if(select_index != 0 && count){
+
+        //id добавляемого итема
+        var id_item_use = select_item.options[select_index].id;
+        //сводим данные из таблицы и селекта
+        var allDataItems = getPreparationDataItems(arraySelectItems , id_item_use , count);
+        sendJsonAddItems(allDataItems);
+    }
+
+}
+
+function getPreparationDataItems(arraySelectItems , id_item_use , count){
+    var temp = [];
+    for(var i=0; i < arraySelectItems.length; i++){
+        //0 - charname //1-server_name
+        temp.push({'char_name': arraySelectItems[i][0],'server_name': arraySelectItems[i][1],'item_id':parseInt(id_item_use),'count': count});
+    }
+
+    return temp;
+}
+
+function getSelectRowsTableChars(id_tables){
+    var temp = [];
+    const table = document.getElementById(id_tables);
+    var count = table.rows.length;  
+    for(var i=0; i<count; i++) {    
+        //console.log(table.rows[i][0]);  
+        if(i != 0){
+            tds = table.rows[i].getElementsByTagName('td');  
+            isselect = tds[0].getElementsByTagName('input')[0].checked;
+
+            if(isselect == true){
+               var char_name = tds[2].innerHTML;
+               var server_name = tds[4].innerHTML;
+
+               temp.push([char_name , server_name]);
+            }
+          
+        }
+    }
+
+    return temp;
+   
+}
+
+
+function sendJsonAddItems(arrayData){
+    $.ajax({
+        url: '/adminDashboard/additems',
+        dataType: 'json',
+        type: 'post',
+        contentType: 'application/json; charset=utf-8',
+        data: JSON.stringify(arrayData),
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            if(!!jQxhr.responseJSON.success){
+               console.log(jQxhr.responseJSON.success);
+            }
+        },
+        error: function (data) {
+            if(data.responseText != undefined){
+                var dataErrors = $.parseJSON(data.responseText);
+                console.log(dataErrors);
+                if (!!dataErrors.message) {
+                    if(dataErrors.errors == undefined){
+           
+                     }
+                     else{
+             
+                     }
+                
+                }
+                else{
+          
+                }
+            }
+            else{
+   
+            }
+            
+
+        }
+    
+    });
+
+}
  
  
  

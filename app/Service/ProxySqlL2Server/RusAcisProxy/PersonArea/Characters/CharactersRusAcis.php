@@ -15,7 +15,7 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Characters;
 
     class CharactersRusAcis extends CharactersTemplateChars {
         public function getAllCharsRusAcis($server_name , $auth_user_id , $modelCharactersDb , $server_id){
-                info("getAllCharsRusAcis>>>use characters to RusAcis");
+             //   info("getAllCharsRusAcis>>>use characters to RusAcis");
                 return $this->getAllChars($server_name , $auth_user_id , $modelCharactersDb , $server_id);
         }
     }

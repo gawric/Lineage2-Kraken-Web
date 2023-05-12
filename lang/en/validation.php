@@ -168,6 +168,10 @@ return [
     'payments_success' => 'Проверка успешна',
     'enot_url_error' => 'Server issues, please try again later!',
 
+    'admin_additems_char_name' => 'char_name failed validation',
+    'admin_additems_item_id' => 'item id is not correct',
+    'admin_additems_count' => 'Quantity is not correct',
+
 
     /*
     |--------------------------------------------------------------------------
