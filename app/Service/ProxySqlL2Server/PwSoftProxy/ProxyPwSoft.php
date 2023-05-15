@@ -121,6 +121,10 @@ use Exception;
             $this->accountssql->unblockAccountPwSoft($modelAccounts , $unblockLogin , $this->unblock_access_level);
         }
 
+        public function getInfoAccountServer($login , $account_db_model){
+            return $this->accountssql->getInfoAccountServerPwSoft($login , $account_db_model);
+        }
+
  
    }
 ?>

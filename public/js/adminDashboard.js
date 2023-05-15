@@ -4,8 +4,8 @@ function createNextPage(nextlink){
         hideButtonLoadingById("warning_all_accounts");
         showButtonLoadingById("loading_all_accounts");
     
-        console.log("nextlink");
-        console.log(nextlink);
+       //console.log("nextlink");
+       // console.log(nextlink);
 
         sendJsonDataServer(nextlink);
     }
@@ -14,9 +14,16 @@ function createNextPage(nextlink){
  function getAllCharsUser(account_expansion_id){
     
     hideButtonLoadingById("warning_all_chars");
+    hideButtonLoadingById("success_all_chars");
     showButtonLoadingById("loading_all_chars");
-    clearTableRowsChars();
+    clearTableRowsChars("table_all_chars");
     getAllCharsByIdUser(account_expansion_id);
+ }
+
+ function getAllAccountsUser(account_expansion_id){
+    showButtonLoadingById("loading_user_all_accounts");
+    clearTableRowsChars("table_user_all_accounts");
+    getAllAccountsByIdUser(account_expansion_id);
  }
 
  function sendJsonDataServer(nextlink){
@@ -111,6 +118,52 @@ function createNextPage(nextlink){
 }
 
 
+function getAllAccountsByIdUser(account_expansion_id){
+    $.ajax({
+        url: "/adminDashboard/all_l2accounts?accountExpansionId="+account_expansion_id,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            console.log("getAllAccountsByIdUser success");
+            if(!!jQxhr.responseJSON != undefined){
+                if(jQxhr.responseJSON.result){
+                    forEachAccounts(jQxhr.responseJSON.result);
+                }
+                
+            }
+
+            hideButtonLoadingById("loading_user_all_accounts");
+        },
+        error: function (data) {
+            console.log("getAllAccountsByIdUser fail");
+           if(data.status == 422) {
+              // setTextById("Запрос не прошел валидацию!" , "text_warning_all_chars");
+               //showButtonLoadingById("warning_all_chars");
+              // hideButtonLoadingById("loading_all_chars");
+             } else {
+                if (data.status === 0) {
+                  //  setTextById("Потеряно соединение с сервером!" , "text_warning_all_chars");
+                   // showButtonLoadingById("warning_all_chars");
+                   // hideButtonLoadingById("loading_all_chars");
+                }
+                else{
+                   // setTextById("Неизвестная ошибка!" , "text_warning_all_chars");
+                   // showButtonLoadingById("warning_all_chars");
+                   // hideButtonLoadingById("loading_all_chars");
+                }
+             
+             }
+            
+             hideButtonLoadingById("loading_user_all_accounts");
+        }
+    
+    });
+
+}
+
+
 
 
  function blockOrunblock(nextlink)
@@ -176,8 +229,12 @@ function createNextPage(nextlink){
     $("#table_all_accounts").children('tbody').children('tr').remove();
  }
 
- function clearTableRowsChars(){
-    $("#table_all_chars").children('tbody').children('tr').remove();
+ function clearTableRowsChars(table_id){
+    //var search_result = $("#"+table_id).children('tbody').children('tr').children('td:contains("Нет данных")').length;
+    //if(search_result == 0){
+        $("#"+table_id).children('tbody').children('tr').remove();
+   // }
+    
  }
 
  function forEachAccount(newdata){
@@ -299,6 +356,50 @@ function addRowsChars(id , char_name , account_name , lvl , server_name , online
         .append($('<td class="px-6 py-4">').text(server_name))
         .append($('<td class="px-6 py-4">').text(lvl))
         .append($('<td class="px-6 py-4">').text(online))
+        .append($('<td class="px-6 py-4">').text(last_data))
+    );
+}
+
+
+function forEachAccounts(newdata){
+    console.log(newdata);
+    newdata.forEach(function(item) {
+        addRowToTableAccounts(item);
+    });
+ }
+
+function addRowToTableAccounts(item){
+    if(item != undefined){
+        var id = item.id;
+        var l2account_name = item.l2account_name;
+        var is_blocked = item.is_blocked;
+        var lockdate = item.lockdate;
+
+    
+        addDataAccount(id ,l2account_name,is_blocked,  lockdate);
+            
+    }
+}
+
+function addDataAccount(id ,l2account_name,is_blocked,  lockdate){
+    if(lockdate == "Нет данных"){
+        addRowsAccount(id ,l2account_name,is_blocked,  lockdate);
+    }
+    else{
+        var last_data = new Date(lockdate);
+        addRowsAccount(id ,l2account_name,is_blocked, formatDate(last_data));
+    }
+}
+
+
+
+function addRowsAccount(id ,l2account_name,is_blocked, last_data){
+    $("#table_user_all_accounts").find('tbody')
+    .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
+        .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
+        .append($('<td class="px-6 py-4"><input id="select_checkbox" '+id+'  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
+        .append($('<td class="px-6 py-4">').text(l2account_name))
+        .append($('<td class="px-6 py-4">').text(is_blocked))
         .append($('<td class="px-6 py-4">').text(last_data))
     );
 }
@@ -484,6 +585,8 @@ function updateTable(char_name_equals , newcol , i , table){
       
     }
 }
+
+
  
  
  

@@ -26,6 +26,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardUnB
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardPaginationController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllCharsByIdUserController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAddL2ItemsController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllAccountsByIdUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +78,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard/block', [AdminDashboardBlockUserController::class, 'index']);
     Route::get('/adminDashboard/unblock', [AdminDashboardUnBlockUserController::class, 'index']);
     Route::get('/adminDashboard/allchars', [AdminDashboardAllCharsByIdUserController::class, 'index']);
+    Route::get('/adminDashboard/all_l2accounts', [AdminDashboardAllAccountsByIdUserController::class, 'index']);
     Route::post('/adminDashboard/additems', [AdminDashboardAddL2ItemsController::class, 'index']);
 });
 

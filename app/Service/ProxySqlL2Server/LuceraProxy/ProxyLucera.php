@@ -124,6 +124,10 @@ use Exception;
             $this->accountssql->unblockAccountLucera($modelAccounts , $unblockLogin , $this->unblock_access_level);
         }
 
+        public function getInfoAccountServer($login , $account_db_model){
+            return $this->accountssql->getInfoAccountServerLucera($login , $account_db_model);
+        }
+
       
 
  

@@ -28,5 +28,9 @@ namespace App\Service\ProxySqlL2Server\PwSoftProxy\PersonArea\Accounts;
             $this->blockAccountLucera($modelAccounts , $blockLogin , $access_level);
         }
 
+        public function getInfoAccountServerPwSoft($login , $account_db_model){
+            return $this->getInfoAccountServerLucera($login , $account_db_model);
+        }
+
     }
 ?>

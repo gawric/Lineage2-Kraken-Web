@@ -32,6 +32,8 @@
         //Блокировка и разблокировка аккаунта в игре
         public function blockAccount($modelAccounts , $blockLogin);
         public function unblockAccount($modelAccounts , $unblockLogin);
+
+        public function getInfoAccountServer($login , $account_db_model);
         
 
     }

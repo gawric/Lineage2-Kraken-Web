@@ -56,6 +56,10 @@ namespace App\Service\ProxySqlL2Server\LuceraProxy\PersonArea\Accounts;
             $this->accountAcceessLevel($modelAccounts , $unblockLogin , $access_level);
         }
 
+        public function getInfoAccountServerLucera($login , $account_db_model){
+            return $this->getAccountServer($login , $account_db_model);
+        }
+
   
 
     

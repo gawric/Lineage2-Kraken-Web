@@ -8,6 +8,7 @@ use App\Models\Temp\InfoDashboardChars;
 use App\Models\Accounts_ip;
 use App\Models\Accounts_role;
 use Lang;
+use Config;
 
 
  class FunctionSupport
@@ -222,6 +223,16 @@ use Lang;
             }
         }
         return $temp;
+    }
+
+    public static function parceAccessLevelToBool(int $accesslevel){
+        $accesslevelBlock = Config::get('lineage2.server.access_Level_block');
+
+        if($accesslevelBlock == $accesslevel){
+            return true;
+        }
+
+        return false;
     }
 
     public static function getDataVariable($name , $validated ) : string {

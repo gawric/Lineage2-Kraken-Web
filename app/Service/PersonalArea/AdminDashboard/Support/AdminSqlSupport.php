@@ -33,6 +33,7 @@ use Config;
         }
 
 
+
         private function changeRoleAccauntExpansion($account_expansion , $role_name){
             $role = $account_expansion->accounts_role->first();
             $role->name = $role_name;
@@ -40,6 +41,8 @@ use Config;
 
             info("changeRoleAccauntExpansion-> ". $account_expansion->id . " accountName " . $account_expansion->login . " roleName " . $role->name);
         }
+
+        
     }
 
 ?>

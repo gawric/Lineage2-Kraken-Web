@@ -9,6 +9,8 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
  use App\Models\Accounts_server_id;
  use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
  use App\Models\Temp\InfoDashboard;
+ use App\Models\Temp\InfoAdminL2Accounts;
+ use App\Service\Utils\FunctionSupport;
  
     class AcisTemplateRegSql
     {
@@ -89,6 +91,15 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             $accounts_server_id->account_name = $default_account_name;
 
             return $accounts_server_id;
+        }
+
+        public function createModelL2Account($intBlocked , $l2account_name , $lockdate){
+            $l2account = new InfoAdminL2Accounts();
+            $l2account->is_blocked = FunctionSupport::parceAccessLevelToBool($intBlocked);
+            $l2account->l2account_name = $l2account_name;
+            $l2account->lockdate = $lockdate;
+
+            return $l2account;
         }
 
         //приходиться заменять 2y на 2a т.к в серверах old salt version
@@ -173,6 +184,37 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             
         
         }
+
+
+        public  function getAccountServer($account_name , $current_account_db_model){
+
+            $account_user = $this->getDataAccount($account_name , $current_account_db_model);
+
+            if(isset($account_user)){
+               return  $this->parceResult($account_user);
+            }
+
+            return [];
+        }
+
+        private function getDataAccount($account_name , $current_account_db_model){
+            if(isset($account_name)){
+                $filtersPk = new GeneralFilters(['simplefilter'] , [['login', '=', $account_name]]);
+                return $current_account_db_model::filter($filtersPk)->get()->first();
+            }
+        }
+
+        private function parceResult($account_user){
+            if(isset($account_user->accessLevel)){
+                //lucera
+                return $this->createModelL2Account($account_user->accessLevel, $account_user->login , now());
+            }
+            else{
+                //other
+                return $this->createModelL2Account($account_user->access_level, $account_user->login , now());
+            }
+        }
+
 
         
      }

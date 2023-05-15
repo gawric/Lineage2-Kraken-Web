@@ -33,6 +33,9 @@
         public function getListAllInfoAdminDashboard($all_users):array{
                 return $this->admin_support->forEach($all_users , $this->sql_support , $this->list_server);
         }
+        public function getListAllL2AccountsByAccountExpansion($all_accounts_server){
+                return $this->forEachGetInfoAccountsServer($all_accounts_server);
+        }
 
         public function blockAccountExpansion($account_expansion_id){
             $model_account_expansion = $this->admin_sql_support->isExistAccountExpansion($account_expansion_id);
@@ -68,6 +71,27 @@
         }   
 
 
+
+        private function forEachGetInfoAccountsServer($all_accounts_server){
+            $index = 0;
+            $temp = [];
+            foreach($all_accounts_server as $item){
+                $server_id = $item->server_id;
+                $l2Login = $item->account_name;
+
+                $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_server);
+                $modelAccounts = FunctionSupport::getModelAccountDb($server_id , $this->list_server);
+
+              
+                $this->proxySql = new ProxySqlServer($developer_id);
+
+                $model =  $this->proxySql->getInfoAccountServer($l2Login , $modelAccounts);
+                $model->id = $index++;
+
+                array_push($temp  , $model);
+            }
+            return $temp;
+        }
         private function forEachBlockAccount($all_accounts_server){
             foreach($all_accounts_server as $item){
                 $server_id = $item->server_id;
@@ -84,15 +108,17 @@
         private function forEachUnblockAccount($all_accounts_server){
             foreach($all_accounts_server as $item){
                 $server_id = $item->server_id;
-                $blockLogin = $item->account_name;
+                $unblockLogin = $item->account_name;
 
                 $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_server);
                 $modelAccounts = FunctionSupport::getModelAccountDb($server_id , $this->list_server);
 
                 $this->proxySql = new ProxySqlServer($developer_id);
-                $this->proxySql->unblockAccount($modelAccounts , $blockLogin);
+                $this->proxySql->unblockAccount($modelAccounts , $unblockLogin);
             }
         }
+
+
 
 
 

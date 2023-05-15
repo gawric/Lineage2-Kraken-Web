@@ -121,6 +121,10 @@ use Exception;
             $this->accountssql->unblockAccountRusAcis($modelAccounts , $unblockLogin , $this->unblock_access_level);
         }
 
+        public function getInfoAccountServer($login , $account_db_model){
+            return $this->getInfoAccountServerRusAcis($login , $account_db_model);
+        }
+
       
 
  

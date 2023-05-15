@@ -6,6 +6,8 @@
     interface IAdminDashboard
     {
         public function getListAllInfoAdminDashboard($all_users):array;
+        public function getListAllL2AccountsByAccountExpansion($all_accounts_server);
+
         public function blockAccountExpansion($account_expansion_id);
         public function unblockAccountExpansion($account_expansion_id);
 

@@ -92,6 +92,11 @@ use App\Models\Temp\InfoDashboard;
          return  $this->proxy_server->unblockAccount($modelAccounts , $unblockLogin);
         }
 
+
+        public function getInfoAccountServer($login , $account_db_model){
+         return $this->proxy_server->getInfoAccountServer($login , $account_db_model);
+        }
+
         private function getProxy($developer_id){
            return SelectServerById::choose($developer_id);
         }

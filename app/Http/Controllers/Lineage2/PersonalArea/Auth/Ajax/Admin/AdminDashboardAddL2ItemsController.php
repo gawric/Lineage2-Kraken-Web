@@ -30,8 +30,8 @@ class AdminDashboardAddL2ItemsController extends Controller
         $valid_array = $request->validated();
         try 
         {
-            info("AdminDashboardAllCharsByIdUserController>>>> success request ajax! ");
-            info($valid_array);
+           // info("AdminDashboardAllCharsByIdUserController>>>> success request ajax! ");
+           // info($valid_array);
 
             if(is_array($valid_array) and count($valid_array) > 0){
                 event(new L2AddArrayItemsAjax($valid_array));

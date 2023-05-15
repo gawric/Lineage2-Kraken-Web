@@ -83,7 +83,7 @@
 
 
 
-        //$list_servers - здесь происходит только чтение.
+   
         private function calcData($server_id , $list_servers , $auth_user_id){
 
             $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);

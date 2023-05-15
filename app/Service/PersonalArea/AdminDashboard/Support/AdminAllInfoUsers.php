@@ -32,6 +32,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
                 $all_accounts = $user->accounts_server_id();
                 $first_auth_ip = $user->accounts_ip()->first();
                 $role_model = $user->accounts_role->first();
+                
                 $array_infoDashboard = $sql_support->getInfoAllCharacters($list_server , $all_accounts);
                 $count_chars = $this->getCountChars($array_infoDashboard);
                 $infoAdminDashboard = $this->createInfoAdminDashboard($user->id , count($array_infoDashboard) , $count_chars , $user->login, $user->email , $user->created_at, $first_auth_ip->ip_address , $role_model->name);
