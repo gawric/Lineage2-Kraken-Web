@@ -306,6 +306,8 @@ function addRowsChars(id , char_name , account_name , lvl , server_name , online
 function addSelecOptions(array , id_select){
 
     var selectElement = document.getElementById(id_select);
+    removeOptions(selectElement);
+
     Object.keys(array).forEach(key => {
             var opt = new Option(key);
             opt.id = array[key];
@@ -313,8 +315,23 @@ function addSelecOptions(array , id_select){
       });
 }
 
+function removeOptions(selectElement) {
+    if(selectElement.options.length > 0){
+        var i, L = selectElement.options.length - 1;
+        for(i = L; i > 0; i--) {
+            
+           selectElement.remove(i);
+        }
+    }
+    
+ }
+
 
 function addItemsChar(){
+
+    hideButtonLoadingById("warning_all_accounts");
+    hideButtonLoadingById("success_all_chars");
+    showButtonLoadingById("loading_all_chars");
 
     var count_item = document.getElementById("text_count_items");
     var select_item = document.getElementById("select_chars_items");
@@ -331,7 +348,11 @@ function addItemsChar(){
         var allDataItems = getPreparationDataItems(arraySelectItems , id_item_use , count);
         sendJsonAddItems(allDataItems);
     }
+    else{
+        hideButtonLoadingById("loading_all_chars");
+    }
 
+    
 }
 
 function getPreparationDataItems(arraySelectItems , id_item_use , count){
@@ -381,28 +402,32 @@ function sendJsonAddItems(arrayData){
         },
         success: function( data, textStatus, jQxhr ){
             if(!!jQxhr.responseJSON.success){
-               console.log(jQxhr.responseJSON.success);
+              
+                result = jQxhr.responseJSON.result;
+                if(isArray(result)){
+                    console.log("Add items array");
+                    console.log(result);
+                    
+                    changeTableRows("table_all_chars" , result)
+                }
+
+                setTextById("Обновлено" , "success_text_all_chars");
+                showButtonLoadingById("success_all_chars");
+                hideButtonLoadingById("loading_all_chars");
             }
         },
         error: function (data) {
             if(data.responseText != undefined){
                 var dataErrors = $.parseJSON(data.responseText);
-                console.log(dataErrors);
-                if (!!dataErrors.message) {
-                    if(dataErrors.errors == undefined){
-           
-                     }
-                     else{
-             
-                     }
-                
-                }
-                else{
-          
-                }
+            
+                setTextById("Неизвестная ошибка!" , "text_warning_all_chars");
+                showButtonLoadingById("warning_all_chars");
+                hideButtonLoadingById("loading_all_chars");
             }
             else{
-   
+                setTextById("Неизвестная ошибка!" , "text_warning_all_chars");
+                showButtonLoadingById("warning_all_chars");
+                hideButtonLoadingById("loading_all_chars");
             }
             
 
@@ -410,6 +435,54 @@ function sendJsonAddItems(arrayData){
     
     });
 
+}
+
+
+function isArray(array){
+    if(Array.isArray(array)){
+        return true;
+    }
+    return false;
+}
+
+    //arrayResult
+    //item.char_name;
+    //item.count;
+   // item.item_id;
+   // item.server_name;
+function changeTableRows(id_tables , arrayResult){
+    arrayResult.forEach(function(item) {
+        forEachUpdate(item.char_name , item.count , id_tables);
+    });
+}
+
+function forEachUpdate(char_name_equals , newcol , id_tables){
+
+    const table = document.getElementById(id_tables);
+    var count = table.rows.length;  
+
+    for(var i=0; i < count; i++) {    
+        //console.log(table.rows[i][0]);  
+        updateTable(char_name_equals , newcol , i , table);
+    }
+}
+
+function updateTable(char_name_equals , newcol , i , table){
+    if(i != 0){
+        tds = table.rows[i].getElementsByTagName('td');  
+        isselect = tds[0].getElementsByTagName('input')[0].checked;
+
+        if(isselect == true){
+            char_name  = tds[2];
+            if(char_name.innerHTML == char_name_equals){
+                col  = tds[3];
+                col.innerHTML = parseInt(col.innerHTML) + parseInt(newcol);
+            }
+          
+            
+        }
+      
+    }
 }
  
  

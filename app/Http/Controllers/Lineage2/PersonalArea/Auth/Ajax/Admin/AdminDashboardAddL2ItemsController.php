@@ -31,10 +31,15 @@ class AdminDashboardAddL2ItemsController extends Controller
         try 
         {
             info("AdminDashboardAllCharsByIdUserController>>>> success request ajax! ");
-           // info($validated);
-            event(new L2AddArrayItemsAjax($valid_array));
+            info($valid_array);
+
+            if(is_array($valid_array) and count($valid_array) > 0){
+                event(new L2AddArrayItemsAjax($valid_array));
+                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$valid_array]); 
+            }
 
             return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+
         }
          catch (ModelNotFoundException $exception) {
             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);

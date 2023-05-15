@@ -47,6 +47,9 @@
           <div style="display:none;" id="warning_all_chars"  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <span id="text_warning_all_chars"  class="block sm:inline"></span>
           </div>
+          <div id="success_all_chars"  style="display:none;" class="bg-green-100 border border-green-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
+          <span id="success_text_all_chars"  class="block sm:inline"></span>
+        </div>
         </div>
         <div>
           <div style="display:none;margin-top:3%" id="loading_all_chars">
@@ -141,10 +144,7 @@
         <div style="margin-top:10%;"class="flex justify-end">
             <!-- This button is used to close the dialog -->
             <button id="close" style="margin-right: 2%;" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
-              exit
-            </button>
-            <button id="save"  class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
-              save
+            {{ __('messages.lk_new_accounts_button_exit')}}
             </button>
         </div>
       </div>
