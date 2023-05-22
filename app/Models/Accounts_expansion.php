@@ -45,6 +45,11 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
       return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id);
     }
 
+
+     public function accountsServerFilterByServerIdAndL2Login($search_server_id , $l2_login){
+      return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id)->where('account_name', $l2_login);
+    }
+
     
 
     //Возрващаем записи с фильтром по server_id

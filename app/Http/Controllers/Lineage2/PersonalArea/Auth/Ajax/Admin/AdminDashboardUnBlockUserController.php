@@ -9,6 +9,9 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
  use Response;
  use Lang;
  use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
+ use App\Http\Requests\Auth\AdminDashboardUnBlockUserStoreRequest;
+ use App\Service\Utils\FunctionOtherUser;
+ use App\Service\Utils\FunctionSupport;
 
 class AdminDashboardUnBlockUserController extends Controller
 {
@@ -48,6 +51,43 @@ class AdminDashboardUnBlockUserController extends Controller
             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
         }
     }
+
+
+     //Реализация блокировки отдельного аккаунта, а не всей учетки!
+     //adminDashboard/block_user_singl_account?accountId=2&accountname="gawric" как пример
+     public function singl(AdminDashboardUnBlockUserStoreRequest $request)
+     {
+      
+          $validated = $request->validated();
+ 
+          $account_expansion_id = $this->getData("accountId", $validated);
+          $l2accountname = $this->getData("accountname", $validated);
+          $server_name = $this->getData("server_name", $validated);
+ 
+          try 
+          {
+              $search_user = FunctionOtherUser::getUserById($account_expansion_id);
+ 
+ 
+ 
+              if(isset($search_user)){
+  
+                 $search_server_id = FunctionSupport::getServerNameToServerId($this->list_servers , $server_name);
+                 //[{"id":5,"accounts_expansion_id":2,"server_id":3,"account_name":"gawric"}]  пример
+                 $search_l2_account = $search_user->accountsServerFilterByServerIdAndL2Login($search_server_id , $l2accountname)->get();
+  
+                  if(isset($search_l2_account)){
+                      $this->admin_service->unblockAllAccountsServer($search_l2_account);
+                      return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+                  }  
+              }
+ 
+              return response()->json(['errors' => Lang::get('messages.admin_use_all_accounts_error_by_id'),], 422);
+          } 
+          catch (ModelNotFoundException $exception) {
+              return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
+          }
+     }
 
     public function getData($name , $validated ) : string {
         return $validated[$name];

@@ -172,6 +172,11 @@ return [
     'admin_additems_item_id' => 'item id не верный',
     'admin_additems_count' => 'Количество не верное',
 
+    
+    'admin_use_all_accounts_id' => 'неверный id аккаунта',
+    'admin_use_all_accounts_accountname' => 'неверное имя аккаунта',
+    'admin_use_all_accounts_server_name' => 'неверное имя сервера',
+    'admin_use_all_accounts_error_by_id' => 'не найден юзер с таким id',
 
     /*
     |--------------------------------------------------------------------------

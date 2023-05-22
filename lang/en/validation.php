@@ -173,6 +173,12 @@ return [
     'admin_additems_count' => 'Quantity is not correct',
 
 
+    'admin_use_all_accounts_id' => 'The :attribute must be a valid id.',
+    'admin_use_all_accounts_accountname' => 'The :attribute must be a valid accountname.',
+    'admin_use_all_accounts_server_name' => 'The :attribute must be a valid server name.',
+    'admin_use_all_accounts_error_by_id' => 'Not found user by id',
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

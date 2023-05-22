@@ -9,6 +9,11 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
  use Response;
  use Lang;
  use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
+ use App\Http\Requests\Auth\AdminDashboardBlockUserStoreRequest;
+ use App\Service\Utils\FunctionOtherUser;
+ use App\Service\Utils\FunctionSupport;
+
+
 
 class AdminDashboardBlockUserController extends Controller
 {
@@ -49,37 +54,41 @@ class AdminDashboardBlockUserController extends Controller
         }
     }
 
+     //Реализация блокировки отдельного аккаунта, а не всей учетки!
      //adminDashboard/block_user_singl_account?accountId=2&accountname="gawric" как пример
-     public function singl(Request $request)
-     {
-         $validated = $request->validate([
-             'accountId' => 'required|integer|max:1000',
-             'accountname' => 'required|string|max:50',
-             'servername' => 'required|string|max:25',
-         ]);
- 
+    public function singl(AdminDashboardBlockUserStoreRequest $request)
+    {
+     
+         $validated = $request->validated();
+
          $account_expansion_id = $this->getData("accountId", $validated);
          $l2accountname = $this->getData("accountname", $validated);
-         $servername = $this->getData("accountname", $validated);
+         $server_name = $this->getData("server_name", $validated);
+
          try 
          {
              $search_user = FunctionOtherUser::getUserById($account_expansion_id);
-             $all_accounts_server = $search_user->accounts_server_id;
 
-             if(isset($block_account_expansion)){
+
+
+             if(isset($search_user)){
  
-                // $all_accounts_server = $block_account_expansion->accounts_server_id;
+                $search_server_id = FunctionSupport::getServerNameToServerId($this->list_servers , $server_name);
+                //[{"id":5,"accounts_expansion_id":2,"server_id":3,"account_name":"gawric"}]  пример
+                $search_l2_account = $search_user->accountsServerFilterByServerIdAndL2Login($search_server_id , $l2accountname)->get();
  
-                 if(isset($all_accounts_server)){
-                //     $this->admin_service->blockAllAccountsServer($all_accounts_server);
-                 }
-                 
-                 return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+                 if(isset($search_l2_account)){
+                     $this->admin_service->blockAllAccountsServer($search_l2_account);
+                     return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+                 }  
              }
-         } catch (ModelNotFoundException $exception) {
+
+             return response()->json(['errors' => Lang::get('messages.admin_use_all_accounts_error_by_id'),], 422);
+         } 
+         catch (ModelNotFoundException $exception) {
              return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
          }
-     }
+    }
 
     public function getData($name , $validated ) : string {
         return $validated[$name];

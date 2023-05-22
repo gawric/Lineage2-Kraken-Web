@@ -404,15 +404,15 @@
         }
 
         function clickBlockAccountCheckbox(checkbox , l2account_name , account_expansion_id , server_name){
-           //console.log(l2account_name);
-          // console.log(account_expansion_id);
 
-           if(checkbox.checked){
-               blockOrunblockSinglAccountL2("/adminDashboard/blockusersingl_account?accountId="+account_expansion_id+"&accountname="+l2account_name+"&servername="+server_name);
+          data =  {'accountId': parseInt(account_expansion_id),'accountname': l2account_name,'server_name':server_name}
+          
+          if(checkbox.checked){
+               blockOrunblockSinglAccountL2("/adminDashboard/blockusersingl_account" , data);
             // blockOrunblock("/adminDashboard/block?accountId="+id);
            }
            else{
-               blockOrunblockSinglAccountL2("/adminDashboard/blockusersingl_account?accountId="+account_expansion_id+"&accountname="+l2account_name+"&servername="+server_name);
+               blockOrunblockSinglAccountL2("/adminDashboard/unblockusersingl_account" , data);
             // blockOrunblock("/adminDashboard/unblock?accountId="+id);
            }
        }

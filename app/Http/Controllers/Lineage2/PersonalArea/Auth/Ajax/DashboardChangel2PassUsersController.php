@@ -31,7 +31,7 @@ class DashboardChangel2PassUsersController extends Controller
     //password_confirmed
     public function changeAjaxPassL2User(DashboardChangel2PassUsersStoreRequest $request)
     {
-        info("test endpount changePassL2User");
+        //info("test endpount changePassL2User");
         $validated = $request->validated();
         //info($validated);
 

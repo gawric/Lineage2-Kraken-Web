@@ -127,7 +127,7 @@ function getAllAccountsByIdUser(account_expansion_id){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
-            console.log("getAllAccountsByIdUser success " + account_expansion_id);
+          //  console.log("getAllAccountsByIdUser success " + account_expansion_id);
             if(!!jQxhr.responseJSON != undefined){
                 if(jQxhr.responseJSON.result){
                     forEachAccounts(jQxhr.responseJSON.result , account_expansion_id);
@@ -165,11 +165,12 @@ function getAllAccountsByIdUser(account_expansion_id){
 }
 
 
-function blockOrunblockSinglAccountL2(link)
+function blockOrunblockSinglAccountL2(link , data)
  {
+    hideButtonLoadingById("success_user_all_accounts");
     hideButtonLoadingById("warning_user_all_accounts");
     showButtonLoadingById("loading_user_all_accounts");
-    sendJsonOnlySinglBlockOrUnblock(link);
+    sendJsonOnlySinglBlockOrUnblock(link , data);
  }
 
  function blockOrunblock(nextlink)
@@ -219,38 +220,34 @@ function blockOrunblockSinglAccountL2(link)
 
 }
 
-function sendJsonOnlySinglBlockOrUnblock(nextlink){
+function sendJsonOnlySinglBlockOrUnblock(nextlink , data){
+   
     $.ajax({
         url: nextlink,
-        type: 'get',
+        type: 'post',
+        data: JSON.stringify(data),
+        contentType: 'application/json; charset=utf-8',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
-            console.log(jQxhr.responseJSON);
-            if(!!jQxhr.responseJSON != undefined){
 
-               //datajson = jQxhr.responseJSON;
-               //console.log(datajson);
-    
-               //setTextById("Обновлено" , "success_all_accounts");
-              // hideButtonLoadingById("loading_all_accounts");
-               //showButtonLoadingById("success_all_accounts");
-               
+            if(!!jQxhr.responseJSON != undefined){
+               setTextById("Обновлено" , "success_text_user_all_accounts");
+               hideButtonLoadingById("loading_user_all_accounts");
+               showButtonLoadingById("success_user_all_accounts");
             }
         },
         error: function (data) {
-            console.log(data);
            if(data.status == 422) {
-               //setTextById("Запрос не прошел валидацию!" , "text_warning_all_accounts");
-               //showButtonLoadingById("warning_all_accounts");
-               //hideButtonLoadingById("loading_all_accounts");
-             } else {
-              // setTextById("Неизвестная ошибка!" , "text_warning_all_accounts");
-               //showButtonLoadingById("warning_all_accounts");
-              // hideButtonLoadingById("loading_all_accounts");
+               setTextById("Запрос не прошел валидацию!" , "text_warning_user_all_accounts");
+               showButtonLoadingById("warning_user_all_accounts");
+            } 
+            else {
+               setTextById("Неизвестная ошибка!" , "text_warning_user_all_accounts");
+               showButtonLoadingById("warning_user_all_accounts");
              }
-            
+             hideButtonLoadingById("loading_user_all_accounts");
 
         }
     
@@ -411,7 +408,7 @@ function addRowsChars(id , char_name , account_name , lvl , server_name , online
 function forEachAccounts(newdata , accountExpansionId){
     //console.log(newdata);
     newdata.forEach(function(item) {
-        console.log(item);
+       /// console.log(item);
         addRowToTableAccounts(item , accountExpansionId);
     });
  }
@@ -446,7 +443,7 @@ function addRowsAccount(id ,l2account_name,is_blocked, last_data , accountExpans
     $("#table_user_all_accounts").find('tbody')
     .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
         .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
-        .append($('<td class="px-6 py-4"><input id="select_checkbox" '+is_blocked+' onclick=\"clickBlockAccountCheckbox(this , '+'\''+l2account_name+'\''+' , '+accountExpansionId+' , '+server_name+');\" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
+        .append($('<td class="px-6 py-4"><input id="select_checkbox" '+is_blocked+' onclick=\"clickBlockAccountCheckbox(this , '+'\''+l2account_name+'\''+' , '+accountExpansionId+' , '+'\''+server_name+'\''+');\" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
         .append($('<td class="px-6 py-4">').text(l2account_name))
         .append($('<td class="px-6 py-4">').text(server_name))
         .append($('<td class="px-6 py-4">').text(last_data))
