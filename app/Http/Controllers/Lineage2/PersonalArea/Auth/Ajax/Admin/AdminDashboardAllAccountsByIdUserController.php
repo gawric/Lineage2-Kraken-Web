@@ -37,7 +37,7 @@ class AdminDashboardAllAccountsByIdUserController extends Controller
 
         try 
         {
-            info("AdminDashboardAllAccountsByIdUserController>>>> success request ajax! " . $acccount_expansion_id);
+            //info("AdminDashboardAllAccountsByIdUserController>>>> success request ajax! " . $acccount_expansion_id);
                 
             $search_user = FunctionOtherUser::getUserById($acccount_expansion_id);
             $all_accounts_server = $search_user->accounts_server_id;

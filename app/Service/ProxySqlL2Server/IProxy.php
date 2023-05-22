@@ -33,7 +33,7 @@
         public function blockAccount($modelAccounts , $blockLogin);
         public function unblockAccount($modelAccounts , $unblockLogin);
 
-        public function getInfoAccountServer($login , $account_db_model);
+        public function getInfoAccountServer($login , $account_db_model , $server_name);
         
 
     }

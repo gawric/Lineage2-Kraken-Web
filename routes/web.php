@@ -76,6 +76,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard', [AdminDashboardController::class, 'index']);
     Route::get('/adminDashboard/users', [AdminDashboardPaginationController::class, 'page']);
     Route::get('/adminDashboard/block', [AdminDashboardBlockUserController::class, 'index']);
+    Route::get('/adminDashboard/blockusersingl_account', [AdminDashboardBlockUserController::class, 'singl']);
     Route::get('/adminDashboard/unblock', [AdminDashboardUnBlockUserController::class, 'index']);
     Route::get('/adminDashboard/allchars', [AdminDashboardAllCharsByIdUserController::class, 'index']);
     Route::get('/adminDashboard/all_l2accounts', [AdminDashboardAllAccountsByIdUserController::class, 'index']);

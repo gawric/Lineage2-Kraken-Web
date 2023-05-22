@@ -23,6 +23,7 @@ function createNextPage(nextlink){
  function getAllAccountsUser(account_expansion_id){
     showButtonLoadingById("loading_user_all_accounts");
     clearTableRowsChars("table_user_all_accounts");
+    hideButtonLoadingById("warning_user_all_accounts");
     getAllAccountsByIdUser(account_expansion_id);
  }
 
@@ -126,10 +127,10 @@ function getAllAccountsByIdUser(account_expansion_id){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
-            console.log("getAllAccountsByIdUser success");
+            console.log("getAllAccountsByIdUser success " + account_expansion_id);
             if(!!jQxhr.responseJSON != undefined){
                 if(jQxhr.responseJSON.result){
-                    forEachAccounts(jQxhr.responseJSON.result);
+                    forEachAccounts(jQxhr.responseJSON.result , account_expansion_id);
                 }
                 
             }
@@ -137,21 +138,21 @@ function getAllAccountsByIdUser(account_expansion_id){
             hideButtonLoadingById("loading_user_all_accounts");
         },
         error: function (data) {
-            console.log("getAllAccountsByIdUser fail");
+           // console.log("getAllAccountsByIdUser fail " + account_expansion_id);
            if(data.status == 422) {
-              // setTextById("Запрос не прошел валидацию!" , "text_warning_all_chars");
-               //showButtonLoadingById("warning_all_chars");
-              // hideButtonLoadingById("loading_all_chars");
+               setTextById("Запрос не прошел валидацию!" , "text_warning_user_all_accounts");
+               showButtonLoadingById("warning_user_all_accounts");
+         
              } else {
                 if (data.status === 0) {
-                  //  setTextById("Потеряно соединение с сервером!" , "text_warning_all_chars");
-                   // showButtonLoadingById("warning_all_chars");
-                   // hideButtonLoadingById("loading_all_chars");
+                    setTextById("Потеряно соединение с сервером!" , "text_warning_user_all_accounts");
+                    showButtonLoadingById("warning_user_all_accounts");
+
                 }
                 else{
-                   // setTextById("Неизвестная ошибка!" , "text_warning_all_chars");
-                   // showButtonLoadingById("warning_all_chars");
-                   // hideButtonLoadingById("loading_all_chars");
+                    setTextById("Неизвестная ошибка!" , "text_warning_user_all_accounts");
+                    showButtonLoadingById("warning_user_all_accounts");
+
                 }
              
              }
@@ -164,7 +165,12 @@ function getAllAccountsByIdUser(account_expansion_id){
 }
 
 
-
+function blockOrunblockSinglAccountL2(link)
+ {
+    hideButtonLoadingById("warning_user_all_accounts");
+    showButtonLoadingById("loading_user_all_accounts");
+    sendJsonOnlySinglBlockOrUnblock(link);
+ }
 
  function blockOrunblock(nextlink)
  {
@@ -173,6 +179,8 @@ function getAllAccountsByIdUser(account_expansion_id){
     showButtonLoadingById("loading_all_accounts");
     sendJsonBlockOrUnblock(nextlink);
  }
+
+
  function sendJsonBlockOrUnblock(nextlink){
     $.ajax({
         url: nextlink,
@@ -202,6 +210,45 @@ function getAllAccountsByIdUser(account_expansion_id){
                setTextById("Неизвестная ошибка!" , "text_warning_all_accounts");
                showButtonLoadingById("warning_all_accounts");
                hideButtonLoadingById("loading_all_accounts");
+             }
+            
+
+        }
+    
+    });
+
+}
+
+function sendJsonOnlySinglBlockOrUnblock(nextlink){
+    $.ajax({
+        url: nextlink,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            console.log(jQxhr.responseJSON);
+            if(!!jQxhr.responseJSON != undefined){
+
+               //datajson = jQxhr.responseJSON;
+               //console.log(datajson);
+    
+               //setTextById("Обновлено" , "success_all_accounts");
+              // hideButtonLoadingById("loading_all_accounts");
+               //showButtonLoadingById("success_all_accounts");
+               
+            }
+        },
+        error: function (data) {
+            console.log(data);
+           if(data.status == 422) {
+               //setTextById("Запрос не прошел валидацию!" , "text_warning_all_accounts");
+               //showButtonLoadingById("warning_all_accounts");
+               //hideButtonLoadingById("loading_all_accounts");
+             } else {
+              // setTextById("Неизвестная ошибка!" , "text_warning_all_accounts");
+               //showButtonLoadingById("warning_all_accounts");
+              // hideButtonLoadingById("loading_all_accounts");
              }
             
 
@@ -361,45 +408,47 @@ function addRowsChars(id , char_name , account_name , lvl , server_name , online
 }
 
 
-function forEachAccounts(newdata){
-    console.log(newdata);
+function forEachAccounts(newdata , accountExpansionId){
+    //console.log(newdata);
     newdata.forEach(function(item) {
-        addRowToTableAccounts(item);
+        console.log(item);
+        addRowToTableAccounts(item , accountExpansionId);
     });
  }
 
-function addRowToTableAccounts(item){
+function addRowToTableAccounts(item , accountExpansionId){
     if(item != undefined){
         var id = item.id;
         var l2account_name = item.l2account_name;
-        var is_blocked = item.is_blocked;
+        var is_blocked = item.is_blocked ? "checked" : "";
         var lockdate = item.lockdate;
+        var server_name = item.server_name;
 
     
-        addDataAccount(id ,l2account_name,is_blocked,  lockdate);
+        addDataAccount(id ,l2account_name,is_blocked,  lockdate , accountExpansionId , server_name);
             
     }
 }
 
-function addDataAccount(id ,l2account_name,is_blocked,  lockdate){
+function addDataAccount(id ,l2account_name,is_blocked,  lockdate , accountExpansionId, server_name){
     if(lockdate == "Нет данных"){
-        addRowsAccount(id ,l2account_name,is_blocked,  lockdate);
+        addRowsAccount(id ,l2account_name,is_blocked,  lockdate , accountExpansionId , server_name);
     }
     else{
         var last_data = new Date(lockdate);
-        addRowsAccount(id ,l2account_name,is_blocked, formatDate(last_data));
+        addRowsAccount(id ,l2account_name,is_blocked, formatDate(last_data) , accountExpansionId , server_name);
     }
 }
 
 
 
-function addRowsAccount(id ,l2account_name,is_blocked, last_data){
+function addRowsAccount(id ,l2account_name,is_blocked, last_data , accountExpansionId , server_name){
     $("#table_user_all_accounts").find('tbody')
     .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
         .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
-        .append($('<td class="px-6 py-4"><input id="select_checkbox" '+id+'  type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
+        .append($('<td class="px-6 py-4"><input id="select_checkbox" '+is_blocked+' onclick=\"clickBlockAccountCheckbox(this , '+'\''+l2account_name+'\''+' , '+accountExpansionId+' , '+server_name+');\" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">'))
         .append($('<td class="px-6 py-4">').text(l2account_name))
-        .append($('<td class="px-6 py-4">').text(is_blocked))
+        .append($('<td class="px-6 py-4">').text(server_name))
         .append($('<td class="px-6 py-4">').text(last_data))
     );
 }

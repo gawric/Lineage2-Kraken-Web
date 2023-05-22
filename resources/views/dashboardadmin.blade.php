@@ -161,7 +161,7 @@
 <div id="dialog_accounts"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-196 bg-white rounded-md px-8 py-6 space-y-15 drop-shadow-lg">
         <h1 class="text-2xl font-semibold">{{ __('messages.lk_admin_panel_title_accounts') }}</h1>
-        <div style="margin-top:1%; margin-bottom:1%; width:50%;"class="grid mb-6 md:grid-cols-3">
+        <div style="margin-top:1%; margin-bottom:1%; width:80%;"class="grid mb-6">
           <div style="display:none;" id="warning_user_all_accounts"  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <span id="text_warning_user_all_accounts"  class="block sm:inline"></span>
           </div>
@@ -187,6 +187,7 @@
           <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_account_select_row')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_account_name')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_table_dashboardchars_name_server')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_account_data_auth')}}</th>
             </tr>
           </thead>
@@ -401,6 +402,20 @@
               blockOrunblock("/adminDashboard/unblock?accountId="+id);
             }
         }
+
+        function clickBlockAccountCheckbox(checkbox , l2account_name , account_expansion_id , server_name){
+           //console.log(l2account_name);
+          // console.log(account_expansion_id);
+
+           if(checkbox.checked){
+               blockOrunblockSinglAccountL2("/adminDashboard/blockusersingl_account?accountId="+account_expansion_id+"&accountname="+l2account_name+"&servername="+server_name);
+            // blockOrunblock("/adminDashboard/block?accountId="+id);
+           }
+           else{
+               blockOrunblockSinglAccountL2("/adminDashboard/blockusersingl_account?accountId="+account_expansion_id+"&accountname="+l2account_name+"&servername="+server_name);
+            // blockOrunblock("/adminDashboard/unblock?accountId="+id);
+           }
+       }
     </script>
 
 @endsection

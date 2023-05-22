@@ -26,6 +26,8 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
       return $this->hasMany(Accounts_server_id::class);
     }
 
+   
+
      //Возрващаем все записи Accounts_ip / храним все ип адреса пользователя
      public function accounts_ip()
      {
@@ -42,6 +44,13 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
     public function accountsServerFilterById($search_server_id){
       return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id);
     }
+
+    
+
+    //Возрващаем записи с фильтром по server_id
+    //public function accountsServerFilterById($search_server_id){
+    //  return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id);
+    //}
 
     public function scopeFilter($query, $filters)
     {

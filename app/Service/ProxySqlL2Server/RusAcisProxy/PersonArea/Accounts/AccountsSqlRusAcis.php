@@ -63,8 +63,8 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts;
             $this->accountAcceessLevel($modelAccounts , $unblockLogin , $access_level);
         }
 
-        public function getInfoAccountServerRusAcis($login , $account_db_model){
-            return $this->getAccountServer($login , $current_account_db_model);
+        public function getInfoAccountServerRusAcis($login , $account_db_model , $server_name){
+            return $this->getAccountServer($login , $current_account_db_model , $server_name);
         }
 
 

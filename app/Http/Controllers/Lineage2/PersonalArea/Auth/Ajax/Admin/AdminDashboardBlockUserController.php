@@ -49,6 +49,38 @@ class AdminDashboardBlockUserController extends Controller
         }
     }
 
+     //adminDashboard/block_user_singl_account?accountId=2&accountname="gawric" как пример
+     public function singl(Request $request)
+     {
+         $validated = $request->validate([
+             'accountId' => 'required|integer|max:1000',
+             'accountname' => 'required|string|max:50',
+             'servername' => 'required|string|max:25',
+         ]);
+ 
+         $account_expansion_id = $this->getData("accountId", $validated);
+         $l2accountname = $this->getData("accountname", $validated);
+         $servername = $this->getData("accountname", $validated);
+         try 
+         {
+             $search_user = FunctionOtherUser::getUserById($account_expansion_id);
+             $all_accounts_server = $search_user->accounts_server_id;
+
+             if(isset($block_account_expansion)){
+ 
+                // $all_accounts_server = $block_account_expansion->accounts_server_id;
+ 
+                 if(isset($all_accounts_server)){
+                //     $this->admin_service->blockAllAccountsServer($all_accounts_server);
+                 }
+                 
+                 return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>'']); 
+             }
+         } catch (ModelNotFoundException $exception) {
+             return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
+         }
+     }
+
     public function getData($name , $validated ) : string {
         return $validated[$name];
     }

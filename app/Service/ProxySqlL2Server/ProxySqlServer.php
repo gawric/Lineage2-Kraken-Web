@@ -93,8 +93,8 @@ use App\Models\Temp\InfoDashboard;
         }
 
 
-        public function getInfoAccountServer($login , $account_db_model){
-         return $this->proxy_server->getInfoAccountServer($login , $account_db_model);
+        public function getInfoAccountServer($login , $account_db_model , $server_name){
+         return $this->proxy_server->getInfoAccountServer($login , $account_db_model , $server_name);
         }
 
         private function getProxy($developer_id){

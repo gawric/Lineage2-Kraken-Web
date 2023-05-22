@@ -93,12 +93,13 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             return $accounts_server_id;
         }
 
-        public function createModelL2Account($intBlocked , $l2account_name , $lockdate){
+        public function createModelL2Account($intBlocked , $l2account_name , $lockdate , $server_name){
             $l2account = new InfoAdminL2Accounts();
             $l2account->is_blocked = FunctionSupport::parceAccessLevelToBool($intBlocked);
             $l2account->l2account_name = $l2account_name;
             $l2account->lockdate = $lockdate;
-
+            $l2account->server_name = $server_name;
+            //info($l2account);
             return $l2account;
         }
 
@@ -186,12 +187,12 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
         }
 
 
-        public  function getAccountServer($account_name , $current_account_db_model){
+        public  function getAccountServer($account_name , $current_account_db_model , $server_name){
 
             $account_user = $this->getDataAccount($account_name , $current_account_db_model);
 
             if(isset($account_user)){
-               return  $this->parceResult($account_user);
+               return  $this->parceResult($account_user , $server_name);
             }
 
             return [];
@@ -204,14 +205,14 @@ namespace App\Service\ProxySqlL2Server\Template\Acis;
             }
         }
 
-        private function parceResult($account_user){
+        private function parceResult($account_user , $server_name){
             if(isset($account_user->accessLevel)){
                 //lucera
-                return $this->createModelL2Account($account_user->accessLevel, $account_user->login , now());
+                return $this->createModelL2Account($account_user->accessLevel, $account_user->login , now() , $server_name);
             }
             else{
                 //other
-                return $this->createModelL2Account($account_user->access_level, $account_user->login , now());
+                return $this->createModelL2Account($account_user->access_level, $account_user->login , now() , $server_name);
             }
         }
 

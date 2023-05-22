@@ -79,13 +79,14 @@
                 $server_id = $item->server_id;
                 $l2Login = $item->account_name;
 
+                $server_name = FunctionSupport::getServerNameById($server_id , $this->list_server);
                 $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_server);
                 $modelAccounts = FunctionSupport::getModelAccountDb($server_id , $this->list_server);
 
               
                 $this->proxySql = new ProxySqlServer($developer_id);
 
-                $model =  $this->proxySql->getInfoAccountServer($l2Login , $modelAccounts);
+                $model =  $this->proxySql->getInfoAccountServer($l2Login , $modelAccounts , $server_name);
                 $model->id = $index++;
 
                 array_push($temp  , $model);
