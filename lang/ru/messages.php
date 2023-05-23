@@ -92,7 +92,10 @@ return [
     'lk_admin_panel_windows_account_data_auth' => 'Дата',
     
 
-
+    'lk_admin_panel_payments_filter'=> 'Фильтр',
+    'lk_admin_panel_payments_search'=> 'Поиск по имени',
+    'lk_admin_panel_payments_descript'=> 'Список всех донатов сервера',
+    'lk_admin_panel_payments_name_donation'=> 'Имя оператора',
 
     'payments_header' => 'Донаты',
     'payments_login' => 'Ник персонажа',

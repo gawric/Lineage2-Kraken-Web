@@ -99,7 +99,10 @@ return [
    
     
     //Какие платежные системы поддерживаем
-    'support_paymonts' => [0 => "Enot.io", 1 => "Test.io"],
+    'support_paymonts' => [0 => "Enot.io"],
+
+    //Путь к таблицам в нашей базе данных => paymonts_id это id номер из support_paymonts
+    'support_paymonts_tables' => [0 => ["paymonts_id" => 0 , "paymonts_name" => "Enot.io" ,"paymont_db_model"=>"App\Models\OrderEnot"]],
 
     //список донатных вещей. Выдаем только их
     'coin_payments' =>['coin_of_luck' =>4037 , 'adena' =>57],

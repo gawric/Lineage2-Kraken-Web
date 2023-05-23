@@ -221,9 +221,6 @@
             <button id="closeAccounts" style="margin-right: 2%;" class="px-5 py-2 bg-indigo-500 hover:bg-indigo-700 text-white cursor-pointer rounded-md">
               exit
             </button>
-            <button id="saveAccounts"  class="px-5 py-2 bg-red-500 hover:bg-red-700 text-white cursor-pointer rounded-md">
-              save
-            </button>
         </div>
       </div>
   
@@ -333,7 +330,7 @@
     </div>
 
     <script src="{{asset('/js/jquery-2.1.4.min.js') }}"></script>
-    <script src="{{asset('/js/adminDashboard.js') }}"></script>
+    <script src="{{asset('/js/admindashboard.js') }}"></script>
     <script src="{{asset('/js/alertsMessages.js') }}"></script>
 
       <script>

@@ -104,6 +104,10 @@ return [
     'lk_admin_panel_windows_accounts_account_name'=> 'Account name',
     'lk_admin_panel_windows_account_data_auth' => 'Data',
 
+    'lk_admin_panel_payments_search'=> 'Search by name',
+    'lk_admin_panel_payments_descript'=> 'List of all server donations',
+    'lk_admin_panel_payments_name_donation'=> 'Operator name',
+    'lk_admin_panel_payments_filter'=> 'Filter',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

@@ -27,6 +27,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardPag
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllCharsByIdUserController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAddL2ItemsController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllAccountsByIdUserController;
+use App\Http\Controllers\Payments\Admin\AdminPaymentsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -73,7 +74,7 @@ Route::middleware(['auth', 'verified' , 'valid' , 'roles_user'])->group(function
 });
 
 Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
-    Route::get('/adminDashboard', [AdminDashboardController::class, 'index']);
+    Route::get('/adminDashboard', [AdminDashboardController::class, 'index'])->name('adminDashboard');
     Route::get('/adminDashboard/users', [AdminDashboardPaginationController::class, 'page']);
     Route::get('/adminDashboard/block', [AdminDashboardBlockUserController::class, 'index']);
     Route::post('/adminDashboard/blockusersingl_account', [AdminDashboardBlockUserController::class, 'singl']);
@@ -82,6 +83,8 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminDashboard/allchars', [AdminDashboardAllCharsByIdUserController::class, 'index']);
     Route::get('/adminDashboard/all_l2accounts', [AdminDashboardAllAccountsByIdUserController::class, 'index']);
     Route::post('/adminDashboard/additems', [AdminDashboardAddL2ItemsController::class, 'index']);
+
+    Route::get('/adminPayments', [AdminPaymentsController::class, 'index'])->name('payments');
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

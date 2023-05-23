@@ -24,6 +24,7 @@ function createNextPage(nextlink){
     showButtonLoadingById("loading_user_all_accounts");
     clearTableRowsChars("table_user_all_accounts");
     hideButtonLoadingById("warning_user_all_accounts");
+    hideButtonLoadingById("success_user_all_accounts");
     getAllAccountsByIdUser(account_expansion_id);
  }
 

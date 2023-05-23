@@ -5,14 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('adminDashboard') }}">
                         <img style="margin-left: 50%;margin-top: 50%;" src="images/logo_minimal.png" alt="Logo"></a>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('adminDashboard')" :active="request()->routeIs('adminDashboard')">
                     {{ __('messages.lk_admin_home') }}
                     </x-nav-link>
                 </div>
@@ -36,7 +36,7 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('payments')">
                         {{ __('messages.lk_admin_donate') }}
                         </x-dropdown-link>
 
