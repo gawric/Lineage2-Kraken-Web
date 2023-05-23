@@ -57,7 +57,7 @@ return [
     'email_ipaddress_activate_subject' => 'Login from unknown ip address',
     'email_ipaddress_activate_unknow_ip' => 'Trying from ip address: ',
 
-
+    'lk_admin_panel_payments_date'=> 'Data',
 
     'payments_header' => 'Donations',
     'payments_login' => 'Player nickname',
@@ -104,10 +104,25 @@ return [
     'lk_admin_panel_windows_accounts_account_name'=> 'Account name',
     'lk_admin_panel_windows_account_data_auth' => 'Data',
 
-    'lk_admin_panel_payments_search'=> 'Search by name',
+    'lk_admin_panel_payments_search'=> 'Search',
     'lk_admin_panel_payments_descript'=> 'List of all server donations',
     'lk_admin_panel_payments_name_donation'=> 'Operator name',
     'lk_admin_panel_payments_filter'=> 'Filter',
+
+    'lk_admin_panel_payments_date_mount_01'=> 'January',
+    'lk_admin_panel_payments_date_mount_02'=> 'February',
+    'lk_admin_panel_payments_date_mount_03'=> 'March',
+    'lk_admin_panel_payments_date_mount_04'=> 'April',
+    'lk_admin_panel_payments_date_mount_05'=> 'May',
+    'lk_admin_panel_payments_date_mount_06'=> 'June',
+    'lk_admin_panel_payments_date_mount_07'=> 'July',
+    'lk_admin_panel_payments_date_mount_08'=> 'August',
+    'lk_admin_panel_payments_date_mount_09'=> 'September',
+    'lk_admin_panel_payments_date_mount_10'=> 'October',
+    'lk_admin_panel_payments_date_mount_11'=> 'November',
+    'lk_admin_panel_payments_date_mount_12'=> 'December',
+
+
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

@@ -165,6 +165,9 @@ use Config;
         return  $InfoDashboardChars;
     }
 
+      
+     
+
     
     private static function getOnline($online){
         if(isset($online)){

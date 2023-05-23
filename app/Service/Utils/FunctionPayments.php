@@ -7,6 +7,7 @@ use Auth;
 use App\Models\OrderEnot;
 use Lang;
 use Config;
+use App\Models\Temp\InfoAdminPayments;
 
  class FunctionPayments
  { 
@@ -46,6 +47,22 @@ use Config;
     private static function addArray(&$temp , $value){
         array_push($temp , $value);
     }
+
+    public static function createModelInfoAdminPayments($order_id , $l2account_name , $char_name , $col , $server_name , $payment_name , $payment_data , $success_status , $username){
+        $infoAdminPayments = new InfoAdminPayments();
+        $infoAdminPayments->order_id = $order_id;
+        $infoAdminPayments->l2account_name = $l2account_name;
+        $infoAdminPayments->char_name = $char_name;
+        $infoAdminPayments->col = $col;
+        $infoAdminPayments->server_name = $server_name;
+        $infoAdminPayments->payment_name = $payment_name;
+       // info($payment_data);
+        $infoAdminPayments->payment_data = $payment_data;
+        $infoAdminPayments->success_status = $success_status;
+        $infoAdminPayments->username = $username;
+        info($infoAdminPayments);
+    return  $infoAdminPayments;
+}
 
  }
 ?>

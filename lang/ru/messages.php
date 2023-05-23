@@ -92,8 +92,22 @@ return [
     'lk_admin_panel_windows_account_data_auth' => 'Дата',
     
 
+    'lk_admin_panel_payments_date_mount_01'=> 'Январь',
+    'lk_admin_panel_payments_date_mount_02'=> 'Февраль',
+    'lk_admin_panel_payments_date_mount_03'=> 'Март',
+    'lk_admin_panel_payments_date_mount_04'=> 'Апрель',
+    'lk_admin_panel_payments_date_mount_05'=> 'Май',
+    'lk_admin_panel_payments_date_mount_06'=> 'Июнь',
+    'lk_admin_panel_payments_date_mount_07'=> 'Июль',
+    'lk_admin_panel_payments_date_mount_08'=> 'Август',
+    'lk_admin_panel_payments_date_mount_09'=> 'Сентябрь',
+    'lk_admin_panel_payments_date_mount_10'=> 'Октябрь',
+    'lk_admin_panel_payments_date_mount_11'=> 'Ноябрь',
+    'lk_admin_panel_payments_date_mount_12'=> 'Декабрь',
+
+    'lk_admin_panel_payments_date'=> 'Дата',
     'lk_admin_panel_payments_filter'=> 'Фильтр',
-    'lk_admin_panel_payments_search'=> 'Поиск по имени',
+    'lk_admin_panel_payments_search'=> 'Поиск',
     'lk_admin_panel_payments_descript'=> 'Список всех донатов сервера',
     'lk_admin_panel_payments_name_donation'=> 'Имя оператора',
 

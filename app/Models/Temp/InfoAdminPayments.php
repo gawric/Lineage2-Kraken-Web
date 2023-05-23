@@ -5,11 +5,12 @@ namespace App\Models\Temp;
 
 
 
- class InfoAdminL2Accounts
+ class InfoAdminPayments
  {
-    public $id;
+    public $order_id;
     //or login db server
     public $l2account_name;
+    public $username;
     public $char_name;
     public $col;
     public $server_name;
@@ -20,6 +21,6 @@ namespace App\Models\Temp;
 
     public function __toString()
     {
-      return "Модель содержит: " . " id " .  $this->id . " " . " is_blocked " . $this->is_blocked . " l2account_name ". $this->l2account_name . " lockdate " . $this->lockdate; 
+      return "Модель содержит: " . " username " .  $this->username . " " . " l2account_name ". $this->l2account_name . " success_status " . $this->success_status . " col " . $this->col . " payment_data " . $this->payment_data;
     }
  }

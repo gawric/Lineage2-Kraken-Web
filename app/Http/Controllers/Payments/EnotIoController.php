@@ -42,7 +42,7 @@ class EnotIoController extends Controller
 
     public function paymentUser(EnotIoStoreRequest $request)
     {
-        info("use EnotIoController >>>> paymentUser");
+        //info("use EnotIoController >>>> paymentUser");
 
         $validated = $request->validated();
 
@@ -134,7 +134,7 @@ class EnotIoController extends Controller
             return $order;
         }
 
-         info("use EnotIoController >>>> not access searchOrder: orderId");
+        // info("use EnotIoController >>>> not access searchOrder: orderId");
         return false;
     }
 
@@ -147,8 +147,8 @@ class EnotIoController extends Controller
      */
     public function paidOrder(Request $request, $order)
     {
-        info("use EnotIoController >>>> paidOrder: order");
-        info($order);
+       // info("use EnotIoController >>>> paidOrder: order");
+        //info($order);
 
         $order->status = Config::get('lineage2.server.order_status_paid');
         $order->save();
