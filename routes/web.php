@@ -27,7 +27,9 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardPag
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllCharsByIdUserController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAddL2ItemsController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAllAccountsByIdUserController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsPagination;
 use App\Http\Controllers\Payments\Admin\AdminPaymentsController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsFilters;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -85,6 +87,8 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::post('/adminDashboard/additems', [AdminDashboardAddL2ItemsController::class, 'index']);
 
     Route::get('/adminPayments', [AdminPaymentsController::class, 'index'])->name('payments');
+    Route::get('/adminPayments/orders', [AdminPaymentsPagination::class, 'page']);
+    Route::get('/adminPayments/filter', [AdminPaymentsFilters::class, 'filter']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

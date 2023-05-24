@@ -21,8 +21,12 @@
 
         //InfoAdminL2Accounts
         public function getDataAllOrdersPayments($tables_db_payments){
-            return $this->forEachTables($tables_db_payments);
+            $result = $this->forEachTables($tables_db_payments);
+            return $this->sortArray($result);
         }
+
+        
+
         //'support_paymonts_tables' => [0 => ["paymonts_id" => 0 , "paymonts_name" => "Enot.io" ,"paymont_db_model"=>"App\Models\OrderEnot"]],
         private function forEachTables($tables_db_payments){
             foreach($tables_db_payments as $item){
@@ -34,8 +38,9 @@
                 $db_model = $item['paymont_db_model'];
                 $payment_name = $item['paymonts_name'];
                 $all_orders = $this->getAllOrders($db_model);
+ 
+               // dd($all_orders);
                 return $this->createModelsAdminPayment($all_orders , $payment_name);
-               // info($all_orders);
             }
         }
 
@@ -59,7 +64,16 @@
             return $temp;
         }
 
-       
+        private function sortArray($arrayResult){
+            usort($arrayResult, function ($a, $b) {
+                return strtotime($a->payment_data) - strtotime($b->payment_data);
+            });
+            return array_reverse($arrayResult);
+        }
+
+        public function getDataFilterOrdersPayments($tables_db_payments , $filterId){
+            info("getDataFilterOrdersPayments");
+        }
       
        
     }

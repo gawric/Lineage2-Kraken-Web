@@ -64,6 +64,9 @@ return [
     //Количество строчек у админа в adminDashboard
     'top_count_dashboard' => 2,
 
+    //Количество строчек у админа в adminPayments
+    'top_count_payments' => 2,
+
     //Количество разрешенных аккаунтов на одной учетке 
     'allowed_accounts' => 10,
 
@@ -104,6 +107,7 @@ return [
     //Путь к таблицам в нашей базе данных => paymonts_id это id номер из support_paymonts
     'support_paymonts_tables' => [0 => ["paymonts_id" => 0 , "paymonts_name" => "Enot.io" ,"paymont_db_model"=>"App\Models\OrderEnot"]],
 
+    'support_paymonts_filters' =>  [0 => "По аккаунту" , 1 => "По имени чара" , 2 => "По сервису" , 3 => "По дате"],
     //список донатных вещей. Выдаем только их
     'coin_payments' =>['coin_of_luck' =>4037 , 'adena' =>57],
 

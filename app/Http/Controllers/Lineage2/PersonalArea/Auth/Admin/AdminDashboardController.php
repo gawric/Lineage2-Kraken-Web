@@ -47,9 +47,6 @@ class AdminDashboardController extends Controller
     private function getInfoDataAccounts($data_pages){
         return $this->admin_service->getListAllInfoAdminDashboard($data_pages);
     }
-    //public function getData($name , $validated ) : string {
-    //    return $validated["$name"];
-    //}
 
     private function unlockedData($data_pages){
         $data = json_encode($data_pages);

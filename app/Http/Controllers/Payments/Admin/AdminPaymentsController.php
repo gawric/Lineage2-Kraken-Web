@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Payments\Admin;
  use Response;
  use Lang;
  use App\Service\Payments\Admin\PaymentsAdminService;
+ use App\Service\Utils\FunctionPaginate;
 
 class AdminPaymentsController extends Controller
 {
@@ -18,22 +19,29 @@ class AdminPaymentsController extends Controller
     private $tables_db_payments;
     private $payments_admin_service;
     private $filter_items;
+    private $count;
+
     public function __construct()
     {
 
         $this->list_servers = Config::get('lineage2.server.list_server');
         $this->tables_db_payments = Config::get('lineage2.server.support_paymonts_tables');
+        $this->count = Config::get('lineage2.server.top_count_payments');
         $this->payments_admin_service = new PaymentsAdminService();
-        $this->filter_items = [0 => "По аккаунту" , 1 => "По имени чара" , 2 => "По сервису" , 3 => "По дате"];
+        $this->filter_items = Config::get('lineage2.server.support_paymonts_filters');
     }
 
     //return view('l2page_statistic', ['arrayNameServers' => $this->getServerNameOnly($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);
     public function index()
     {
         $orders = $this->payments_admin_service->getDataAllOrdersPayments($this->tables_db_payments);
+        $data_pages = FunctionPaginate::paginate($orders,2);
+        $data_pages->withPath('/adminPayments/orders');
+        $data_result = FunctionPaginate::unlockedData($data_pages);
 
-       
-        return view('dashboardadminpayments' , ['arrayOrders' => $orders , 'filter_items' => $this->filter_items]);
+       // dd($data_result);
+        return view('dashboardadminpayments' , ['arrayOrders' => $orders , 'filter_items' => $this->filter_items , 'data_result' => $data_result]);
     }
-   
+
+
 }
