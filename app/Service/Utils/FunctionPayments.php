@@ -60,7 +60,7 @@ use App\Models\Temp\InfoAdminPayments;
         $infoAdminPayments->payment_data = $payment_data;
         $infoAdminPayments->success_status = $success_status;
         $infoAdminPayments->username = $username;
-        info($infoAdminPayments);
+      //  info($infoAdminPayments);
     return  $infoAdminPayments;
 }
 

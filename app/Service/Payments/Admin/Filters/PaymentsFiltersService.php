@@ -8,7 +8,7 @@
     use App\Service\Utils\FunctionPayments;
     use App\Service\Utils\FunctionSupport;
     use App\Service\Utils\FunctionOtherUser;
-    use App\Service\Payments\Admin\Filters\FilterSupport;
+    use App\Service\Payments\Admin\Filters\FilterSupport\Filter;
 
     class PaymentsFiltersService implements IPaymentsFiltersService
     {
@@ -21,7 +21,7 @@
         public function __construct() {
             $this->list_servers = Config::get('lineage2.server.list_server');
             $this->support_paymonts_filters = Config::get('lineage2.server.support_payments_filters');
-            $this->filter_support = new FilterSupport();
+            $this->filter_support = new Filter();
         }
 
         public function getDataByFilters($array_filtersId , $serach_text , $tables_db_payments){
