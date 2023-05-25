@@ -83,10 +83,11 @@ use Exception;
 
 
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
-            $result = $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
-          //  info('RESULTTTTTTTTTTTTTTTTTTTT');
-          //  info($result);
-            return $result;
+            return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
+        }
+
+        public function getAccountNameByCharName($modelAccountDb , $modelCharactersDb , $char_name):string{
+            return $this->commonSql->getLoginByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
 
         public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count){

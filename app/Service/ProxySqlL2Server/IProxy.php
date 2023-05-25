@@ -25,6 +25,10 @@
 
         //доп функции проверка есть ли char на сервере
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name);
+        
+        //доп функции проверка поиск аккаунт наме по имени чара
+        public function getAccountNameByCharName($modelAccountDb , $modelCharactersDb , $char_name):string;
+
         //Выдача итемов
         public function addL2Item($modelItemsDb , $charactersDb , $char_name , $item_id, $count);
         public function getL2Item($modelItemsDb , $charactersDb , $char_name , $item_id);

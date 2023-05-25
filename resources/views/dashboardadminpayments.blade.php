@@ -96,7 +96,7 @@
           <thead>
           <tr>
               <th scope="col" class="px-6 py-4">#</th>
-              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_select_row')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_name_userweb')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_account_name')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_char_name') }}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_number_coins')}}</th>

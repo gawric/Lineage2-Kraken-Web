@@ -55,8 +55,9 @@ class EnotIoController extends Controller
         if(isset($accounts_expansion)){
         
             if(!is_array($accounts_expansion)){
-                
-                $model_order = FunctionPayments::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now() , $server_id , $accounts_expansion->login );
+
+                $login_server = $this->getAccountsNameServer($server_id , $this->list_servers  , $char_name);
+                $model_order = FunctionPayments::createOrders($sum , "init" , $char_name , $accounts_expansion->id , now() , now() , $server_id , $login_server);
                 $model_order->save();
             
                 
@@ -76,7 +77,13 @@ class EnotIoController extends Controller
     }
 
  
-    
+    private function getAccountsNameServer($server_id , $list_servers , $char_name){
+        $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);
+        if( $developer_id != -1){
+            $this->proxy = new ProxySqlServer($developer_id);
+            return $this->proxy->getAccountNameByCharName(FunctionSupport::getModelAccountDb($server_id , $list_servers),  FunctionSupport::getModelCharactersDb($server_id , $list_servers), $char_name);
+        }
+    }
 
     private function getAccountsExpansionId($server_id , $list_servers , $char_name){
         $developer_id = FunctionSupport::getDeveloperId($server_id , $list_servers);

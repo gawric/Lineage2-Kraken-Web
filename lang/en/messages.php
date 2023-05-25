@@ -150,13 +150,14 @@ return [
 
     'lk_table_dashboardchars_name_char' => 'Сharacter `s name',
     'lk_table_dashboardchars_name_account' => 'Account name',
-    'lk_table_dashboardchars_name_server' => 'Имя сервера',
+    'lk_table_dashboardchars_name_server' => 'Server name',
     'lk_table_dashboardchars_lvl' => 'Server name',
     'lk_table_dashboardchars_clan_name' => 'Clan',
     'lk_table_dashboardchars_pvp' => 'PVP',
     'lk_table_dashboardchars_pk' => 'PK',
     'lk_table_dashboardchars_last_data' => 'Last connec.',
     'lk_table_dashboardchars_online' => 'Online',
+    'lk_admin_panel_windows_chars_name_userweb'=> 'Username',
 
 
     'lk_new_accounts_title' => 'Create an account',

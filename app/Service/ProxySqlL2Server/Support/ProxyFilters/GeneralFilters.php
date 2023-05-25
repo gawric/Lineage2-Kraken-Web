@@ -8,6 +8,7 @@ use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopPkPvpFilte
 use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\ClanDataByIdFilter;
 use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\TopUsersClansFilter;
 use App\Service\ProxySqlL2Server\Support\SqlFilters\RusAcisFilters\SimpleFilterArray;
+use App\Service\ProxySqlL2Server\Support\SqlFilters\SimpleFilterLike;
 use Request;
 
     class GeneralFilters
@@ -27,6 +28,7 @@ use Request;
             'toppkpvpfilter' => TopPkPvpFilter::class,
             'topusersclansfilter' => TopUsersClansFilter::class,
             'simplefilterarray' => SimpleFilterArray::class,
+            'simplefilterlike' => SimpleFilterArray::class,
         ];
 
         public function apply($query)

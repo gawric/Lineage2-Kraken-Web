@@ -8,6 +8,7 @@
     use App\Service\Utils\FunctionPayments;
     use App\Service\Utils\FunctionSupport;
     use App\Service\Utils\FunctionOtherUser;
+    use App\Service\Payments\Admin\Filters\FilterSupport;
 
     class PaymentsFiltersService implements IPaymentsFiltersService
     {
@@ -15,10 +16,12 @@
     
         private $list_servers;
         private $support_paymonts_filters;
+        private $filter_support;
 
         public function __construct() {
             $this->list_servers = Config::get('lineage2.server.list_server');
             $this->support_paymonts_filters = Config::get('lineage2.server.support_payments_filters');
+            $this->filter_support = new FilterSupport();
         }
 
         public function getDataByFilters($array_filtersId , $serach_text , $tables_db_payments){
@@ -35,6 +38,7 @@
             switch ($filterId) {
                 case 0:
                     info("selectFilter>> По аккаунту");
+                    $this->filter_support->filterAccounts($serach_text , $tables_db_payments);
                     break;
                 case 1:
                     info("selectFilter>> По имени чара");

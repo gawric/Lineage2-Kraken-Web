@@ -40,6 +40,16 @@ namespace App\Service\ProxySqlL2Server\Support\CommonFunction;
             return [];
         }
 
+        public function getLoginByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name){
+            
+            $characterModel =  $this->templateCharacters->getLoginByCharname($modelCharactersDb , $char_name);
+            if(isset($characterModel)){
+               return $characterModel->account_name;
+            }
+            return "";
+
+        }
+
      
         public function getObjIdByCharName($charactersDb , $char_name){
             return $this->templateCharacters->getObjIdByCharName($charactersDb , $char_name);

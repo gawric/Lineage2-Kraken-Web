@@ -91,6 +91,11 @@ use Exception;
         public function getAccountsExpansionByCharName($modelAccountDb , $modelCharactersDb , $char_name){
             return $this->commonSql->getAccountsExpansionByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
         }
+
+        public function getAccountNameByCharName($modelAccountDb , $modelCharactersDb , $char_name):string{
+            return $this->commonSql->getLoginByCharNameCommon($modelAccountDb , $modelCharactersDb , $char_name);
+        }
+        
         //throw new Exception( 'File not found');  будем выбрасывать если найдем 
         public function addL2Item($modelItemsDb , $charactersDb  , $char_name , $item_id, $count){
             $owner_id  = $this->charactersSql->getObjIdByCharNameLucera($charactersDb , $char_name);
