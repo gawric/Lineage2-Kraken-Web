@@ -37,7 +37,7 @@ class EnotIoController extends Controller
     {
         $this->paymentsService = $service;
         $this->list_servers = Config::get('lineage2.server.list_server');
-        $this->list_payments = Config::get('lineage2.server.support_paymonts');
+        $this->list_payments = Config::get('lineage2.server.support_payments');
     }
 
     public function paymentUser(EnotIoStoreRequest $request)

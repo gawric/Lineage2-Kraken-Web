@@ -20,7 +20,7 @@ class AdminPaymentsPagination extends Controller
 
     public function __construct()
     {
-        $this->tables_db_payments = Config::get('lineage2.server.support_paymonts_tables');
+        $this->tables_db_payments = Config::get('lineage2.server.support_payments_tables');
         $this->count = Config::get('lineage2.server.top_count_payments');
         $this->payments_admin_service = new PaymentsAdminService();
     }

@@ -54,6 +54,9 @@
         public function getItemById($server_id , $item_id , $char_name , $list_servers){
 
         }
+        public function getItemByIdCount($server_id , $item_id , $char_name , $list_servers){
+       
+        }
     
     }
 ?>

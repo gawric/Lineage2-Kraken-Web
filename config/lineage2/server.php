@@ -102,12 +102,13 @@ return [
    
     
     //Какие платежные системы поддерживаем
-    'support_paymonts' => [0 => "Enot.io"],
+    'support_payments' => [0 => "Enot.io"],
 
-    //Путь к таблицам в нашей базе данных => paymonts_id это id номер из support_paymonts
-    'support_paymonts_tables' => [0 => ["paymonts_id" => 0 , "paymonts_name" => "Enot.io" ,"paymont_db_model"=>"App\Models\OrderEnot"]],
+    //Путь к таблицам в нашей базе данных => paymonts_id это id номер из support_payments
+    'support_payments_tables' => [0 => ["paymonts_id" => 0 , "paymonts_name" => "Enot.io" ,"paymont_db_model"=>"App\Models\OrderEnot"]],
 
-    'support_paymonts_filters' =>  [0 => "По аккаунту" , 1 => "По имени чара" , 2 => "По сервису" , 3 => "По дате"],
+    //Если нужно добавить новый фильтр добавляем новый id сюда и создаем реализацию здесь App\Service\Payments\Admin\Filters\PaymentsFiltersService->selectFilter
+    'support_payments_filters' =>  [0 => "По аккаунту" , 1 => "По имени чара" , 2 => "По сервису" , 3 => "По дате"],
     //список донатных вещей. Выдаем только их
     'coin_payments' =>['coin_of_luck' =>4037 , 'adena' =>57],
 

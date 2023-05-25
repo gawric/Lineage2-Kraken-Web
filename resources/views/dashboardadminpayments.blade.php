@@ -63,7 +63,7 @@
                     <button  type="button" class="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
                         <div class="inline-flex items-center">
                             <div class="flex items-center mb-4">
-                                <input onClick="clickSelectFilter(this , {{ $loop->index }})" id="{{ $loop->index }}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <input onClick="clickSelectFilter(this , {{ $loop->index }})" id="select{{ $loop->index }}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                  <label for="{{ $loop->index }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __($item) }}</label>
                             </div>
                         </div>
@@ -80,7 +80,7 @@
           
          <div class="relative w-full">
             <input type="search" id="location-search" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="{{ __('messages.lk_admin_panel_payments_search') }}" required="">
-            <button type="submit" onClick="initFilter()" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <button type="submit" onClick="initFilter(this)" class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-blue-700 rounded-r-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 <span class="sr-only">Search</span>
             </button>
@@ -360,45 +360,39 @@ function getPaginationPage(e , nextlink){
     event.preventDefault();
     initSend(nextlink);
 }
-var statArrayFilter = [];
+var statArrayFilter;
 function clickSelectFilter(e , filterId){
-
-    if(e.checked){
-        console.log(isExist(filterId));
-        if(!isExist(filterId)){
-            statArrayFilter.push(filterId);
-        }
-    }
-    else{
-        if(isExist(filterId)){
-            statArrayFilter = removeItemOnce(statArrayFilter, filterId);
-        }
-    }
     
+    if(e.checked){
+        statArrayFilter = filterId;
+    }
+   
+
+    unCheckedSelect(filterId);
 }
 
-function isExist(filterId){
-   return statArrayFilter.includes(filterId);    
+function unCheckedSelect(current_select_id){
+  var allIdSelect = <?php echo json_encode($filter_items); ?>;
+
+  allIdSelect.forEach(function(elem , index) {
+        if(current_select_id != index){
+          // document.getElementById("location-search").value;
+           document.getElementById("select"+index).checked = false;
+        }
+    });
+
 }
 
-function removeItemOnce(arr, value) {
-  var index = arr.indexOf(value);
-  if (index > -1) {
-    arr.splice(index, 1);
-  }
-  return arr;
-}
 
 
+function initFilter(e){
+    event.preventDefault();
+    const search_text = document.getElementById("location-search").value;
 
-function initFilter(){
-   // const search_text = document.getElementById("location-search");
-   // const search_text1 = document.getElementById("dropdown-search-city");
-   // console.log("by filter");
-   // console.log(statArrayFilter);
 
     if (statArrayFilter.length != 0){
         var strget = generateParametr(statArrayFilter);
+        var strget = strget + "&text="+search_text;
         //console.log(strget);
         sendJsonFilter(strget);
     }
@@ -406,17 +400,7 @@ function initFilter(){
 
 
 function generateParametr(statArrayFilter){
-    var  strget = "arrayfil[]";
-    statArrayFilter.forEach(function(elem , index) {
-        if(index == 0){
-            strget = "arrayfil[]="+elem;
-        }
-        else{
-            strget = strget + "&arrayfil[]="+elem;
-        }
-    });
-
-    return strget;
+   return "arrayfil[]="+statArrayFilter;
 }
 
 </script>

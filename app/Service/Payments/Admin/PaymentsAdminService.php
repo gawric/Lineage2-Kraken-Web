@@ -31,15 +31,10 @@
         private function forEachTables($tables_db_payments){
             foreach($tables_db_payments as $item){
 
-                //info($item['paymonts_id']);
-               // info($item['paymonts_name']);
-               // info($item['paymont_db_model']);
-
                 $db_model = $item['paymont_db_model'];
                 $payment_name = $item['paymonts_name'];
                 $all_orders = $this->getAllOrders($db_model);
- 
-               // dd($all_orders);
+                
                 return $this->createModelsAdminPayment($all_orders , $payment_name);
             }
         }

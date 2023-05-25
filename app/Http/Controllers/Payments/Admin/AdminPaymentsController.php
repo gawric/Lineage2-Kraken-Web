@@ -25,10 +25,10 @@ class AdminPaymentsController extends Controller
     {
 
         $this->list_servers = Config::get('lineage2.server.list_server');
-        $this->tables_db_payments = Config::get('lineage2.server.support_paymonts_tables');
+        $this->tables_db_payments = Config::get('lineage2.server.support_payments_tables');
         $this->count = Config::get('lineage2.server.top_count_payments');
         $this->payments_admin_service = new PaymentsAdminService();
-        $this->filter_items = Config::get('lineage2.server.support_paymonts_filters');
+        $this->filter_items = Config::get('lineage2.server.support_payments_filters');
     }
 
     //return view('l2page_statistic', ['arrayNameServers' => $this->getServerNameOnly($this->list_server) , 'arrayNameStatistic' => [$this->arrayStaticsId]]);

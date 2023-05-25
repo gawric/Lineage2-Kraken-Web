@@ -7,7 +7,7 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments;
  use Illuminate\Http\Request;
  use Response;
  use Lang;
- use App\Service\Payments\Admin\PaymentsAdminService;
+ use App\Service\Payments\Admin\Filters\PaymentsFiltersService;
  use App\Service\Utils\FunctionPaginate;
  use App\Service\Utils\FunctionSupport;
 
@@ -21,10 +21,10 @@ class AdminPaymentsFilters extends Controller
 
     public function __construct()
     {
-        $this->tables_db_payments = Config::get('lineage2.server.support_paymonts_tables');
+        $this->tables_db_payments = Config::get('lineage2.server.support_payments_tables');
         $this->count = Config::get('lineage2.server.top_count_payments');
-        $this->payments_admin_service = new PaymentsAdminService();
-        $this->filter_items = Config::get('lineage2.server.support_paymonts_filters');
+        $this->payments_filters= new PaymentsFiltersService();
+        $this->filter_items = Config::get('lineage2.server.support_payments_filters');
     }
 
     ///adminPayments/filter?arrayfil[]=val1&foo[]=val2&foo[]=val3
@@ -32,14 +32,16 @@ class AdminPaymentsFilters extends Controller
     {
         $validator = $request->validate([
             'arrayfil' => 'required|array',
-            'arrayfil.*' => 'integer'
+            'arrayfil.*' => 'integer',
+            'text' => 'required|string|max:50',
         ]);
 
 
-        //$filterId = FunctionSupport::getDataVariable("arrayfil" , $validator);
-       // $orders = $this->payments_admin_service->getDataAllOrdersPayments($this->tables_db_payments);
-        info("AdminPaymentsFilters>>>> ");
-        info($validator);
+        $filterArrayId = FunctionSupport::getDataVariable("arrayfil" , $validator);
+        $filterText = FunctionSupport::getDataVariable("text" , $validator);
+
+        $filterArrayOrders = $this->payments_filters->getDataByFilters($filterArrayId , $filterText , $this->tables_db_payments);
+
         try 
         {
             if(isset($filterId)){

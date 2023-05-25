@@ -238,7 +238,7 @@ use Config;
         return false;
     }
 
-    public static function getDataVariable($name , $validated ) : string {
+    public static function getDataVariable($name , $validated ) {
         return $validated["$name"];
     }
 
