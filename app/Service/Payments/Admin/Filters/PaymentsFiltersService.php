@@ -27,7 +27,7 @@
         public function getDataByFilters($array_filtersId , $serach_text , $tables_db_payments){
          
             foreach($array_filtersId as $filterId){
-                $this->selectFilter($filterId , $serach_text , $tables_db_payments);
+                return  $this->selectFilter($filterId , $serach_text , $tables_db_payments);
             }
                 
             
@@ -38,16 +38,19 @@
             switch ($filterId) {
                 case 0:
                     info("selectFilter>> По аккаунту");
-                    $this->filter_support->filterAccounts($serach_text , $tables_db_payments);
+                    return $this->filter_support->filterAccounts($serach_text , $tables_db_payments);
                     break;
                 case 1:
                     info("selectFilter>> По имени чара");
+                    return $this->filter_support->filterChars($serach_text , $tables_db_payments);
                     break;
                 case 2:
                     info("selectFilter>> По сервису");
+                    return $this->filter_support->filterPaymentService($serach_text , $tables_db_payments);
                     break;
                 case 3:
                     info("selectFilter>> По дате");
+                    return $this->filter_support->filterData($serach_text , $tables_db_payments);
                     break;
                 default:
                     info("selectFilter>> use Default!!!");

@@ -104,6 +104,7 @@ return [
     'lk_admin_panel_payments_date_mount_10'=> 'Октябрь',
     'lk_admin_panel_payments_date_mount_11'=> 'Ноябрь',
     'lk_admin_panel_payments_date_mount_12'=> 'Декабрь',
+    'lk_admin_panel_payments_reset_filter'=> 'Сбросить фильтр',
 
     'lk_admin_panel_payments_date'=> 'Дата',
     'lk_admin_panel_payments_filter'=> 'Фильтр',

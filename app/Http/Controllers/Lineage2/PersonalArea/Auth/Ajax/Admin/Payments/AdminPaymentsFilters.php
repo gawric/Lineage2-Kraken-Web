@@ -44,11 +44,11 @@ class AdminPaymentsFilters extends Controller
 
         try 
         {
-            if(isset($filterId)){
-                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>""]); 
+            if(isset($filterArrayOrders)){
+                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>$filterArrayOrders]); 
             }
 
-            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>'']); 
+            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>[]]); 
 
         }
          catch (ModelNotFoundException $exception) {

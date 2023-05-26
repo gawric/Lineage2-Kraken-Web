@@ -178,7 +178,9 @@
         </div>
     </div>
 
-
+  <div>
+  <button onClick="resetFilter()"style="margin-top:3%;"type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('messages.lk_admin_panel_payments_reset_filter')}}</button>
+  </div>
     
 </div>
 
@@ -216,7 +218,7 @@
     }, function(start, end, label) {
     
         const elem = document.getElementById("location-search");
-        elem.value = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+        elem.value = start.format('YYYY-MM-DD') + ' | ' + end.format('YYYY-MM-DD');
     //console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     });
 });
@@ -390,12 +392,17 @@ function initFilter(e){
     const search_text = document.getElementById("location-search").value;
 
 
-    if (statArrayFilter.length != 0){
+    if (statArrayFilter != undefined && statArrayFilter.length != 0){
         var strget = generateParametr(statArrayFilter);
         var strget = strget + "&text="+search_text;
         //console.log(strget);
-        sendJsonFilter(strget);
+        initFilterJson(strget);
     }
+}
+
+function resetFilter(){
+  unCheckedSelect(-1);
+  initSend("/adminPayments/orders?page=1");
 }
 
 

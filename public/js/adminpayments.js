@@ -30,17 +30,15 @@ function sendJsonDataServer(nextlink){
             }
         },
         error: function (data) {
-            console.log("Fail responce");
-            console.log(data);
+           // console.log("Fail responce");
+           // console.log(data);
            if(data.status == 422) {
                 setTextById("Запрос не прошел валидацию!" , "text_warning_all_payments");
                 showButtonLoadingById("warning_all_payments");
              } else {
                 setTextById("Неизвестная ошибка!" , "text_warning_all_payments");
                 showButtonLoadingById("warning_all_payments");
-
              }
-            
              hideButtonLoadingById("loading_all_payments");
         }
     
@@ -49,6 +47,13 @@ function sendJsonDataServer(nextlink){
 
 }
 
+function initFilterJson(param){
+    hideButtonLoadingById("warning_all_payments");
+    hideButtonLoadingById("success_all_payments");
+    showButtonLoadingById("loading_all_payments");
+
+    sendJsonFilter(param);
+}
 
 function sendJsonFilter(param){
     $.ajax({
@@ -58,36 +63,34 @@ function sendJsonFilter(param){
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         success: function( data, textStatus, jQxhr ){
-            console.log("Success " + jQxhr.responseJSON );
-            if(!!jQxhr.responseJSON != undefined){
-               
-               //datajson = jQxhr.responseJSON.data_result;
-               //var newdata = datajson.data;
+            if(!!jQxhr.responseJSON.data_result != undefined){
+                 console.log(jQxhr.responseJSON);
+                datajson = jQxhr.responseJSON.data_result;
 
-                //clearTableRows();
-                //forEachAccount(newdata);
-                //clearNavigable("navigable_pages");
-                //addNewNavigable("navigable_pages" , datajson.links);
-
-               
-               // setTextById("Обновлено" , "text_success_all_payments");
-               // hideButtonLoadingById("loading_all_payments");
-                //showButtonLoadingById("success_all_payments");
-            }
+ 
+                 clearTableRows();
+                 forEachAccount(datajson);
+                 clearNavigable("navigable_pages");
+                 //addNewNavigable("navigable_pages" , datajson.links);
+ 
+                
+                 setTextById("Обновлено" , "text_success_all_payments");
+                 hideButtonLoadingById("loading_all_payments");
+                 showButtonLoadingById("success_all_payments");
+             }
         },
         error: function (data) {
-            console.log("Fail responce");
-            console.log(data);
-           //if(data.status == 422) {
-              //  setTextById("Запрос не прошел валидацию!" , "text_warning_all_payments");
-              //  showButtonLoadingById("warning_all_payments");
-            // } else {
-              //  setTextById("Неизвестная ошибка!" , "text_warning_all_payments");
-              //  showButtonLoadingById("warning_all_payments");
-
-            // }
+           // console.log("Fail responce");
+           // console.log(data);
+           if(data.status == 422) {
+                setTextById("Запрос не прошел валидацию!" , "text_warning_all_payments");
+                showButtonLoadingById("warning_all_payments");
+             } else {
+                setTextById("Неизвестная ошибка!" , "text_warning_all_payments");
+                showButtonLoadingById("warning_all_payments");
+             }
             
-             //hideButtonLoadingById("loading_all_payments");
+             hideButtonLoadingById("loading_all_payments");
         }
     
         
