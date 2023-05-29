@@ -7,6 +7,8 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class FunctionPaginate
 {
+  
+
     public static function paginate($items, $perPage = 5, $page = null)
     {
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
@@ -23,4 +25,8 @@ class FunctionPaginate
         $data_result = json_decode($data);
         return $data_result;
     }
+
+
+
+
 }

@@ -47,17 +47,17 @@ function sendJsonDataServer(nextlink){
 
 }
 
-function initFilterJson(param){
+function initFilterJson(url , param){
     hideButtonLoadingById("warning_all_payments");
     hideButtonLoadingById("success_all_payments");
     showButtonLoadingById("loading_all_payments");
 
-    sendJsonFilter(param);
+    sendJsonFilter( url , param);
 }
 
-function sendJsonFilter(param){
+function sendJsonFilter(url , param){
     $.ajax({
-        url: "/adminPayments/filter?"+param,
+        url: url+param,
         type: 'get',
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -65,13 +65,13 @@ function sendJsonFilter(param){
         success: function( data, textStatus, jQxhr ){
             if(!!jQxhr.responseJSON.data_result != undefined){
                  console.log(jQxhr.responseJSON);
-                datajson = jQxhr.responseJSON.data_result;
-
+                 datajson = jQxhr.responseJSON.data_result;
+                 var newdata = datajson.data;
  
                  clearTableRows();
-                 forEachAccount(datajson);
+                 forEachAccount(newdata);
                  clearNavigable("navigable_pages");
-                 //addNewNavigable("navigable_pages" , datajson.links);
+                 addNewNavigableFilter("navigable_pages" , datajson.links);
  
                 
                  setTextById("Обновлено" , "text_success_all_payments");
@@ -156,6 +156,18 @@ function addNewNavigable(navigable_id , links){
         }
         else{
             $("#"+navigable_id).append('<li><a href="#" onClick="getPaginationPage(this , \''+item.url+'\')" aria-current="page" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">'+item.label+'</a> </li>');
+        }
+    });
+}
+
+function addNewNavigableFilter(navigable_id , links){
+
+    links.forEach(function(item) {
+        if(item.active){
+            $("#"+navigable_id).append('<li><a href="#" onClick="initNavigableFilter(this , \''+item.url+'\')" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">'+item.label+'</a></li>');
+        }
+        else{
+            $("#"+navigable_id).append('<li><a href="#" onClick="initNavigableFilter(this , \''+item.url+'\')" aria-current="page" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">'+item.label+'</a> </li>');
         }
     });
 }

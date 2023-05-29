@@ -30,6 +30,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\AdminDashboardAll
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsPagination;
 use App\Http\Controllers\Payments\Admin\AdminPaymentsController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsFilters;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsPaginationFilters;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,6 +90,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminPayments', [AdminPaymentsController::class, 'index'])->name('payments');
     Route::get('/adminPayments/orders', [AdminPaymentsPagination::class, 'page']);
     Route::get('/adminPayments/filter', [AdminPaymentsFilters::class, 'filter']);
+    Route::get('/adminPayments/filters_pag/', [AdminPaymentsPaginationFilters::class, 'page']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

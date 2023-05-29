@@ -362,6 +362,14 @@ function getPaginationPage(e , nextlink){
     event.preventDefault();
     initSend(nextlink);
 }
+
+
+function getPaginationPageFilter(e , nextlink){
+    event.preventDefault();
+    initSend(nextlink);
+}
+
+
 var statArrayFilter;
 function clickSelectFilter(e , filterId){
     
@@ -385,6 +393,18 @@ function unCheckedSelect(current_select_id){
 
 }
 
+function initNavigableFilter(e , page_url){
+    event.preventDefault();
+
+    const search_text = document.getElementById("location-search").value;
+
+
+    if (statArrayFilter != undefined && statArrayFilter.length != 0){
+        var strget = generateParametr(statArrayFilter);
+        var strget = strget + "&text="+search_text;
+        initFilterJson(page_url+"&" , strget);
+    }
+}
 
 
 function initFilter(e){
@@ -395,8 +415,8 @@ function initFilter(e){
     if (statArrayFilter != undefined && statArrayFilter.length != 0){
         var strget = generateParametr(statArrayFilter);
         var strget = strget + "&text="+search_text;
-        //console.log(strget);
-        initFilterJson(strget);
+
+        initFilterJson("/adminPayments/filter?" , strget);
     }
 }
 
