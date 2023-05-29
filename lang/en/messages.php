@@ -109,6 +109,7 @@ return [
     'lk_admin_panel_payments_name_donation'=> 'Operator name',
     'lk_admin_panel_payments_filter'=> 'Filter',
     'lk_admin_panel_payments_reset_filter'=> 'Reset Filter',
+    'lk_admin_panel_payments_name_status'=> 'Статус',
 
     'lk_admin_panel_payments_date_mount_01'=> 'January',
     'lk_admin_panel_payments_date_mount_02'=> 'February',

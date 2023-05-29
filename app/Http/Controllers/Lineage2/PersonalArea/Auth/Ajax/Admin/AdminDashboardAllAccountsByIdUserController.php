@@ -56,7 +56,7 @@ class AdminDashboardAllAccountsByIdUserController extends Controller
                 
         }
          catch (ModelNotFoundException $exception) {
-            return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
+            return Response::json(['error'=>$exception->getMessage() , 'result'=>[]]);
         }
     }
 

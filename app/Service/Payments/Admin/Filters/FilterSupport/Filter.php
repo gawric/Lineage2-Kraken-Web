@@ -60,7 +60,6 @@
                 $clanidfilter = new GeneralFilters(['simplefilter'] , [['char_name', 'LIKE', '%'.$serach_text.'%']]);
                 return  $db_model::filter($clanidfilter)->get();
             }
-
         }
 
         public function filterPaymentService($serach_text , $tables_db_payments){
@@ -92,30 +91,42 @@
             $explodeArray = $this->explodeStr($search_text);
 
               if(is_array($explodeArray)){
-                  $data1 = trim($explodeArray[0]);
-                  $data2 = trim($explodeArray[1]);
-                  info($data1);
-                  info($data2 );
+                  $data_begin = trim($explodeArray[0]);
+                  $data_end = trim($explodeArray[1]);
+                  info($data_begin);
+                  info($data_end);
                   foreach($tables_db_payments as $item){
+
                       $db_model = $item['paymont_db_model'];
                       $payment_name = $item['paymonts_name'];
- 
-      
-                      $all_orders = $this->likePaymentService($db_model , $serach_text);
-                      $temp = $this->createModelsAdminPayment($temp  , $all_orders , $payment_name);
-            }
+                      $all_orders = $this->likeData($db_model , $data_begin , $data_end);
+
+                      if(isset($all_orders)){
+                        $temp = $this->createModelsAdminPayment($temp  , $all_orders , $payment_name);
+                      }
+                     
+                  }
     
            }
 
-           info("temp");
-           info($temp);
-           return $temp;
+          info("filterData"); 
+          info($temp);
+          return $temp;
         }
         
+        private function likeData($db_model , $data_begin , $data_end){
+            info("init  likeData");
+            info($data_end);
+            info($data_begin);
+            if(isset($data_begin) and isset($data_end) ){
+                info("request likeData");
+                $clanidfilter = new GeneralFilters(['simplefilter'] , [['created_at', '>=', $data_begin] , ['created_at', '<', $data_end] ]);
+                return  $db_model::filter($clanidfilter)->get();
+            }
+        }
 
  
         private function explodeStr($search_text){
-            info(strripos($search_text, '|'));
             if(strripos($search_text, '|') != false) {
                 info("TRUE");
                 return explode("|", $search_text);

@@ -102,8 +102,9 @@
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_number_coins')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_server_name')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_payments_name_donation')}}</th>
-              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_online')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_windows_chars_last_data')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_payments_name_status')}}</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -422,6 +423,7 @@ function initFilter(e){
 
 function resetFilter(){
   unCheckedSelect(-1);
+  const search_text = document.getElementById("location-search").value = "";
   initSend("/adminPayments/orders?page=1");
 }
 

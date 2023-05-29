@@ -111,6 +111,7 @@ return [
     'lk_admin_panel_payments_search'=> 'Поиск',
     'lk_admin_panel_payments_descript'=> 'Список всех донатов сервера',
     'lk_admin_panel_payments_name_donation'=> 'Имя оператора',
+    'lk_admin_panel_payments_name_status'=> 'Статус',
 
     'payments_header' => 'Донаты',
     'payments_login' => 'Ник персонажа',

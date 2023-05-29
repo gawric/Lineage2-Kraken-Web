@@ -49,7 +49,7 @@ class AdminDashboardAllCharsByIdUserController extends Controller
             return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$result , 'access_items'=>$this->array_success_items]); 
         }
          catch (ModelNotFoundException $exception) {
-            return Response::json(['error'=>$exception->getMessage() , 'result'=>'']);
+            return Response::json(['error'=>$exception->getMessage() , 'result'=>[]]);
         }
     }
 
