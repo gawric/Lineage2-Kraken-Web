@@ -31,6 +31,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPay
 use App\Http\Controllers\Payments\Admin\AdminPaymentsController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsFilters;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsPaginationFilters;
+use App\Http\Middleware\StatisticsMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,16 +45,16 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPay
 
 Route::get('/', function () {
     return view('l2index');
-})->name('home');
+})->name('home')->middleware('save_statistics');;
 
 Route::get('/statistic/server/{server_id}/stats/{id}', [StatisticServerController::class, 'dataStat']);
-Route::get('/statistic', [StatisticServerController::class, 'index']);
-Route::get('/registration', [RegistrationController::class, 'index']);
+Route::get('/statistic', [StatisticServerController::class, 'index'])->middleware('save_statistics');
+Route::get('/registration', [RegistrationController::class, 'index'])->middleware('save_statistics');
 Route::get('status/server', [StatusServerController::class, 'data']);
 Route::get('lang/home', [LangController::class, 'index']);
 Route::get('lang/change', [LangController::class, 'change'])->name('changeLang');
-Route::get('/payments', [EnotIoController::class, 'index']);
-Route::get('/download', DownloadController::class)->name('download');
+Route::get('/payments', [EnotIoController::class, 'index'])->middleware('save_statistics');
+Route::get('/download', DownloadController::class)->name('download')->middleware('save_statistics');
 Route::get('/privacypolicy', PrivacyPolicyController::class)->name('privacypolicy');
 Route::get('/useragreement', UserAgreementController::class)->name('useragreement');
 Route::get('/payments_success', PagesAlertSuccessController::class)->name('payments_success');

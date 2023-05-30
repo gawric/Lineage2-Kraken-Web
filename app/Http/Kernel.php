@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'valid' => \App\Http\Middleware\Lineage2\ValidateReg::class,
         'roles_user' => \App\Http\Middleware\RolesUserMiddleware::class,
         'roles_admin' => \App\Http\Middleware\RoleAdminMiddleware::class,
+        'save_statistics' => \App\Http\Middleware\StatisticsMiddleware::class,
     ];
 }

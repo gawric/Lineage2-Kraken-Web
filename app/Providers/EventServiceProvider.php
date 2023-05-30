@@ -10,7 +10,9 @@ use App\Providers\Events\L2PasswordReset;
 use App\Providers\Events\L2AddItem;
 use App\Providers\Listeners\L2AddItemListener;
 use App\Providers\Events\L2AddArrayItemsAjax;
+use App\Providers\Events\WebStatistics;
 use App\Providers\Listeners\L2AddArrayItemListener;
+use App\Providers\Listeners\WebStatisticsListener;
 use App\Providers\Listeners\SendCharactersResetPassword;
 
 //use Illuminate\Auth\Events\Authenticated;
@@ -46,6 +48,9 @@ class EventServiceProvider extends ServiceProvider
 	    ],
         L2AddArrayItemsAjax::class => [
 	        L2AddArrayItemListener::class,
+	    ],
+        WebStatistics::class => [
+	        WebStatisticsListener::class,
 	    ],
     ];
 

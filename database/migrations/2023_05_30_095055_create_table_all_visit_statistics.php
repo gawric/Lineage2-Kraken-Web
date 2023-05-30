@@ -20,7 +20,9 @@ return new class extends Migration
             ->references('id')->on('all_statistics')
             ->onDelete('cascade');
             $table->string('ip_address');
+            $table->string('open_url');
             $table->integer('count_visit');
+            $table->timestamp('created_at');
         });
     }
 

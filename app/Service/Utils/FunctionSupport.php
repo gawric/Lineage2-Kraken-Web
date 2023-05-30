@@ -9,7 +9,7 @@ use App\Models\Accounts_ip;
 use App\Models\Accounts_role;
 use Lang;
 use Config;
-
+use App\Models\Statistics\InfoVisitStatistics;
 
  class FunctionSupport
  { 
@@ -213,6 +213,14 @@ use Config;
         $model->description = $description;
         $model->created_at = $date_auth;
         $model->updated_at = $date_auth;
+        return $model;
+    }
+
+    public static function createModelVisitStatis($ip_address , $open_url){
+        $model = new InfoVisitStatistics();
+        $model->ip_address = $ip_address;
+        $model->open_url = $open_url;
+
         return $model;
     }
 
