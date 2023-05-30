@@ -6,6 +6,7 @@ namespace App\Service\Payments\Admin;
     {
         public function getDataAllOrdersPayments($tables_db_payments);
         public function getDataFilterOrdersPayments($tables_db_payments , $filterId);
+        public function getDataSalesMonth($tables_db_payments);
     }
 
 ?>

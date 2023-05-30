@@ -226,6 +226,20 @@
 
 am5.ready(function() {
 
+
+  // Set data
+var data = [
+  @if(isset($infoAdminPaymentsMounts))
+    @foreach($infoAdminPaymentsMounts as $array_magaz)
+        {
+            country: "{{ $array_magaz->convertData() }}",
+            value: {{ $array_magaz->sum }}
+        },
+     @endforeach 
+   @else
+   @endif
+ ];
+
 // Create root element
 // https://www.amcharts.com/docs/v5/getting-started/#Root_element
 var root = am5.Root.new("chartdiv");
@@ -307,45 +321,7 @@ series.columns.template.adapters.add("stroke", function(stroke, target) {
 });
 
     
-// Set data
-var data = [{
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_01')}}",
-  value: 2025
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_02')}}",
-  value: 1882
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_03')}}",
-  value: 1809
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_04')}}",
-  value: 1322
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_05')}}",
-  value: 1122
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_06')}}",
-  value: 1114
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_07')}}",
-  value: 984
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_08')}}",
-  value: 711
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_09')}}",
-  value: 665
-},
-{
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_10')}}",
-  value: 665
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_11')}}",
-  value: 443
-}, {
-  country: "{{ __('messages.lk_admin_panel_payments_date_mount_12')}}",
-  value: 441
-}];
+
 
 xAxis.data.setAll(data);
 series.data.setAll(data);
@@ -369,6 +345,7 @@ function getPaginationPageFilter(e , nextlink){
     event.preventDefault();
     initSend(nextlink);
 }
+
 
 
 var statArrayFilter;

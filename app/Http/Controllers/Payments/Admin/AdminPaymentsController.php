@@ -8,7 +8,7 @@ namespace App\Http\Controllers\Payments\Admin;
  use Config;
  use Illuminate\Http\Request;
  use Response;
- use Lang;
+
  use App\Service\Payments\Admin\PaymentsAdminService;
  use App\Service\Utils\FunctionPaginate;
 
@@ -35,12 +35,13 @@ class AdminPaymentsController extends Controller
     public function index()
     {
         $orders = $this->payments_admin_service->getDataAllOrdersPayments($this->tables_db_payments);
+        $sum_mounts = $this->payments_admin_service->getDataSalesMonth($this->tables_db_payments);
         $data_pages = FunctionPaginate::paginate($orders,2);
         $data_pages->withPath('/adminPayments/orders');
         $data_result = FunctionPaginate::unlockedData($data_pages);
-
-       // dd($data_result);
-        return view('dashboardadminpayments' , ['arrayOrders' => $orders , 'filter_items' => $this->filter_items , 'data_result' => $data_result]);
+      //  dd($sum_mounts);
+    
+        return view('dashboardadminpayments' , ['arrayOrders' => $orders , 'filter_items' => $this->filter_items , 'data_result' => $data_result, 'infoAdminPaymentsMounts' => $sum_mounts]);
     }
 
 

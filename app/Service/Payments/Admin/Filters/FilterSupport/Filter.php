@@ -93,8 +93,8 @@
               if(is_array($explodeArray)){
                   $data_begin = trim($explodeArray[0]);
                   $data_end = trim($explodeArray[1]);
-                  info($data_begin);
-                  info($data_end);
+                 // info($data_begin);
+                 // info($data_end);
                   foreach($tables_db_payments as $item){
 
                       $db_model = $item['paymont_db_model'];
@@ -109,15 +109,15 @@
     
            }
 
-          info("filterData"); 
-          info($temp);
+         // info("filterData"); 
+         // info($temp);
           return $temp;
         }
         
         private function likeData($db_model , $data_begin , $data_end){
-            info("init  likeData");
-            info($data_end);
-            info($data_begin);
+          //  info("init  likeData");
+          //  info($data_end);
+          //  info($data_begin);
             if(isset($data_begin) and isset($data_end) ){
                 info("request likeData");
                 $clanidfilter = new GeneralFilters(['simplefilter'] , [['created_at', '>=', $data_begin] , ['created_at', '<', $data_end] ]);
@@ -128,7 +128,7 @@
  
         private function explodeStr($search_text){
             if(strripos($search_text, '|') != false) {
-                info("TRUE");
+               // info("TRUE");
                 return explode("|", $search_text);
               }
             return "";
