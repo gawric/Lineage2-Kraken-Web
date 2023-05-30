@@ -73,6 +73,9 @@ return [
     //Блокировка пользователя если вход произошел с неизвестного ip
     'blocked_login_with_unknown_ip' => true,
 
+    //Блокировка пользователя если вход произошел с неизвестного ip
+    'collection_of_statistics' => true,
+
      //название роли для юзера
     'role_name_user' => 'role_user',
 
