@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('all_statistics', function (Blueprint $table) {
             $table->id();
             $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 

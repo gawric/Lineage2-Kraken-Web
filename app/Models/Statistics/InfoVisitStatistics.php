@@ -4,7 +4,7 @@ namespace App\Models\Statistics;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Statistics\InfoAllStatistics;
 
  class InfoVisitStatistics extends Model
  {
@@ -13,6 +13,14 @@ use Illuminate\Database\Eloquent\Model;
 
 
     protected $table = 'visit_statistics';
+
+
+    public function all_statistics()
+    {
+      return $this->belongsTo(InfoAllStatistics::class);
+    }
+
+
 
     public function __toString()
     {

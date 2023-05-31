@@ -220,6 +220,8 @@ use App\Models\Statistics\InfoVisitStatistics;
         $model = new InfoVisitStatistics();
         $model->ip_address = $ip_address;
         $model->open_url = $open_url;
+        $model->created_at = now();
+        $model->updated_at = now();
 
         return $model;
     }

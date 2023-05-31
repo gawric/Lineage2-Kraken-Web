@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('open_url');
             $table->integer('count_visit');
             $table->timestamp('created_at');
+            $table->timestamp('updated_at');
         });
     }
 
