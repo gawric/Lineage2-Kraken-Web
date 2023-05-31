@@ -11,6 +11,9 @@ use Illuminate\Validation\ValidationException;
 use App\Service\Utils\FunctionAuthUser;
 use Config;
 use Illuminate\Support\Facades\Redirect;
+use App\Service\Utils\FunctionSupport;
+use App\Providers\Events\WebStatistics;
+use App\Models\Statistics\User\Accounts_ExpansionStatistics;
 
 class LoginRequest extends FormRequest
 {
@@ -47,16 +50,18 @@ class LoginRequest extends FormRequest
     public function authenticate()
     {
         $this->ensureIsNotRateLimited();
-        //info("LoginRequest1  ");
+
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-          //  info("LoginRequest3  ");
+
             RateLimiter::hit($this->throttleKey());
-           // info("LoginRequest auth failed, please try again");
+
+            $this->addStatistics($email = $this->only('email')['email']);
+            
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
         }
-        info("LoginRequest1  2");
+       // info("LoginRequest1  2");
 
         RateLimiter::clear($this->throttleKey());
     }
@@ -98,5 +103,13 @@ class LoginRequest extends FormRequest
     public function throttleKey()
     {
         return Str::transliterate(Str::lower($this->input('email')).'|'.$this->ip());
+    }
+
+    private function addStatistics($email){
+        
+        $use_unknown_user = Config::get('lineage2.statistics.use_unknown_user');
+        $status_auth__fail_user = Config::get('lineage2.statistics.status_auth_unknown_user');
+        event(new WebStatistics(FunctionSupport::createModelUserStatistic(Auth::getRequest()->getClientIp(true) , Auth::getRequest()->url() , $status_auth__fail_user . ' email: ' .$email , $use_unknown_user)));
+        
     }
 }

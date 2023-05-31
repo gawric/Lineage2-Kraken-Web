@@ -129,6 +129,7 @@ return [
     'lk_buy_gold' => 'Купить золото',
     'lk_profile' => 'Профиль',
     'lk_characters' => 'Персонажи',
+    'lk_exit' => 'Выход',
     'lk_add_new_account' => 'Добавить новый',
 
     'lk_change_password_accounts_title' => 'Сменить пароль',

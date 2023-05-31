@@ -33,7 +33,7 @@ class StatisticsMiddleware
        
        
         $response = $next($request);
-        event(new WebStatistics(FunctionSupport::createModelVisitStatis($request->ip() , $request->url())));
+        event(new WebStatistics(FunctionSupport::createModelVisitStatis($request->getClientIp(true) , $request->url())));
         return $response;
     }
 

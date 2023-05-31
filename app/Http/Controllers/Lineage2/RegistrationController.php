@@ -19,6 +19,8 @@ namespace App\Http\Controllers\Lineage2;
  use App\Service\ProxySqlL2Server\ProxySqlServer;
  use App\Service\PersonalArea\AccessIp\DetectedIp;
  use App\Service\Utils\FunctionSupport;
+ use App\Providers\Events\WebStatistics;
+ use App\Models\Statistics\User\Accounts_ExpansionStatistics;
 
 
 class RegistrationController extends Controller
@@ -31,6 +33,7 @@ class RegistrationController extends Controller
     private  ProxySqlServer $proxySql;
     private  DetectedIp $detected_ip;
     private $role_name_user;
+    private $status_registration;
 
     public function __construct(DetectedIp $detected_ip)
     {
@@ -40,6 +43,7 @@ class RegistrationController extends Controller
      
         $this->list_server = Config::get('lineage2.server.list_server');
         $this->role_name_user = Config::get('lineage2.server.role_name_user');
+        $this->status_registration = Config::get('lineage2.statistics.status_registration');
         
     }
 
@@ -87,7 +91,8 @@ class RegistrationController extends Controller
             $this->setRoleUser($this->role_name_user , $user_account_expansion->id , "Роль юзера в жизни сервера" , now());
             
             event(new Registered($user_account_expansion));
-    
+            event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address_access , $request->url() , $this->status_registration  , $user_account_expansion->id)));
+
             return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);
 
         }

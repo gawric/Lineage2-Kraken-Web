@@ -6,6 +6,10 @@ use Closure;
 use App;
 use Config;
 
+use App\Service\Utils\FunctionSupport;
+use App\Providers\Events\WebStatistics;
+use App\Models\Statistics\User\Accounts_ExpansionStatistics;
+
 class RoleAdminMiddleware
 {
 
@@ -29,18 +33,19 @@ class RoleAdminMiddleware
     {
        // dd($request->user()->accounts_role->first()->name);
         $role_name_auth = $request->user()->accounts_role->first()->name;
-       // dd($this->role_admin);
-       // info("RoleAdminMiddleware>>>>");
-        
-        //info($role_name_auth);
-       // info($this->role_admin);
+       
+        $id = $request->user()->id;
+        $ip_address = $request->getClientIp(true);
+        $open_url = $request->url();
+
 
 
         if(strcmp($this->role_admin, $role_name_auth) == 0){
+            event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address , $open_url , $this->status_auth_user  ,  $id)));
             return $next($request);
         }
 
-
+        event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address , $open_url , $this->status_auth_user  ,  $id)));
         return response('Unauthorized.', 401);
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Accounts_ip;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Accounts_server_id;
 
+
 //Обращемся к laravel бд
 class Accounts_expansion extends Authenticatable implements MustVerifyEmail
 {
@@ -40,10 +41,11 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
        return $this->hasMany(Accounts_role::class);
      }
 
-    //Возрващаем записи с фильтром по server_id
-    public function accountsServerFilterById($search_server_id){
-      return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id);
-    }
+
+     //Возрващаем записи с фильтром по server_id
+     public function accountsServerFilterById($search_server_id){
+       return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id);
+     }
 
 
      public function accountsServerFilterByServerIdAndL2Login($search_server_id , $l2_login){

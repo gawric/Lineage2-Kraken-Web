@@ -13,26 +13,27 @@ use Config;
 use App\Providers\Events\WebStatistics;
 use App\Models\Statistics\InfoVisitStatistics;
 use App\Service\Statistics\Visit\StatisticsVisit;
+use App\Models\Statistics\User\Accounts_ExpansionStatistics;
 
 class WebStatisticsListener
 {
     
-    private $list_servers;
+
     private StatisticsVisit $visit;
     private $collection_of_statistics;
+    private $number_to_clear_tables;
 
     public function __construct()
     {
-        $this->list_servers = Config::get('lineage2.server.list_server');
-        //будем ли собирать статистику или отключим ее. Меняем в конфиге
-        $this->collection_of_statistics = Config::get('lineage2.server.collection_of_statistics');
+    
+        //будем ли собирать статистику или отключим ее. Меняем в конфиге statistics
+        $this->collection_of_statistics = Config::get('lineage2.statistics.collection_of_statistics');
+        $this->number_to_clear_tables = Config::get('lineage2.statistics.number_to_clear_tables');
+        
         $this->visit = new StatisticsVisit();
     }
 
-   //statistic_item
-   // $model = new InfoVisitStatistics();
-   // $model->ip_address = $ip_address;
-   // $model->open_url = $open_url;
+   
     public function handle(WebStatistics $event)
     {
         if($this->collection_of_statistics == true){
@@ -46,10 +47,21 @@ class WebStatisticsListener
     }
     //ищем по текущей дате, что бы в будущем вытаскивать все записи за этот день
     private function detectedType($item){
-      
+
        if ($item instanceof InfoVisitStatistics) {
+
+            $this->visit->clearTableVisit($this->number_to_clear_tables);
+
             $allStatisticsModel =  $this->visit->getAllStatisticsModelByDate(now());
             $this->visit->addVisitStatistics($allStatisticsModel->id , $item);
+       }
+       else if($item instanceof Accounts_ExpansionStatistics){
+
+            $this->visit->clearTableUser($this->number_to_clear_tables);
+
+            $allStatisticsModel =  $this->visit->getAllStatisticsModelByDate(now());
+            $this->visit->addUserStatistics($allStatisticsModel->id , $item);
+
        }
     }
 

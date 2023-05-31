@@ -132,6 +132,7 @@ return [
     'lk_profile' => 'Profile',
     'lk_characters' => 'Characters',
     'lk_add_new_account' => 'New Account',
+    'lk_exit' => 'Log out',
 
     'lk_change_password_accounts_title' => 'Change password',
     'lk_change_password_accounts_descripte' => 'To change your password, you need to enter the old password and come up with a new one!',

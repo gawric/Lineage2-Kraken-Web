@@ -16,16 +16,6 @@
                     {{ __('messages.lk_home') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                    {{ __('messages.lk_kits') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')">
-                    {{ __('messages.lk_buy_gold') }}
-                    </x-nav-link>
-                </div>
             </div>
             
             
@@ -53,7 +43,7 @@
                         <x-dropdown-link :href="route('dashboardchars')">
                         {{ __('messages.lk_characters') }}
                         </x-dropdown-link>
-                        
+ 
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -62,7 +52,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('messages.lk_exit') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

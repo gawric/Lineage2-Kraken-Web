@@ -10,6 +10,7 @@ use App\Models\Accounts_role;
 use Lang;
 use Config;
 use App\Models\Statistics\InfoVisitStatistics;
+use App\Models\Statistics\User\Accounts_ExpansionStatistics;
 
  class FunctionSupport
  { 
@@ -220,6 +221,19 @@ use App\Models\Statistics\InfoVisitStatistics;
         $model = new InfoVisitStatistics();
         $model->ip_address = $ip_address;
         $model->open_url = $open_url;
+        $model->created_at = now();
+        $model->updated_at = now();
+
+        return $model;
+    }
+
+    public static function createModelUserStatistic($ip_address , $open_url , $status , $accounts_expansion_id){
+        $model = new Accounts_ExpansionStatistics();
+        $model->ip_address = $ip_address;
+        $model->url = $open_url;
+        $model->status = $status;
+        $model->count_visit = 1;
+        $model->accounts_expansion_id = $accounts_expansion_id;
         $model->created_at = now();
         $model->updated_at = now();
 
