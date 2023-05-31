@@ -14,10 +14,15 @@ class RoleAdminMiddleware
 {
 
     private $role_admin;
+    private $status_auth_user;
+    private $status_auth__fail_user;
+
 
     public function __construct()
     {
         $this->role_admin = Config::get('lineage2.server.role_name_admin');
+        $this->status_auth_user = Config::get('lineage2.statistics.status_auth_admin');
+        $this->status_auth__fail_user = Config::get('lineage2.statistics.status_auth__fail_admin');
     }
 
 
@@ -45,7 +50,7 @@ class RoleAdminMiddleware
             return $next($request);
         }
 
-        event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address , $open_url , $this->status_auth_user  ,  $id)));
+        event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address , $open_url , $this->status_auth__fail_user  ,  $id)));
         return response('Unauthorized.', 401);
     }
 }
