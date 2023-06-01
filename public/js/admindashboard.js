@@ -37,7 +37,7 @@ function createNextPage(nextlink){
          },
          success: function( data, textStatus, jQxhr ){
              if(!!jQxhr.responseJSON != undefined){
-                console.log(jQxhr.responseJSON);
+               // console.log(jQxhr.responseJSON);
                 datajson = jQxhr.responseJSON;
                 newdata = datajson.data;
                 parceLinkNextPage(datajson.next_page_url);

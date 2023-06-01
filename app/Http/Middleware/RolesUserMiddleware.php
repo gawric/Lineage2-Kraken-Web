@@ -37,6 +37,7 @@ class RolesUserMiddleware
         
         $role_name_auth = $request->user()->accounts_role->first()->name;
         $id = $request->user()->id;
+        $email = $request->user()->email;
         $ip_address = $request->getClientIp(true);
         $open_url = $request->url();
 
@@ -45,7 +46,7 @@ class RolesUserMiddleware
        // info($this->role_user_config);
 
         if(strcmp($this->role_user_config, $role_name_auth) == 0){
-            event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address , $open_url , $this->status_auth_user  ,  $id)));
+            event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address , $open_url , $this->status_auth_user . " email " . $email  ,  $id)));
             return $next($request);
         }
 

@@ -377,8 +377,9 @@
 
         function clickButtonNext(nextPage){
           if(nextPage != "null" || nextPage){
-           // console.log(" clickButtonNext>>> " +nextPage);
-            createNextPage(nextPage)
+           if(nextPage != ""){
+              createNextPage(nextPage)
+           }
           }
          
         }
