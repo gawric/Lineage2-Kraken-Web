@@ -91,7 +91,7 @@ class RegistrationController extends Controller
             $this->setRoleUser($this->role_name_user , $user_account_expansion->id , "Роль юзера в жизни сервера" , now());
             
             event(new Registered($user_account_expansion));
-            event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address_access , $request->url() , $this->status_registration  , $user_account_expansion->id)));
+            event(new WebStatistics(FunctionSupport::createModelUserStatistic($ip_address_access , $request->url() , $this->status_registration . " email: " . $email  , $user_account_expansion->id)));
 
             return response()->json(['success'=>Lang::get('validation.success') . ". " . Lang::get('validation.email_send')]);
 

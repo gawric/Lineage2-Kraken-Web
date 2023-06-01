@@ -87,8 +87,8 @@
             }
             //array_push($temp , $this->createTestModel());
 
-            $temp = $this->sumDublication($temp);
-            return $temp;
+            return $this->sumDublication($temp);
+           // return $temp;
         }
 
         private function createModels($coll_result){
@@ -111,6 +111,13 @@
 
       
         private function sumDublication($tables){
+            if(isset($tables) and count($tables) > 0){
+              return $this->forEachDublication($tables);
+            }
+           return $tables;
+        }
+
+        private function forEachDublication($tables){
             foreach ($tables as $element) {
                 $hash = $element->data;
                 if (isset($unique_array[$hash])) {
@@ -120,7 +127,6 @@
             }
             return $unique_array;
         }
-
         private function createTestModel(){
             $model = new InfoAdminPaymentsMounts;
             $model->id = 5;

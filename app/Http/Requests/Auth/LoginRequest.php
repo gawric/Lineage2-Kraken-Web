@@ -55,8 +55,8 @@ class LoginRequest extends FormRequest
 
             RateLimiter::hit($this->throttleKey());
 
-            $this->addStatistics($email = $this->only('email')['email']);
-            
+            //$this->addStatistics($email = $this->only('email')['email']);
+
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
