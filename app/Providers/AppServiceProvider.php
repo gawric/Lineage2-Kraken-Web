@@ -14,6 +14,8 @@ use App\Service\Payments\Enot\EnotIoService;
 use App\Service\Payments\IPaymentsService;
 use App\Service\PersonalArea\AdminDashboard\AdminDashboard;
 use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
+use App\Service\PersonalArea\AdminStatistics\IAdminStatistics;
+use App\Service\PersonalArea\AdminStatistics\AdminStatistics;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
         FunctionEmailActivate::toMailText();
         $this->app->bind(IPaymentsService::class, EnotIoService::class);
         $this->app->bind(IAdminDashboard::class, AdminDashboard::class);
+        $this->app->bind(IAdminStatistics::class, AdminStatistics::class);
     }
 
 

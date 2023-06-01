@@ -40,7 +40,7 @@
                         {{ __('messages.lk_admin_donate') }}
                         </x-dropdown-link>
 
-                        <x-dropdown-link :href="route('profile.edit')">
+                        <x-dropdown-link :href="route('adminStatistics')">
                         {{ __('messages.lk_admin_static') }}
                         </x-dropdown-link>
 

@@ -126,6 +126,9 @@ return [
 
 
 
+    'lk_admin_panel_statistics_descript'=> 'Server connection statistics',
+    'lk_admin_panel_statistics_point_users'=> 'Visitors',
+
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',
     'lk_buy_gold' => 'Buy gold',

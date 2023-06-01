@@ -21,6 +21,10 @@ use App\Models\Statistics\InfoAllStatistics;
     }
 
 
+     public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 
     public function __toString()
     {

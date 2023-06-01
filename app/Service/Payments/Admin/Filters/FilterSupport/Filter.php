@@ -119,7 +119,7 @@
           //  info($data_end);
           //  info($data_begin);
             if(isset($data_begin) and isset($data_end) ){
-                info("request likeData");
+                //info("request likeData");
                 $clanidfilter = new GeneralFilters(['simplefilter'] , [['created_at', '>=', $data_begin] , ['created_at', '<', $data_end] ]);
                 return  $db_model::filter($clanidfilter)->get();
             }

@@ -124,6 +124,9 @@ return [
     'payments_fail' => 'К сожалению платеж не прошел!',
 
 
+    'lk_admin_panel_statistics_descript'=> 'Статистика подключений по серверу',
+    'lk_admin_panel_statistics_point_users'=> 'Посетителей',
+
     'lk_home' => 'Главная',
     'lk_kits' => 'Стартовые наборы',
     'lk_buy_gold' => 'Купить золото',
