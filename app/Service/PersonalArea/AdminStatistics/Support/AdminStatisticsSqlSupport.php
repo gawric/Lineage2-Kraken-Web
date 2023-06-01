@@ -24,7 +24,7 @@ use DB;
         //возвращем к примеру DAY 2023-06-01 COUNT 5,DAY 2023-06-02 COUNT 15
      public function getDataInfoVisitStatisticsFilterRangeDay($begin_data , $end_data){
          if(isset($begin_data) and isset($end_data)){
-            return InfoVisitStatistics::select(DB::raw('DATE(created_at) as day'), DB::raw('COUNT(*) as count'))
+            return InfoVisitStatistics::select(DB::raw('DATE(created_at) as day'), DB::raw('COUNT(DISTINCT(ip_address)) as count'))
                     ->where('created_at', '>=', $begin_data)
                     ->where('created_at', '<=', $end_data)
                     ->groupBy(DB::raw('DATE(created_at)'))
