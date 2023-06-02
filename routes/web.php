@@ -97,7 +97,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
 
 
     Route::get('/adminStatistics', [AdminStatisticsController::class, 'index'])->name('adminStatistics');
-    Route::get('/adminStatistics/visit', [AdminStatisticsAllVisitByDay::class, 'index'])->name('adminStatistics');
+    Route::get('/adminStatistics/visit', [AdminStatisticsAllVisitByDay::class, 'index']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);
