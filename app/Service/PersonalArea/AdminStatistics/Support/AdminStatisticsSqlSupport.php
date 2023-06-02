@@ -35,6 +35,21 @@ use DB;
          return collect([]);
      }
 
+     public function getDataInfoVisitStatisticsOnlyIp(){
+        return InfoVisitStatistics::select(DB::raw('ip_address'),DB::raw('COUNT(ip_address) as count') , DB::raw('DATE(created_at) as day'))
+        ->groupBy(DB::raw('ip_address') , DB::raw('DATE(created_at)'))
+        ->orderBy(DB::raw('ip_address'))
+        ->orderBy(DB::raw('day'))
+        ->get();
+     }
+
+     public function getDataInfoVisitByIpAndDate($ip_address , $date){
+        return InfoVisitStatistics::where('ip_address', '=', $ip_address)
+        ->whereDate('created_at', $date)
+        ->orderBy(DB::raw('created_at'))
+        ->get();
+     }
+
 
         
     }

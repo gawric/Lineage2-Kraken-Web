@@ -32,6 +32,17 @@
                 Carbon::now()->endOfMonth()->format('Y-m-d'));
         }
 
+        public function getDataOnlyAllIp(){
+            $collection = $this->sql_support->getDataInfoVisitStatisticsOnlyIp();
+            return $this->convertCollection($collection);
+        }
+
+        public function getDataVisitByIpAndDate($ip_address , $date){
+                return $this->sql_support->getDataInfoVisitByIpAndDate($ip_address , $date);
+        }
+
+
+
         private function parceDays($size){
             $temp = [];
              $date = Carbon::now()->format('Y-m');
@@ -51,6 +62,24 @@
             else{
                 return $enddata = $date . "-".$x;
             }
+        }
+
+        private function convertCollection($collection){
+           $temp =[];
+           if(isset($collection) and $collection->isNotEmpty()){
+                $index = 0;
+                $temp = $this->push($temp , $index , $collection);
+           }
+            return $temp;
+        }
+
+        private function push($temp , $index , $collection){
+              foreach($collection as $item){
+                  $model = FunctionSupport::createModelInfoTableStatistics($index++ , $item->ip_address , $item->count , $item->day);
+                  array_push($temp , $model) ;
+               }
+
+           return $temp;
         }
 
       

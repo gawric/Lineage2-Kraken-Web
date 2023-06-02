@@ -126,8 +126,18 @@ return [
 
 
 
-    'lk_admin_panel_statistics_descript'=> 'Server connection statistics',
+    'lk_admin_panel_statistics_descript'=> 'Server connection statistics (Guest)',
     'lk_admin_panel_statistics_point_users'=> 'Visitors',
+    'lk_admin_panel_statistics_table_id'=> 'id',
+    'lk_admin_panel_statistics_table_ip_address'=> 'ip_address',
+    'lk_admin_panel_statistics_table_count_rows'=> 'numb. records',
+    'lk_admin_panel_statistics_table_data'=> 'Date',
+
+    'lk_admin_panel_visit_statistics_title'=> 'List of guest connections',
+    'lk_admin_panel_visit_statistics_ip_address'=> 'ip_address',
+    'lk_admin_panel_visit_statistics_open_url'=> 'open page',
+    'lk_admin_panel_visit_statistics_count'=> 'count',
+    'lk_admin_panel_visit_statistics_date'=> 'date',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

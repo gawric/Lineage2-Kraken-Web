@@ -33,6 +33,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPay
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Payments\AdminPaymentsPaginationFilters;
 use App\Http\Middleware\StatisticsMiddleware;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminStatisticsController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminStatisticsAllVisitByDay;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -96,6 +97,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
 
 
     Route::get('/adminStatistics', [AdminStatisticsController::class, 'index'])->name('adminStatistics');
+    Route::get('/adminStatistics/visit', [AdminStatisticsAllVisitByDay::class, 'index'])->name('adminStatistics');
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

@@ -11,6 +11,7 @@ use Lang;
 use Config;
 use App\Models\Statistics\InfoVisitStatistics;
 use App\Models\Statistics\User\Accounts_ExpansionStatistics;
+use App\Models\Statistics\Temp\InfoTableStatistics;
 
  class FunctionSupport
  { 
@@ -166,6 +167,14 @@ use App\Models\Statistics\User\Accounts_ExpansionStatistics;
         return  $InfoDashboardChars;
     }
 
+    public static function createModelInfoTableStatistics($id , $ip_address , $count , $day){
+        $model = new InfoTableStatistics();
+        $model->id = $id;
+        $model->ip_address= $ip_address;
+        $model->count= $count;
+        $model->day= $day;
+        return $model;
+    }
       
      
 

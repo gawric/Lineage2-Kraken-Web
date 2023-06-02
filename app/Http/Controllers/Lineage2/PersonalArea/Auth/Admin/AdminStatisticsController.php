@@ -28,12 +28,15 @@ class AdminStatisticsController extends Controller
     {
         $arrayDays = $this->admin_statistics->getArrayDays();
         $resultMouth = $this->admin_statistics->getDataAllCountMounth();
-        $mergeMouthArray = $this->mergeArrayDays($arrayDays , $resultMouth);
-        info($mergeMouthArray);
-        info($arrayDays);
-       return view('dashboardadminstatistics' , ['arrayDays' => $arrayDays , 'resultMouth' => $resultMouth]) ;
+        $resultArrayOnlyIp = $this->admin_statistics->getDataOnlyAllIp();
+       // $mergeMouthArray = $this->mergeArrayDays($arrayDays , $resultMouth);
+        // info($resultArrayOnlyIp);
+        //info($mergeMouthArray);
+       return view('dashboardadminstatistics' , ['arrayDays' => $arrayDays , 'resultMouth' => $resultMouth , 'resultArrayOnlyIp' => $resultArrayOnlyIp]) ;
     }
 
+    //использовалось для сортировки теперь это делает sql 
+    //после теста лучше удалить если не понадобится
     private function mergeArrayDays($arrayDays , $resultMouth){
         $temp = [];
             foreach($arrayDays as $day){
