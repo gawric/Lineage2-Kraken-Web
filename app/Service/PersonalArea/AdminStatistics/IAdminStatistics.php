@@ -9,6 +9,9 @@
         public function getDataAllCountMounth();
         public function getDataOnlyAllIp();
         public function getDataVisitByIpAndDate($ip_address , $date);
+
+        public function getDataUserAllCountMounth();
+        public function getDataUserOnlyAllIp();
     }
 
 ?>

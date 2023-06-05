@@ -23,7 +23,7 @@
     <div>
       <canvas id="myChart"></canvas>
     </div>
-    <div style="display:none;margin-top:3%" id="loading_all_payments">
+    <div style="display:none;margin-top:3%" id="loading_all_visit">
       <div role="status">
         <svg aria-hidden="true" class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
            <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -34,12 +34,12 @@
     </div>
     <div style="width:30%;margin-top:3%">
         
-        <div style="display:none;" id="warning_all_payments"  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-          <span id="text_warning_all_payments"  class="block sm:inline"></span>
+        <div style="display:none;" id="warning_all_visit"  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+          <span id="text_warning_all_visit"  class="block sm:inline"></span>
         </div>
 
-        <div  style="display:none;"  id="success_all_payments"   class="bg-green-100 border border-green-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
-          <span id="text_success_all_payments"  class="block sm:inline"></span>
+        <div  style="display:none;"  id="success_all_visit"   class="bg-green-100 border border-green-400 text-gray-700 px-4 py-3 rounded relative" role="alert">
+          <span id="text_success_all_visit"  class="block sm:inline"></span>
         </div>
 
     </div>
@@ -48,7 +48,7 @@
         
   <div >
     <div>
-    <table id="table_all_payments" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table id="table_all_visit" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead>
           <tr>
               <th scope="col" class="px-6 py-4">#</th>
@@ -58,8 +58,8 @@
             </tr>
           </thead>
           <tbody>
-           @if(isset($resultArrayOnlyIp))
-            @foreach($resultArrayOnlyIp as $model)
+           @if(isset($data_result))
+            @foreach($data_result->data as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {{ $model->id }}
@@ -89,7 +89,38 @@
 
         </tbody>
         </table>
+        <div style="margin-top:3%;"class="mt-5">
+        <nav>
+            <ul id="navigable_pages" class="inline-flex items-center -space-x-px">
+            @if(isset($data_result->links))
+                @foreach($data_result->links as $pages)
+                    @if($pages->active)
+                    <li>
+                        <a href="#" onClick="getPaginationPageFilter(this , '{{ $pages->url }}')" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ $pages->label}}</a>
+                    </li>
+                    @else
+                    <li>
+                        <a href="#" onClick="getPaginationPageFilter(this , '{{ $pages->url }}')" aria-current="page" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $pages->label}}</a>
+                    </li>
+                    @endif
+               
+                @endforeach
+                @else
+   
+            @endif
+            </ul>
+        </nav>
+        </div>
     </div>
+
+
+    <!-- Таблица с отоброжением зареганых пользователей и их действий -->
+
+
+    
+
+
+
 
 
 
@@ -170,21 +201,125 @@
 
     
   </div>
+
+  <div style="margin-top:3%;">
+
+    <div >
+      <div>
+        <table id="table_all_visit" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
+          <thead>
+            <tr>
+              <th scope="col" class="px-6 py-4">#</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_statistics_table_ip_address')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_statistics_table_count_rows')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_statistics_table_data')}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if(isset($data_result_user))
+              @foreach($data_result_user->data as $model)
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ $model->id }}
+                  </th>
+                  <td class="px-6 py-4">
+                    {{ $model->ip_address }}
+                  </td>
+                  <td class="px-6 py-4">
+                    <a href="#" onclick='return openDialog( " {{ $model->ip_address }} ", "{{ $model->day }}")' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ $model->count }}</a>
+                  </td>
+                  <td class="px-6 py-4">
+                  {{ $model->day }}
+                  </td>
+                </tr>
+              @endforeach
+            @else
+              <tr>
+                <td>  
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <td align="center" colspan="10" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      Нет данных
+                    </th>
+                  </tr>
+              </tr>
+            @endif
+
+          </tbody>
+        </table>
+    <div style="margin-top:3%;"class="mt-5">
+        <nav>
+          <ul id="navigable_pages" class="inline-flex items-center -space-x-px">
+          @if(isset($data_result_user->links))
+            @foreach($data_result_user->links as $pages)
+              @if($pages->active)
+                <li>
+                  <a href="#" onClick="getPaginationPageFilter(this , '{{ $pages->url }}')" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ $pages->label}}</a>
+                </li>
+              @else
+                <li>
+                  <a href="#" onClick="getPaginationPageFilter(this , '{{ $pages->url }}')" aria-current="page" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $pages->label}}</a>
+                </li>
+              @endif
+ 
+            @endforeach
+            @else
+
+          @endif
+          </ul>
+        </nav>
+     </div>
+   </div>
+
+
+
+
+
+  
 </div>
+
+
+
+              
+
+
+
+
+
+
+              </div>
+
+
+
+
 
    
         </div>
+
+
+          
+
+
+
     </div>
 
+
+
+    
 
     
 </div>
 
 
-      <!-- More posts... -->
+
+
+        
+
+
+
     </div>
   </div>
 </div>
+
 
 
 
@@ -220,7 +355,8 @@ new Chart(ctx, {
 
             @endif
             ],
-    datasets: [{
+    datasets: [
+      {
       label: '{{ __('messages.lk_admin_panel_statistics_point_users') }}',
       data: [ 
              @if(isset($resultMouth))
@@ -231,7 +367,22 @@ new Chart(ctx, {
              @endif
             ],
       borderWidth: 1
-    }]
+    },
+
+    {
+      label: 'Пользователи',
+      data: [ 
+             @if(isset($resultUserMouth))
+               @foreach($resultUserMouth as $item)
+                 {{ $item->count }},
+               @endforeach
+             @else
+             @endif
+            ],
+      borderWidth: 1
+    }
+  
+  ]
   },
   options: {
     scales: {
@@ -260,6 +411,10 @@ function openDialog(ip_address , day){
         });
 
 
+function getPaginationPageFilter(e , nextlink){
+    event.preventDefault();
+    initSendPage(nextlink);
+}
 
 </script>
 

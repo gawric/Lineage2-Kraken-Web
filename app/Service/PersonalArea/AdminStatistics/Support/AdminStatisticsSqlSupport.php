@@ -9,6 +9,7 @@ use App\Models\Accounts_expansion;
 use Config;
 use App\Models\Statistics\InfoVisitStatistics;
 use DB;
+use App\Models\Statistics\User\Accounts_ExpansionStatistics;
 
     class AdminStatisticsSqlSupport
     {
@@ -37,10 +38,33 @@ use DB;
 
      public function getDataInfoVisitStatisticsOnlyIp(){
         return InfoVisitStatistics::select(DB::raw('ip_address'),DB::raw('COUNT(ip_address) as count') , DB::raw('DATE(created_at) as day'))
+        ->where("ip_address", ">" ,  1)
         ->groupBy(DB::raw('ip_address') , DB::raw('DATE(created_at)'))
         ->orderBy(DB::raw('ip_address'))
         ->orderBy(DB::raw('day'))
         ->get();
+     }
+
+     public function getDataInfoUserStatisticsOnlyIp(){
+        return Accounts_ExpansionStatistics::select(DB::raw('ip_address'),DB::raw('COUNT(ip_address) as count') , DB::raw('DATE(created_at) as day'))
+       // ->where("ip_address", ">" ,  1)
+        ->groupBy(DB::raw('ip_address') , DB::raw('DATE(created_at)'))
+        ->orderBy(DB::raw('ip_address'))
+        ->orderBy(DB::raw('day'))
+        ->get();
+     }
+
+     public function getDataInfoUserStatisticsFilterRangeDay($begin_data , $end_data){
+        if(isset($begin_data) and isset($end_data)){
+            return Accounts_ExpansionStatistics::select(DB::raw('DATE(created_at) as day'), DB::raw('COUNT(DISTINCT(ip_address)) as count'))
+                    ->where('created_at', '>=', $begin_data)
+                    ->where('created_at', '<=', $end_data)
+                    ->groupBy(DB::raw('DATE(created_at)'))
+                    ->orderBy(DB::raw('day'))
+                    ->get();
+         }
+
+         return collect([]);
      }
 
      public function getDataInfoVisitByIpAndDate($ip_address , $date){

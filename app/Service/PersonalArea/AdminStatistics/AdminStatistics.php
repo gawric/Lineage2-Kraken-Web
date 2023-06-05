@@ -32,8 +32,21 @@
                 Carbon::now()->endOfMonth()->format('Y-m-d'));
         }
 
+        public function getDataUserAllCountMounth(){
+            return  $this->sql_support->getDataInfoUserStatisticsFilterRangeDay(
+                Carbon::now()->startOfMonth()->format('Y-m-d'), 
+                Carbon::now()->endOfMonth()->format('Y-m-d'));
+        }
+
         public function getDataOnlyAllIp(){
             $collection = $this->sql_support->getDataInfoVisitStatisticsOnlyIp();
+            //dd($collection);
+            return $this->convertCollection($collection);
+        }
+
+        public function getDataUserOnlyAllIp(){
+            $collection = $this->sql_support->getDataInfoUserStatisticsOnlyIp();
+            //dd($collection);
             return $this->convertCollection($collection);
         }
 
@@ -75,8 +88,10 @@
 
         private function push($temp , $index , $collection){
               foreach($collection as $item){
-                  $model = FunctionSupport::createModelInfoTableStatistics($index++ , $item->ip_address , $item->count , $item->day);
-                  array_push($temp , $model) ;
+                if($item->count > 1){
+                    $model = FunctionSupport::createModelInfoTableStatistics($index++ , $item->ip_address , $item->count , $item->day);
+                    array_push($temp , $model) ;
+                }
                }
 
            return $temp;

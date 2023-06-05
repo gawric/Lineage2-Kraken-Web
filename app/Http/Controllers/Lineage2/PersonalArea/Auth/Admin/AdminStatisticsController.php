@@ -9,30 +9,45 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin;
  use Response;
  use Lang;
  use App\Service\PersonalArea\AdminStatistics\IAdminStatistics;
-
+ use App\Service\Utils\FunctionPaginate;
 
 
 class AdminStatisticsController extends Controller
 {
 
     private $admin_statistics;
-
+    private $count;
 
     public function __construct(IAdminStatistics $admin_statistics)
     {
         $this->admin_statistics = $admin_statistics;
+        $this->count = Config::get('lineage2.statistics.top_statistics');      
     }
 
     
     public function index()
     {
         $arrayDays = $this->admin_statistics->getArrayDays();
-        $resultMouth = $this->admin_statistics->getDataAllCountMounth();
+        $resultVisitMouth = $this->admin_statistics->getDataAllCountMounth();
+        $resultUserMouth = $this->admin_statistics->getDataUserAllCountMounth();
+
+
         $resultArrayOnlyIp = $this->admin_statistics->getDataOnlyAllIp();
-       // $mergeMouthArray = $this->mergeArrayDays($arrayDays , $resultMouth);
-        // info($resultArrayOnlyIp);
-        //info($mergeMouthArray);
-       return view('dashboardadminstatistics' , ['arrayDays' => $arrayDays , 'resultMouth' => $resultMouth , 'resultArrayOnlyIp' => $resultArrayOnlyIp]) ;
+
+        $data_pages = FunctionPaginate::paginate($resultArrayOnlyIp , $this->count);
+        $data_pages->withPath('/adminStatistics/visit_filter');
+        $data_result = FunctionPaginate::unlockedData($data_pages);
+
+
+
+        $resultUserArrayOnlyIp = $this->admin_statistics->getDataUserOnlyAllIp();
+
+        $data_pages1 = FunctionPaginate::paginate($resultUserArrayOnlyIp , $this->count);
+        $data_pages1->withPath('/adminStatistics/user_filter');
+        $data_result_user = FunctionPaginate::unlockedData($data_pages1);
+        //dd($data_result_user);
+
+       return view('dashboardadminstatistics' , ['arrayDays' => $arrayDays , 'resultMouth' => $resultVisitMouth , 'resultUserMouth' => $resultUserMouth ,'data_result' => $data_result , 'data_result_user' => $data_result_user ]) ;
     }
 
     //использовалось для сортировки теперь это делает sql 
