@@ -125,15 +125,22 @@ return [
 
 
     'lk_admin_panel_statistics_descript'=> 'Статистика подключений к серверу (гости)',
-    'lk_admin_panel_statistics_point_users'=> 'Посетителей',
+    'lk_admin_panel_statistics_point_guest'=> 'Гости',
+    'lk_admin_panel_statistics_point_users'=> 'Пользователи',
     'lk_admin_panel_statistics_table_id'=> 'id',
     'lk_admin_panel_statistics_table_ip_address'=> 'ip_address',
     'lk_admin_panel_statistics_table_count_rows'=> 'Кол-во записей',
+    'lk_admin_panel_statistics_table_login'=> 'Логин',
     'lk_admin_panel_statistics_table_data'=> 'Дата',
+
+
+    'lk_admin_panel_user_statistics_title'=> 'Список подключений пользователя',
+
 
     'lk_admin_panel_visit_statistics_title'=> 'Список подключений гостя',
     'lk_admin_panel_visit_statistics_ip_address'=> 'ip_address',
-    'lk_admin_panel_visit_statistics_open_url'=> 'открытая страницы',
+    'lk_admin_panel_visit_statistics_open_url'=> 'страница',
+    'lk_admin_panel_visit_statistics_status' => 'статус',
     'lk_admin_panel_visit_statistics_count'=> 'кол-во',
     'lk_admin_panel_visit_statistics_date'=> 'Дата',
  

@@ -11,7 +11,7 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics;
  use App\Service\Utils\FunctionSupport;
  use App\Service\PersonalArea\AdminStatistics\IAdminStatistics;
 
-class AdminStatisticsAllVisitByDay extends Controller
+class AdminStaticsAllUsersByDay extends Controller
 {
   
     private $admin_statistics;
@@ -29,16 +29,17 @@ class AdminStatisticsAllVisitByDay extends Controller
         $validated = $request->validate([
             'ip_address' => 'required|ip',
             'day' => 'date',
+            'accountsExpansion' => 'integer'
         ]);
 
         $ip_address = FunctionSupport::getDataVariable("ip_address" , $validated);
         $day = FunctionSupport::getDataVariable("day" , $validated);
-
+        $accounts_expansion_id = FunctionSupport::getDataVariable("accountsExpansion" , $validated);
 
         try 
         {
 
-            $collection = $this->admin_statistics->getDataVisitByIpAndDate($ip_address , $day);
+            $collection = $this->admin_statistics->getDataUserByIpAndDate($ip_address , $day , $accounts_expansion_id);
         
             if(isset($collection) and $collection->isNotEmpty()){
               

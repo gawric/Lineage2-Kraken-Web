@@ -35,6 +35,8 @@ use App\Http\Middleware\StatisticsMiddleware;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminStatisticsController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminStatisticsAllVisitByDay;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminStatisticsPaginatorVisit;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminStatisticsPaginatorUser;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminStaticsAllUsersByDay;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -99,7 +101,9 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
 
     Route::get('/adminStatistics', [AdminStatisticsController::class, 'index'])->name('adminStatistics');
     Route::get('/adminStatistics/visit', [AdminStatisticsAllVisitByDay::class, 'index']);
+    Route::get('/adminStatistics/user', [AdminStaticsAllUsersByDay::class, 'index']);
     Route::get('/adminStatistics/visit_filter', [AdminStatisticsPaginatorVisit::class, 'page']);
+    Route::get('/adminStatistics/user_filter', [AdminStatisticsPaginatorUser::class, 'page']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

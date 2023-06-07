@@ -8,6 +8,7 @@
  use Lang;  
  use Illuminate\Database\Eloquent\ModelNotFoundException;
  use App\Service\Utils\FunctionSupport;
+ use App\Service\Utils\FunctionOtherUser;
  use Carbon\Carbon;
  use App\Service\PersonalArea\AdminStatistics\Support\AdminStatisticsSqlSupport;
 
@@ -46,13 +47,18 @@
 
         public function getDataUserOnlyAllIp(){
             $collection = $this->sql_support->getDataInfoUserStatisticsOnlyIp();
-            //dd($collection);
+           // dd($collection);
             return $this->convertCollection($collection);
         }
 
         public function getDataVisitByIpAndDate($ip_address , $date){
                 return $this->sql_support->getDataInfoVisitByIpAndDate($ip_address , $date);
         }
+
+        public function getDataUserByIpAndDate($ip_address , $date , $accounts_expansion_id){
+            return $this->sql_support->getDataInfoUserByIpAndDate($ip_address , $date , $accounts_expansion_id);
+    }
+
 
 
 
@@ -89,12 +95,22 @@
         private function push($temp , $index , $collection){
               foreach($collection as $item){
                 if($item->count > 1){
-                    $model = FunctionSupport::createModelInfoTableStatistics($index++ , $item->ip_address , $item->count , $item->day);
-                    array_push($temp , $model) ;
+                    if(isset($item->accounts_expansion_id)){
+                        $user = $this->sql_support->getAccountExpansionById($item->accounts_expansion_id);
+                        $this->add($temp , $index , $item , $user->login , $item->accounts_expansion_id);
+                    }
+                    else{
+                        $this->add($temp , $index , $item , "non" , -1);
+                    }
                 }
                }
 
            return $temp;
+        }
+
+        private function add(&$temp , &$index , $item , $login , $accounts_expansion_id){
+            $model = FunctionSupport::createModelInfoTableStatistics($index++ , $item->ip_address , $item->count , $item->day , $login , $accounts_expansion_id);
+            array_push($temp , $model) ;
         }
 
       

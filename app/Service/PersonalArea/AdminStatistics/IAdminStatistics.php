@@ -12,6 +12,7 @@
 
         public function getDataUserAllCountMounth();
         public function getDataUserOnlyAllIp();
+        public function getDataUserByIpAndDate($ip_address , $date , $accounts_expansion_id);
     }
 
 ?>

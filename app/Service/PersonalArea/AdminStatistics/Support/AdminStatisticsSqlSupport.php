@@ -10,6 +10,7 @@ use Config;
 use App\Models\Statistics\InfoVisitStatistics;
 use DB;
 use App\Models\Statistics\User\Accounts_ExpansionStatistics;
+use App\Service\Utils\FunctionOtherUser;
 
     class AdminStatisticsSqlSupport
     {
@@ -19,6 +20,10 @@ use App\Models\Statistics\User\Accounts_ExpansionStatistics;
         {
 
         }
+
+   public function getAccountExpansionById($account_expansion_id){
+      return FunctionOtherUser::getUserById($account_expansion_id);
+   }
        
         //Группируем по дням и количеству записей в этом дне
         //Фильтруем по заданной дате
@@ -46,9 +51,9 @@ use App\Models\Statistics\User\Accounts_ExpansionStatistics;
      }
 
      public function getDataInfoUserStatisticsOnlyIp(){
-        return Accounts_ExpansionStatistics::select(DB::raw('ip_address'),DB::raw('COUNT(ip_address) as count') , DB::raw('DATE(created_at) as day'))
+        return Accounts_ExpansionStatistics::select(DB::raw('accounts_expansion_id') , DB::raw('ip_address'),DB::raw('COUNT(ip_address) as count') , DB::raw('DATE(created_at) as day'))
        // ->where("ip_address", ">" ,  1)
-        ->groupBy(DB::raw('ip_address') , DB::raw('DATE(created_at)'))
+        ->groupBy(DB::raw('ip_address') , DB::raw('DATE(created_at)') , DB::raw('accounts_expansion_id'))
         ->orderBy(DB::raw('ip_address'))
         ->orderBy(DB::raw('day'))
         ->get();
@@ -73,6 +78,14 @@ use App\Models\Statistics\User\Accounts_ExpansionStatistics;
         ->orderBy(DB::raw('created_at'))
         ->get();
      }
+
+     public function getDataInfoUserByIpAndDate($ip_address , $date , $accounts_expansion_id){
+      return Accounts_ExpansionStatistics::where('ip_address', '=', $ip_address)
+      ->whereDate('created_at', $date)
+      ->where('accounts_expansion_id', '=', $accounts_expansion_id)
+      ->orderBy(DB::raw('created_at'))
+      ->get();
+   }
 
 
         

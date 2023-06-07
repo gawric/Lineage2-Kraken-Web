@@ -167,12 +167,14 @@ use App\Models\Statistics\Temp\InfoTableStatistics;
         return  $InfoDashboardChars;
     }
 
-    public static function createModelInfoTableStatistics($id , $ip_address , $count , $day){
+    public static function createModelInfoTableStatistics($id , $ip_address , $count , $day , $login , $accounts_expansion_id){
         $model = new InfoTableStatistics();
         $model->id = $id;
         $model->ip_address= $ip_address;
         $model->count= $count;
         $model->day= $day;
+        $model->login= $login;
+        $model->accounts_expansion_id = $accounts_expansion_id;
         return $model;
     }
       
