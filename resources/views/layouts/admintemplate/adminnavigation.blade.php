@@ -44,6 +44,10 @@
                         {{ __('messages.lk_admin_static') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('promo')">
+                        {{ __('messages.lk_admin_promo') }}
+                        </x-dropdown-link>
+
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

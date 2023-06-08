@@ -27,7 +27,7 @@ class AdminDashboardAllCharsByIdUserController extends Controller
     {
         $this->list_servers = Config::get('lineage2.server.list_server');
        // $this->item_id = Config::get('lineage2.server.coin_payments')['coin_of_luck'];
-       $this->item_id = FunctionPayments::getPaymentsItemIdByName("coin_of_luck");
+        $this->item_id = FunctionPayments::getPaymentsItemIdByName("coin_of_luck");
         $this->array_success_items = Config::get('lineage2.server.coin_payments');
         $this->serviceDashboardChars = new DashboardChars();
     }

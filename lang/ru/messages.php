@@ -58,6 +58,7 @@ return [
     'lk_admin_home'=> 'Главная',
     'lk_admin_accounts'=> 'Пользователи',
     'lk_admin_static'=> 'Статистика',
+    'lk_admin_promo'=> 'Промо',
     'lk_admin_panel_admin'=> 'Панель администратора',
     'lk_admin_panel_descript'=> 'Список зарегистрированных пользователей',
     'lk_admin_panel_data_reg' => 'Дата рег.',
@@ -144,6 +145,14 @@ return [
     'lk_admin_panel_visit_statistics_count'=> 'кол-во',
     'lk_admin_panel_visit_statistics_date'=> 'Дата',
  
+    'lk_admin_panel_promo_descript'=> 'Работа с промокодами',
+    'lk_admin_panel_promo_text_button'=> 'Генерация промокода',
+    'lk_admin_panel_promo_table_id'=> 'Промо код',
+    'lk_admin_panel_promo_field'=> 'Количество итемов',
+    'lk_admin_panel_promo_field_quantity'=> 'Количество промокодов',
+    'lk_admin_panel_promo_select_default'=> 'Выбрать итем',
+    'lk_admin_panel_promo_table_quantity'=> 'Количество итемов',
+    'lk_admin_panel_promo_table_data'=> 'Дата создания',
 
     'lk_home' => 'Главная',
     'lk_kits' => 'Стартовые наборы',

@@ -73,6 +73,7 @@ return [
     'lk_admin_home'=> 'Home',
     'lk_admin_accounts'=> 'Users',
     'lk_admin_static'=> 'Statistics',
+    'lk_admin_promo'=> 'Promo',
     'lk_admin_panel_admin'=> 'Admin panel',
     'lk_admin_username' => 'Username',
     'lk_admin_panel_email' => 'Email',
@@ -144,6 +145,14 @@ return [
     'lk_admin_panel_visit_statistics_count'=> 'count',
     'lk_admin_panel_visit_statistics_date'=> 'date',
     'lk_admin_panel_visit_statistics_status' => 'status',
+
+    'lk_admin_panel_promo_descript'=> 'Working with promo codes',
+    'lk_admin_panel_promo_text_button'=> 'Сode generation',
+    'lk_admin_panel_promo_table_id'=> 'Promo code',
+    'lk_admin_panel_promo_field'=> 'Quantity items',
+    'lk_admin_panel_promo_field_quantity'=> 'Number of promo codes',
+    'lk_admin_panel_promo_table_quantity'=> 'Quantity items',
+    'lk_admin_panel_promo_table_data'=> 'Data',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

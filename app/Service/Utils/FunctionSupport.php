@@ -263,6 +263,18 @@ use App\Models\Statistics\Temp\InfoTableStatistics;
         return $temp;
     }
 
+    public static function convertAccessItemToBladeArray($list_access_items){
+        $temp = [];
+        if (isset($list_access_items)) {
+            $index = 0;
+            foreach($list_access_items as $key => $value){
+                $arr = [$key , $value];
+                self::addArray($temp , $arr);
+            }
+        }
+        return $temp;
+    }
+
     public static function parceAccessLevelToBool(int $accesslevel){
         $accesslevelBlock = Config::get('lineage2.server.access_Level_block');
 
