@@ -275,6 +275,8 @@ use App\Models\Statistics\Temp\InfoTableStatistics;
         return $temp;
     }
 
+   
+
     public static function parceAccessLevelToBool(int $accesslevel){
         $accesslevelBlock = Config::get('lineage2.server.access_Level_block');
 

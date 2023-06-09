@@ -153,6 +153,8 @@ return [
     'lk_admin_panel_promo_field_quantity'=> 'Number of promo codes',
     'lk_admin_panel_promo_table_quantity'=> 'Quantity items',
     'lk_admin_panel_promo_table_data'=> 'Data',
+    'lk_admin_panel_promo_table_create_name'=> 'Username',
+    'lk_admin_panel_promo_table_item_name'=> 'Item name',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

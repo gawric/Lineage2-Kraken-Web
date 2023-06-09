@@ -56,7 +56,7 @@
         </div>
 
         <div style="width:15%;margin-bottom:5%;">
-            <select id="small" onchange="GetSelectedServer(this)" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="select_items" onchange="GetSelectedServer(this)" class="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>{{ __('messages.lk_admin_panel_promo_select_default')}}</option>
 
                 @if(isset($accessItems))
@@ -96,12 +96,14 @@
         </div>
 
     </div>
-<table id="table_all_payments" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
+<table id="table_all_promo" style="width:100%;" class="table-autow-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead>
            <tr>
               <th scope="col" class="px-6 py-4">#</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_id')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_quantity')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_item_name')}}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_create_name') }}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_data') }}</th>
            </tr>
           </thead>
@@ -121,33 +123,10 @@
                 <td class="px-6 py-4">
                 {{ $model->char_name }}
                 </td>
-                <td class="px-6 py-4">
-                {{ $model->col }}
-                </td>
-                <td class="px-6 py-4">
-                {{ $model->server_name }}
-                </td>
-                <td class="px-6 py-4">
-                {{ $model->payment_name }}
-                </td>
-                <td class="px-6 py-4">
-                {{ $model->payment_data }}
-                </td>
-                <td class="px-6 py-4">
-                {{ $model->success_status }}
-                </td>
             </tr>
            @endforeach
          @else
-         <tr>
-              <td>  
-                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <td align="center" colspan="10" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                         Нет данных
-                    </th>
-                </tr>
 
-            </tr>
         @endif
 
         </tbody>

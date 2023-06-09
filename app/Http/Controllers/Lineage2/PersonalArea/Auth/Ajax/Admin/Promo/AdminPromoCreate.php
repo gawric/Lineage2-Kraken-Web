@@ -8,17 +8,18 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo;
  use Response;
  use Lang;
  use App\Service\Utils\FunctionSupport;
+ use App\Service\PersonalArea\AdminPromo\IAdminPromo;
 
 
 class AdminPromoCreate extends Controller
 {
-    private $tables_db_payments;
+    //private $tables_db_payments;
+    private $servicePromo;
 
-
-    public function __construct()
+    public function __construct(IAdminPromo $servicePromo)
     {
-        $this->tables_db_payments = Config::get('lineage2.server.support_payments_tables');
-
+       // $this->tables_db_payments = Config::get('lineage2.server.support_payments_tables');
+        $this->servicePromo = $servicePromo;
     }
 
     ///adminPayments/filter?arrayfil[]=val1&foo[]=val2&foo[]=val3
@@ -38,8 +39,12 @@ class AdminPromoCreate extends Controller
  
         try 
         {
-            if(isset($filterArrayOrders)){
-                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>$data_result]); 
+            $arrayPromo = $this->servicePromo->createPromoCodes($itemsnumber , $itemspromonumber , $selectitem);
+
+            info($arrayPromo);
+
+            if(isset($arrayPromo)){
+                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>$arrayPromo]); 
             }
 
             return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>[]]); 

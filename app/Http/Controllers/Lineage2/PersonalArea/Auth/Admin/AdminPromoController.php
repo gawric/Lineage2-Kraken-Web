@@ -8,7 +8,7 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin;
  use Illuminate\Http\Request;
  use Response;
  use Lang;
-
+ //use App\Service\PersonalArea\AdminPromo\IAdminPromo;
 
 
 class AdminPromoController extends Controller
@@ -16,10 +16,12 @@ class AdminPromoController extends Controller
 
 
     private $list_access_items;
+    //private $servicePromo;
 
     public function __construct()
     {
-        $this->list_access_items = Config::get('lineage2.server.coin_payments');      
+        $this->list_access_items = Config::get('lineage2.server.coin_payments');    
+       // $this->servicePromo = $servicePromo;  
     }
 
     
