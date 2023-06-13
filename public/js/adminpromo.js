@@ -1,3 +1,11 @@
+function initSendPromoPagination(nextlink){
+    hideButtonLoadingById("warning_promo");
+    hideButtonLoadingById("success_promo");
+    showButtonLoadingById("loading_promo");
+    clearTableRowsbyId("table_all_promo")
+    getJsonDataPaginationToPromo(nextlink);
+}
+
 
 function initSend(itemsnumber , itemspromonumber , selectitem){
     hideButtonLoadingById("warning_promo");
@@ -21,7 +29,17 @@ function sendCreatePromo(data){
 
             if(!!jQxhr.responseJSON != undefined){
                newdata = jQxhr.responseJSON.data_result;
-               forEachAddPromo(newdata);
+              // console.log(newdata);
+               
+               console.log(getSizeTableRows("table_all_promo"));
+               if(getSizeTableRows("table_all_promo") == 1){
+                 forEachAddPromo(newdata.data);
+               }
+               clearNavigable("navigable_pages_promo");
+               addNewNavigable("navigable_pages_promo" , newdata.links);
+              // clearNavigable("navigable_pages_users");
+              // addNewNavigableUsers("navigable_pages_users" , datajson.links);
+
                setTextById("Обновлено" , "text_success_promo");
                hideButtonLoadingById("loading_promo");
                showButtonLoadingById("success_promo");
@@ -44,6 +62,46 @@ function sendCreatePromo(data){
 
 }
 
+function getJsonDataPaginationToPromo(nextlink){
+    $.ajax({
+        url: nextlink,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+           // console.log(jQxhr.responseJSON.data_result);
+            if(!!jQxhr.responseJSON.data_result != undefined){
+               
+               newdata = jQxhr.responseJSON.data_result;
+               forEachAddPromo(newdata.data);
+
+               clearNavigable("navigable_pages_promo");
+               addNewNavigable("navigable_pages_promo" , newdata.links);
+
+               setTextById("Обновлено" , "text_success_promo");
+               hideButtonLoadingById("loading_promo");
+               showButtonLoadingById("success_promo");
+            }
+        },
+        error: function (data) {
+         
+            if(data.status == 422) {
+                setTextById("Запрос не прошел валидацию!" , "text_warning_promo");
+                showButtonLoadingById("warning_promo");
+             } 
+             else {
+                setTextById("Неизвестная ошибка!" , "text_warning_promo");
+                showButtonLoadingById("warning_promo");
+              }
+             hideButtonLoadingById("loading_promo");
+        }
+    
+        
+    });
+
+}
+
 
 
 function forEachAddPromo(newdata){
@@ -55,22 +113,23 @@ function forEachAddPromo(newdata){
 
  function addRows(item){
     if(item != undefined){
-        console.log(item);
+       // console.log(item);
         var id = item.id;
         var code = item.code;
         var count = item.count;
         var item_id = item.item_id;
         var create_name = item.create_name;
+        var is_used = item.is_used;
         var created_at =  new Date(item.created_at);
 
       
        
        
-        addRowsModel(id , code , count  , formatDate(created_at) , create_name , convertItemIdToItemName(item_id))
+        addRowsModel(id , code , count  , formatDate(created_at) , create_name , convertItemIdToItemName(item_id) , convertUsedToString(is_used))
     }
 }
 
-function addRowsModel(id , code , count  , created_at , create_name , item_name){
+function addRowsModel(id , code , count  , created_at , create_name , item_name , is_used){
     $("#table_all_promo").find('tbody')
     .append($('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">')
         .append($('<th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(id))
@@ -79,6 +138,7 @@ function addRowsModel(id , code , count  , created_at , create_name , item_name)
         .append($('<td class="px-6 py-4">').text(item_name))
         .append($('<td class="px-6 py-4">').text(create_name))
         .append($('<td class="px-6 py-4">').text(created_at))
+        .append($('<td class="px-6 py-4">').text(is_used))
     );
 
 }
@@ -97,6 +157,13 @@ function convertItemIdToItemName(item_id){
   }
 
 
+  function convertUsedToString(is_used){
+    if(is_used){
+        return "Использован";
+    }
+
+    return "Свободен";
+  }
   function formatDate(dateObj){
     
 
@@ -119,4 +186,29 @@ function convertItemIdToItemName(item_id){
     return  `${dateObj.getFullYear()}-${day}-${month} ${dateObj.getHours()}:${minutes}:${dateObj.getSeconds()}`;
     //return dateObj.getFullYear()+"-"+ (dateObj.getMonth()+1) + "-" + dateObj.getDate() + " " +
    // dateObj.getHours() + ":" + dateObj.getMinutes();
+}
+
+
+function clearTableRowsbyId(id_table){
+    $("#"+id_table).children('tbody').children('tr').remove();
+}
+
+function clearNavigable(navigable_id){
+    $("#"+navigable_id).empty();
+}
+
+function addNewNavigable(navigable_id , links){
+
+    links.forEach(function(item) {
+        if(item.active){
+            $("#"+navigable_id).append('<li><a href="#" onClick="getPaginationPromoFilter(this , \''+item.url+'\')" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">'+item.label+'</a></li>');
+        }
+        else{
+            $("#"+navigable_id).append('<li><a href="#" onClick="getPaginationPromoFilter(this , \''+item.url+'\')" aria-current="page" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">'+item.label+'</a> </li>');
+        }
+    });
+}
+
+function getSizeTableRows(id_table){
+    return  $('#'+id_table+' tr').length;
 }

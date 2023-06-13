@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('count');
             $table->timestamp('created_at');
             $table->timestamp('updated_at');
+            $table->boolean('is_used')->default(false);
         });
     }
 

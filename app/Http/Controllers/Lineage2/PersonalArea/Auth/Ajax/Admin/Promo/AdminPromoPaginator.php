@@ -11,13 +11,11 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo;
  use App\Service\PersonalArea\AdminPromo\IAdminPromo;
  use App\Service\Utils\FunctionPaginate;
 
-
-class AdminPromoCreate extends Controller
+class AdminPromoPaginator extends Controller
 {
     //private $tables_db_payments;
     private $servicePromo;
     private $count;
-
 
     public function __construct(IAdminPromo $servicePromo)
     {
@@ -26,26 +24,20 @@ class AdminPromoCreate extends Controller
     }
 
     ///adminPayments/filter?arrayfil[]=val1&foo[]=val2&foo[]=val3
-    public function create(Request $request)
+    public function page(Request $request)
     {
-        $validator = $request->validate([
-            'itemsnumber' => 'required|integer|max:1000',
-            'itemspromonumber' => 'required|integer|max:1000',
-            'selectitem' => 'required|integer',
+        $validator = $this->validate($request, [
+            'page' => 'required|integer|max:1000',
         ]);
 
-        $itemsnumber = FunctionSupport::getDataVariable("itemsnumber" , $validator);
-        $itemspromonumber = FunctionSupport::getDataVariable("itemspromonumber" , $validator);
-        $selectitem = FunctionSupport::getDataVariable("selectitem" , $validator);
+        $page = FunctionSupport::getDataVariable("page" , $validator);
 
-       // info("Hello AdminPromoCreate");
  
         try 
         {
-            $arrayPromo = $this->servicePromo->createPromoCodes($itemsnumber , $itemspromonumber , $selectitem);
             $resultArrayPromo = $this->servicePromo->getAllPromoCodes();
 
-            if(isset($arrayPromo)){
+            if(isset($resultArrayPromo)){
 
                 $data_pages = FunctionPaginate::paginate($resultArrayPromo , $this->count);
                 $data_pages->withPath('/adminPromo/promo_filter');

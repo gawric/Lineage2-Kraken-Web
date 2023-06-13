@@ -67,6 +67,9 @@ return [
     //Количество строчек у админа в adminPayments
     'top_count_payments' => 2,
 
+    //Количество строчек у админа в adminPromo
+    'top_count_promo' => 5,
+
     //Количество разрешенных аккаунтов на одной учетке 
     'allowed_accounts' => 10,
 

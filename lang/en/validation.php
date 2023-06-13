@@ -179,6 +179,9 @@ return [
     'admin_use_all_accounts_error_by_id' => 'Not found user by id',
 
 
+    'lk_table_dashboardchars_promo_error' => 'Promo code not filled',
+
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

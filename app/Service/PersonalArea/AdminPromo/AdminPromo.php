@@ -34,6 +34,10 @@
             return $this->sql_support->save($arrayPromoCodes , FunctionAuthUser::getAuthLogin() , $selectitem , $itemsnumber);
         }
 
+        public function getAllPromoCodes(): array{
+            return $this->sql_support->getAllRomo()->toArray();
+        }
+
         
 
       

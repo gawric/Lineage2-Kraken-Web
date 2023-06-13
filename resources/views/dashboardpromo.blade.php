@@ -70,9 +70,15 @@
 
 
 
-        <div style="margin-bottom:5%;">
+        <div style="margin-bottom:2%;">
                 <button onClick="CreatePromo(this)" type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('messages.lk_admin_panel_promo_text_button') }}</button>
         </div>
+        <div style="margin-bottom:5%;">
+              <div class="flex items-center mb-4">
+                <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('messages.lk_admin_panel_promo_checkbox_used')}}</label>
+              </div>
+          </div>
 
 <div>
 <div style="display:none;margin-top:3%" id="loading_promo">
@@ -105,23 +111,43 @@
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_item_name')}}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_create_name') }}</th>
               <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_data') }}</th>
+              <th scope="col" class="px-6 py-4">{{ __('messages.lk_admin_panel_promo_table_activate') }}</th>
            </tr>
           </thead>
           <tbody>
+          <!--var id = item.id;
+          var code = item.code;
+          var count = item.count;
+          var item_id = item.item_id;
+          var create_name = item.create_name;
+          var created_at =  new Date(item.created_at);-->
            @if(isset($data_result))
             @foreach($data_result->data as $model)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                {{ $model->order_id }}
+                {{ $model->id }}
                 </th>
                 <td class="px-6 py-4">
-                {{ $model->username }}
+                {{ $model->code }}
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->l2account_name }}
+                {{ $model->count }}
                 </td>
                 <td class="px-6 py-4">
-                {{ $model->char_name }}
+                {{ $model->item_id }}
+                </td>
+                <td class="px-6 py-4">
+                {{ $model->create_name }}
+                </td>
+                <td class="px-6 py-4">
+                {{ \Carbon\Carbon::parse($model->created_at)->format('Y-d-m H:m:s')}}
+                </td>
+                <td class="px-6 py-4">
+                @if($model->is_used)
+                  {{ __('messages.lk_admin_panel_promo_table_used') }}
+                @else
+                  {{ __('messages.lk_admin_panel_promo_table_no_used') }}
+                @endif
                 </td>
             </tr>
            @endforeach
@@ -131,6 +157,29 @@
 
         </tbody>
         </table>
+
+        <div style="margin-top:3%;"class="mt-5">
+        <nav>
+          <ul id="navigable_pages_promo" class="inline-flex items-center -space-x-px">
+          @if(isset($data_result->links))
+            @foreach($data_result->links as $pages)
+              @if($pages->active)
+                <li>
+                  <a href="#" onClick="getPaginationPromoFilter(this , '{{ $pages->url }}')" aria-current="page" class="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">{{ $pages->label}}</a>
+                </li>
+              @else
+                <li>
+                  <a href="#" onClick="getPaginationPromoFilter(this , '{{ $pages->url }}')" aria-current="page" class="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{{ $pages->label}}</a>
+                </li>
+              @endif
+ 
+            @endforeach
+            @else
+
+          @endif
+          </ul>
+        </nav>
+     </div>
 
     
 </div>
@@ -188,7 +237,14 @@ var select_server_id;
     if (Number.isInteger(parseInt(select_server_id)) && Number.isInteger(parseInt(itemspromonumber)) && Number.isInteger(parseInt(itemspromonumber))){
         initSend(itemsnumber , itemspromonumber , select_server_id);
     }
+
 }
+
+  function getPaginationPromoFilter(event , nextlink){
+        console.log(event);
+        //event.preventDefault();
+        initSendPromoPagination(nextlink);
+    }
 
 </script>
 

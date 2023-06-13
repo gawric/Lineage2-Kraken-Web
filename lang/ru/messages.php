@@ -148,13 +148,19 @@ return [
     'lk_admin_panel_promo_descript'=> 'Работа с промокодами',
     'lk_admin_panel_promo_text_button'=> 'Генерация промокода',
     'lk_admin_panel_promo_table_id'=> 'Промо код',
-    'lk_admin_panel_promo_field'=> 'Количество итемов',
-    'lk_admin_panel_promo_field_quantity'=> 'Количество промокодов',
+    'lk_admin_panel_promo_field'=> 'Кол-во итемов',
+    'lk_admin_panel_promo_field_quantity'=> 'Кол-во промокодов',
     'lk_admin_panel_promo_select_default'=> 'Выбрать итем',
-    'lk_admin_panel_promo_table_quantity'=> 'Количество итемов',
+    'lk_admin_panel_promo_table_quantity'=> 'Кол-во итемов',
     'lk_admin_panel_promo_table_data'=> 'Дата создания',
     'lk_admin_panel_promo_table_create_name'=> 'Имя пользователя',
     'lk_admin_panel_promo_table_item_name'=> 'Имя предмета',
+    'lk_admin_panel_promo_table_activate'=> 'Исполь.',
+    'lk_admin_panel_promo_table_used'=> 'Активирован',
+    'lk_admin_panel_promo_table_no_used'=> 'Свободен',
+    'lk_admin_panel_promo_checkbox_used'=> 'Только использованные',
+
+
 
     'lk_home' => 'Главная',
     'lk_kits' => 'Стартовые наборы',
@@ -184,16 +190,21 @@ return [
  
 
 
-    'lk_table_dashboardchars_name_char' => 'Имя персонажа',
-    'lk_table_dashboardchars_name_account' => 'Имя аккаунта',
-    'lk_table_dashboardchars_name_server' => 'Имя сервера',
+    'lk_table_dashboardchars_name_char' => 'Имя пер.',
+    'lk_table_dashboardchars_name_account' => 'Имя акк.',
+    'lk_table_dashboardchars_name_server' => 'Имя сер.',
     'lk_table_dashboardchars_lvl' => 'Уровень',
     'lk_table_dashboardchars_clan_name' => 'Клан',
     'lk_table_dashboardchars_pvp' => 'PVP',
     'lk_table_dashboardchars_pk' => 'PK',
     'lk_table_dashboardchars_last_data' => 'Посл.подкл.',
     'lk_table_dashboardchars_online' => 'В сети',
-
+    'lk_table_dashboardchars_promo' => 'Промо',
+    'lk_table_dashboardchars_promo_actvate' => 'Активировать',
+    'lk_table_dashboardchars_promo_dialog_title' => 'Активировать промокод',
+    'lk_table_dashboardchars_promo_dialog_field_promocode' => 'Вставьте промокод',
+    
+    
 
     'lk_new_accounts_title' => 'Создать аккаунт',
     'lk_new_accounts_descripte' => 'Форма для создания новых аккаунтов',

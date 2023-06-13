@@ -39,6 +39,8 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminS
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Statistics\AdminStaticsAllUsersByDay;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminPromoController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoCreate;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoPaginator;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardActivatePromoUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,6 +79,7 @@ Route::middleware('valid')->group(function () {
 Route::middleware(['auth', 'verified', 'roles_user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboardchars', [DashboardCharsController::class, 'index'])->name('dashboardchars');
+    Route::post('/dashboardchars/act_promo', [DashboardActivatePromoUserController::class, 'activate']);
 });
 
 Route::middleware(['auth', 'verified' , 'valid' , 'roles_user'])->group(function () {
@@ -110,6 +113,7 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
 
     Route::get('/adminPromo', [AdminPromoController::class, 'index'])->name('promo');
     Route::post('/adminPromo/create', [AdminPromoCreate::class, 'create']);
+    Route::get('/adminPromo/promo_filter', [AdminPromoPaginator::class, 'page']);
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

@@ -28,6 +28,10 @@
             return $temp;
         }
 
+        public function getAllRomo(){
+            return PromoCodes::all();
+        }
+
         //$table->id();
         //$table->string('code')->unique();
         //$table->string('create_name');

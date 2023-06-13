@@ -178,6 +178,10 @@ return [
     'admin_use_all_accounts_server_name' => 'неверное имя сервера',
     'admin_use_all_accounts_error_by_id' => 'не найден юзер с таким id',
 
+
+
+    'lk_table_dashboardchars_promo_error' => 'Не заполнен промокод',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

@@ -129,7 +129,7 @@
 
 
 
-    <div id="overlay_visit" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
+<div id="overlay_visit" class="fixed hidden z-40 w-screen h-screen inset-0 bg-gray-900 bg-opacity-60"></div>
 
 <!-- Диалоговое окно статистики визитов -->
 <div id="dialog_visit"

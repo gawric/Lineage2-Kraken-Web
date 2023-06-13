@@ -155,6 +155,10 @@ return [
     'lk_admin_panel_promo_table_data'=> 'Data',
     'lk_admin_panel_promo_table_create_name'=> 'Username',
     'lk_admin_panel_promo_table_item_name'=> 'Item name',
+    'lk_admin_panel_promo_table_activate'=> 'Used',
+    'lk_admin_panel_promo_table_used'=> 'Activate',
+    'lk_admin_panel_promo_table_no_used'=> 'Free',
+    'lk_admin_panel_promo_checkbox_used'=> 'Only used',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',
@@ -190,6 +194,9 @@ return [
     'lk_table_dashboardchars_pk' => 'PK',
     'lk_table_dashboardchars_last_data' => 'Last connec.',
     'lk_table_dashboardchars_online' => 'Online',
+    'lk_table_dashboardchars_promo' => 'Promo.Cod',
+    'lk_table_dashboardchars_promo_actvate' => 'Activate',
+    'lk_table_dashboardchars_promo_dialog_title' => 'Activate promo code',
     'lk_admin_panel_windows_chars_name_userweb'=> 'Username',
 
 
