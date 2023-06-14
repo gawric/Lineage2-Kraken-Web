@@ -153,7 +153,7 @@ return [
     'lk_admin_panel_promo_select_default'=> 'Выбрать итем',
     'lk_admin_panel_promo_table_quantity'=> 'Кол-во итемов',
     'lk_admin_panel_promo_table_data'=> 'Дата создания',
-    'lk_admin_panel_promo_table_create_name'=> 'Имя пользователя',
+    'lk_admin_panel_promo_table_create_name'=> 'Имя созд.',
     'lk_admin_panel_promo_table_item_name'=> 'Имя предмета',
     'lk_admin_panel_promo_table_activate'=> 'Исполь.',
     'lk_admin_panel_promo_table_used'=> 'Активирован',

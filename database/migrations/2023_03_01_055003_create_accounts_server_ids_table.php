@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreign('accounts_expansion_id')
             ->references('id')->on('accounts_expansion')
             ->onDelete('cascade');
+
             $table->integer('server_id');
             $table->string('account_name');
         });

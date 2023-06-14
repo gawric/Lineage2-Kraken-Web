@@ -42,6 +42,8 @@
             return $this->sql_support->getAllRomo()->toArray();
         }
 
+   
+
         public function activatePromoCode(string $account_name , string $char_name , int $server_id , string $promo_code){
             $collectionPromoCode = $this->sql_support->findCode($promo_code);
 
@@ -78,6 +80,29 @@
 
             throw new ModelNotFoundException(Lang::get('messages.lk_table_dashboardchars_promo_dialog_error_not_found')  . $promo_code);
 
+        }
+
+        public function getAllUsedPromoCodes(){
+            return $this->sql_support->getAllOnlyUsed()->toArray();
+        }
+
+        public function getInfoPromoCodes(string $promo_code){
+
+            $collectionPromoCode = $this->sql_support->findCode($promo_code);
+
+            if(isset($collectionPromoCode) and $collectionPromoCode->isNotEmpty()){
+                $promo_code_model = $collectionPromoCode->first();
+                $result = $promo_code_model->promo_used;
+                info("PromoUsed");
+                info($result);
+
+                info("promo_code");
+                info($promo_code_model);
+            }
+
+            info("getInfoPromoCodes no working");
+
+           
         }
 
         private function createL2ArrayItems($char_name , $count , $item_id , $server_name){

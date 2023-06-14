@@ -41,6 +41,8 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Admin\AdminPromoController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoCreate;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoPaginator;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardActivatePromoUserController;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoOnlyUsed;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoInfo;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -114,6 +116,9 @@ Route::middleware(['auth', 'verified' ,  'roles_admin'])->group(function () {
     Route::get('/adminPromo', [AdminPromoController::class, 'index'])->name('promo');
     Route::post('/adminPromo/create', [AdminPromoCreate::class, 'create']);
     Route::get('/adminPromo/promo_filter', [AdminPromoPaginator::class, 'page']);
+    Route::get('/adminPromo/promo_used', [AdminPromoOnlyUsed::class, 'page']);
+    Route::get('/adminPromo/promo_info', [AdminPromoInfo::class, 'info']);
+    
 });
 
 //Route::get('/enotio/result', [EnotIoController::class, 'handlePayment']);

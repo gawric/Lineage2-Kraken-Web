@@ -36,7 +36,7 @@ class AdminPromoController extends Controller
         $data_pages->withPath('/adminPromo/promo_filter');
         $data_result = FunctionPaginate::unlockedData($data_pages);
 
-        info($resultArrayPromo);
+      //  info($resultArrayPromo);
        return view('dashboardpromo' , ['accessItems' => FunctionSupport::convertAccessItemToBladeArray($this->list_access_items) , 'data_result' => $data_result]) ;
     }
 

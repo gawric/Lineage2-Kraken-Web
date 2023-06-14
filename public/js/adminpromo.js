@@ -15,6 +15,22 @@ function initSend(itemsnumber , itemspromonumber , selectitem){
     sendCreatePromo(data);
 }
 
+function initSendOnlyUsedPromo(nextlink){
+    hideButtonLoadingById("warning_promo");
+    hideButtonLoadingById("success_promo");
+    showButtonLoadingById("loading_promo");
+    clearTableRowsbyId("table_all_promo");
+    getJsonDataOnlyUsedPromo(nextlink);
+    
+}
+
+function initGetInfoPromo(promo_code){
+    showButtonLoadingById("loading_admin_promo");
+    hideButtonLoadingById("warning_admin_promo");
+    hideButtonLoadingById("success_admin_promo");
+    getJsonDataInfoPromo(promo_code);
+}
+
 function sendCreatePromo(data){
    
     $.ajax({
@@ -103,6 +119,87 @@ function getJsonDataPaginationToPromo(nextlink){
 }
 
 
+function getJsonDataOnlyUsedPromo(nextlink){
+    $.ajax({
+        url: nextlink,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            console.log(jQxhr.responseJSON.data_result);
+            if(!!jQxhr.responseJSON.data_result != undefined){
+               
+               newdata = jQxhr.responseJSON.data_result;
+               forEachAddPromo(newdata.data);
+
+               clearNavigable("navigable_pages_promo");
+               addNewNavigable("navigable_pages_promo" , newdata.links);
+
+               setTextById("Обновлено" , "text_success_promo");
+               hideButtonLoadingById("loading_promo");
+               showButtonLoadingById("success_promo");
+            }
+        },
+        error: function (data) {
+         
+            if(data.status == 422) {
+                setTextById("Запрос не прошел валидацию!" , "text_warning_promo");
+                showButtonLoadingById("warning_promo");
+             } 
+             else {
+                setTextById("Неизвестная ошибка!" , "text_warning_promo");
+                showButtonLoadingById("warning_promo");
+              }
+             hideButtonLoadingById("loading_promo");
+        }
+    
+        
+    });
+
+}
+
+function getJsonDataInfoPromo(promo_code){
+    $.ajax({
+        url: "/adminPromo/promo_info?"+"code="+promo_code,
+        type: 'get',
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function( data, textStatus, jQxhr ){
+            console.log(jQxhr.responseJSON.data_result);
+            if(!!jQxhr.responseJSON.data_result != undefined){
+               
+              // newdata = jQxhr.responseJSON.data_result;
+               //forEachAddPromo(newdata.data);
+
+               //clearNavigable("navigable_pages_promo");
+               //addNewNavigable("navigable_pages_promo" , newdata.links);
+
+               //setTextById("Обновлено" , "text_success_promo");
+               hideButtonLoadingById("loading_admin_promo");
+              // showButtonLoadingById("success_promo");
+            }
+        },
+        error: function (data) {
+         
+            if(data.status == 422) {
+               // setTextById("Запрос не прошел валидацию!" , "text_warning_promo");
+                //showButtonLoadingById("warning_promo");
+             } 
+             else {
+                //setTextById("Неизвестная ошибка!" , "text_warning_promo");
+                //showButtonLoadingById("warning_promo");
+              }
+             hideButtonLoadingById("loading_admin_promo");
+        }
+    
+        
+    });
+
+}
+
+
 
 function forEachAddPromo(newdata){
    
@@ -125,7 +222,7 @@ function forEachAddPromo(newdata){
       
        
        
-        addRowsModel(id , code , count  , formatDate(created_at) , create_name , convertItemIdToItemName(item_id) , convertUsedToString(is_used))
+        addRowsModel(id , code , count  , formatDate(created_at) , create_name , convertItemIdToItemName(item_id) , convertUsedToString(is_used , code))
     }
 }
 
@@ -138,7 +235,7 @@ function addRowsModel(id , code , count  , created_at , create_name , item_name 
         .append($('<td class="px-6 py-4">').text(item_name))
         .append($('<td class="px-6 py-4">').text(create_name))
         .append($('<td class="px-6 py-4">').text(created_at))
-        .append($('<td class="px-6 py-4">').text(is_used))
+        .append($('<td class="px-6 py-4">'+is_used))
     );
 
 }
@@ -157,12 +254,12 @@ function convertItemIdToItemName(item_id){
   }
 
 
-  function convertUsedToString(is_used){
+  function convertUsedToString(is_used , promo_code){
     if(is_used){
-        return "Использован";
+        return '<a href="#" onclick=\'return openDialogAdminPromo(\"'+promo_code+'\")\' class=\"font-medium text-blue-600 dark:text-blue-500 hover:underline\">Использован</a>';
     }
 
-    return "Свободен";
+    return '<p>Свободен</p>';
   }
   function formatDate(dateObj){
     

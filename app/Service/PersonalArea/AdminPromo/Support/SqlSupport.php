@@ -31,10 +31,15 @@
         }
 
        
-
+        //все не использованные
         public function getAllRomo(){
-            return PromoCodes::all();
+            return PromoCodes::where('is_used', false)->get();
         }
+        //все использованные
+        public function getAllOnlyUsed(){
+            return PromoCodes::where('is_used', true)->get();
+        }
+
 
         //$table->id();
         //$table->string('code')->unique();
@@ -76,7 +81,7 @@
        // $table->unsignedBigInteger('accounts_server_id');
        // $table->unsignedBigInteger('accounts_expansion_id');
        // $table->unsignedBigInteger('promo_id');
-        //$table->foreign('promo_id')
+        //$table->foreign('promo_codes_id')
        // ->references('id')->on('promo')
        // ->onDelete('cascade');
        // $table->timestamp('created_at');
@@ -86,7 +91,7 @@
             $promo_used->char_name = $char_name;
             $promo_used->accounts_server_id = $accounts_server_id ;
             $promo_used->accounts_expansion_id = $accounts_expansion_id;
-            $promo_used->promo_id = $promo_id;
+            $promo_used->promo_codes_id = $promo_id;
             $promo_used->created_at = now();
             $promo_used->updated_at = now();
             return $promo_used;
