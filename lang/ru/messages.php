@@ -203,6 +203,8 @@ return [
     'lk_table_dashboardchars_promo_actvate' => 'Активировать',
     'lk_table_dashboardchars_promo_dialog_title' => 'Активировать промокод',
     'lk_table_dashboardchars_promo_dialog_field_promocode' => 'Вставьте промокод',
+    'lk_table_dashboardchars_promo_dialog_error_active' => ' Промокод уже активирован ',
+    'lk_table_dashboardchars_promo_dialog_error_not_found' => ' Промокод не найден ',
     
     
 

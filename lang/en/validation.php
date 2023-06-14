@@ -171,7 +171,7 @@ return [
     'admin_additems_char_name' => 'char_name failed validation',
     'admin_additems_item_id' => 'item id is not correct',
     'admin_additems_count' => 'Quantity is not correct',
-
+    'admin_additems_account_name' => 'account name failed validation',
 
     'admin_use_all_accounts_id' => 'The :attribute must be a valid id.',
     'admin_use_all_accounts_accountname' => 'The :attribute must be a valid accountname.',

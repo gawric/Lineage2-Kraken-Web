@@ -159,6 +159,8 @@ return [
     'lk_admin_panel_promo_table_used'=> 'Activate',
     'lk_admin_panel_promo_table_no_used'=> 'Free',
     'lk_admin_panel_promo_checkbox_used'=> 'Only used',
+    'lk_table_dashboardchars_promo_dialog_error_active' => ' Promo code already activated ',
+    'lk_table_dashboardchars_promo_dialog_error_not_found' => ' Promo code not found ',
 
     'lk_home' => 'Home',
     'lk_kits' => 'Starter kits',

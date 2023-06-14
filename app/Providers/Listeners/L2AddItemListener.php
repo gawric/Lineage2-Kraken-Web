@@ -34,7 +34,7 @@ class L2AddItemListener
     public function handle(L2AddItem $event)
     {
         if (isset($event->order_item)){
-            //info(" L2AddItemListener>>>>>>> " . $event->order_item);
+            
             $server_id = $event->order_item->server_id;
            
             $modelItemsDb = FunctionSupport::getModelOtherDbByName($server_id , $this->list_servers , "items_db_model");

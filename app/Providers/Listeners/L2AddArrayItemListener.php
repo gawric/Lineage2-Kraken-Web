@@ -46,8 +46,10 @@ class L2AddArrayItemListener
     //count
     //item_id
     //server_name
+    //пример [['char_name'=>'char_name','count'=>'1','item_id'=>'1','server_name'=>'1',]]
     private function pushData($array , $list_servers){
         foreach($array as $item){
+
             $server_id = FunctionSupport::getServerNameToServerId($list_servers , $item['server_name']);
             $developer_id = FunctionSupport::getDeveloperId($server_id , $this->list_servers);
             $proxy = $this->getProxySqlServerObject($developer_id);

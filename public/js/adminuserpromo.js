@@ -1,9 +1,9 @@
-function initSendActivatePromo(char_name , server_name , promo_code){
+function initSendActivatePromo(char_name , server_name , promo_code , account_name){
     hideButtonLoadingById("warning_promo");
     hideButtonLoadingById("success_promo");
     showButtonLoadingById("loading_promo");
 
-    data =  {'char_name': char_name,'server_name': server_name,'promo_code':promo_code}
+    data =  {'char_name': char_name,'server_name': server_name,'promo_code':promo_code,'account_name':account_name}
     sendActivatePromo(data);
 }
 
@@ -21,9 +21,17 @@ function sendActivatePromo(data){
         success: function( data, textStatus, jQxhr ){
 
             if(!!jQxhr.responseJSON != undefined){
+               if(!!jQxhr.responseJSON){
+                    if(jQxhr.responseJSON.hasOwnProperty('error')){
+                        setTextById(jQxhr.responseJSON.error , "success_text_promo");
+                    }
+                    else{
+                        setTextById(jQxhr.responseJSON.success , "success_text_promo");
+                    }
+                    
+               }
 
-               console.log(jQxhr.responseJSON);
-               setTextById("Активирован" , "success_text_promo");
+               
                hideButtonLoadingById("loading_promo");
                showButtonLoadingById("success_promo");
             }

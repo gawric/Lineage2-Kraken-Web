@@ -68,7 +68,7 @@
                 {{ $model->online }}
                 </td>
                 <td class="px-6 py-4">
-                <a href="#" onclick='return openDialogPromo( " {{ $model->char_name }} " , " {{ $model->server_name }} ")'' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ __('messages.lk_table_dashboardchars_promo_actvate') }}</a>
+                <a href="#" onclick='return openDialogPromo( " {{ $model->account_name }} "  , " {{ $model->char_name }} " , " {{ $model->server_name }} ")'' class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ __('messages.lk_table_dashboardchars_promo_actvate') }}</a>
                 </td>
             </tr>
          @endforeach
@@ -123,6 +123,10 @@
         </div>
         <div style="margin-top:3%;">
           
+        <div style="margin-bottom:5%;margin-top:5%;">
+            <label for="account_name_dialog" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_table_dashboardchars_name_char') }}</label>
+            <input type="text" id="account_name_dialog" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+          </div>
 
         <div style="margin-bottom:5%;margin-top:5%;">
             <label for="char_name_dialog" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_table_dashboardchars_name_char') }}</label>
@@ -181,18 +185,22 @@
             overlay_user_promo.classList.add('hidden');
         });
 
-        function openDialogPromo(char_name , server_name){
+        function openDialogPromo(account_name , char_name , server_name){
             dialog_user_promo.classList.remove('hidden');
             overlay_user_promo.classList.remove('hidden');
             document.getElementById('char_name_dialog').value = char_name;
             document.getElementById('server_name_dialog').value = server_name;
+            document.getElementById('account_name_dialog').value = account_name;
+            hideButtonLoadingById("warning_promo");
+            hideButtonLoadingById("success_promo");
         }
 
         function initPromoData(){
           char_name = document.getElementById('char_name_dialog').value;
           server_name = document.getElementById('server_name_dialog').value;
           promo_code = document.getElementById('field_promo_code').value;
-          initSendActivatePromo(char_name , server_name , promo_code);
+          account_name = document.getElementById('account_name_dialog').value;
+          initSendActivatePromo(char_name , server_name , promo_code , account_name);
         }
       </script>
 </x-app-layout>

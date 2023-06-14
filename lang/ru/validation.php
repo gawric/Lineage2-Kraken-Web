@@ -168,6 +168,7 @@ return [
     'payments_sum' => 'Сумма не прошла валидацию!',
     'payments_success' => 'Проверка успешна',
 
+    'admin_additems_account_name' => 'account name не прошла проверку',
     'admin_additems_char_name' => 'char_name не прошла проверку',
     'admin_additems_item_id' => 'item id не верный',
     'admin_additems_count' => 'Количество не верное',
