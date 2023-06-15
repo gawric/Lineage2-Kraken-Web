@@ -64,7 +64,7 @@ namespace App\Service\ProxySqlL2Server\RusAcisProxy\PersonArea\Accounts;
         }
 
         public function getInfoAccountServerRusAcis($login , $account_db_model , $server_name){
-            return $this->getAccountServer($login , $current_account_db_model , $server_name);
+            return $this->getAccountServer($login , $account_db_model , $server_name);
         }
 
 
