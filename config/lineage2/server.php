@@ -74,7 +74,7 @@ return [
     'allowed_accounts' => 10,
 
     //Блокировка пользователя если вход произошел с неизвестного ip
-    'blocked_login_with_unknown_ip' => true,
+    'blocked_login_with_unknown_ip' => false,
 
   
     
