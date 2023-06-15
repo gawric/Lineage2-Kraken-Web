@@ -43,6 +43,7 @@ use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoP
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\DashboardActivatePromoUserController;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoOnlyUsed;
 use App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin\Promo\AdminPromoInfo;
+use App\Http\Controllers\Lineage2\PersonalArea\Auth\DashboardConnectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,6 +82,7 @@ Route::middleware('valid')->group(function () {
 Route::middleware(['auth', 'verified', 'roles_user'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboardchars', [DashboardCharsController::class, 'index'])->name('dashboardchars');
+    Route::get('/dashboardconnect', [DashboardConnectController::class, 'index'])->name('dashboardconnect');
     Route::post('/dashboardchars/act_promo', [DashboardActivatePromoUserController::class, 'activate']);
 });
 

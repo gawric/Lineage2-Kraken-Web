@@ -43,6 +43,10 @@
                         <x-dropdown-link :href="route('dashboardchars')">
                         {{ __('messages.lk_characters') }}
                         </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('dashboardconnect')">
+                        {{ __('messages.lk_connect') }}
+                        </x-dropdown-link>
  
 
                         <!-- Authentication -->

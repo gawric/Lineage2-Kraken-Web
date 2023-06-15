@@ -169,6 +169,9 @@ return [
     'lk_characters' => 'Characters',
     'lk_add_new_account' => 'New Account',
     'lk_exit' => 'Log out',
+    'lk_connect' => 'Connect',
+
+
 
     'lk_change_password_accounts_title' => 'Change password',
     'lk_change_password_accounts_descripte' => 'To change your password, you need to enter the old password and come up with a new one!',
@@ -220,6 +223,13 @@ return [
     'lk_new_accounts_select_server' => 'Select server',
     'lk_new_accounts_list_server' => 'Server list',
     
+
+
+    'lk_connect_title' => 'List of recent ip addresses',
+    'lk_connect_descript' => 'This list contains your last 5 ip addresses',
+    'lk_connect_table_id' => 'Id',
+    'lk_connect_table_address' => 'Ip address',
+    'lk_connect_table_data' => 'Data',
 
 
     'lk_all_chars' => 'Сharacter list',

@@ -32,7 +32,7 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
      //Возрващаем все записи Accounts_ip / храним все ип адреса пользователя
      public function accounts_ip()
      {
-       return $this->hasMany(Accounts_ip::class)->orderBy('email_verified_at', 'desc');;
+       return $this->hasMany(Accounts_ip::class)->orderBy('email_verified_at', 'desc');
      }
 
      //Возвращаем роль учетки

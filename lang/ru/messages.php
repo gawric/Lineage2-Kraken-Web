@@ -175,6 +175,7 @@ return [
     'lk_buy_gold' => 'Купить золото',
     'lk_profile' => 'Профиль',
     'lk_characters' => 'Персонажи',
+    'lk_connect' => 'Подключения',
     'lk_exit' => 'Выход',
     'lk_add_new_account' => 'Добавить новый',
 
@@ -225,6 +226,14 @@ return [
     'lk_new_accounts_button_exit' => 'Закрыть',
     'lk_new_accounts_select_server' => 'Выберите сервер',
     'lk_new_accounts_list_server' => 'Список серверов',
+
+
+    'lk_connect_title' => 'Список ip адресов',
+    'lk_connect_descript' => 'Последние 5 ip адресов учетной записи',
+    'lk_connect_table_id' => 'Id',
+    'lk_connect_table_address' => 'Ip address',
+    'lk_connect_table_data' => 'Дата',
+
 
     'lk_all_chars' => 'Список персонажей',
     'lk_all_chars_description' => 'Список всех персонажей найденных на ваших аккаунтах',

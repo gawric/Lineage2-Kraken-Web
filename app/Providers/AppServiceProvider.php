@@ -16,8 +16,10 @@ use App\Service\PersonalArea\AdminDashboard\AdminDashboard;
 use App\Service\PersonalArea\AdminDashboard\IAdminDashboard;
 use App\Service\PersonalArea\AdminStatistics\IAdminStatistics;
 use App\Service\PersonalArea\AdminStatistics\AdminStatistics;
-use  App\Service\PersonalArea\AdminPromo\IAdminPromo;
-use  App\Service\PersonalArea\AdminPromo\AdminPromo;
+use App\Service\PersonalArea\AdminPromo\IAdminPromo;
+use App\Service\PersonalArea\AdminPromo\AdminPromo;
+use App\Service\PersonalArea\AdminConnect\IAdminConnect;
+use App\Service\PersonalArea\AdminConnect\AdminConnect;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(IAdminDashboard::class, AdminDashboard::class);
         $this->app->bind(IAdminStatistics::class, AdminStatistics::class);
         $this->app->bind(IAdminPromo::class, AdminPromo::class);
+        $this->app->bind(IAdminConnect::class, AdminConnect::class);
 
     }
 
