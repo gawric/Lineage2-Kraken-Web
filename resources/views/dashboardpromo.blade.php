@@ -187,7 +187,7 @@
 <!-- Диалоговое окно просмотр кто использовал промо -->
 <div id="dialog_admin_promo"
         class="hidden fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-196 bg-white rounded-md px-8 py-6 space-y-15 drop-shadow-lg">
-        <h1 class="text-2xl font-semibold">{{ __('messages.lk_table_dashboardchars_promo_dialog_title') }}</h1>
+        <h1 class="text-2xl font-semibold">{{ __('messages.lk_admin_panel_promo_modal_title') }}</h1>
         <div style="margin-top:2%; margin-bottom:1%; width:80%;"class="grid mb-6">
           <div style="display:none;" id="warning_admin_promo"  class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
             <span id="text_warning_admin_promo"  class="block sm:inline"></span>
@@ -208,30 +208,33 @@
 
         </div>
         <div style="margin-top:3%;">
-          
+
         <div style="margin-bottom:5%;margin-top:5%;">
-            <label for="account_name_dialog" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_table_dashboardchars_name_char') }}</label>
-            <input type="text" id="account_name_dialog" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+            <label for="promo_used_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_promo_modal_id') }}</label>
+            <input type="text" id="promo_used_id" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
           </div>
 
         <div style="margin-bottom:5%;margin-top:5%;">
-            <label for="char_name_dialog" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_table_dashboardchars_name_char') }}</label>
-            <input type="text" id="char_name_dialog" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+            <label for="promo_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_promo_modal_promo_cod') }}</label>
+            <input type="text" id="promo_code" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
           </div>
 
           <div style="margin-bottom:5%;">
-            <label for="server_name_dialog" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_table_dashboardchars_name_server') }}</label>
-            <input type="text" id="server_name_dialog" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
+            <label for="use_account_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_promo_modal_account_name') }}</label>
+            <input type="text" id="use_account_name" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
           </div>
 
           <div style="margin-bottom:5%;">
-            <label for="field_promo_code" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_table_dashboardchars_promo_dialog_field_promocode') }}</label>
-            <input type="text" id="field_promo_code" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <label for="use_char_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_promo_modal_char_name') }}</label>
+            <input type="text" id="use_char_name" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           </div>
 
-          <div style="margin-bottom:5%;margin-top:5%;">
-            <button type="button" onClick="initPromoData()" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('messages.lk_table_dashboardchars_promo_actvate') }}</button>
+
+          <div style="margin-bottom:5%;">
+            <label for="use_data" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('messages.lk_admin_panel_promo_modal_date') }}</label>
+            <input type="text" id="use_data" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           </div>
+         
 
 
         </div>
@@ -295,6 +298,7 @@
   function openDialogAdminPromo(promo_code){
         overlay_admin_promo.classList.remove('hidden');
         dialog_admin_promo.classList.remove('hidden');
+        clearDataInfo();
         initGetInfoPromo(promo_code);
   }
 

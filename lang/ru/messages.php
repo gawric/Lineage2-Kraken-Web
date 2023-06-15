@@ -161,6 +161,14 @@ return [
     'lk_admin_panel_promo_checkbox_used'=> 'Только использованные',
 
 
+    'lk_admin_panel_promo_modal_char_name'=> 'Имя чара',
+    'lk_admin_panel_promo_modal_account_name'=> 'Имя Аккаунт',
+    'lk_admin_panel_promo_modal_promo_cod'=> 'Промокод',
+    'lk_admin_panel_promo_modal_date'=> 'Дата использования',
+    'lk_admin_panel_promo_modal_id'=> 'Id записи',
+    'lk_admin_panel_promo_modal_title' => 'Информация о промокоде',
+
+
 
     'lk_home' => 'Главная',
     'lk_kits' => 'Стартовые наборы',

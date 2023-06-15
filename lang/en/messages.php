@@ -187,6 +187,14 @@ return [
     'lk_table_dashboard_count_chars' => 'numb. of characters',
     'lk_table_dashboard_name_server' => 'Server name',
 
+
+    'lk_admin_panel_promo_modal_char_name'=> 'Char name',
+    'lk_admin_panel_promo_modal_account_name'=> 'Name Account',
+    'lk_admin_panel_promo_modal_promo_cod'=> 'Promo code',
+    'lk_admin_panel_promo_modal_date'=> 'Date of use',
+    'lk_admin_panel_promo_modal_id'=> 'Id',
+    'lk_admin_panel_promo_modal_title' => 'Promo information',
+
     'lk_table_dashboardchars_name_char' => 'Сharacter `s name',
     'lk_table_dashboardchars_name_account' => 'Account name',
     'lk_table_dashboardchars_name_server' => 'Server name',

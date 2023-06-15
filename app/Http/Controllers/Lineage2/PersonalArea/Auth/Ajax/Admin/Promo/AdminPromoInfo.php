@@ -34,12 +34,11 @@ class AdminPromoInfo extends Controller
  
         try 
         {
-            info("request info promo");
-            info($code);
+
             $infoPromo = $this->servicePromo->getInfoPromoCodes($code);
 
-            if(isset($resultArrayPromo)){
-                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>$data_result]); 
+            if(isset($infoPromo) and !is_array($infoPromo)){
+                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>$infoPromo]); 
             }
 
             return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'data_result'=>[]]); 

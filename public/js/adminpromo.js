@@ -169,27 +169,32 @@ function getJsonDataInfoPromo(promo_code){
         success: function( data, textStatus, jQxhr ){
             console.log(jQxhr.responseJSON.data_result);
             if(!!jQxhr.responseJSON.data_result != undefined){
-               
+                var obj = jQxhr.responseJSON.data_result;
+
+                if(!Array.isArray(obj)){
+                    setDataInfo(obj.id , obj.code , obj.account_name, obj.char_name , obj.created_at);
+                }
+                
               // newdata = jQxhr.responseJSON.data_result;
                //forEachAddPromo(newdata.data);
 
                //clearNavigable("navigable_pages_promo");
                //addNewNavigable("navigable_pages_promo" , newdata.links);
-
-               //setTextById("Обновлено" , "text_success_promo");
+              // setDataInfo(id , promo_code , account_name, char_name , data)
+               setTextById("Обновлено" , "success_text_admin_promo");
                hideButtonLoadingById("loading_admin_promo");
-              // showButtonLoadingById("success_promo");
+               showButtonLoadingById("success_admin_promo");
             }
         },
         error: function (data) {
          
             if(data.status == 422) {
-               // setTextById("Запрос не прошел валидацию!" , "text_warning_promo");
-                //showButtonLoadingById("warning_promo");
+                setTextById("Запрос не прошел валидацию!" , "text_warning_admin_promo");
+                showButtonLoadingById("warning_admin_promo");
              } 
              else {
-                //setTextById("Неизвестная ошибка!" , "text_warning_promo");
-                //showButtonLoadingById("warning_promo");
+                setTextById("Неизвестная ошибка!" , "text_warning_admin_promo");
+                showButtonLoadingById("warning_admin_promo");
               }
              hideButtonLoadingById("loading_admin_promo");
         }
@@ -308,4 +313,21 @@ function addNewNavigable(navigable_id , links){
 
 function getSizeTableRows(id_table){
     return  $('#'+id_table+' tr').length;
+}
+
+
+function setDataInfo(id , promo_code , account_name, char_name , data){
+    document.getElementById("promo_used_id").value = id;
+    document.getElementById("promo_code").value= promo_code;
+    document.getElementById("use_account_name").value= account_name;
+    document.getElementById("use_char_name").value= char_name;
+    document.getElementById("use_data").value= data;
+}
+
+function clearDataInfo(){
+    document.getElementById("promo_used_id").value = "";
+    document.getElementById("promo_code").value= "";
+    document.getElementById("use_account_name").value= "";
+    document.getElementById("use_char_name").value= "";
+    document.getElementById("use_data").value= "";
 }

@@ -5,6 +5,8 @@ namespace App\Models\Statistics;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Statistics\InfoAllStatistics;
+use Carbon\Carbon;
+
 
  class InfoVisitStatistics extends Model
  {
@@ -19,6 +21,12 @@ use App\Models\Statistics\InfoAllStatistics;
     {
       return $this->belongsTo(InfoAllStatistics::class);
     }
+
+
+    public function getDay(){
+      return (int)Carbon::parse($this->day)->format('d');
+    }
+
 
 
      public function scopeFilter($query, $filters)

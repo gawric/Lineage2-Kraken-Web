@@ -9,6 +9,7 @@
  use App\Models\Promo\PromoUsed;
  use App\Models\Accounts_server_id;
  use App\Service\Utils\FunctionOtherUser;
+ use App\Models\Temp\Promo\TempInfoCode;
 
     class SqlSupport
     {
@@ -95,6 +96,24 @@
             $promo_used->created_at = now();
             $promo_used->updated_at = now();
             return $promo_used;
+        }
+
+         //$id;
+         //$code;
+        // $account_name;
+        // $char_name
+        // $created_at;
+        public function createTempInfoCode($id , $code , $account_name , $char_name , $created_at){
+            $temp = new TempInfoCode();
+
+            $temp->id= $id;
+            $temp->code = $code;
+            $temp->account_name = $account_name;
+            $temp->char_name = $char_name;
+            $temp->created_at = $created_at;
+
+            return $temp;
+
         }
 
       

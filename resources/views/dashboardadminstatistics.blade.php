@@ -464,7 +464,7 @@ new Chart(ctx, {
       data: [ 
              @if(isset($resultMouth))
                @foreach($resultMouth as $item)
-                 {{ $item->count }},
+                 {{ $item }},
                @endforeach
              @else
              @endif
@@ -477,7 +477,7 @@ new Chart(ctx, {
       data: [ 
              @if(isset($resultUserMouth))
                @foreach($resultUserMouth as $item)
-                 {{ $item->count }},
+                 {{ $item }},
                @endforeach
              @else
              @endif

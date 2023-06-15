@@ -91,18 +91,14 @@
             $collectionPromoCode = $this->sql_support->findCode($promo_code);
 
             if(isset($collectionPromoCode) and $collectionPromoCode->isNotEmpty()){
+
                 $promo_code_model = $collectionPromoCode->first();
-                $result = $promo_code_model->promo_used;
-                info("PromoUsed");
-                info($result);
+                $promo_used_model = $this->getPromoUsed($promo_code_model->promo_used);
 
-                info("promo_code");
-                info($promo_code_model);
+                return $this->getModelInfoPromo($promo_code_model->code , $promo_used_model);
             }
-
-            info("getInfoPromoCodes no working");
-
-           
+            
+            return [];
         }
 
         private function createL2ArrayItems($char_name , $count , $item_id , $server_name){
@@ -121,6 +117,24 @@
         private function savePromo_used($promo_used){
             $promo_used->save();
         }
+
+        private function getPromoUsed($promo_used){
+            if(isset($promo_used)){
+                return $promo_used->first();
+            }
+            return [];
+        }
+
+        private function getModelInfoPromo($code , $promo_used_model){
+            if(isset($promo_used_model) and !is_array($promo_used_model)){
+                return $this->createInfoModelPromo($promo_used_model->id , $code , $promo_used_model->getAccountName(), $promo_used_model->char_name , $promo_used_model->created_at);
+            }
+        }
+
+        private function createInfoModelPromo($id , $code , $account_name , $char_name , $created_at){
+            return $this->sql_support->createTempInfoCode($id , $code , $account_name , $char_name , $created_at);
+        }
+
 
         
 

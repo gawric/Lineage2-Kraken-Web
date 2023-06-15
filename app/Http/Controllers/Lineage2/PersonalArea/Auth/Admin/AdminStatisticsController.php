@@ -45,7 +45,10 @@ class AdminStatisticsController extends Controller
         $data_pages1 = FunctionPaginate::paginate($resultUserArrayOnlyIp , $this->count);
         $data_pages1->withPath('/adminStatistics/user_filter');
         $data_result_user = FunctionPaginate::unlockedData($data_pages1);
-        //dd($data_result_user);
+
+        $resultUserMouth  = $this->parceFormatChars(count($arrayDays) , $resultUserMouth);
+        $resultVisitMouth  = $this->parceFormatChars(count($arrayDays) , $resultVisitMouth);
+      
 
        return view('dashboardadminstatistics' , ['arrayDays' => $arrayDays , 'resultMouth' => $resultVisitMouth , 'resultUserMouth' => $resultUserMouth ,'data_result' => $data_result , 'data_result_user' => $data_result_user ]) ;
     }
@@ -75,6 +78,21 @@ class AdminStatisticsController extends Controller
             array_push($temp , []);
        }
     }
+
+    private function parceFormatChars($arrayDays , $injectDays){
+        $temp = array_fill(0, $arrayDays ,  0);
+        $index = 0;
+        foreach($injectDays as $item){
+          // dd($item);
+            $day = $item->getDay();
+            $index++;
+            array_splice( $temp  , $day - 1, 0, $item->count ); 
+        }
+    //    dd($temp);
+        return $temp;
+    }
+
+ 
 
 
 
