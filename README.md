@@ -6,6 +6,7 @@
 **Личный кабинет** используем tailwind
 ![Kraken Web!](https://i.ibb.co/6RHF7bS/finish.png)
 
+##### Учетная запись админа gawric@mail.ru pass 12345678
 ##### Тестовый вариант можно посмотреть здесь [Демо сайт1](http://45.12.236.179:80/) или [Демо сайт2](http://45.12.236.179:8000/)
 ##### Инструкция как развернуть у себя [Дока](https://github.com/gawric/Lineage2-Kraken-Web/blob/master/docs/index.md)
 
