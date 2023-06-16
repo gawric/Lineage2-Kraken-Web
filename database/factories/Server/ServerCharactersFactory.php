@@ -5,6 +5,7 @@ namespace Database\Factories\Server;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 //Фейковые данные для тестирования RusAcis Characters
+//Такое же имя указано в config/server что-бы связывать имя тестового аккаунта сервера с чаром 
 class ServerCharactersFactory extends Factory
 {
     /**

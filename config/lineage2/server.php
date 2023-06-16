@@ -17,6 +17,8 @@ return [
                 'accounts_db_model' => "App\Models\Server\ServerAccounts",
                 'clandata_db_model' => "App\Models\Server\ServerClanData",
                 'items_db_model' => "App\Models\Server\ServerItems",
+                //необязательный параметр нужен для тестов. При тестах связывает таблицу accounts с таблицей characters по этмоу имени
+                'test_account_name' => "account_name_test_acis",
         ],
             'server2' => [
                 'id'=>'2',
@@ -33,6 +35,7 @@ return [
                 'accounts_db_model' => "App\Models\Server\PwSoft\PwSoftServerAccounts",
                 'clandata_db_model' => "App\Models\Server\PwSoft\PwSoftServerClanData",
                 'items_db_model' => "App\Models\Server\PwSoft\PwSoftItems",
+                'test_account_name' => "account_name_test_pwsoft",
         ],
             'server3' => [
                 'id'=>'3',
@@ -50,6 +53,7 @@ return [
                 'accounts_db_model' => "App\Models\Server\Lucera\LuceraServerAccounts",
                 'clandata_db_model' => "App\Models\Server\Lucera\LuceraServerClanData",
                 'items_db_model' => "App\Models\Server\Lucera\LuceraServerItems",
+                'test_account_name' => "account_name_test_lucera",
         ],
     ],
 

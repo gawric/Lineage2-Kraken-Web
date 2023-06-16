@@ -11,6 +11,7 @@ use Config;
 use App\Models\Accounts_expansion;
 use App\Models\Accounts_server_id;
 use App\Service\Utils\FunctionSupport;
+use Tests\Feature\Lineage\PersonArea\Support\Utils;
 
 class DashboardTest extends TestCase
 {
@@ -28,7 +29,7 @@ class DashboardTest extends TestCase
 
      public function test_tables_all_accounts_user(){
         $user = Accounts_expansion::factory()->create();
-        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $response = $this->actingAs($user)->get('/dashboard');
         $response->assertStatus(200);
      }
@@ -36,7 +37,7 @@ class DashboardTest extends TestCase
      public function test_create_l2user_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
-        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $array_response = [];
         foreach($this->list_server as $server){
 
@@ -60,7 +61,7 @@ class DashboardTest extends TestCase
      public function test_valid_create_l2user_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
-        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         foreach($this->list_server as $server){
             $response = $this->actingAs($user)->post('/addL2User', [
                 'login' => 'sadqqeweqwe',
@@ -78,14 +79,14 @@ class DashboardTest extends TestCase
      public function test_change_password_users_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
-        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $array_fake_data = $this->createFakeData($this->list_server , $user );
 
 
         foreach($this->list_server as $server){
 
             $server_id = $server['id'];
-            $user_arr = $this->getData($server_id , $array_fake_data);
+            $user_arr = Utils::getData($server_id , $array_fake_data);
           //  dd($user_arr);
             $response = $this->actingAs($user)->post('/changePassL2User', [
                 'login' => $user_arr['username'],
@@ -103,14 +104,14 @@ class DashboardTest extends TestCase
      public function test_faild_valid_change_password_to_dashboard()
      {
         $user = Accounts_expansion::factory()->create();
-        $this->setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
         $array_fake_data = $this->createFakeData($this->list_server , $user );
 
 
         foreach($this->list_server as $server){
 
             $server_id = $server['id'];
-            $user_arr = $this->getData($server_id , $array_fake_data);
+            $user_arr = Utils::getData($server_id , $array_fake_data);
           //  dd($user_arr);
             $response = $this->actingAs($user)->post('/changePassL2User', [
                 'login' => 'фывфывф',
@@ -149,18 +150,8 @@ class DashboardTest extends TestCase
 
 
 
-     private function getData($server_id , $array_fake_data){
-        foreach($array_fake_data as $user){
-            if($user['server_id'] == $server_id){
-                return $user;
-            }
-        }
-     }
+    
 
-     private function setRoleUser($role_name , $accounts_expansion_id , $description , $date_auth){
-        $model_role = FunctionSupport::createModelAccounts_role($role_name , $accounts_expansion_id , $description , $date_auth);
-        $model_role->save();
-    }
      
 
    
