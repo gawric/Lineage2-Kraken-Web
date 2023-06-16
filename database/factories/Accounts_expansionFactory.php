@@ -15,9 +15,9 @@ class Accounts_expansionFactory extends Factory
     public function definition()
     {
         return [
-            'id' => fake()->randomElement([1]),
-            'login' => fake()->randomElement(['gawrictest']),
-            'email' => 'gawric@mail.ru',
+            'id' => fake()->randomElement([1,2]),
+            'login' => fake()->randomElement(['gawrictest' , 'gawrictest1']),
+            'email' => fake()->randomElement(['gawric@mail.ru' , 'gawric1@mail.ru']),
             'password' =>  fake()->randomElement([bcrypt('12345678')]),
             'email_verified_at' => now(),
         ];

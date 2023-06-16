@@ -14,11 +14,13 @@ use App\Service\Utils\FunctionSupport;
 use Tests\Feature\Lineage\PersonArea\Support\Utils;
 use Illuminate\Support\Facades\Schema;
 
-class DashboardCharsTest extends TestCase
+
+class AdminDashboardTest extends TestCase
 {
      
        use RefreshDatabase;
        public $list_server;
+       public $role_name_admin;
        public $role_name_user;
 
 
@@ -26,37 +28,43 @@ class DashboardCharsTest extends TestCase
      {
          parent::setUp();
          $this->list_server = Config::get('lineage2.server.list_server');
+         $this->role_name_admin = Config::get('lineage2.server.role_name_admin');
          $this->role_name_user = Config::get('lineage2.server.role_name_user');
 
-   
      }
 
-     public function test_dashboardchars(){
-        $user = Accounts_expansion::factory()->create();
-        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+    public function test_no_access_user_dashboard_admin(){
 
-        $array_fake_data = $this->createFakeData($this->list_server , $user );
-        $response = $this->actingAs($user)->get('/dashboardchars');
-        //присутствует заданный кусок в ответе приме: account_name_test_acis
-        $response->assertSee($array_fake_data[0]['username']);
+        $user = Utils::createUser($this->role_name_user);
 
-     }
+        $response = $this->actingAs($user)->get('/adminDashboard');
 
-     public function test_empty_dashboardchars(){
-        $user = Accounts_expansion::factory()->create();
-        Utils::setRoleUser($this->role_name_user, $user->id , "Test role" ,now());
+    
+        $response->assertStatus(401);
+    }
 
-        $response = $this->actingAs($user)->get('/dashboardchars');
+    public function test_access_admin_dashboard_admin(){
+
+        $admin_user = Utils::createAdmin($this->role_name_admin);
+
+        $response = $this->actingAs($admin_user)->get('/adminDashboard');
+ 
         $response->assertStatus(200);
-     }
-
-     public function test_fail_access_dashboardchars(){
-        $response = $this->get('/dashboardchars');
-        $response->assertStatus(302);
-     }
+    }
 
 
-     private function createFakeData($list_server , $user ){
+    public function test_data_dashboard_admin(){
+        $admin_user = Utils::createAdmin($this->role_name_admin);
+        $user = Utils::createUser($this->role_name_user);
+        $array_fake_data = $this->createFakeData($this->list_server , $user );
+        //$admin_user = Utils::createAdmin($this->role_name_admin);
+        //$response = $this->actingAs($user)->get('/adminDashboard');
+        //dd($response);
+        //$response->assertStatus(200);
+    }
+
+
+    private function createFakeData($list_server , $user ){
         
         $array_fake_data = [];
         foreach($list_server as $server){
@@ -78,6 +86,7 @@ class DashboardCharsTest extends TestCase
         return $array_fake_data;
      }
 
+
      private function createAccountsData($login , $user , $server_id){
         $response = $this->actingAs($user)->post('/addL2User', [
             'login' => $login ,
@@ -88,11 +97,7 @@ class DashboardCharsTest extends TestCase
         $response->assertStatus(200);
      }
 
-
-
-
-     
-
+    
     
 
 }

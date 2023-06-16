@@ -12,6 +12,7 @@ use App\Models\Accounts_expansion;
 use App\Models\Accounts_server_id;
 use App\Service\Utils\FunctionSupport;
 use Tests\Feature\Lineage\PersonArea\Support\Utils;
+use Illuminate\Support\Facades\Schema;
 
 class DashboardTest extends TestCase
 {
@@ -25,6 +26,8 @@ class DashboardTest extends TestCase
          parent::setUp();
          $this->list_server = Config::get('lineage2.server.list_server');
          $this->role_name_user = Config::get('lineage2.server.role_name_user');
+
+       
      }
 
      public function test_tables_all_accounts_user(){
