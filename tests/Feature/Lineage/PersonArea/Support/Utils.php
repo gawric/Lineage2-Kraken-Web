@@ -20,6 +20,32 @@ use App\Service\Utils\FunctionSupport;
         $characters_model_db::factory()->count(3)->create();
     }
 
+
+
+   // 'obj_id' => fake()->unique()->numberBetween(0,3999),
+    //'account_name' => fake()->randomElement(['account_name_test_acis']),
+    //'char_name' => fake()->unique()->randomElement(['test_user_1_acis' , 'test_user_2_acis' , 'test_user_3_acis' , 'test_user_4_acis']),
+    //'pvpkills' => fake()->randomElement([0 , 20]),
+    //'pkkills' =>  fake()->randomElement([0 , 30]),
+    //'classid' =>  fake()->randomElement([11, 99, 16 , 15]), 
+    //'level' =>  fake()->randomElement([11, 99, 16 , 15]), 
+    //'onlinetime' =>  fake()->randomElement([11, 99, 16 , 15]), 
+    //'online' =>  fake()->randomElement([0,1]), 
+    //clan_id - генерируем в таблиц ServerClanData
+    //'clanid' => fake()->randomElement([1, 2, 3]), 
+    public static function setCharsDataManual($characters_model_db , $obj_id , $account_name ,  $char_name , $pvpkills , $pkkills , $classid, $onlinetime , $online){
+        $model = new $characters_model_db();
+
+        $model->account_name = $account_name;
+        $model->char_name = $char_name;
+        $model->pvpkills = $pvpkills;
+        $model->pkkills = $pkkills;
+        $model->classid =  $classid;
+        $model->onlinetime = $onlinetime;
+        $model->online = $online;
+        return $model;
+    }
+
     public static function clearTable($model_table){
         $model_table::query()->delete();
     }
@@ -41,13 +67,31 @@ use App\Service\Utils\FunctionSupport;
         }
      }
 
+     //'id' => fake()->randomElement([1]),
+     //'login' => fake()->randomElement(['gawrictest']),
+     //'email' => fake()->randomElement(['gawric@mail.ru']),
+     //'password' =>  fake()->randomElement([bcrypt('12345678')]),
+     //'email_verified_at' => now(),
      public static function createAdmin($role_name_admin){
-        $admin = Accounts_expansion::factory()->create();
+        $admin = self::createAccountExpasion();
+        $admin->save();
         self::setRoleUser($role_name_admin, $admin->id , "Comment test role admin" ,now());
         self::setIpAddressUser("127.0.0.1", $admin->id , now());
 
         return $admin;
      }
+
+     private static function createAccountExpasion(){
+        $model = new Accounts_expansion();
+        $model->id = 12;
+        $model->login = "gawricadmin";
+        $model->email = "admin@mail.ru";
+        $model->password = bcrypt('12345678');
+        $model->email_verified_at = now();
+
+        return $model;
+     }
+
 
      public static function createUser($role_name_user){
         $user = Accounts_expansion::factory()->create();

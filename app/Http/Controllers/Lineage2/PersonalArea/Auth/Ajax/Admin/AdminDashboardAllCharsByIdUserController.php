@@ -32,7 +32,7 @@ class AdminDashboardAllCharsByIdUserController extends Controller
         $this->serviceDashboardChars = new DashboardChars();
     }
 
-    //adminDashboard/block?accountId=2 как пример
+    //adminDashboard/block?accountExpansionId=2 как пример
     public function index(Request $request)
     {
         $validated = $request->validate([

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Lineage\PersonArea;
+namespace Tests\Feature\Lineage\PersonArea\Admin\Ajax;
 
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -14,8 +14,9 @@ use App\Service\Utils\FunctionSupport;
 use Tests\Feature\Lineage\PersonArea\Support\Utils;
 use Illuminate\Support\Facades\Schema;
 
+// Route::get('/adminDashboard/all_l2accounts', [AdminDashboardAllAccountsByIdUserController::class, 'index']);
 
-class AdminDashboardTest extends TestCase
+class AdminDashboardAllAccountsByIdUserControllerTest extends TestCase
 {
      
        use RefreshDatabase;
@@ -33,42 +34,39 @@ class AdminDashboardTest extends TestCase
 
      }
 
-    public function test_no_access_user_dashboard_admin(){
-
-        $user = Utils::createUser($this->role_name_user);
-
-        $response = $this->actingAs($user)->get('/adminDashboard');
-
-    
-        $response->assertStatus(401);
-    }
-
-    public function test_access_admin_dashboard_admin(){
-
-        $admin_user = Utils::createAdmin($this->role_name_admin);
-
-        $response = $this->actingAs($admin_user)->get('/adminDashboard');
- 
-        $response->assertStatus(200);
-    }
 
 
-    public function test_data_dashboard_admin(){
+  
+
+  //adminDashboard/all_l2accounts?accountExpansionId=2 как пример
+  //Accounts_expansionFactory idUser = 1
+    public function test_get_admin_all_usersbyid(){
         $admin_user = Utils::createAdmin($this->role_name_admin);
         $user = Utils::createUser($this->role_name_user);
         $array_fake_data = $this->createFakeData($this->list_server , $user );
-        //$admin_user = Utils::createAdmin($this->role_name_admin);
-        $response = $this->actingAs($admin_user)->get('/adminDashboard');
-       // dd($response);
-        //gawrictest - берется из Account_expansionFactory
-        $response->assertSee("gawrictest");
-        //$response->assertStatus(200);
+        $response = $this->actingAs($admin_user)->get('/adminDashboard/all_l2accounts?accountExpansionId='.$user->id);
+        $response->assertSee($array_fake_data[0]['username']);
     }
+
+  public function test_get_empty_all_usersbyid(){
+    $admin_user = Utils::createAdmin($this->role_name_admin);
+    $response = $this->actingAs($admin_user)->get('/adminDashboard/all_l2accounts?accountExpansionId=99');
+    $response->assertStatus(404);
+  }
+
+  public function test_get_fail_valid_usersbyid(){
+    $admin_user = Utils::createAdmin($this->role_name_admin);
+    $response = $this->actingAs($admin_user)->get('/adminDashboard/all_l2accounts?accountExpansionId=rerewrfdsdf');
+   // dd($response);
+    $response->assertStatus(302);
+  }
+
 
 
     private function createFakeData($list_server , $user ){
         
         $array_fake_data = [];
+        
         foreach($list_server as $server){
 
             $server_id = $server['id'];
