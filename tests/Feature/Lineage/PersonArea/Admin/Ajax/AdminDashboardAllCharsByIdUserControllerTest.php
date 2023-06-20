@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Lineage\PersonArea\Admin\Ajax;
 
-
+use App\Service\Utils\FunctionOtherUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -52,7 +52,6 @@ class AdminDashboardAllCharsByIdUserControllerTest extends TestCase
   public function test_get_empty_all_charsbyid(){
     $admin_user = Utils::createAdmin($this->role_name_admin);
     $response = $this->actingAs($admin_user)->get('/adminDashboard/allchars?accountExpansionId=99');
-   // dd($response);
     $response->assertStatus(404);
   }
 

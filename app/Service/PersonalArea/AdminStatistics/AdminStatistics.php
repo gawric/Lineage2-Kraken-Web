@@ -96,8 +96,13 @@
               foreach($collection as $item){
                 if($item->count > 1){
                     if(isset($item->accounts_expansion_id)){
+
                         $user = $this->sql_support->getAccountExpansionById($item->accounts_expansion_id);
-                        $this->add($temp , $index , $item , $user->login , $item->accounts_expansion_id);
+                        
+                        if(isset($user) and !is_array($user)){
+                            $this->add($temp , $index , $item , $user->login , $item->accounts_expansion_id);
+                        }
+                        
                     }
                     else{
                         $this->add($temp , $index , $item , "non" , -1);

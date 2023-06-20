@@ -44,6 +44,8 @@ class Accounts_expansion extends Authenticatable implements MustVerifyEmail
 
      //Возрващаем записи с фильтром по server_id
      public function accountsServerFilterById($search_server_id){
+       info("accountsServerFilterById");
+       info($search_server_id);
        return $this->hasMany(Accounts_server_id::class)->where('server_id', $search_server_id);
      }
 

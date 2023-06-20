@@ -14,9 +14,9 @@ use App\Service\Utils\FunctionSupport;
 use Tests\Feature\Lineage\PersonArea\Support\Utils;
 use Illuminate\Support\Facades\Schema;
 
-// Route::get('/adminDashboard/block', [AdminDashboardBlockUserController::class, 'index']);
 
-class AdminDashboardBlockUserControllerTest extends TestCase
+
+class AdminDashboardUnBlockUserControllerTest extends TestCase
 {
      
        use RefreshDatabase;
@@ -31,7 +31,7 @@ class AdminDashboardBlockUserControllerTest extends TestCase
          $this->list_server = Config::get('lineage2.server.list_server');
          $this->role_name_admin = Config::get('lineage2.server.role_name_admin');
          $this->role_name_user = Config::get('lineage2.server.role_name_user');
-         $this->access_level_block = Config::get('lineage2.server.access_Level_block');
+         $this->access_level_block = Config::get('lineage2.server.access_Level_unblock');
          
 
      }
@@ -40,17 +40,17 @@ class AdminDashboardBlockUserControllerTest extends TestCase
 
   
      //accountId - это AccountExpansion
-  //adminDashboard/block?accountId=2 как пример
-    public function test_block_account_l2_account_expansion_byid(){
+    //adminDashboard/unblock?accountId=2 как пример 
+    public function test_unblock_account_l2_account_expansion_byid(){
         $admin_user = Utils::createAdmin($this->role_name_admin);
         $user = Utils::createUser($this->role_name_user);
         $array_fake_data = $this->createFakeData($this->list_server , $user );
         $response = $this->actingAs($admin_user)->get('/adminDashboard/block?accountId='.$user->id);
         $array_finish = $this->checkResult($this->list_server, $array_fake_data );
         
-       // dd($array_finish);
 
-        
+
+ 
        $this->assertTrue(true , $this->getResultCheck($array_finish));
     }
 

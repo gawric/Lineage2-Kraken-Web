@@ -13,6 +13,7 @@ namespace App\Http\Controllers\Lineage2\PersonalArea\Auth\Ajax\Admin;
  use App\Models\Temp\InfoDashboardCharsCoin;
  use App\Service\Utils\FunctionSupport;
  use App\Service\Utils\FunctionPayments;
+ use App\Service\Utils\FunctionOtherUser;
 
 class AdminDashboardAllCharsByIdUserController extends Controller
 {
@@ -43,10 +44,17 @@ class AdminDashboardAllCharsByIdUserController extends Controller
 
         try 
         {
-          //  info("AdminDashboardAllUsersByIdController>>>> success request ajax! " . $acccount_expansion_id);
-            $array_chars_user = $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , $acccount_expansion_id);
-            $result = $this->convertArrModel($array_chars_user);
-            return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$result , 'access_items'=>$this->array_success_items]); 
+            $search_user = FunctionOtherUser::getUserById($acccount_expansion_id);
+
+            if(isset($search_user) and !is_array($search_user)){
+                $array_chars_user = $this->serviceDashboardChars->getAllCharsAllServers($this->list_servers , $acccount_expansion_id);
+                $result = $this->convertArrModel($array_chars_user);
+                return Response::json(['success'=>Lang::get('messages.lk_admin_panel_windows_success') , 'result'=>$result , 'access_items'=>$this->array_success_items]); 
+            }
+
+
+            return Response::json(['error' => Lang::get('messages.admin_use_all_accounts_error_by_id') , 'result'=>[]], 404);
+          
         }
          catch (ModelNotFoundException $exception) {
             return Response::json(['error'=>$exception->getMessage() , 'result'=>[]]);
