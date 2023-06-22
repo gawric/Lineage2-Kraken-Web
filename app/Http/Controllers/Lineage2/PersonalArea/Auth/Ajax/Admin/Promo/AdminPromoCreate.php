@@ -25,7 +25,7 @@ class AdminPromoCreate extends Controller
         $this->servicePromo = $servicePromo;
     }
 
-    ///adminPayments/filter?arrayfil[]=val1&foo[]=val2&foo[]=val3
+    // /adminPromo/create
     public function create(Request $request)
     {
         $validator = $request->validate([

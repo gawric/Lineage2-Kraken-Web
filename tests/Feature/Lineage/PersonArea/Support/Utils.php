@@ -8,7 +8,7 @@ use App\Service\ProxySqlL2Server\Support\ProxyFilters\GeneralFilters;
 use App\Models\Accounts_server_id;
 use App\Service\Utils\FunctionOtherUser;
 use App\Service\Utils\FunctionSupport;
-
+use App\Models\Promo\PromoUsed;
 
  class Utils
  { 
@@ -82,6 +82,13 @@ use App\Service\Utils\FunctionSupport;
         return $admin;
      }
 
+     public static function createPromoUsed($promo_codes_id , $char_name){
+        $promo_used = self::createPromoUsedModel($promo_codes_id , $char_name);
+        $promo_used->save();
+
+        return  $promo_used;
+     }
+
      private static function createAccountExpasion(){
         $model = new Accounts_expansion();
         $model->id = 12;
@@ -100,6 +107,27 @@ use App\Service\Utils\FunctionSupport;
         self::setIpAddressUser("127.0.0.1", $user->id , now());
 
         return $user;
+     }
+
+            //$table->id();
+            //$table->string('char_name');
+            //$table->unsignedBigInteger('accounts_server_id');
+            //$table->unsignedBigInteger('accounts_expansion_id');
+            //$table->unsignedBigInteger('promo_codes_id');
+            //$table->foreign('promo_codes_id')
+            //->references('id')->on('promo')
+            //->onDelete('cascade');
+            //$table->timestamp('created_at');
+            //$table->timestamp('updated_at');
+     public static function createPromoUsedModel($promo_codes_id , $char_name){
+        $model = new PromoUsed();
+        $model->char_name = $char_name;
+        $model->promo_codes_id = $promo_codes_id;
+        $model->created_at = now();
+        $model->accounts_server_id = 0;
+        $model->accounts_expansion_id = 12;
+
+        return $model;
      }
 
   

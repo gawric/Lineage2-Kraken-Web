@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Promo\PromoCodes;
 use App\Models\Accounts_server_id;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class PromoUsed extends Model
 {
@@ -19,12 +19,17 @@ class PromoUsed extends Model
     }
 
     public function getAccountName(){
-      $model = Accounts_server_id::findOrFail($this->accounts_server_id);
-        if(isset($model->account_name)){
-          return $model->account_name;
+      
+      try
+      {
+          $model = Accounts_server_id::findOrFail($this->accounts_server_id);
+          if(isset($model->account_name)){
+            return $model->account_name;
+          }
       }
-
+      catch(ModelNotFoundException $e){
         return "";
+      }
     }
 
 }
